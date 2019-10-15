@@ -2,6 +2,10 @@ import kfp.dsl as dsl
 from kfp import components
 import kfp.compiler as compiler
 
+import sys
+sys.path.insert(0, '/home/dkube/ahmed/oc-dkube-sdk/dkube/')
+
+from dkube.sdk.dkube import *
 from dkube.pipelines import *
 from dkube.sdk import *
 
@@ -14,10 +18,10 @@ def d3pipeline():
     env = Environment(ip='192.168.200.19', user='ocdkube', token=token)
 
     train   = dkube_training_op(
-            env=env, framework=Framework.Tensorflow, name='mnist-new', 
-            container={'image':'docker.io/ocdr/dkube-datascience-tf-cpu:v1.14'},
-            command='python model.py',
-            envs={"steps": 100},
+            env=env.external, name='mnist-new', 
+            container=ContainerImage.DKUBE_DS_TF_CPU_1_14,
+            script='python model.py',
+            envs={'steps': 100, 'batchsize': 100},
             program='mnist',
             datasets=['mnist'])
 

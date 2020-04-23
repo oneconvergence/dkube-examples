@@ -2,29 +2,41 @@ import sys
 
 sys.path.insert(0, '/home/dkube/ahmed/dkube-sdk/dkube')
 
-from dkube.sdk.dkube import *
+from dkube.sdk import *
 import os
 
 if __name__ == "__main__":
-    token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkIjoxNTc5NjExMzQzLCJyb2xlIjoib3BlcmF0b3IiLCJ1c2VybmFtZSI6Im9jIn0.KyvXEmRdnSIZxzu-0s2z_atDUpKRxyradp_bFYNdyng'
-    env = Environment(scheme='https', host='35.247.21.0', user='oc', token=token, port=32222)
+    token = ''
+    conn = Connection()
+    conn.scheme = 'https'
+    conn.host = ''
+    conn.port = 32222
+    conn.token = token
 
-    clinical_train  = {'name': 'clinical-train', 'mountpath': '/opt/dkube/inputs/train/clinical'}
-    clinical_test   = {'name': 'clinical-test',  'mountpath': '/opt/dkube/inputs/test/clinical' }
-    clinical_val    = {'name': 'clinical-val',    'mountpath': '/opt/dkube/inputs/val/clinical'  }
+    
+    #project = ProjectRepo(source=Github('https://github.com/oneconvergence/dkube-examples/tree/2.0.5/tensorflow/classification/mnist/digits/classifier/program', '2.0.5'), name='mnist-2')
+    #create_repo('administrator', project, conn=conn)
 
-    images_train    = {'name': 'images-train',  'mountpath': '/opt/dkube/inputs/train/images' }
-    images_test     = {'name': 'images-test',   'mountpath': '/opt/dkube/inputs/test/images'  }
-    images_val      = {'name': 'images-val',    'mountpath': '/opt/dkube/inputs/val/images'   }
+    #dataset = DatasetRepo(name='mnist', source=Github('https://github.com/kubeflow/kubeflow.git', 'master'))
+    #create_repo('administrator', dataset, conn=conn)
 
-    rna_train       = {'name': 'rna-train',     'mountpath': '/opt/dkube/inputs/train/rna'  }
-    rna_test        = {'name': 'rna-test',      'mountpath': '/opt/dkube/inputs/test/rna'   }
-    rna_val         = {'name': 'rna-val',       'mountpath': '/opt/dkube/inputs/val/rna'    }
     
-    launch_training_job("test", autogenerate=True, environ=env.external, 
-            workspace='regression', script='python train_nn.py --epochs 5',
-            datasets=[clinical_train, clinical_test, clinical_val, images_train, images_test, images_val, rna_train, rna_test, rna_val], 
-            models=['dkube-regression-model'], template='regression-training')
+    #model = ModelRepo(name='mnist')
+    #create_repo('administrator', model, conn=conn)
     
-    
-    #export_model("/tmp/test-model", "test", autogenerate=True, environ=env.external, framework=Framework.Unknown)
+    #list_versions('administrator', DatasetRepo(name='mnist'), conn=conn)
+    #list_versions('administrator', ModelRepo(name='mnist'), conn=conn)
+
+    #project = ProjectRef('mnist-2')
+    #dataset = DatasetRef('mnist', mount='/opt/dkube/input')
+    #model = ModelRef('mnist', mount='/opt/dkube/output')
+
+    #run = Run()
+    #run.add_script('python model.py')
+    #run.add_input_project(project)
+    #run.add_input_dataset(dataset)
+    #run.add_output_model(model)
+
+    #create_run('administrator', run, conn=conn)
+    #get_run('oc', 'run-run-2199933074', conn=conn)
+    #list_run('oc', conn=conn)

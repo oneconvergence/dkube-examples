@@ -2,31 +2,30 @@ import kfp.dsl as dsl
 from kfp import components
 import kfp.compiler as compiler
 
-from dkube.sdk.dkube import *
-from dkube.pipelines import *
 from dkube.sdk import *
+from dkube.pipelines import *
 
 @dsl.pipeline(
-    name='dkube_mnist_pipeline',
+    name='dkube_mnist_pl',
     description='sample mnist digits pipeline with dkube components'
 )
-def dkube_mnist_pipeline(container=ContainerImage.DKUBE_DS_TF_CPU_1_14.value.to_dict(),
-        token=os.getenv("DKUBE_USER_ACCESS_TOKEN"),
-        program='mnist',
-        dataset=['mnist'],
-        envs=[{"steps": 100, "batchsize": 100}],
-        hptuning={},
-        ngpus=0):
+def dkube_mnist_pipeline(
+		authtoken='',
+		project='',
+		dataset='',
+		model='',
+		nworkers=0,
+		ngpus=0):
 
-    env = Environment(token='%s'%(token))
+    training_name= generate('mnist')
+    training = DkubeTraining('oc', name=training_name)
+    training.add_project(str(project))
+    training.add_input_dataset(str(dataset), mountpath='/opt/dkube/input')
+    training.add_output_model(str(model), mountpath='/opt/dkube/output')
+	
+    training_op = dkube_training_op(
+	            name='mnist-training',
+				authtoken=authtoken,
+				training=training)
 
-    train   = dkube_training_op(
-            env=env.external, name='mnist-new', 
-            container=container,
-            script='python model.py',
-            envs=envs,
-            program=program,
-            datasets=dataset,
-            ngpus=ngpus)
-
-compiler.Compiler().compile(dkube_mnist_pipeline, 'dkube_mnist_pipeline.tar.gz')
+compiler.Compiler().compile(dkube_mnist_pipeline, 'dkube_mnist_pl.tar.gz')

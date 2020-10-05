@@ -52,7 +52,11 @@ if __name__ == "__main__":
 
     #api.create_training_run(training)
 
-    api.create_serving_run(serving)
+    #api.create_test_inference(serving)
+
+    reruns = api.trigger_runs_bydataset("mnist", "oc")
+    import json
+    print('List of reruns - {}'.format(json.dumps(reruns)))
 
     '''
     training_name = 'pltraining-3500'

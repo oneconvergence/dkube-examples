@@ -1,47 +1,60 @@
 import sys
+import os
+
+sys.path.insert(0, os.path.abspath('../'))
 
 from dkube.sdk import *
-from dkube.sdk.lib.api import *
 
 if __name__ == "__main__":
 
-    dkubeURL = 'https://192.168.200.106:32222'
-    authToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6Im9jIiwicm9sZSI6Im9wZXJhdG9yIiwiaWF0IjoxNTg3NzIxNTE4LCJpc3MiOiJES3ViZSJ9.OQmeuygUqH9qPSUm-SrqeyTdekMOH0E3XBeaCYLSmEh-oRXRL3XhEtLnHhXn6KPzXWkEuDo1W_FyrUEpXZsXXHP-Fjt1cF08IXmSxWIRRw9-dcAuPJxBzgmxyJWpTVlSiwN8HhfJNuTPk8sSUhzPLmBD4eEN3gGS3FP7_VdvXDOpgYW7__IkN7qpfkdz6H0mMeAcsazDbZ1ZwMoVkBq-Ad6UnQ-5FvfWYxVPPKD95QGmpGz7TpAmbYHMFWTWIgyxuQnw24W72wn1Un21C1P9HUTSIPLQHqO6sbhHaZVmWGdzcMN1wmGSWqJucKyQHUCntVyx0axDMDbXSnuwNuBWaQ'
+    dkubeURL = 'https://35.227.115.171:32222'
+    authToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6Im9jIiwicm9sZSI6Im9wZXJhdG9yIiwiZXhwIjo0ODQxNDQ3MDM1LCJpYXQiOjE2MDE0NDcwMzUsImlzcyI6IkRLdWJlIn0.vIV2-dip23yCUumh3auNNSjXETRa2_NqJgUPyrP1-dIqd3OvDvmWKTIFTser1ycoIpPM4hXDDJxcyiDU3JA5pFkbT0m0Y4V8sT4cQQUpjyIO5mRGvfZYha5vb_-Kw7CLZMpRKmbgxOy7tdZcywlXLqLmItrYjmZWeEvvQPzkKASl9O5d5dsQvx3LZ3bT4Gp1Fps-x0wl0n7G_pY9wQJKIqWvWjoa8tKVVYlnmYBTmne3jguYaGv_dkIDVi7AK2bAJ-_3u9NQnYQS1-oevVfdHu8kfH0fVoxOyOjMWZw2I7gPRHmndR2mhB9EzCsrFUlGzS2SDvoBQ2v0bvHau3vyqA'
 
 
+    '''
     project_name = generate('mnist')
     project = DkubeProject('oc', name=project_name)
-    project.update_project_source(source='github')
-    project.update_github_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
+    project.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
+    '''
     
 
     dataset_name = generate('mnist')
     dataset = DkubeDataset('oc', name=dataset_name)
-    dataset.update_dataset_source(source='github')
-    dataset.update_github_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/data', branch='2.0.6')
+    dataset.update_dataset_source(source='git')
+    dataset.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/data', branch='2.0.6')
 
     model_name = generate('mnist')
     model = DkubeModel('oc', name=model_name)
     model.update_model_source(source='dvs')
 
 
+    
     training_name= generate('mnist')
-    training = DkubeTraining('oc', name=training_name)
-    training.add_project(project_name)
-    training.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
-    training.add_output_model(model_name, mountpath='/opt/dkube/output')
+    training = DkubeTraining('oc', name=training_name, description='triggered from dkube sdk')
+    training.update_container(framework="tensorflow_v1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
+    training.update_startupscript("python model.py")
+    training.add_project("mnist")
+    training.add_input_dataset("mnist", mountpath='/opt/dkube/input')
+    training.add_output_model("mnist", mountpath='/opt/dkube/output')
+
+    serving_name=generate('mnist')
+    serving = DkubeServing('oc', name=serving_name, description='serving deployed from dkube sdk')
+    serving.update_transformer_code(project='mnist', code='transformer.py')
+    serving.update_transformer_image(image_url='ocdr/d3-datascience-tf-cpu:v1.14')
+    serving.update_serving_model("mnist", version="1601882977956")
+    serving.update_serving_image(image_url='ocdr/d3-datascience-tf-cpu:v1.14')
 
 
-    api = DkubeApi(dkubeURL=dkubeURL, authToken=authToken)
+    api = DkubeApi(URL=dkubeURL, token=authToken)
     #api.create_project(project)
     #api.create_dataset(dataset)
     #api.create_model(model)
 
-    #Bug - getting fixed in 2.0.8, it takes little time to reflect version even after datum state is ready
-    #time.sleep(30)
-
     #api.create_training_run(training)
 
+    api.create_serving_run(serving)
+
+    '''
     training_name = 'pltraining-3500'
     outputs = api.get_training_outputs('oc', training_name)
 
@@ -61,3 +74,4 @@ if __name__ == "__main__":
     index = outputs[0]['version']['index']
 
     print('Generated version - {} for model {} at index {}'.format(version, model_name, index))
+    '''

@@ -52,15 +52,15 @@ if __name__ == "__main__":
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
 
     ########### Setting Mlflow Tracking uri ###########
-    mlflow.set_tracking_uri("https://34.70.56.47:31392")
+    mlflow.set_tracking_uri("'http://35.227.115.171:31392")
 
     ######### Create a dkube training run and extracting the run_id ########
-    dkubeURL = 'https://34.70.56.47:32222'
-    authToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6Im9jIiwicm9sZSI6Im9wZXJhdG9yLGRhdGFzY2llbnRpc3QiLCJleHAiOjQ4NDE4ODQ2OTksImlhdCI6MTYwMTg4NDY5OSwiaXNzIjoiREt1YmUifQ.wVc7Gy9WiCr7tY_k_jxbzEJ7YurQyRUgqOo6bEXdX2AeW765ucSoQKoODJ_8KclSKOqbwPiLHwkIhjvuZbupLZEUZfFX2301LlxOS4j3Oo407f3uWtA2tmj_Yld4sYGLYkdXAxmxUyWshnmqVe4lyjDQqv4ebEN3VTFPgVltlb0IlBt2j_D8eeouNKHxfThBSbC4pxFdug5mJ72-uVimtS6vCL2zeXzGq_FFHb40Ri7vhoGCs7rtC6BRezsKAAigC2p0kh2sDjz_xzAQQZQIcqHsoPFyXqyw-_8685rsHlkO7avhGGiZw88eXVGylc4hsGf7PYDnaOXtXLQRuBEjmA'
-    project_name = generate('mlflow-api-pallavi')
+    dkubeURL = 'https://35.227.115.171:32222/'
+    authToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6Im9jIiwicm9sZSI6Im9wZXJhdG9yIiwiZXhwIjo0ODQxNDQ3MDM1LCJpYXQiOjE2MDE0NDcwMzUsImlzcyI6IkRLdWJlIn0.vIV2-dip23yCUumh3auNNSjXETRa2_NqJgUPyrP1-dIqd3OvDvmWKTIFTser1ycoIpPM4hXDDJxcyiDU3JA5pFkbT0m0Y4V8sT4cQQUpjyIO5mRGvfZYha5vb_-Kw7CLZMpRKmbgxOy7tdZcywlXLqLmItrYjmZWeEvvQPzkKASl9O5d5dsQvx3LZ3bT4Gp1Fps-x0wl0n7G_pY9wQJKIqWvWjoa8tKVVYlnmYBTmne3jguYaGv_dkIDVi7AK2bAJ-_3u9NQnYQS1-oevVfdHu8kfH0fVoxOyOjMWZw2I7gPRHmndR2mhB9EzCsrFUlGzS2SDvoBQ2v0bvHau3vyqA'
+    project_name = generate('mlflow-api-reporting')
     project = DkubeProject('oc', name=project_name)
     project.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
-    training_name= generate('mlflow-api-pallavi')
+    training_name= generate('mlflow-api-reporting')
     training = DkubeTraining('oc', name=training_name, description='triggered from dkube sdk')
     training.update_container(framework="tensorflow_v1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
     training.update_startupscript("sleep 30m")
@@ -70,7 +70,6 @@ if __name__ == "__main__":
     api.create_training_run(training,wait_for_completion=False)
     run_response=api.get_training_run('oc',training_name)
     run_id=run_response["job"]["parameters"]["generated"]["uuid"]
-    print(run_id)
 
     with mlflow.start_run(run_id):
 

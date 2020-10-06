@@ -52,7 +52,7 @@ if __name__ == "__main__":
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
 
     ########### Setting Mlflow Tracking uri ###########
-    mlflow.set_tracking_uri("'http://35.227.115.171:31392")
+    mlflow.set_tracking_uri("http://35.227.115.171:31392")
 
     ######### Create a dkube training run and extracting the run_id ########
     dkubeURL = 'https://35.227.115.171:32222/'

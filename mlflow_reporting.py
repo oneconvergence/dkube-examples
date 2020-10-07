@@ -1,4 +1,5 @@
 import os
+import argparse
 import warnings
 import sys
 import mlflow
@@ -6,17 +7,18 @@ import logging
 import requests
 import pandas as pd
 import numpy as np
-import mlflow.sklearn
-from dkube.sdk import *
 from urllib.parse import urlparse
+
+import mlflow.sklearn
 from sklearn.linear_model import ElasticNet
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 
-sys.path.insert(0, os.path.abspath('../'))
+from dkube.sdk import *
 
-logging.basicConfig(level=logging.WARN)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+
 
 def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
@@ -25,11 +27,43 @@ def eval_metrics(actual, pred):
     return rmse, mae, r2
 
 
+def create_dkube_run(url, token, user):
+    GIT_PROJECT_URL = 'https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program'
+    # Create DKube resources
+    api = DkubeApi(URL=url, token=token)
 
-if __name__ == "__main__":
-    warnings.filterwarnings("ignore")
-    np.random.seed(40)
+    try:
+        api.get_project(user, "mlflow-test")
+    except Exception as exc:
+        logger.info("Creating project (mlflow-test) for user " + user)
+        project = DkubeProject(user, name="mlflow-test")
+        project.update_git_details(GIT_PROJECT_URL, branch='2.0.6')
+        api.create_project(project)
+    else:
+        logger.info("Project (mlflow-test) already exist, skipping creation..")
 
+    training_name = generate('mlflow-test')
+    logger.info("Creating a training run (" +
+                training_name + ") for user " + user)
+
+    training = DkubeTraining(user, name=training_name,
+                             description='Run to test mlflow metric reporting')
+    training.update_container(
+        framework="tensorflow_v1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
+    training.update_startupscript("sleep 30m")
+    training.add_project('mlflow-test')
+    api.create_training_run(training, wait_for_completion=False)
+
+    run_response = api.get_training_run('oc', training_name)
+    run_id = run_response["job"]["parameters"]["generated"]["uuid"]
+
+    logger.info("DKube run id (" + run_id +
+                "), metrics can be reported against it")
+
+    return run_id
+
+
+def mlflow_train_and_report(url, token, runid):
     # Read the wine-quality csv file from the URL
     csv_url =\
         'http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv'
@@ -48,30 +82,18 @@ if __name__ == "__main__":
     train_y = train[["quality"]]
     test_y = test[["quality"]]
 
-    alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
-    l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+    alpha = 0.5
+    l1_ratio = 0.5
 
-    ########### Setting Mlflow Tracking uri ###########
-    mlflow.set_tracking_uri("http://35.227.115.171:31392")
+    # Following envs must be set for mlflow reporting to work
+    os.environ['MLFLOW_TRACKING_TOKEN'] = str(token)
+    os.environ['MLFLOW_TRACKING_INSECURE_TLS'] = "true"
+    os.environ['MLFLOW_RUN_ID'] = str(runid)
+    os.environ["MLFLOW_TRACKING_URI"] = str(url)
 
-    ######### Create a dkube training run and extracting the run_id ########
-    dkubeURL = 'https://35.227.115.171:32222/'
-    authToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6Im9jIiwicm9sZSI6Im9wZXJhdG9yIiwiZXhwIjo0ODQxNDQ3MDM1LCJpYXQiOjE2MDE0NDcwMzUsImlzcyI6IkRLdWJlIn0.vIV2-dip23yCUumh3auNNSjXETRa2_NqJgUPyrP1-dIqd3OvDvmWKTIFTser1ycoIpPM4hXDDJxcyiDU3JA5pFkbT0m0Y4V8sT4cQQUpjyIO5mRGvfZYha5vb_-Kw7CLZMpRKmbgxOy7tdZcywlXLqLmItrYjmZWeEvvQPzkKASl9O5d5dsQvx3LZ3bT4Gp1Fps-x0wl0n7G_pY9wQJKIqWvWjoa8tKVVYlnmYBTmne3jguYaGv_dkIDVi7AK2bAJ-_3u9NQnYQS1-oevVfdHu8kfH0fVoxOyOjMWZw2I7gPRHmndR2mhB9EzCsrFUlGzS2SDvoBQ2v0bvHau3vyqA'
-    project_name = generate('mlflow-api-reporting')
-    project = DkubeProject('oc', name=project_name)
-    project.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
-    training_name= generate('mlflow-api-reporting')
-    training = DkubeTraining('oc', name=training_name, description='triggered from dkube sdk')
-    training.update_container(framework="tensorflow_v1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
-    training.update_startupscript("sleep 30m")
-    api = DkubeApi(URL=dkubeURL, token=authToken)
-    api.create_project(project)
-    training.add_project(project_name)
-    api.create_training_run(training,wait_for_completion=False)
-    run_response=api.get_training_run('oc',training_name)
-    run_id=run_response["job"]["parameters"]["generated"]["uuid"]
+    logger.info("Setting MLFlow tracking URL to " + url)
 
-    with mlflow.start_run(run_id):
+    with mlflow.start_run(runid):
 
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
@@ -91,6 +113,33 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
 
-        
-      
 
+if __name__ == "__main__":
+    warnings.filterwarnings("ignore")
+    np.random.seed(40)
+
+    parser = argparse.ArgumentParser(description='Argument parser')
+    # Add the arguments
+    parser.add_argument('url',
+                        metavar='url',
+                        type=str,
+                        help='URL to DKube platform.')
+    parser.add_argument('token',
+                        metavar='token',
+                        type=str,
+                        help='DKube access token.')
+
+    parser.add_argument('user',
+                        metavar='user',
+                        type=str,
+                        help='DKube user.')
+
+    flags = parser.parse_args()
+
+    url   = flags.url
+    token = flags.token
+    user  = flags.user
+
+    runid = create_dkube_run(url, token, user)
+
+    mlflow_train_and_report(url, token, runid)

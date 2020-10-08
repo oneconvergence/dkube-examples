@@ -54,7 +54,7 @@ def create_dkube_run(url, token, user):
     training.add_project('mlflow-test')
     api.create_training_run(training, wait_for_completion=False)
 
-    run_response = api.get_training_run('oc', training_name)
+    run_response = api.get_training_run(user, training_name)
     run_id = run_response["job"]["parameters"]["generated"]["uuid"]
 
     logger.info("DKube run id (" + run_id +

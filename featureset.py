@@ -75,26 +75,37 @@ if __name__ == "__main__":
 
     api.create_project(project)
 
+    # Create model repo
+
+    model_name = generate('mnist')
+    model = DkubeModel(user, name=model_name)
+    model.update_model_source(source='dvs')
+
+    api.create_model(model)
+
+    """
     # Preprocessing run
     preprocess_name= generate('mnist-preprocess')
     preprocess = DkubePreprocessing(user, name=preprocess_name, description='triggered from dkube sdk')
     preprocess.update_container(image_url="ocdr/d3-datascience-tf-cpu:v1.14")
     preprocess.update_startupscript("sleep 2000")
-    #preprocess.add_project("mnist")
-    preprocess.add_input_dataset("mnist", mountpath='/opt/dkube/input')
+    #preprocess.add_project(project_name)
+    preprocess.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
     preprocess.add_output_featureset(featureset_name, mountpath='/opt/dkube/output')
 
     api.create_preprocessing_run(preprocess)
-
-    '''
+    """
+    
     training_name= generate('mnist')
     training = DkubeTraining(user, name=training_name, description='triggered from dkube sdk')
     training.update_container(framework="tensorflow_v1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
-    training.update_startupscript("python model.py")
-    training.add_project("mnist")
-    training.add_input_dataset("mnist", mountpath='/opt/dkube/input')
-    training.add_output_model("mnist", mountpath='/opt/dkube/output')
-    '''
+    #training.update_startupscript("python model.py")
+    training.update_startupscript("sleep 1000")
+    training.add_project(project_name)
+    training.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
+    training.add_output_model(model_name, mountpath='/opt/dkube/output')
+    training.add_input_featureset(featureset_name, mountpath='/opt/dkube/featureset')
+    
 
-    #api.create_training_run(training)
+    api.create_training_run(training)
 

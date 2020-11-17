@@ -49,6 +49,8 @@ if __name__ == "__main__":
     print(response)
 
     """
+    # Delete a featureset
+
     print(f"\n deleting featureset {featureset_name}")
     featuresets = []
     featuresets.append(featureset_name)
@@ -56,12 +58,23 @@ if __name__ == "__main__":
     print(response)
     """
 
+    # Create a dataset
+
     dataset_name = generate('mnist')
     dataset = DkubeDataset(user, name=dataset_name)
     dataset.update_dataset_source(source='git')
     dataset.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/data', branch='2.0.6')
-    
+
     api.create_dataset(dataset)
+
+    # Create a project
+
+    project_name = generate('mnist')
+    project = DkubeProject(user, name=project_name)
+    project.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
+
+    api.create_project(project)
+
     # Preprocessing run
     preprocess_name= generate('mnist-preprocess')
     preprocess = DkubePreprocessing(user, name=preprocess_name, description='triggered from dkube sdk')

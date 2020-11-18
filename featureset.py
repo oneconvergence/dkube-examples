@@ -1,20 +1,21 @@
 import os
 import sys
 
+from dkube.sdk import *
+
 sys.path.insert(0, os.path.abspath('../'))
 
-from dkube.sdk import *
 
 if __name__ == "__main__":
 
-    user = 'osm'
+    user = os.getenv('USERNAME')
     dkubeURL = 'https://172.16.146.128:32222'
-    authToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6Im9zbSIsInJvbGUiOiJkYXRhc2NpZW50aXN0LG1sZSxwZSxvcGVyYXRvciIsImV4cCI6NDg0NTY0NDMyMywiaWF0IjoxNjA1NjQ0MzIzLCJpc3MiOiJES3ViZSJ9.xMd-OpVe4-RdVClyvzX4bhibWNNB4nDI9WY4qbMGyYyJzrUMjb4xa-6hf0EbOXUh7ePYjKwFyuJJa-tXTj-L_pF_QlyycKF66WPIAl6-soMFIhmZXWlGCUqXHF9-pUkBqlpLLCwz07Z4nUzksMPkoIbHwWf_MUNll-lbaCNgd-z_X97ADu6lTBfhm3bV2eXnDBV5oBoxjF0Fg4fJxl_dNBzw926lswaWwndElr3VyDtpxV5hcsVKFFufunIn6r4leP6K_fYnT6E449IWOaAxYoxyTkmhQDkHBAJ3Odpd19wry1xgi9erRHB059oSr8wP3JqcPqP6hRTdpIEA9id03g'
-
+    authToken = os.getenv('DKUBE_USER_ACCESS_TOKEN')
     featureset_name = generate('elections-2020')
     print(f"Featureset name {featureset_name}")
 
-    featureset = DkubeFeatureSet(name=featureset_name, description="Elections 2020 analysis", tags=["pandemic:covid", "war:none"])
+    featureset = DkubeFeatureSet(name=featureset_name, description="Elections 2020 analysis", tags=[
+                                 "pandemic:covid", "war:none"])
     # Update specfile location
     features_metadata = """- name: Name
   description: Presidential candidate name
@@ -90,13 +91,15 @@ if __name__ == "__main__":
     project_name = "mnist-fs"
     dataset_name = "mnist-fs"
     featureset_name = "A"
-    preprocess_name= generate('mnist-fs')
-    preprocess = DkubePreprocessing(user, name=preprocess_name, description='triggered from dkube sdk')
+    preprocess_name = generate('mnist-fs')
+    preprocess = DkubePreprocessing(
+        user, name=preprocess_name, description='triggered from dkube sdk')
     preprocess.update_container(image_url="ocdr/d3-datascience-tf-cpu:v1.14")
     preprocess.update_startupscript("sleep 200000")
     preprocess.add_project(project_name)
     preprocess.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
-    preprocess.add_output_featureset(featureset_name, mountpath='/opt/dkube/output')
+    preprocess.add_output_featureset(
+        featureset_name, mountpath='/opt/dkube/output')
 
     api.create_preprocessing_run(preprocess)
     """

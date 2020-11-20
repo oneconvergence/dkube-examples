@@ -30,7 +30,7 @@ if __name__ == "__main__":
   description: Party affiliation
   schema: string
 - name: Popular vote
-  description: Total votes 
+  description: Total votes
   schema: int
 - name: electoral votes
   description: Total electoral votes

@@ -5,18 +5,9 @@ from dkube.sdk import *
 
 sys.path.insert(0, os.path.abspath('../'))
 
+def _create_featureset_specfiles(spec1_path, spec2_path):
 
-if __name__ == "__main__":
-
-    user = os.getenv('USERNAME')
-    dkubeURL = 'https://172.16.146.128:32222'
-    authToken = os.getenv('DKUBE_USER_ACCESS_TOKEN')
-    featureset_name = generate('elections-2020')
-    print(f"Featureset name {featureset_name}")
-
-    featureset = DkubeFeatureSet(name=featureset_name, description="Elections 2020 analysis", tags=[
-                                 "pandemic:covid", "war:none"])
-    # Update specfile location
+    # spec1 metadata
     features_metadata = """- name: Name
   description: Presidential candidate name
   schema: string
@@ -39,11 +30,50 @@ if __name__ == "__main__":
   description: is he the winner
   schema: boolean
 """
-    open("/tmp/spec-biden.yaml", "w").write(features_metadata)
-    featureset.update_featurespec_file("/tmp/spec-biden.yaml")
+    open(spec1_path, "w").write(features_metadata)
+
+    features_metadata = """- name: Customer Name
+  description: Customer Name
+  schema: string
+- name: Gender
+  description: Gender
+  schema: string
+- name: Company
+  description: Company affiliation
+  schema: string
+- name: Units
+  description: Number of DKube licenses
+  schema: int64
+- name: revenue
+  description: Total revenue
+  schema: int64
+"""
+    open(spec2_path, "w").write(features_metadata)
+
+
+if __name__ == "__main__":
+
+    user = os.getenv('USERNAME')
+    dkubeURL = 'https://172.16.146.128:32222'
+    authToken = os.getenv('DKUBE_USER_ACCESS_TOKEN')
+
+    spec1_path = "/tmp/spec1.yaml"
+    spec2_path = "/tmp/spec2.yaml"
+    _create_featureset_specfiles(spec1_path, spec2_path)
+
+    featureset_name = generate('featureset-2020')
+    print(f"Featureset name {featureset_name}\n")
+
+    featureset = DkubeFeatureSet(name=featureset_name, description="FeatureSet experiments", tags=[
+                                 "pandemic:covid", "war:none"])
+    featureset.update_featurespec_file(spec1_path)
+    print(f"---- Featureset name {featureset_name} -- Create featureset \n")
 
     api = DkubeApi(URL=dkubeURL, token=authToken)
     api.create_featureset(featureset)
+
+    print(f"---- Featureset name {featureset_name} -- uploading new spec file \n")
+    api.upload_featurespec(featureset_name, spec2_path)
 
     response = api.list_featuresets()
     print("\nfeatureset lists\n")
@@ -87,6 +117,8 @@ if __name__ == "__main__":
     api.create_model(model)
 
     """
+
+    """
     # Preprocessing run
     project_name = "mnist-fs"
     dataset_name = "mnist-fs"
@@ -102,7 +134,7 @@ if __name__ == "__main__":
         featureset_name, mountpath='/opt/dkube/output')
 
     api.create_preprocessing_run(preprocess)
-    """
+    
     
     training_name= generate('mnist')
     training = DkubeTraining(user, name=training_name, description='triggered from dkube sdk')

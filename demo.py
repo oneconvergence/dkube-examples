@@ -60,6 +60,12 @@ if __name__ == "__main__":
     #api.publish_model(publish_name, "publishing mnist model", publish_details)
     #api.release_model("mak-454", "mnist", "1604345493555")
 
+    #mc = api.modelcatalog('oc')
+    #item = api.get_modelcatalog_item('oc', 'mnist-7206', '1606471424577')
+    #api.create_model_deployment('oc', 'dep1', 'mnist-7206', '1606471424577', stage_or_deploy='deploy')
+    #api.delete_model_deployment('oc', 'dep1')
+    #deps = api.list_model_deployments('oc')
+
     # api.create_training_run(training)
 
     #api.create_test_inference(serving)

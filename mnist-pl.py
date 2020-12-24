@@ -18,7 +18,7 @@ def dkube_mnist_pipeline(
     training = DkubeTraining(str(user), name=training_name, description='triggered from dkube pl launcher')
     training.update_container(framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
     training.update_startupscript('python model.py')
-    training.add_project(str(code))
+    training.add_code(str(code))
     training.add_input_dataset(str(dataset), mountpath='/opt/dkube/input')
     training.add_output_model(str(model), mountpath='/opt/dkube/output')
 

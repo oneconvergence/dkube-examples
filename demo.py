@@ -12,8 +12,8 @@ if __name__ == "__main__":
     authToken = ''
 
     '''
-    project_name = generate('mnist')
-    code = DkubeCode('oc', name=project_name)
+    code_name = generate('mnist')
+    code = DkubeCode('oc', name=code_name)
     code.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
 
     dataset_name = generate('mnist')
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     training = DkubeTraining('mak-454', name=training_name, description='triggered from dkube sdk')
     training.update_container(framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
     training.update_startupscript("python model.py")
-    training.add_project("mnist")
+    training.add_code("mnist")
     training.add_input_dataset("mnist", mountpath='/opt/dkube/input')
     training.add_output_model("mnist", mountpath='/opt/dkube/output')
 

@@ -1,9 +1,10 @@
-import sys
 import os
+import sys
+
+from dkube.sdk import *
 
 #sys.path.insert(0, os.path.abspath('../'))
 
-from dkube.sdk import *
 
 if __name__ == "__main__":
 
@@ -12,8 +13,8 @@ if __name__ == "__main__":
 
     '''
     project_name = generate('mnist')
-    project = DkubeProject('oc', name=project_name)
-    project.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
+    code = DkubeCode('oc', name=project_name)
+    code.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
 
     dataset_name = generate('mnist')
     dataset = DkubeDataset('oc', name=dataset_name)
@@ -53,7 +54,7 @@ if __name__ == "__main__":
     #api.launch_rstudio_ide(notebook)
     #print(api.list_ides('mak-454'))
     #api.delete_ide('mak-454', 'mnist-4674')
-    # api.create_project(project)
+    # api.create_code(code)
     # api.create_dataset(dataset)
     # api.create_model(model)
     #v = api.get_model_version("mak-454", "mnist", "1604347322339")

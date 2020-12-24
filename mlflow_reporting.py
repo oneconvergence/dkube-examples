@@ -1,20 +1,19 @@
-import os
 import argparse
-import warnings
-import sys
-import mlflow
 import logging
-import requests
-import pandas as pd
-import numpy as np
+import os
+import sys
+import warnings
 from urllib.parse import urlparse
 
+import mlflow
 import mlflow.sklearn
-from sklearn.linear_model import ElasticNet
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.model_selection import train_test_split
-
+import numpy as np
+import pandas as pd
+import requests
 from dkube.sdk import *
+from sklearn.linear_model import ElasticNet
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -33,14 +32,14 @@ def create_dkube_run(url, token, user):
     api = DkubeApi(URL=url, token=token)
 
     try:
-        api.get_project(user, "mlflow-test")
+        api.get_code(user, "mlflow-test")
     except Exception as exc:
-        logger.info("Creating project (mlflow-test) for user " + user)
-        project = DkubeProject(user, name="mlflow-test")
-        project.update_git_details(GIT_PROJECT_URL, branch='2.0.6')
-        api.create_project(project)
+        logger.info("Creating code (mlflow-test) for user " + user)
+        code = DkubeCode(user, name="mlflow-test")
+        code.update_git_details(GIT_PROJECT_URL, branch='2.0.6')
+        api.create_code(code)
     else:
-        logger.info("Project (mlflow-test) already exist, skipping creation..")
+        logger.info("code (mlflow-test) already exist, skipping creation..")
 
     training_name = generate('mlflow-test')
     logger.info("Creating a training run (" +

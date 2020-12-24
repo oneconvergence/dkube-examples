@@ -99,14 +99,14 @@ if __name__ == "__main__":
 
     api.create_dataset(dataset)
 
-    # Create a project
+    # Create a code
 
     
     project_name = generate('mnist')
-    project = DkubeProject(user, name=project_name)
-    project.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
+    code = DkubeCode(user, name=project_name)
+    code.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
 
-    api.create_project(project)
+    api.create_code(code)
     
     # Create model repo
 

@@ -50,10 +50,14 @@ model = keras.Sequential(
 # mlflow metric logging
 class loggingCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
+        accuracy_metric = "accuracy"
+        if "acc" in logs:
+            accuracy_metric = "acc"
+
         log_metric ("train_loss", logs["loss"], step=epoch)
-        log_metric ("train_accuracy", logs["accuracy"], step=epoch)
+        log_metric ("train_accuracy", logs[accuracy_metric], step=epoch)
         log_metric ("val_loss", logs["val_loss"], step=epoch)
-        log_metric ("val_accuracy", logs["val_accuracy"], step=epoch)
+        log_metric ("val_accuracy", logs["val_" + accuracy_metric], step=epoch)
 
 
 model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])

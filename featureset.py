@@ -1,6 +1,7 @@
 import os
 import sys
 
+import pdb
 from dkube.sdk import *
 
 sys.path.insert(0, os.path.abspath('../'))
@@ -53,8 +54,9 @@ def _create_featureset_specfiles(spec1_path, spec2_path):
 
 if __name__ == "__main__":
 
+
     user = os.getenv('USERNAME')
-    dkubeURL = 'https://172.16.146.128:32222'
+    dkubeURL = 'https://192.168.200.147:32222'
     authToken = os.getenv('DKUBE_USER_ACCESS_TOKEN')
 
     spec1_path = "/tmp/spec1.yaml"

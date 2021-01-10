@@ -90,7 +90,6 @@ if __name__ == "__main__":
     #response = api.delete_featuresets(featuresets)
     #print(response)
 
-    """
     # Create a dataset
 
     dataset_name = generate('mnist')
@@ -101,8 +100,6 @@ if __name__ == "__main__":
     api.create_dataset(dataset)
 
     # Create a code
-
-    
     code_name = generate('mnist')
     code = DkubeCode(user, name=code_name)
     code.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
@@ -117,9 +114,6 @@ if __name__ == "__main__":
 
     api.create_model(model)
 
-    """
-
-    """
     # Preprocessing run
     code_name = "mnist-fs"
     dataset_name = "mnist-fs"
@@ -140,8 +134,8 @@ if __name__ == "__main__":
     training_name= generate('mnist')
     training = DkubeTraining(user, name=training_name, description='triggered from dkube sdk')
     training.update_container(framework="tensorflow_v1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
-    #training.update_startupscript("python model.py")
-    training.update_startupscript("sleep 1000")
+    training.update_startupscript("python model.py")
+    #training.update_startupscript("sleep 1000")
     training.add_code(code_name)
     training.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
     training.add_output_model(model_name, mountpath='/opt/dkube/output')
@@ -149,4 +143,3 @@ if __name__ == "__main__":
     
 
     api.create_training_run(training)
-    """

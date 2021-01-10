@@ -23,7 +23,11 @@ DKUBE_DATA_BASE_PATH=/var/dkube/dkube-store/dkube
 DKUBE_USER_ACCESS_TOKEN=blah
 USERNAME=trump
 DKUBE_USER_LOGIN_NAME=trump
+DKUBE_JOB_CLASS=notebook
 """
+
+# Run as
+# python featureset-titanic.py --url https://dkube-url:32222
 
 if __name__ == "__main__":
 
@@ -44,7 +48,7 @@ if __name__ == "__main__":
     api = DkubeApi(URL=dkubeURL, token=authToken)
 
     # create featureset
-    train_fs = generate('tain-fs')
+    train_fs = generate('train-fs')
     print(f"Featureset name {train_fs}\n")
     featureset = DkubeFeatureSet(name=train_fs, description="Titanic FeatureSet experiments")
     print(f"---- Featureset name {train_fs} -- Create featureset \n")

@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import argparse
 import pdb
+import time
 
 # import sys
 import yaml
@@ -87,3 +88,11 @@ if __name__ == "__main__":
         
         ########--- Commit features ---########
         resp = api.commit_featureset(train_fs, train_df, featureset_metadata)
+
+    # wait for data to be written
+    time.sleep(10)
+
+    pdb.set_trace()
+    # Read the features
+    df = api.read_featureset(train_fs)
+

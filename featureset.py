@@ -1,7 +1,6 @@
 import os
 import sys
 
-import pdb
 from dkube.sdk import *
 
 sys.path.insert(0, os.path.abspath('../'))
@@ -81,15 +80,15 @@ if __name__ == "__main__":
     print("\nfeatureset lists\n")
     print(response)
 
-    """
     # Delete a featureset
 
-    print(f"\n deleting featureset {featureset_name}")
-    featuresets = []
-    featuresets.append(featureset_name)
-    response = api.delete_featureset(featuresets)
-    print(response)
-    """
+    #print(f"\n deleting featureset {featureset_name}")
+    #response = api.delete_featureset(featureset_name)
+
+    #featuresets = []
+    #featuresets.append(featureset_name)
+    #response = api.delete_featuresets(featuresets)
+    #print(response)
 
     """
     # Create a dataset

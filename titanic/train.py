@@ -10,9 +10,9 @@ from sklearn.ensemble import RandomForestClassifier
 import mlflow
 from dkube.sdk import *
 
-inp_path = "/titanic-train"
+inp_path = "/featureset/train"
 out_path = "/model"
-test_path = "/titanic-test"
+test_path = "/featureset/test"
 
 
 if __name__ == "__main__":
@@ -51,13 +51,3 @@ if __name__ == "__main__":
     # Exporting model
     filename = os.path.join(out_path, "model.joblib")
     joblib.dump(model_RFC, filename)
-
-    # Writing test data
-    featureset = DkubeFeatureSet()
-    # Specify featureset path
-    featureset.update_features_path(path=test_path)
-    # Read features
-    data = featureset.read()  # output: response json with data
-    test_df = data["data"]
-    test_df.to_csv(os.path.join(out_path, "test.csv"), index=False)
-    val.to_csv(os.path.join(out_path, "val.csv"), index=False)

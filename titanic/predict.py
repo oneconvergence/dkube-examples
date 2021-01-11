@@ -2,11 +2,15 @@ import os
 import joblib
 import numpy as np
 import pandas as pd
+from dkube.sdk import DkubeFeatureSet
 
 model_dir = "/model"
+test_fs_dir= "/test_fs"
 
 def predict():
-    test_df = pd.read_csv(os.path.join(model_dir, "test.csv"))
+    featureset = DkubeFeatureSet()
+    featureset.update_features_path(path=test_fs_dir)
+    test_df = featureset.read()
     testdf_tmp = test_df
     df = testdf_tmp.drop("PassengerId", 1)
     #df = testdf_tmp.drop(["PassengerId","Survived"], 1)

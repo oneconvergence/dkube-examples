@@ -10,7 +10,7 @@ epochs = int(os.getenv("EPOCHS","5"))
 print ("Number of epochs:", epochs)
 num_classes = 10
 input_shape = (28, 28, 1)
-MODEL_DIR = "/opt/dkube/output"
+MODEL_DIR = "/opt/dkube/output/"
 
 #load dataset
 f = gzip.open('/mnist/mnist.pkl.gz', 'rb')
@@ -65,5 +65,7 @@ model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accur
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=0, validation_split=0.1, 
         callbacks=[loggingCallback(), tf.keras.callbacks.TensorBoard(log_dir=MODEL_DIR)])
 
-os.makedirs(f"{MODEL_DIR}/1", exist_ok=True)
-tf.saved_model.save(model,f"{MODEL_DIR}/1")
+export_path = MODEL_DIR
+model.save(export_path + 'weights.h5')
+tf.keras.backend.set_learning_phase(0)  # Ignore dropout at inference
+tf.saved_model.save(model,export_path + str(1))

@@ -10,7 +10,9 @@ test_fs_dir= "/test_fs"
 def predict():
     featureset = DkubeFeatureSet()
     featureset.update_features_path(path=test_fs_dir)
+    os.system ("ls -l " + test_fs_dir)
     test_df = featureset.read()["data"]
+    print (test_df.columns)
     testdf_tmp = test_df
     df = testdf_tmp.drop("PassengerId", 1)
     #df = testdf_tmp.drop(["PassengerId","Survived"], 1)

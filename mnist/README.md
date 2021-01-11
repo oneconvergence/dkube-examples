@@ -84,7 +84,7 @@
 1. Serving image : (use default one)
 2. Transformer image : (use default)
 3. Transformer project (use default)
-4. Transformer code : program/transformer.py
+4. Transformer code : mnist/transformer.py
 
 ### How to Test Inference in DKube Webapp
 1. Download data sample from https://github.com/oneconvergence/dkube-examples-2.0/blob/tensorflow/mnist/3.png

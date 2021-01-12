@@ -8,7 +8,7 @@ import yaml
 from dkube.sdk import *
 
 inp_path = ["/dataset/train", "/dataset/test"]
-out_path = ["/featureset/train", "/opt/dkube/output/test"]
+out_path = ["/featureset/train", "/featureset/test"]
 
 if __name__ == "__main__":
 

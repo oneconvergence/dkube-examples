@@ -95,4 +95,5 @@ if __name__ == "__main__":
 
     # Read the features
     df = api.read_featureset(train_fs)
-
+    print(df.head())
+    assert(df.equals(train_df)), "not equal"

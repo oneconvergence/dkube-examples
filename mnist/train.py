@@ -1,18 +1,19 @@
-from tensorflow import keras
-from tensorflow.keras import layers
-from mlflow import log_metric
 import gzip, pickle, os
 import numpy as np
-import tensorflow as tf
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torchvision import datasets, transforms
+from torch.optim.lr_scheduler import StepLR
+from mlflow import log_metric
 
+# read env variables
+epochs = int(os.getenv("EPOCHS","2"))
+device = os.getenv("DEVICE","cpu")
 batch_size = 128
-epochs = int(os.getenv("EPOCHS","5"))
-print ("Number of epochs:", epochs)
-num_classes = 10
-input_shape = (28, 28, 1)
-MODEL_DIR = "/opt/dkube/output/"
 
-#load dataset
+# Load dataset
 f = gzip.open('/mnist/mnist.pkl.gz', 'rb')
 data = pickle.load(f, encoding='bytes')
 f.close()
@@ -22,50 +23,102 @@ f.close()
 x_train = x_train.astype("float32") / 255
 x_test = x_test.astype("float32") / 255
 # Make sure images have shape (28, 28, 1)
-x_train = np.expand_dims(x_train, -1)
-x_test = np.expand_dims(x_test, -1)
+x_train = np.expand_dims(x_train, 1)
+x_test = np.expand_dims(x_test, 1)
 print("x_train shape:", x_train.shape)
 print(x_train.shape[0], "train samples")
 print(x_test.shape[0], "test samples")
 
+y_train = torch.from_numpy(y_train).type(torch.LongTensor)
+y_test = torch.from_numpy(y_test).type(torch.LongTensor)
 
-# convert class vectors to binary class matrices
-y_train = keras.utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.to_categorical(y_test, num_classes)
+class MyDataset(torch.utils.data.Dataset):
+    def __init__(self, x,y):
+        self.x = x
+        self.y = y
 
-# Network
-model = keras.Sequential(
-    [
-        keras.Input(shape=input_shape),
-        layers.Conv2D(32, kernel_size=(3, 3), activation="relu"),
-        layers.MaxPooling2D(pool_size=(2, 2)),
-        layers.Conv2D(64, kernel_size=(3, 3), activation="relu"),
-        layers.MaxPooling2D(pool_size=(2, 2)),
-        layers.Flatten(),
-        layers.Dropout(0.5),
-        layers.Dense(num_classes, activation="softmax"),
-    ]
-)
+    def __len__(self):
+        return len(self.x)
 
-# mlflow metric logging
-class loggingCallback(keras.callbacks.Callback):
-    def on_epoch_end(self, epoch, logs=None):
-        accuracy_metric = "accuracy"
-        if "acc" in logs:
-            accuracy_metric = "acc"
+    def __getitem__(self, index):
+        x = self.x[index]
+        y = self.y[index]
+        return (x,y)
+train_loader = torch.utils.data.DataLoader(MyDataset(x_train,y_train), batch_size=batch_size)
+test_loader = torch.utils.data.DataLoader(MyDataset(x_test,y_test), batch_size=batch_size)
 
-        log_metric ("train_loss", logs["loss"], step=epoch)
-        log_metric ("train_accuracy", logs[accuracy_metric], step=epoch)
-        log_metric ("val_loss", logs["val_loss"], step=epoch)
-        log_metric ("val_accuracy", logs["val_" + accuracy_metric], step=epoch)
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1 = nn.Conv2d(1, 32, 3, 1)
+        self.conv2 = nn.Conv2d(32, 64, 3, 1)
+        self.dropout1 = nn.Dropout(0.25)
+        self.dropout2 = nn.Dropout(0.5)
+        self.fc1 = nn.Linear(9216, 128)
+        self.fc2 = nn.Linear(128, 10)
 
+    def forward(self, x):
+        x = self.conv1(x)
+        x = F.relu(x)
+        x = self.conv2(x)
+        x = F.relu(x)
+        x = F.max_pool2d(x, 2)
+        x = self.dropout1(x)
+        x = torch.flatten(x, 1)
+        x = self.fc1(x)
+        x = F.relu(x)
+        x = self.dropout2(x)
+        x = self.fc2(x)
+        output = F.log_softmax(x, dim=1)
+        return output
 
-model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+def train(model, device, train_loader, optimizer, epoch):
+    model.train()
 
-model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=0, validation_split=0.1, 
-        callbacks=[loggingCallback(), tf.keras.callbacks.TensorBoard(log_dir=MODEL_DIR)])
+    for batch_idx, (data, target) in enumerate(train_loader):
+        data, target = data.to(device), target.to(device)
+        optimizer.zero_grad()
+        output = model(data)
+        loss = F.nll_loss(output, target)
+        loss.backward()
+        optimizer.step()
+        if batch_idx % 10 == 0:
+            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+                epoch, batch_idx * len(data), len(train_loader.dataset),
+                100. * batch_idx / len(train_loader), loss.item()),end='\r')
+            step = (epoch - 1) + batch_idx / len(train_loader)
+            log_metric ("train_loss", loss.item(), step=step)
 
-export_path = MODEL_DIR
-model.save(export_path + 'weights.h5')
-tf.keras.backend.set_learning_phase(0)  # Ignore dropout at inference
-tf.saved_model.save(model,export_path + str(1))
+def test(model, device, test_loader, epoch):
+    model.eval()
+    test_loss = 0
+    correct = 0
+    with torch.no_grad():
+        for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
+            output = model(data)
+            test_loss += F.nll_loss(output, target, reduction='sum').item()  # sum up batch loss
+            pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
+            correct += pred.eq(target.view_as(pred)).sum().item()
+
+    test_loss /= len(test_loader.dataset)
+
+    print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+        test_loss, correct, len(test_loader.dataset),
+        100. * correct / len(test_loader.dataset)))
+        
+    log_metric ("test_loss", test_loss, step=epoch)
+    log_metric ("test_accuracy", 100. * correct / len(test_loader.dataset), step=epoch)
+
+model = Net().to(device)
+optimizer = optim.Adadelta(model.parameters(), lr=1.0)
+
+scheduler = StepLR(optimizer, step_size=1, gamma=0.7)
+for epoch in range(1, epochs + 1):
+    train(model, device, train_loader, optimizer, epoch)
+    test(model, device, test_loader)
+    scheduler.step()
+
+os.makedirs("/opt/dkube/output/1/", exist_ok=True)
+torch.save(model.state_dict(), "/opt/dkube/output/1/mnist_cnn.pt")
+

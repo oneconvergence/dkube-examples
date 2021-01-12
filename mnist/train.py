@@ -86,10 +86,10 @@ def train(model, device, train_loader, optimizer, epoch):
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.item()),end='\r')
-            step = (epoch - 1) + batch_idx / len(train_loader)
+            step = (epoch - 1) * len(train_loader.dataset) + batch_idx * len(data)
             log_metric ("train_loss", loss.item(), step=step)
 
-def test(model, device, test_loader, epoch):
+def test(model, device, test_loader, step):
     model.eval()
     test_loss = 0
     correct = 0
@@ -107,8 +107,8 @@ def test(model, device, test_loader, epoch):
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
         
-    log_metric ("test_loss", test_loss, step=epoch)
-    log_metric ("test_accuracy", 100. * correct / len(test_loader.dataset), step=epoch)
+    log_metric ("test_loss", test_loss, step=step)
+    log_metric ("test_accuracy", 100. * correct / len(test_loader.dataset), step=step)
 
 model = Net().to(device)
 optimizer = optim.Adadelta(model.parameters(), lr=1.0)
@@ -116,9 +116,9 @@ optimizer = optim.Adadelta(model.parameters(), lr=1.0)
 scheduler = StepLR(optimizer, step_size=1, gamma=0.7)
 for epoch in range(1, epochs + 1):
     train(model, device, train_loader, optimizer, epoch)
-    test(model, device, test_loader)
+    step = (epoch) * len(train_loader.dataset)
+    test(model, device, test_loader, step)
     scheduler.step()
 
 os.makedirs("/opt/dkube/output/1/", exist_ok=True)
 torch.save(model.state_dict(), "/opt/dkube/output/1/mnist_cnn.pt")
-

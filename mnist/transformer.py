@@ -40,8 +40,9 @@ class Transformer(kfserving.KFModel):
         payload = {"instances": img.tolist(), "token":inputs["token"]}
         return payload
 
-    def postprocess(self, inputs: List) -> List:
-        return inputs
+    def postprocess(self, inputs: List) -> Int:
+        print (inputs)
+        return np.argmax(inputs[0])
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)

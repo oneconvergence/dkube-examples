@@ -42,6 +42,7 @@ class ImageTransformer(kfserving.KFModel):
 
     def preprocess(self, inputs: Dict) -> Dict:
         del inputs['instances']
+        print (inputs)
         try:
             json_data = inputs
         except ValueError:
@@ -54,6 +55,7 @@ class ImageTransformer(kfserving.KFModel):
         x = np.array(x, dtype=np.float64)
         x = x.reshape(1,img_h,img_w,1)
         payload = {"inputs": {'input_1': x.tolist()}, 'token':inputs['token']}
+        print (payload)
         return payload
 
     def postprocess(self, inputs: List) -> List:

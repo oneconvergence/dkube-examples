@@ -41,8 +41,9 @@ class Transformer(kfserving.KFModel):
         return payload
 
     def postprocess(self, inputs: List) -> List:
-        print (inputs, flush=True)
-        return [np.argmax(inputs)]
+        print ("postprocess", inputs, flush=True)
+        inputs["prediction"] = np.argmax(inputs["prediction"][0])
+        return inputs
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)

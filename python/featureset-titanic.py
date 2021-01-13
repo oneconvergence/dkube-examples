@@ -74,7 +74,7 @@ if __name__ == "__main__":
     ########--- commit features ---########
 
     if DKUBE_COMPUTES_METADATA:
-        resp = api.commit_featureset(FLAGS.train_fs, train_df, None)
+        resp = api.commit_featureset(name=train_fs, df=train_df)
 
     elif USER_COMPUTES_METADATA:
 
@@ -90,9 +90,9 @@ if __name__ == "__main__":
             featureset_metadata.append(metadata)
         
         ########--- Commit features ---########
-        resp = api.commit_featureset(train_fs, train_df, featureset_metadata)
+        resp = api.commit_featureset(name=train_fs, df=train_df, metadata=featureset_metadata)
 
     # Read the features
-    df = api.read_featureset(train_fs)
+    df = api.read_featureset(name=train_fs)
     print(df.head())
     assert(df.equals(train_df)), "not equal"

@@ -98,4 +98,5 @@ for epoch in range(1, epochs + 1):
 
 os.makedirs("/opt/dkube/output/1/", exist_ok=True)
 torch.save(model.state_dict(), "/opt/dkube/output/1/mnist_cnn.pt")
-shutil.copy("net.py","/opt/dkube/output/1/net.py")
+dirpath = os.path.dirname(os.path.abspath(__file__))
+shutil.copy(dirname + "/net.py","/opt/dkube/output/1/net.py")

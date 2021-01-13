@@ -3,13 +3,14 @@ import numpy as np
 import pandas as pd
 import argparse
 import time
+import requests
+import io
 
 # import sys
 import yaml
 from dkube.sdk import *
 
-# Download from https://dkube.s3.amazonaws.com/datasets/titanic/train.csv
-TRAIN_CSV="train.csv"
+TRAIN_CSV_LINK="https://dkube.s3.amazonaws.com/datasets/titanic/train.csv"
 
 USER_COMPUTES_METADATA=1
 DKUBE_COMPUTES_METADATA=0
@@ -38,6 +39,16 @@ if __name__ == "__main__":
     global FLAGS
     FLAGS, unparsed = parser.parse_known_args()
 
+    ########--- Download titanic data ---########
+    with requests.Session() as s:
+        download = s.get('https://dkube.s3.amazonaws.com/datasets/titanic/train.csv')
+
+    if (download.ok):
+        data = download.content.decode('utf8')
+        train_data = pd.read_csv(io.StringIO(data))
+    print(train_data)
+
+
     ########--- Get DKube client handle ---########
 
     dkubeURL = FLAGS.url
@@ -53,9 +64,6 @@ if __name__ == "__main__":
     print(f"---- Featureset name {train_fs} -- Create featureset \n")
     api.create_featureset(featureset)
 
-
-    ########--- Extract and load data  ---########
-    train_data = pd.read_csv(TRAIN_CSV)
 
     ########--- Process raw data  ---########
 

@@ -12,7 +12,7 @@ import os
 import pandas as pd
 from io import StringIO
 import pickle
-from preprocess import transform_features, encode_features, features
+from preprocess import transform_features, features
 
 DEFAULT_MODEL_NAME = "model"
 
@@ -46,7 +46,7 @@ class Transformer(kfserving.KFModel):
             return json.dumps({"error": "Recieved invalid json"})
         data = json_data["signatures"]["inputs"][0][0]["data"]
         df = pd.read_csv(StringIO(data))
-        
+        df = transform_features (df)
         for feature in features:
             le = self.encoders[feature]
             df[feature] = le.transform(df[feature])

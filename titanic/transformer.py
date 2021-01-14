@@ -42,18 +42,13 @@ class Transformer(kfserving.KFModel):
             return json.dumps({"error": "Recieved invalid json"})
         data = json_data["signatures"]["inputs"][0][0]["data"]
         data = pd.read_csv(StringIO(data))
-        values = data.drop("Survived", 1).values
+        values = data.drop("Survived", 1, errors='ignore').values
         payload = {"instances": values.tolist(), "token": inputs["token"]}
         return payload
 
     def postprocess(self, predictions: List) -> List:
         logging.info("postprocess =======> %s", str(type(predictions)))
-        preds = predictions["predictions"]
-        if int(preds[0]) == 0:
-            return {"result": "Dead"}
-        else:
-            return {"result": "Alive"}
-
+        return ["Dead" if pred == 0 else "Alive" for pred in predictions["predictions"]]
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)

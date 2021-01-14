@@ -11,6 +11,8 @@ import sys, json
 import os
 import pandas as pd
 from io import StringIO
+import pickle
+from preprocess import transform_features, encode_features, features
 
 DEFAULT_MODEL_NAME = "model"
 
@@ -30,6 +32,8 @@ class Transformer(kfserving.KFModel):
     def __init__(self, name: str, predictor_host: str):
         super().__init__(name)
         self.predictor_host = predictor_host
+        dirpath = os.path.dirname(os.path.realpath(__file__))
+        self.encoders = pickle.load( open( dirpath + "/encoders.pkl", "rb" ) )
 
     def preprocess(self, inputs: Dict) -> Dict:
         # inputs is a json file, inside that data, using the data value form a image
@@ -41,8 +45,13 @@ class Transformer(kfserving.KFModel):
         except ValueError:
             return json.dumps({"error": "Recieved invalid json"})
         data = json_data["signatures"]["inputs"][0][0]["data"]
-        data = pd.read_csv(StringIO(data))
-        values = data.drop("Survived", 1, errors='ignore').values
+        df = pd.read_csv(StringIO(data))
+        
+        for feature in features:
+            le = self.encoders[feature]
+            df[feature] = le.transform(df[feature])
+
+        values = df.drop(["Survived", "PassengerId"], 1, errors='ignore').values
         payload = {"instances": values.tolist(), "token": inputs["token"]}
         return payload
 

@@ -102,5 +102,4 @@ print("accuracy", accuracy)
 
 log_metric("accuracy", accuracy)
 
-os.makedirs("/model/1/", exist_ok=True)
-joblib.dump(clf, "/model/1/model.joblib")
+joblib.dump(clf, "/model/model.joblib")

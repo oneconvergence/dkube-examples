@@ -1,7 +1,5 @@
 # MNIST DIGITS CLASSIFICATION EXAMPLE 
 
-## How to Train the Example in DKube.
-
 ## Create code repo
 - Name: dkube-examples
 - Project source: Git

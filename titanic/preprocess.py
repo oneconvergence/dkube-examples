@@ -5,7 +5,7 @@ import argparse
 
 # import sys
 import yaml
-from dkube.sdk import *
+from dkube.sdk import DkubeApi
 
 inp_path = ["/dataset/train", "/dataset/test"]
 out_path = ["/featureset/train", "/featureset/test"]
@@ -57,42 +57,9 @@ if __name__ == "__main__":
     train_df = pd.get_dummies(train_data[features])
     train_df = pd.concat([train_data[["Age", "Fare", "Survived", "PassengerId"]], train_df], axis=1)
     print(train_df.head())
-
-    ########--- Upload Featureset metadata ---########
-
-    # featureset to use
-    fs = [FLAGS.train_fs, FLAGS.test_fs]
-    # Features
-    k = 0
-    for df in [train_df, test_df]:
-        # Prepare featurespec - Name, Description, Schema for each feature
-        keys = df.keys()
-        schema = df.dtypes.to_list()
-        featureset_metadata = []
-        print(fs[k], out_path[k])
-        for i in range(len(keys)):
-            metadata = {}
-            metadata["name"] = str(keys[i])
-            metadata["description"] = None
-            metadata["schema"] = str(schema[i])
-            featureset_metadata.append(metadata)
-        
-        # Convert featureset metadata (featurespec) to yaml
-        featureset_metadata = yaml.dump(featureset_metadata, default_flow_style=False)
-        with open("fspec.yaml", "w") as f:
-            f.write(featureset_metadata)
-        # Upload featureset metadata (featurespec)
-        resp = api.upload_featurespec(featureset=fs[k], filepath="fspec.yaml")
-        print("featurespec upload response:", resp)
-        
-        ########--- Commit features ---########
-        # Featureset
-        featureset = DkubeFeatureSet()
-        # Specify features path - mounted as output
-        featureset.update_features_path(path=out_path[k])
-        # Write features - Dataframe
-        featureset.write(df)
-        k =+1
+    print(test_df.head())
     # Commit featuresset
-    resp = api.commit_features()
-    print("featureset commit response:", resp)
+    resp = api.commit_featureset(name=FLAGS.train_fs, df=train_df)
+    print("train featureset commit response:", resp)
+    resp = api.commit_featureset(name=FLAGS.test_fs, df=test_df)
+    print("test featureset commit response:", resp)

@@ -1,3 +1,5 @@
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from tensorflow import keras
 from tensorflow.keras import layers
 from mlflow import log_metric

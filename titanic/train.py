@@ -8,9 +8,12 @@ from mlflow import log_metric
 import joblib
 import os
 from preprocess import transform_features, encode_features
+import zipfile
 
-train = pd.read_csv("/titanic-train/train.csv")
-test = pd.read_csv("/titanic-test/test.csv")
+with zipfile.ZipFile("/titanic/titanic.zip","r") as zip_ref:
+    zip_ref.extractall("/titanic/")
+train = pd.read_csv("/titanic/train.csv")
+test = pd.read_csv("/titanic/test.csv")
 
 train = transform_features(train)
 test = transform_features(test)

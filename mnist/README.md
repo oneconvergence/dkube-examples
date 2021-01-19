@@ -31,7 +31,7 @@
  - Version: 2.0.0
  - Start-up script: python mnist/train.py
  - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist
- - Repos->Outputs->Model: select mnist and enter mountpath as /opt/dkube/output
+ - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit
 
 ## Deploy Model

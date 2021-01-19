@@ -12,7 +12,7 @@ epochs = int(os.getenv("EPOCHS","5"))
 print ("Number of epochs:", epochs)
 num_classes = 10
 input_shape = (28, 28, 1)
-MODEL_DIR = "/opt/dkube/output/"
+MODEL_DIR = "/model/"
 
 #load dataset
 f = gzip.open('/mnist/mnist.pkl.gz', 'rb')

@@ -48,7 +48,7 @@
 		- Start-up script -`python train.py`
     - **Repos Tab**
 	    - Dataset section - Under Inputs section,select the dataset *mnist* created in **Step2**. Mount point: /mnist .
-	    - Model section   - Under Outputs section,select the model *mnist* under Outputs created in **Step3**. Mount point: /opt/dkube/output .
+	    - Model section   - Under Outputs section,select the model *mnist* under Outputs created in **Step3**. Mount point: /model .
 4. Click *Submit* button.
 5. A new entry with name *mnist* will be created in *Runs* table.
 6. Check the *Status* field for lifecycle of job, wait till it shows *complete*.
@@ -60,8 +60,8 @@
 3. Under Inputs section, in Repos Tab select dataset Img-DN and enter mount path /mnist.
 4. Create a new notebook inside workspace/mnist/mnist
    - In first cell type:
-     - %mkdir -p /opt/dkube/output
-     - %rm -rf /opt/dkube/output/*
+     - %mkdir -p /model
+     - %rm -rf /model/*
    - In 2nd cell type %load train.py in a notebook cell and then run.
 5. Note for running the training more than once, please run the cell 1 again.
 

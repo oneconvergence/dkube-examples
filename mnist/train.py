@@ -96,6 +96,6 @@ for epoch in range(1, epochs + 1):
     test(model, device, test_loader, step)
     scheduler.step()
 
-torch.save(model.state_dict(), "/opt/dkube/output/model.pt")
+torch.save(model.state_dict(), "/model/model.pt")
 dirpath = os.path.dirname(os.path.abspath(__file__))
-shutil.copy(dirpath + "/net.py","/opt/dkube/output/net.py")
+shutil.copy(dirpath + "/net.py","/model/net.py")

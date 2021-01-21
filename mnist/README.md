@@ -52,7 +52,7 @@
 - Click predict
 
 ## Automate using pipelines
-Run this [pipeline](mnist/pipeline.ipynb) to automate training and serving using kubeflow pipelines.
+Run this [pipeline](https://github.com/oneconvergence/dkube-examples-2.0/blob/pytorch/mnist/pipeline.ipynb) to automate training and serving using kubeflow pipelines.
 
 
 

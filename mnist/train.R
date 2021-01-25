@@ -1,10 +1,11 @@
 library(keras)
-
+install.packages("mlflow")
+library(mlflow)
 # Data Preparation -----------------------------------------------------
 
 batch_size <- 128
 num_classes <- 10
-epochs <- 12
+epochs <- as.numeric(Sys.getenv("EPOCHS","1"))
 
 # Input image dimensions
 img_rows <- 28
@@ -53,12 +54,27 @@ model %>% compile(
   metrics = c('accuracy')
 )
 
+LossHistory <- R6::R6Class("LossHistory",
+   inherit = KerasCallback,
+   public = list(
+     on_epoch_end = function(epochs, logs = list()) {
+       mlflow_log_metric("train_loss", logs[["loss"]])
+       mlflow_log_metric("train_accuracy", logs[["accuracy"]])
+       mlflow_log_metric("val_loss", logs[["val_loss"]])
+       mlflow_log_metric("val_accuracy", logs[["val_accuracy"]])
+     }
+   ))
+
+history <- LossHistory$new()
+
 # Train model
 model %>% fit(
   x_train, y_train,
   batch_size = batch_size,
   epochs = epochs,
-  validation_split = 0.2
+  validation_split = 0.2,
+  verbose = 0,
+  callbacks=list(history)
 )
 
 scores <- model %>% evaluate(

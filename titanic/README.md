@@ -24,9 +24,9 @@ This example describe workflow of how to use projects leaderboard and featureset
 
 
 # Pipelines
-[owner pipeline](titanic/owner/pipeline.ipynb) - shows how to setup projects using DKube SDK.
+[owner pipeline](owner/pipeline.ipynb) - shows how to setup projects using DKube SDK.
 
-[DS pipeline](titanic/pipeline.ipynb) - show hows to create user's DKube resources inside project using SDK and how to run end to end pipeline.
+[DS pipeline](pipeline.ipynb) - show hows to create user's DKube resources inside project using SDK and how to run end to end pipeline.
 
 
 

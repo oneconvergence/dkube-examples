@@ -6,9 +6,15 @@ from mlflow import log_metric
 import gzip, pickle, os
 import numpy as np
 import tensorflow as tf
+import argparse
 
-batch_size = 128
-epochs = int(os.getenv("EPOCHS","5"))
+parser = argparse.ArgumentParser()
+parser.add_argument('--batch_size', type=int, default=128, help='Batch size for training.')
+parser.add_argument('--num_epochs', type=int, default=int(os.getenv("EPOCHS","5")), help='Number of epochs to train for.')
+args = parser.parse_args()
+
+batch_size = args.batch_size
+epochs = args.num_epochs
 print ("Number of epochs:", epochs)
 num_classes = 10
 input_shape = (28, 28, 1)
@@ -60,7 +66,8 @@ class loggingCallback(keras.callbacks.Callback):
         log_metric ("train_accuracy", logs[accuracy_metric], step=epoch)
         log_metric ("val_loss", logs["val_loss"], step=epoch)
         log_metric ("val_accuracy", logs["val_" + accuracy_metric], step=epoch)
-
+        # output accuracy metric for katib to collect from stdout
+        print("accuracy=",logs["val_" + accuracy_metric])
 
 model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 

@@ -67,7 +67,7 @@ class loggingCallback(keras.callbacks.Callback):
         log_metric ("val_loss", logs["val_loss"], step=epoch)
         log_metric ("val_accuracy", logs["val_" + accuracy_metric], step=epoch)
         # output accuracy metric for katib to collect from stdout
-        print("accuracy=",logs["val_" + accuracy_metric])
+        print(f"accuracy={logs['val_' + accuracy_metric]}")
 
 model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 

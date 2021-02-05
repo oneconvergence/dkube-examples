@@ -11,10 +11,10 @@ parameters:
   - name: --batch_size
     parameterType: int
     feasibleSpace:
-      min: 64
-      max: 256
+      min: "64"
+      max: "256"
   - name: --num_epochs
     parameterType: int
     feasibleSpace:
-      min: 1
-      max: 30
+      min: "1"
+      max: "10"

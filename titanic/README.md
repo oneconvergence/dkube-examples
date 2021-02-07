@@ -23,10 +23,10 @@ This example describe workflow of how to use projects leaderboard and featureset
     d. Runs a pipeline which goes through all the above steps and makes a submission to the project.
 
 
-# Pipelines
-[owner pipeline](owner/pipeline.ipynb) - shows how to setup projects using DKube SDK.
+# Notebooks
+[owner project setup notebook](owner/resources.ipynb) - shows how to setup projects using DKube SDK.
 
-[DS pipeline](pipeline.ipynb) - show hows to create user's DKube resources inside project using SDK and how to run end to end pipeline.
+[DS pipeline notebook](pipeline.ipynb) - show hows to create user's DKube resources inside project using SDK and how to run end to end pipeline.
 
 
 

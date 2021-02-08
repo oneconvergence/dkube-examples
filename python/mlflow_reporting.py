@@ -51,6 +51,7 @@ def create_dkube_run(url, token, user):
         framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
     training.update_startupscript("sleep 30m")
     training.add_code('mlflow-test')
+    training.disable_execution()
     api.create_training_run(training, wait_for_completion=False)
 
     run_response = api.get_training_run(user, training_name)

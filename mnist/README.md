@@ -3,7 +3,7 @@
 ## Create code repo
 - Name: dkube-examples
 - Project source: Git
-- Git URL: https://github.com/oneconvergence/dkube-examples-2.0.git
+- Git URL: https://github.com/oneconvergence/dkube-examples.git
 - Branch: tensorflow
 
 ## Create dataset repo
@@ -52,6 +52,6 @@
 - Click predict
 
 ## Automate using pipelines
-Run this [pipeline](https://github.com/oneconvergence/dkube-examples-2.0/blob/tensorflow/mnist/pipeline.ipynb) to automate training and serving using kubeflow pipelines.
+Run this [pipeline](https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/pipeline.ipynb) to automate training and serving using kubeflow pipelines.
 
 

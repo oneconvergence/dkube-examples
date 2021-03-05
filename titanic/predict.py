@@ -24,7 +24,7 @@ def predict():
     os.system ("ls -l " + test_fs_dir)
     test_df = DkubeFeatureSet.read_features(test_fs_dir)
     print (test_df.columns)
-    x_test= test_df.drop(["PassengerId","Survived"], 1).values
+    x_test= test_df.drop(["PassengerId"], 1).values
     model = keras.models.load_model(os.path.join(model_dir, "weight.h5"))
     y_pred = model.predict(x_test)
     y_pred[y_pred <= 0.5] = 0

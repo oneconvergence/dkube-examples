@@ -21,7 +21,7 @@ with open("/output/metrics.json", "w") as f:
     json.dump(metadata, f)
 
 def predict():
-    os.system ("ls -l " + model_dir)
+    os.system ("ls -l " + test_fs_dir)
     test_df = DkubeFeatureSet.read_features(test_fs_dir)
     print (test_df.columns)
     x_test= test_df.drop(["PassengerId"], 1).values

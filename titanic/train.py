@@ -1,46 +1,54 @@
-import pyarrow as pa
-import pyarrow.parquet as pq
-import numpy as np
-import requests, os
-import argparse
-import joblib
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
-import mlflow
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from tensorflow import keras
+import tensorflow as tf
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Sequential
 from dkube.sdk import DkubeFeatureSet
+from mlflow import log_metric
+import argparse, os
+import pandas as pd
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--batch_size', type=int, default=1, help='Batch size for training.')
+parser.add_argument('--num_epochs', type=int, default=int(os.getenv("EPOCHS","20")), help='Number of epochs to train for.')
+args = parser.parse_args()
+
+batch_size = args.batch_size
+epochs = args.num_epochs
+print ("Number of epochs:", epochs)
 
 train_path = "/featureset/train"
-test_path = "/featureset/test"
-out_path = "/model"
+MODEL_DIR = "/model/"
 
-if __name__ == "__main__":
+#load featureset
+train = DkubeFeatureSet.read_features(train_path)
+train = pd.DataFrame(train).fillna(train.mean())
+y_train = train["Survived"].values
+x_train= train.drop(["PassengerId","Survived"], 1).values
 
-    # Read features
-    train = DkubeFeatureSet.read_features(train_path)
-    val = DkubeFeatureSet.read_features(test_path)
+# Network
+model = Sequential()
+model.add(Dense(12, activation='relu', input_shape=(7,)))
+model.add(Dense(8, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
 
-    print(train.head())
-    print(val.head())
-    
-    # preparing input output pairs
-    y = train["Survived"].values
-    x = train.drop(["PassengerId","Survived"], 1).values
+# mlflow metric logging
+class loggingCallback(keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        accuracy_metric = "accuracy"
+        if "acc" in logs:
+            accuracy_metric = "acc"
 
-    # Training random forest classifier
-    model_RFC = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=1)
-    model_RFC.fit(x, y)
-    predictions = model_RFC.predict(x)
+        log_metric ("train_loss", logs["loss"], step=epoch)
+        log_metric ("train_accuracy", logs[accuracy_metric], step=epoch)
+        log_metric ("val_loss", logs["val_loss"], step=epoch)
+        log_metric ("val_accuracy", logs["val_" + accuracy_metric], step=epoch)
+        # output accuracy metric for katib to collect from stdout
+        print(f"accuracy={round(logs['val_' + accuracy_metric],2)}")
 
-    ########--- Log metrics to DKube ---########
+model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=0, validation_split=0.1, 
+        callbacks=[loggingCallback(), tf.keras.callbacks.TensorBoard(log_dir=MODEL_DIR)])
 
-    # Calculating accuracy
-    accuracy = accuracy_score(y, predictions)
-    # logging acuracy to DKube
-    mlflow.log_metric("accuracy", accuracy)
-
-    ########--- Write model to DKube ---########
-
-    # Exporting model
-    filename = os.path.join(out_path, "model.joblib")
-    joblib.dump(model_RFC, filename)
+model.save(MODEL_DIR + 'weights.h5')

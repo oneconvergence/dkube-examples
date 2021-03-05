@@ -1,9 +1,7 @@
-import os
-import joblib
-import numpy as np
-import pandas as pd
+from tensorflow import keras
 from dkube.sdk import DkubeFeatureSet
-import json
+import pandas as pd
+import json, os
 
 model_dir = "/model"
 test_fs_dir= "/test_fs"
@@ -26,11 +24,12 @@ def predict():
     os.system ("ls -l " + test_fs_dir)
     test_df = DkubeFeatureSet.read_features(test_fs_dir)
     print (test_df.columns)
-    df = test_df.drop(["PassengerId"], 1)
-    df = pd.DataFrame(df).fillna(df.mean())
-    model = joblib.load(os.path.join(model_dir, "model.joblib"))
-    predictions = model.predict(df)
-    output = pd.DataFrame({'PassengerId': test_df.PassengerId, 'Survived': predictions})
+    x_test= test_df.drop(["PassengerId","Survived"], 1).values
+    model = keras.models.load_model(os.path.join(model_dir, "weight.h5"))
+    y_pred = model.predict(x_test)
+    y_pred[y_pred <= 0.5] = 0
+    y_pred[y_pred > 0.5] = 1
+    output = pd.DataFrame({'PassengerId': test_df.PassengerId, 'Survived': y_pred.flatten().tolist()})
     output.to_csv("/output/prediction.csv", index=False)
     print("predictions generated.")
 

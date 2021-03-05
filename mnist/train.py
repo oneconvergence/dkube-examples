@@ -74,7 +74,5 @@ model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accur
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=0, validation_split=0.1, 
         callbacks=[loggingCallback(), tf.keras.callbacks.TensorBoard(log_dir=MODEL_DIR)])
 
-export_path = MODEL_DIR
-model.save(export_path + 'weights.h5')
 tf.keras.backend.set_learning_phase(0)  # Ignore dropout at inference
-tf.saved_model.save(model,export_path + str(1))
+tf.saved_model.save(model,MODEL_DIR + str(1))

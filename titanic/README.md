@@ -26,7 +26,7 @@ This example describe workflow of how to use projects leaderboard and featureset
 # Notebooks
 [owner project setup notebook](owner/resources.ipynb) - shows how to setup projects using DKube SDK.
 
-[DS pipeline notebook](pipeline.ipynb) - Runs this notebook after launching IDE under the project. show hows to create user's DKube resources inside project using SDK and how to run end to end pipeline.
+[DS pipeline notebook](pipeline.ipynb) - Run this notebook after launching IDE under the project. Shows how to create user's DKube resources inside project using SDK and how to run end to end pipeline.
 
 
 

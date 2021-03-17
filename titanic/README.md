@@ -69,7 +69,7 @@
 ### Test Inference
 1. Go to the model titanic-model-user and click test inference.
 2. The serving image is ocdr/tensorflowserver:2.0.0.
-3. Check transformer option, and type the transformer script as transformer.py
+3. Check transformer option, and type the transformer script as titanic/transformer.py
 4. Choose CPU, and submit.
 5. Go to https://<URL>:32222/inference  
    - Copy the model serving URL from the test inference tab.  

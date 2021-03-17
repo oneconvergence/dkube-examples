@@ -9,8 +9,8 @@
 ### Step 1: Create Dkube code repo for titanic-owner:
 1. Click on Repos in left pane and then click on +Code.
 2. Name: titanic-owner
-3. Git URL: https://github.com/oneconvergence/titanic-owner.git
-4. Branch: main
+3. Git URL: https://github.com/oneconvergence/dkube-examples/tree/tensorflow/titanic/owner
+4. Branch: tensorflow
 
 ### Step 2 : Create a Project in DKube
 1. Click on Projects in left pane in Dkube.

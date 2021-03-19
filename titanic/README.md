@@ -1,7 +1,4 @@
-# titanic-user
-Titanic example from Kaggle
-
-# MNIST DIGITS CLASSIFICATION EXAMPLE 
+# Titanic Example from Kaggle
 
 ## Create code repo
 - Name: dkube-examples
@@ -38,9 +35,9 @@ Titanic example from Kaggle
  - Submit
 
 ## Deploy Model
-- Repos->Models->mnist: select a model version
+- Repos->Models->titanic: select a model version
 - Deploy
-- Name: mnist
+- Name: titanic
 - Type: Test
 - Transformer: True
 - Transformer script: titanic/transformer.py

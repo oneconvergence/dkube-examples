@@ -19,8 +19,8 @@
 
 ## Launch Notebook
 - Create Jupyterlab IDE with sklearn framework.
-- Select the Code titanic.
-- Repos->Inputs->Datasets: select mnist and enter mountpath as /titanic.
+- Select the Code dkube-examples.
+- Repos->Inputs->Datasets: select titanic and enter mountpath as /titanic.
 - Run workspace/dkube-examples/titanic/train.ipynb
 - You can experiment in the notebook and develop your code. Once you are ready for a formal run, export your code into python script(s)
 
@@ -30,8 +30,8 @@
  - Framework: sklearn
  - Version: default (0.23.2)
  - Start-up script: python titanic/train.py
- - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist
- - Repos->Outputs->Model: select mnist and enter mountpath as /model
+ - Repos->Inputs->Datasets: select titanic and enter mountpath as /titanic
+ - Repos->Outputs->Model: select titanic and enter mountpath as /model
  - Submit
 
 ## Deploy Model

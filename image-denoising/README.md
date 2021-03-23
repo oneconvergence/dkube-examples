@@ -11,8 +11,8 @@
  2. Click *+Code* button.
  3. Select Code source as Git.
  4. Enter a unique name say *Img-DN*
- 5. Paste link *[https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/examples
- ](https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/examples)* in the URL text box.
+ 5. Paste link *[https://github.com/oneconvergence/dkube-examples.git]
+ ](https://github.com/oneconvergence/dkube-examples.git)* in the URL text box and enter branch as pytorch.
  6. Click *Add Code* button.
  7. Code will be created and imported in Dkube. Progress of import can be seen.
  8. Please wait till status turns to *ready*.
@@ -48,7 +48,7 @@
  	  - **Container** section
 		- Framework - pytorch.
 		- Code section - Please select the workspace *image-dn* created in **Step1**.
-		- Start-up script -`python model-care.py`
+		- Start-up script -`python image-denoising/model-care.py`
     - **Repos Tab**
 	    - Dataset section - Under Inputs section,select the dataset *Img-DN* created in **Step2**. Mount point: /opt/dkube/input .
 	    - Model section   - Under Outputs section,select the model *Img-DN* under Outputs created in **Step3**. Mount point: /opt/dkube/output .
@@ -61,7 +61,7 @@
 1. Create a IDE with pytorch framework and version 1.6.
 2. Select the Code Img-DN.
 3. Under Inputs section, in Repos Tab select dataset Img-DN and enter mount path /opt/dkube/input.
-4. Create a new notebook inside workspace/Img-DN/image-denoising/examples/
+4. Create a new notebook inside workspace/Img-DN/image-denoising/
    - In first cell type:
      - %mkdir -p /opt/dkube/output
      - %rm -rf /opt/dkube/output/*
@@ -72,7 +72,7 @@
 1. Create a IDE with pytorch framework and version 1.6.
 2. Select the Code Img-DN.
 3. Under Inputs section, in Repos Tab select dataset Img-DN and enter mount path /opt/dkube/input.
-4. Inside the directory workspace/Img-DN/image-denoising/examples/ ,Run all the cells of 1_CareTraining.ipynb and then 
+4. Inside the directory workspace/Img-DN/image-denoising/ ,Run all the cells of 1_CareTraining.ipynb and then 
 run 2_CarePrediction.ipynb for predictions.
 
 
@@ -81,7 +81,7 @@ run 2_CarePrediction.ipynb for predictions.
 1. Hyperparameter tuning is useful to find the appropriate parameter space for DL training. Dkube will auto generate all the possible combinations of parameters specified and runs training for each of the combination till the goal specified or max count is reached.
 2. Dkube plots the graphs for comparision and suggests a best run with hyperparameters used for the run.
 3. Create a run same as explained above except that now a tuning file also needs to be uploaded in the configuration tab under Parameters of the Training Job form.
-4. For this example, sample tuning file is present in the github at https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/examples/tuning.json. This file can be modified according to the need.
+4. For this example, sample tuning file is present in the github at https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/tuning.json. This file can be modified according to the need.
 
 ## Pipeline
 1. The pipeline for this example includes training and serving stages.
@@ -92,7 +92,7 @@ run 2_CarePrediction.ipynb for predictions.
 1. Create Code with name Img-DN as explained in Step1 above.
 2. Create Dataset with name Img-DN as explained in Step2 above.
 3. Create model with name Img-DN as explained in Step3 above.
-4. Download the notebook from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/examples/dkube-denoising-pipeline.ipynb and upload this in default DKube IDE under pipelines folder.
+4. Download the notebook from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/dkube-denoising-pipeline.ipynb and upload this in default DKube IDE under pipelines folder.
 5. Run all the cells of dkube-denoising-pipeline.ipynb. This will create a pipeline,and  a run.
 6. Links are displayed in the output cells wherever applicable.
 
@@ -110,8 +110,8 @@ run 2_CarePrediction.ipynb for predictions.
 5. Select CPU and click submit.
 
 ### How to Test Inference in DKube Webapp
-1. Download data sample from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/examples/img1.png
-2. Open the URL https://:32222/inference.
+1. Download data sample from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/img1.png
+2. Open the URL https://<dkube_url>/inference
 3. Copy the serving endpoint from the test inference tab and paste it into the serving the URL field.
 4. Copy token from developer settings and paste into token field.
 5. Select model steel from the dropdown.
@@ -120,5 +120,5 @@ run 2_CarePrediction.ipynb for predictions.
 ### Custom Webapp
 1. Go to webapp directory, and build a docker image with given **Dockerfile** by typing **docker build . -t ocdr/streamlit-webapp:img-dn**
 2. Run command **docker run -p 8501:8501 ocdr/streamlit-webapp:img-dn**
-3. Open http://localhost:8501/ in your browser and copy serving endpoint from the test inference tab and paste it into Dkube serving URL field , fill authentication token and upload image from (https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/examples/img1.png) and click predict.
+3. Open http://localhost:8501/ in your browser and copy serving endpoint from the test inference tab and paste it into Dkube serving URL field , fill authentication token and upload image from (https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/img1.png) and click predict.
 4. Denoised image will be returned as an output and will be displayed in the UI.

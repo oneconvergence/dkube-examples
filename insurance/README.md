@@ -3,7 +3,8 @@
 ## Code
 Add Code **insurance**
   - Source: Git
-  - URL: https://github.com/oneconvergence/dkube-examples/tree/sklearn/insurance
+  - URL: https://github.com/oneconvergence/dkube-examples.git
+  - Branch : sklearn
 
 ## Dataset 
 Add dataset **insurance**

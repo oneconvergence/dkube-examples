@@ -5,7 +5,7 @@ import numpy as np
 import sys
 import torch
 import os
-sys.path.append('../')
+#sys.path.append('../')
 from unet.model import UNet
 from pn2v import utils
 from pn2v import histNoiseModel

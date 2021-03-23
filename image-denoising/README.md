@@ -1,6 +1,6 @@
 # IMAGE DENOISING EXAMPLE
 ### Directory Structure:
-1. examples directory contains all the notebooks, training code,transformer code and pipeline.ipynb files.
+1. image-denoising contains all the notebooks, training code,transformer code and pipeline.ipynb files.
 2. pn2v contains the utility functions.
 3. unet contains the network which we are using to train the model.
 
@@ -12,7 +12,7 @@
  3. Select Code source as Git.
  4. Enter a unique name say *Img-DN*
  5. Paste link *[https://github.com/oneconvergence/dkube-examples.git]
- ](https://github.com/oneconvergence/dkube-examples.git)* in the URL text box and enter branch as pytorch.
+ (https://github.com/oneconvergence/dkube-examples.git)* in the URL text box and enter branch as pytorch.
  6. Click *Add Code* button.
  7. Code will be created and imported in Dkube. Progress of import can be seen.
  8. Please wait till status turns to *ready*.
@@ -106,7 +106,7 @@ run 2_CarePrediction.ipynb for predictions.
 1. Serving image : (use default one)
 2. Transformer image : (use default)
 3. Transformer Code (use default)
-4. Check on the transformer and fill the transformer Script : image-denoising/examples/transformer.py
+4. Check on the transformer and fill the transformer Script : image-denoising/transformer.py
 5. Select CPU and click submit.
 
 ### How to Test Inference in DKube Webapp

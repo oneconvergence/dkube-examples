@@ -103,7 +103,8 @@ def main():
     net = UNet(1, depth=3)
     trainHist, valHist = training.trainNetwork(net=net,trainData=my_train_data, valData=my_val_data,postfix=nameModel, directory=MODEL_DIR, noiseModel=None,numOfEpochs=FLAGS.num_epochs, stepsPerEpoch=STEPS,device=device, virtualBatchSize=20, batchSize=FLAGS.batch_size, learningRate=FLAGS.learning_rate, supervised=True)
     ### Copying the Class File to Model Directory ###
-    shutil.copyfile(CLASS_FILE , os.path.join(MODEL_DIR,CLASS_FILE.split('/')[-1]))
+    dirpath = os.path.dirname(os.path.abspath(CLASS_FILE))
+    shutil.copy(dirpath + "/Net.py","/opt/dkube/output/Net.py")
     #### Metric Evaluation ####
     dataTest,dataTestGT = get_data('test_data')
     metric_evaluation(dataTest,dataTestGT)

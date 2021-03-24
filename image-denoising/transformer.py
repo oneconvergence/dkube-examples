@@ -21,7 +21,7 @@ parser.add_argument('--predictor_host', help='The URL for the model predict func
 
 args, _ = parser.parse_known_args()
 
-filename = 'temp.png'
+filename = '/tmp/temp.png'
 meanTorch = 825.9008412551716
 stdTorch = 463.53995615631595
 
@@ -69,8 +69,8 @@ class ImageTransformer(kfserving.KFModel):
         means = torch.mean(samples,dim=0,keepdim=True)[0,...] # Sum up over all samples
         means=means.cpu().detach().numpy()
         means.shape=(output.shape[2],output.shape[3])
-        plt.imsave('out.png',means)
-        with open('out.png', 'rb') as open_file:
+        plt.imsave('/tmp/out.png',means)
+        with open('/tmp/out.png', 'rb') as open_file:
             byte_content = open_file.read()
         base64_bytes = base64.b64encode(byte_content)
         base64_string = base64_bytes.decode('utf-8')

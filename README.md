@@ -11,5 +11,5 @@ This repository contains examples for various functions for DKube. Dkube support
 ### Examples
 
 - [mnist](mnist) - this example demonstrates end to end workflow of dkube from development to deployment. 
-- [titanic](tianic) - this example demonstrates on how to use featuresets and leaderboard in DKube
+- [titanic](titanic) - this example demonstrates on how to use featuresets and leaderboard in DKube
 - [noteboks](notebooks) - this directory contains notebooks showing DKube API/SDK, Kubeflow Pipelines and DKube storage op usage

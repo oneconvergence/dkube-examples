@@ -22,7 +22,7 @@ Add featuresret **insurance-fs**
 
 ## Data scientist workflow
 
-From IDE section launch Jupyter lab with tf framework 2.0, with code repo **insurance** and dataset **insurance** with mount point **/opt/dkube/input/**.
+From IDE section launch Jupyter lab with the sklearn framework, with code repo **insurance** and dataset **insurance** with mount point **/opt/dkube/input/**.
 
   - Open Jupyterlab
   - Go to **workspace/insurance/insurance**

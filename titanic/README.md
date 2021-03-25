@@ -40,7 +40,7 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
    - Give a name : titanic-{user}, replace {user} with your username.
    - Select code as titanic
    - Select Framework as tensorflow and version as 2.0.0 and then click on submit.
-3. Open JupyterLab under the actions tab and go to workspace/titanic-code and then run all the cells of pipeline.ipynb file.
+3. Open JupyterLab under the actions tab and go to workspace/titanic and then run all the cells of pipeline.ipynb file.
 4. Preprocessing, Training and Predict runs will be automatically created in Dkube.
 
 ### Training Results

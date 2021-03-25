@@ -34,6 +34,13 @@
  - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit
 
+## Hyperparameter Tuning
+1.Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
+  - For katib hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/katib-mnist-tuning.json under upload  configuration. 
+  - For simple hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/tuning.yaml under upload configuration.
+  - Submit the run. 
+
+
 ## Deploy Model
 - Repos->Models->mnist: select a model version
 - Deploy

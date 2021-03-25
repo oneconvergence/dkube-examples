@@ -40,20 +40,21 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
    - Give a name : titanic-{user}, replace {user} with your username.
    - Select code as titanic
    - Select Framework as tensorflow and version as 2.0.0 and then click on submit.
-3. Open JupyterLab under the actions tab and go to workspace/titanic and then run all the cells of pipeline.ipynb file.
+3. Open JupyterLab under the actions tab and go to workspace/titanic/titanic and then run all the cells of pipeline.ipynb file.
 4. Preprocessing, Training and Predict runs will be automatically created in Dkube.
 
 ### Training Results
 1. Go to your project titanic.
-2. Navigate to the leaderboard to see the results that shows the accuracy and loss metrics.
+2. Navigate to the **leaderboard** to see the results that shows the accuracy and loss metrics.
 3. Training metric results can be viewed from the runs tab in Dkube, with the tag as `dkube-pipeline` and type as `training`.
 
 ### Test Inference
-1. Go to the model titanic-model and click test inference.
-2. The serving image is ocdr/tensorflowserver:2.0.0.
-3. Check transformer option, and type the transformer script as titanic/transformer.py
-4. Choose CPU, and submit.
-5. Go to `https://<URL>:32222/inference`
+1. Navigate to the model (titanic-model) and click on test inference.
+2. Give the test inference name, say titanic.
+3. The serving image is ocdr/tensorflowserver:2.0.0.
+4. Check transformer option, and type the transformer script as titanic/transformer.py
+5. Choose CPU, and submit.
+6. Go to `https://<URL>:32222/inference`
    - Copy the model serving URL from the test inference tab.  
    - Copy the auth token from developer settings  
    - Select model type sk-stock  
@@ -65,14 +66,16 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 1. *Release Model*
 - Click on model name titanic-model .
 - Click on Release Action button for latest version of Model.
-- Click on Release button, the release will change to released.
+- Click on Release button and then the model will be released.
+
 2. *Publish Model*
 - Click on Publish Model icon under ACTIONS column.
 - Give the publish model name.
 - Select the serving image as ocdr/tensorflowserver:2.0.0
 - Click on Transformer checkbox.
 - Change transformer code to titanic/transformer.py.
-- Check CPU and click on Submit.
+- Click on Submit.
+
 3. *Deploy Model*
 - Click on Model catalog and select the published model.
 - Click on the deploy model icon  under ACTIONS column.
@@ -80,6 +83,12 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 - The state changes to deployed.
 - Check in Model Serving and wait for the deployed model to change to running state.
 - Deployed Model can used to test the prediction.
-5. *Inference*
--   Follow the Test Inference step from above.
+
+4. *Inference*
+-  Go to `https://<URL>:32222/inference`
+-  Go to model serving tab and copy the prediction endpoint of titanic-model and paste in model serving URL.
+-  Copy the auth token from developer settings and paste in Authorization Token.  
+-  Select model type as sk-stock  
+-  Copy the contents of https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/titanic/titanic_sample.csv and save then as CSV, and upload.  
+-  Click predict.
 

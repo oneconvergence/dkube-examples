@@ -17,7 +17,7 @@
 2. Click on + Create Project.
 3. Give a project name, say titanic.
 4. Check the enable leaderboard option and click on submit.
-5. Click on the project and select the evaluation source repo as titanic created in step 1.
+5. Click on titanic project and click on evaluation tab and then select the evaluation source repo as titanic created in step 1.
 6. Give the evaluation script as python titanic/owner/eval.py and click on save button.
 
 ### Step 3 :Upload Train & Eval dataset: 
@@ -57,7 +57,7 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
    - Copy the model serving URL from the test inference tab.  
    - Copy the auth token from developer settings  
    - Select model type sk-stock  
-   - Copy the contents of https://raw.githubusercontent.com/oneconvergence/dkube-examples/tree/tensorflow/titanic/titanic_sample.csv and save then as CSV, and    upload.  
+   - Copy the contents of https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/titanic/titanic_sample.csv and save then as CSV, and    upload.  
    - Click predict.
 
 ### Release, Publish and Deploy 
@@ -69,8 +69,9 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 2. *Publish Model*
 - Click on Publish Model icon under ACTIONS column.
 - Give the publish model name.
+- Select the serving image as ocdr/tensorflowserver:2.0.0
 - Click on Transformer checkbox.
-- Change transformer code to transformer.py.
+- Change transformer code to titanic/transformer.py.
 - Check CPU and click on Submit.
 3. *Deploy Model*
 - Click on Model catalog and select the published model.

@@ -2,72 +2,54 @@
 
 # Notebook Details :
 
-[owner project setup notebook](owner/resources.ipynb) - shows how to setup projects using DKube SDK. Skip the below project workflow steps, if you are creating the project by running this notebook.
+[owner project setup notebook](owner/resources.ipynb) - shows how to setup projects using DKube SDK. Skip the below project workflow steps, if you are creating the project and other resources by running this notebook. Jump to step 4 directly.
 
 ## Project Workflow:
 
 ### Step 1: Create Dkube code repo for titanic-owner:
 1. Click on Repos in left pane and then click on +Code.
-2. Name: titanic-owner
-3. Git URL: https://github.com/oneconvergence/dkube-examples/tree/tensorflow/titanic/owner
+2. Name: titanic
+3. Git URL: https://github.com/oneconvergence/dkube-examples.git
 4. Branch: tensorflow
 
 ### Step 2 : Create a Project in DKube
 1. Click on Projects in left pane in Dkube.
 2. Click on + Create Project.
-3. Give a project name, say titanic-{user}, replace {user} with your username.
+3. Give a project name, say titanic.
 4. Check the enable leaderboard option and click on submit.
 5. Click on the project and select the evaluation source repo as titanic-owner created in step 1.
-6. Give the evaluation script as python eval.py and click on save button.
+6. Give the evaluation script as python titanic/owner/eval.py and click on save button.
 
 ### Step 3 :Upload Train & Eval dataset: 
 1. Click on Repos in left pane and then click on +dataset.
 2. Details to be filled for train dataset:
-   - Name: titanic-train-ds
+   - Name: titanic-train
    - DataSource: Other 
    - URL: https://dkube.s3.amazonaws.com/datasets/titanic/train.csv
 3. Details to be filled for test dataset
-   - Name: titanic-test-ds
+   - Name: titanic-test
    - DataSource: Other
    - URL: https://dkube.s3.amazonaws.com/datasets/titanic/test.csv
 
-## Data Scientist Workflow 
+## Data Scientist Workflow:
+The pipeline.ipynb file automatically creates a code repo named titanic-code, featuresets (titanic-train-fs and titanic-test-fs) for the user, and titanic-model using DKube SDK.
 
-### Step 3: Create dkube code repo:
-1. Click on Repos in left pane and then click on +Code.
-2. Name: titanic-code-user
-3. Git URL: https://github.com/oneconvergence/dkube-examples.git
-4. Branch: tensorflow
-
-### Step 4: Create a model 
-1. Click on Repos in left pane and then click on Create model, 
-2. Name: titanic-model-user
-
-### Step 5 : Create Featuresets
-1. Click on Featuresets in left pane.
-2. Click on +Featureset and give a name.
-   - titanic-train-fs-{user}, replace {user} with your username.
-   - Spec upload:none
-3. Similarly create a test featureset.
-   - titanic-test-fs-{user}, replace {user} with your username.
-   - Spec upload:none
-
-### Step 6 : Launch JupyterLab IDE
+### Step 4 : Launch JupyterLab IDE in the project titanic
 1. Click on IDEs in left pane and then select your titanic project from top.
 2. Click on +JupyterLab and then fill the below details:
    - Give a name : titanic-{user}, replace {user} with your username.
-   - Select code as titanic-code-user.
+   - Select code as titanic-code
    - Select Framework as tensorflow and version as 2.0.0 and then click on submit.
-3. Open JupyterLab under the actions tab and go to workspace/titanic-code-user and then run all the cells of pipeline.ipynb file.
+3. Open JupyterLab under the actions tab and go to workspace/titanic-code and then run all the cells of pipeline.ipynb file.
 4. Preprocessing, Training and Predict runs will be automatically created in Dkube.
 
 ### Training Results
-1. Go to your project titanic-{user}.
+1. Go to your project titanic.
 2. Navigate to the leaderboard to see the results that shows the accuracy and loss metrics.
 3. Training metric results can be viewed from the runs tab in Dkube, with the tag as `dkube-pipeline` and type as `training`.
 
 ### Test Inference
-1. Go to the model titanic-model-user and click test inference.
+1. Go to the model titanic-model and click test inference.
 2. The serving image is ocdr/tensorflowserver:2.0.0.
 3. Check transformer option, and type the transformer script as titanic/transformer.py
 4. Choose CPU, and submit.
@@ -81,7 +63,7 @@
 ### Release, Publish and Deploy 
 
 1. *Release Model*
-- Click on model name titanic-model-user .
+- Click on model name titanic-model .
 - Click on Release Action button for latest version of Model.
 - Click on Release button, the release will change to released.
 2. *Publish Model*

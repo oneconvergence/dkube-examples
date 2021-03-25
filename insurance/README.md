@@ -8,7 +8,7 @@ Add Code **insurance**
 
 ## Dataset 
 Add dataset **insurance**
-  - Source: pub_url
+  - Source: other
   - URL: https://storage.googleapis.com/insurance-data/insurance/insurance.csv
 
 ## Model

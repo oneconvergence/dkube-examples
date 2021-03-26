@@ -1,7 +1,7 @@
 # MNIST DIGITS CLASSIFICATION EXAMPLE 
 
 ## Create code repo
-- Name: dkube-examples
+- Name: pytorch-examples
 - Project source: Git
 - Git URL: https://github.com/oneconvergence/dkube-examples.git
 - Branch: pytorch
@@ -19,14 +19,14 @@
 
 ## Launch Notebook
 - Create Jupyterlab IDE with pytorch framework.
-- Select the Code mnist.
+- Select the Code pytorch-examples.
 - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist.
-- Run workspace/dkube-examples/mnist/train.ipynb
+- Run workspace/pytorch-examples/mnist/train.ipynb
 - You can experient in the notebook and develop your code. Once you are ready for a formal run, export your code into python script(s)
 
 ## Run training job
  - Runs->+Training Run.
- - Code: dkube-examples
+ - Code: pytorch-examples
  - Framework: pytorch
  - Version: 1.6
  - Start-up script: python mnist/train.py

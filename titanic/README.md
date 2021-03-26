@@ -8,8 +8,8 @@
 
 ## Create dataset repo
 - Name: titanic
-- Dataset source: Git
-- URL: https://github.com/oneconvergence/dkube-examples-internal/tree/master/sklearn/titanic/data
+- Dataset source: other
+- URL: https://dkube.s3.amazonaws.com/datasets/titanic.zip
 
 
 ## Create a model

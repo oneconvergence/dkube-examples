@@ -19,14 +19,14 @@
 
 ## Launch Notebook
 - Create Jupyterlab IDE with sklearn framework.
-- Select the Code dkube-examples.
+- Select the Code sklearn-examples.
 - Repos->Inputs->Datasets: select titanic and enter mountpath as /titanic.
 - Run workspace/sklearn-examples/titanic/train.ipynb
 - You can experiment in the notebook and develop your code. Once you are ready for a formal run, export your code into python script(s)
 
 ## Run training job
  - Runs->+Training Run.
- - Code: dkube-examples
+ - Code: sklearn-examples
  - Framework: sklearn
  - Version: default (0.23.2)
  - Start-up script: python titanic/train.py

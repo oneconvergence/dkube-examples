@@ -1,8 +1,8 @@
 # Titanic Example from Kaggle
 
 ## Create code repo
-- Name: dkube-examples
-- Project source: Git
+- Name: sklearn-examples
+- Code source: Git
 - Git URL: https://github.com/oneconvergence/dkube-examples.git
 - Branch: sklearn
 
@@ -21,7 +21,7 @@
 - Create Jupyterlab IDE with sklearn framework.
 - Select the Code dkube-examples.
 - Repos->Inputs->Datasets: select titanic and enter mountpath as /titanic.
-- Run workspace/dkube-examples/titanic/train.ipynb
+- Run workspace/sklearn-examples/titanic/train.ipynb
 - You can experiment in the notebook and develop your code. Once you are ready for a formal run, export your code into python script(s)
 
 ## Run training job

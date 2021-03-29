@@ -86,5 +86,4 @@ cat('Test accuracy:', scores[[2]], '\n')
 
 OUT_DIR <- "/model/1/"
 dir.create(OUT_DIR)
-k_set_learning_phase(0)
 export_savedmodel(model, OUT_DIR)

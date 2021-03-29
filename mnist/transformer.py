@@ -53,7 +53,7 @@ class ImageTransformer(kfserving.KFModel):
         x = cv2.resize(x, (img_w, img_h))
         x = np.array(x, dtype=np.float64)
         x = x.reshape(1,img_h,img_w,1)
-        payload = {"inputs": {'input_1': x.tolist()}, 'token':inputs['token']}
+        payload = {"inputs": x.tolist(), 'token':inputs['token']}
         return payload
 
     def postprocess(self, inputs: List) -> List:

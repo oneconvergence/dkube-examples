@@ -1,10 +1,10 @@
 # MNIST DIGITS CLASSIFICATION EXAMPLE 
 
 ## Create code repo
-- Name: dkube-examples
+- Name: r-examples
 - Project source: Git
 - Git URL: https://github.com/oneconvergence/dkube-examples.git
-- Branch: tensorflow
+- Branch: R
 
 ## Create dataset repo
 - Name: mnist
@@ -17,19 +17,12 @@
 - Keep default for others
 
 
-## Launch Notebook
-- Create Jupyterlab IDE with tensorflow framework.
-- Select the Code mnist.
-- Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist.
-- Run workspace/dkube-examples/mnist/train.ipynb
-- You can experient in the notebook and develop your code. Once you are ready for a formal run, export your code into python script(s)
-
 ## Run training job
  - Runs->+Training Run.
- - Code: dkube-examples
+ - Code: r-examples
  - Framework: Tensorflow
  - Version: 2.0.0
- - Start-up script: python mnist/train.py
+ - Start-up script: r mnist/train.py
  - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist
  - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit
@@ -52,6 +45,6 @@
 - Click predict
 
 ## Automate using pipelines
-Run this [pipeline](https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/pipeline.ipynb) to automate training and serving using kubeflow pipelines.
+Run this [pipeline](https://github.com/oneconvergence/dkube-examples/blob/R/mnist/pipeline.R) in RStudio IDE to automate training and serving using kubeflow pipelines.
 
 

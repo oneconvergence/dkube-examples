@@ -21,7 +21,7 @@
  - Runs->+Training Run.
  - Code: r-examples
  - Framework: Tensorflow
- - Version: 2.0.0
+ - Version: r-2.0.0
  - Start-up script: r mnist/train.py
  - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist
  - Repos->Outputs->Model: select mnist and enter mountpath as /model

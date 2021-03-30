@@ -22,7 +22,7 @@
  - Code: r-examples
  - Framework: Tensorflow
  - Version: r-2.0.0
- - Start-up script: r mnist/train.py
+ - Start-up script: r mnist/train.R
  - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist
  - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit

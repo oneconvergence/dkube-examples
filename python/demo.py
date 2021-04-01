@@ -8,7 +8,7 @@ from dkube.sdk import *
 
 if __name__ == "__main__":
 
-    authToken = os.getenv('DKUBE_USER_ACCESS_TOKEN')
+    authToken = os.getenv('DKUBE_USER_ACCESS_TOKEN', '')
     user = os.getenv('USERNAME', 'oc')
     api = DkubeApi(token=authToken)
     

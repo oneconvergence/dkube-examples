@@ -94,14 +94,14 @@ if __name__ == "__main__":
     dataset_name = generate('mnist')
     dataset = DkubeDataset(user, name=dataset_name)
     dataset.update_dataset_source(source='git')
-    dataset.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/data', branch='2.0.6')
+    dataset.update_git_details('https://github.com/oneconvergence/dkubeio-examples-data/tree/master/tf/mnist')
 
     api.create_dataset(dataset)
 
     # Create a code
     code_name = generate('mnist')
     code = DkubeCode(user, name=code_name)
-    code.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program', branch='2.0.6')
+    code.update_git_details('https://github.com/oneconvergence/dkubeio-examples/tree/master/tf/classification/mnist/digits/classifier/program')
 
     api.create_code(code)
     

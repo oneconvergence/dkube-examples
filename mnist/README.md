@@ -27,7 +27,7 @@
  - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit
 
-## Deploy Model
+## Deploy Model (DKube version 2.1.x.x)
 - Repos->Models->mnist: select a model version
 - Deploy
 - Name: mnist
@@ -36,9 +36,24 @@
 - Transformer script: mnist/transformer.py
 - Submit
 
+## Publish and Deploy Model (Dkube version 2.2.x.x)
+- Repos->Models->mnist: select a model version
+- Click on Publish model icon under ACTIONS column.
+- Name: mnist
+- Serving Image : ocdr/tensorflowserver:2.0.0
+- Transformer: True
+- Transformer Image : ocdr/dkube-datascience-rs-tf-cpu:v2.0.0-3
+- Transformer script: mnist/transformer.py
+- Submit
+### Deploy model
+- Click on Model catalog and select the published model.
+- Click on the deploy model icon under ACTIONS column.
+- Enter the deploy model name and select CPU and click Submit.
+- Check in Model Serving and wait for the deployed model to change to running state.
+
 ## Test inference
 - +tab and go to https://<dkube_url>/inference
-- Copy serving endpoint from Deployments->endpoints
+- Go to model serving and copy the prediction endpoint for the model.
 - Copy Auth token from Developer settings
 - Choose mnist
 - Upload 3.png from repo

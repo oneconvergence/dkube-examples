@@ -96,6 +96,29 @@ run 2_CarePrediction.ipynb for predictions.
 6. Links are displayed in the output cells wherever applicable.
 
 ## Production Workflow
+
+## Deploy Model (DKube version 2.1.x.x)
+- Navigate to Repos-> Models-> Img-DN: select a model version
+- Deploy
+- Name: Img-DN-deploy
+- Type: Test
+- Transformer: True
+- Transformer script: image-denoising/transformer.py
+- Submit
+
+## Publish and Deploy Model (Dkube version 2.2.x.x)
+- Navigate to Repos-> Models-> Img-DN: select a model version
+- Click on Publish model icon under ACTIONS column.
+- Name: Img-DN-deploy
+- Transformer: True
+- Transformer script: image-denoising/transformer.py
+- Submit
+### Deploy model
+- Click on Model catalog and select the published model.
+- Click on the deploy model icon under ACTIONS column.
+- Enter the deploy model name and select CPU and click Submit.
+- Check in Model Serving and wait for the deployed model to change to running state.
+
 ### How to create Test inference.
 1. Go to Repos, click on Models and click on the model (Img-DN).
 2. Click on test inference under actions for the model version you want.
@@ -111,7 +134,7 @@ run 2_CarePrediction.ipynb for predictions.
 ### How to Test Inference in DKube Webapp
 1. Download data sample from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/img1.png
 2. Open the URL https://<dkube_url>/inference
-3. Copy the serving endpoint from the test inference tab and paste it into the serving the URL field.
+3. Go to test inferences in 2.1.x.x release or model serving in 2.2.x.x and copy the prediction endpoint for the model and paste it into the serving URL field.
 4. Copy token from developer settings and paste into token field.
 5. Select model steel from the dropdown.
 6. Upload the downloaded image and click predict.

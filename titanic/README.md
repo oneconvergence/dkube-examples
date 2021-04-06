@@ -64,7 +64,7 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 ## Deploy Model (DKube version 2.1.x.x)
 - Navigate to Repos-> Models-> titanic-model : select a model version
 - Deploy
-- Give name: mnist
+- Give name: titanic-deploy
 - Transformer: click on transformer checkbox.
 - Change the transformer script to: titanic/transformer.py.
 - Submit

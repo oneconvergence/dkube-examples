@@ -61,7 +61,15 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
    - Copy the contents of https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/titanic/titanic_sample.csv and save then as CSV, and    upload.  
    - Click predict.
 
-### Release, Publish and Deploy 
+## Deploy Model (DKube version 2.1.x.x)
+- Navigate to Repos-> Models-> titanic-model : select a model version
+- Deploy
+- Give name: titanic-deploy
+- Transformer: click on transformer checkbox.
+- Change the transformer script to: titanic/transformer.py.
+- Submit
+
+### Release, Publish and Deploy (Dkube version 2.2.x.x)
 
 1. *Release Model*
 - Click on model name titanic-model .

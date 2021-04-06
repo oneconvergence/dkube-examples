@@ -36,7 +36,7 @@
 
 ## Hyperparameter Tuning
 1. Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
-  - For hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/tuning.yaml under upload configuration. 
+  - For hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/tuning.yaml under upload tuning definition. 
   - Submit the run. 
 
 ## Deploy Model (DKube version 2.1.x.x)

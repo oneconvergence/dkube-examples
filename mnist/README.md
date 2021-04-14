@@ -47,7 +47,7 @@
 5. **parallelTrialCount**: The maximum number of hyperparameter sets that Katib should train in parallel. The default value is 3.
 6. **maxTrialCount**: The maximum number of trials to run.
 7. **maxFailedTrialCount**: The maximum number of failed trials before Katib should stop the experiment.
-8. **algorithm**: The search algorithm that you want Katib to use to find the best hyperparameters or neural architecture configuration. 
+8. **algorithm**: The search algorithm that you want Katib to use to find the best hyperparameters or neural architecture configuration. Search algorithms   available in Katib are Grid search, Random search, Bayesian optimization, Hyperband, Tree of Parzen Estimators (TPE), Covariance Matrix Adaptation Evolution Strategy (CMA-ES), Neural Architecture Search based on ENAS, Differentiable Architecture Search (DARTS).
 
 ## Deploy Model (DKube version 2.1.x.x)
 - Repos->Models->mnist: select a model version

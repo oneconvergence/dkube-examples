@@ -34,10 +34,20 @@
  - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit
 
-## Hyperparameter Tuning
+## Katib based Hyperparameter Tuning
 1. Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
   - For hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/tuning.yaml under upload tuning definition. 
   - Submit the run. 
+
+## Tuning.yaml file Details:
+1. **objective**: The metric that you want to optimize. 
+2. **goal** parameter is mandatory in tuning.yaml file.
+3. **objectiveMetricName:** Katib uses the objectiveMetricName and additionalMetricNames to monitor how the hyperparameters work with the model. Katib records the value of the best objectiveMetricName metric.
+4. **parameters : **The range of the hyperparameters or other parameters that you want to tune for your machine learning (ML) model.
+5. **parallelTrialCount**: The maximum number of hyperparameter sets that Katib should train in parallel. The default value is 3.
+6. **maxTrialCount**: The maximum number of trials to run.
+7. **maxFailedTrialCount**: The maximum number of failed trials before Katib should stop the experiment.
+8. **algorithm**: The search algorithm that you want Katib to use to find the best hyperparameters or neural architecture configuration. 
 
 ## Deploy Model (DKube version 2.1.x.x)
 - Repos->Models->mnist: select a model version

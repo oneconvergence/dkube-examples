@@ -43,7 +43,7 @@
 1. **objective**: The metric that you want to optimize. 
 2. **goal** parameter is mandatory in tuning.yaml file.
 3. **objectiveMetricName:** Katib uses the objectiveMetricName and additionalMetricNames to monitor how the hyperparameters work with the model. Katib records the value of the best objectiveMetricName metric.
-4. **parameters : **The range of the hyperparameters or other parameters that you want to tune for your machine learning (ML) model.
+4. **parameters** : The range of the hyperparameters or other parameters that you want to tune for your machine learning (ML) model.
 5. **parallelTrialCount**: The maximum number of hyperparameter sets that Katib should train in parallel. The default value is 3.
 6. **maxTrialCount**: The maximum number of trials to run.
 7. **maxFailedTrialCount**: The maximum number of failed trials before Katib should stop the experiment.

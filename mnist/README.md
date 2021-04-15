@@ -34,12 +34,28 @@
  - Repos->Outputs->Model: select mnist and enter mountpath as /model
  - Submit
 
-## Hyperparameter Tuning
+## Katib based Hyperparameter Tuning
 1. Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
-  - For hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/tuning.yaml under upload configuration. 
+  - For hyperparameter tuning upload the https://github.com/oneconvergence/dkube-examples/blob/tensorflow/mnist/tuning.yaml under upload tuning definition. 
   - Submit the run. 
 
-## Deploy Model
+## Tuning.yaml file Details:
+1. **objective**: The metric that you want to optimize. 
+2. **goal** parameter is mandatory in tuning.yaml file.
+3. **objectiveMetricName:** Katib uses the objectiveMetricName and additionalMetricNames to monitor how the hyperparameters work with the model. Katib records the value of the best objectiveMetricName metric.
+4. **parameters** : The range of the hyperparameters or other parameters that you want to tune for your machine learning (ML) model.
+5. **parallelTrialCount**: The maximum number of hyperparameter sets that Katib should train in parallel. The default value is 3.
+6. **maxTrialCount**: The maximum number of trials to run.
+7. **maxFailedTrialCount**: The maximum number of failed trials before Katib should stop the experiment.
+8. **algorithm**: Search algorithm to find the best hyper parameters. Value must be one of following:
+  
+   - random
+   - bayesianoptimization
+   - hyperband
+   - cmaes
+   - enas
+
+## Deploy Model (DKube version 2.1.x.x)
 - Repos->Models->mnist: select a model version
 - Deploy
 - Name: mnist
@@ -48,9 +64,22 @@
 - Transformer script: mnist/transformer.py
 - Submit
 
+## Publish and Deploy Model (Dkube version 2.2.x.x)
+- Repos->Models->mnist: select a model version
+- Click on Publish model icon under ACTIONS column.
+- Name: mnist
+- Transformer: True
+- Transformer script: mnist/transformer.py
+- Submit
+### Deploy model
+- Click on Model catalog and select the published model.
+- Click on the deploy model icon under ACTIONS column.
+- Enter the deploy model name and select CPU and click Submit.
+- Check in Model Serving and wait for the deployed model to change to running state.
+- 
 ## Test inference
 - +tab and go to https://<dkube_url>/inference
-- Copy serving endpoint from Deployments->endpoints
+- Go to test inferences in 2.1.x.x release or model serving in 2.2.x.x and copy the prediction endpoint for the model.
 - Copy Auth token from Developer settings
 - Choose mnist
 - Upload 3.png from repo

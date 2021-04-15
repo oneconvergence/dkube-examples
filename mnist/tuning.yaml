@@ -1,9 +1,9 @@
-parallelTrialCount: 3
-maxTrialCount: 6
-maxFailedTrialCount: 3
+parallelTrialCount: 2
+maxTrialCount: 4
+maxFailedTrialCount: 2
 objective:
   type: maximize
-  goal: 0.99
+  goal: 0.98
   objectiveMetricName: accuracy
 algorithm:
   algorithmName: random
@@ -17,4 +17,4 @@ parameters:
     parameterType: int
     feasibleSpace:
       min: "1"
-      max: "10"
+      max: "5"

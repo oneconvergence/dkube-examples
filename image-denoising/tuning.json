@@ -1,0 +1,31 @@
+{
+  "parallelTrialCount": 3,
+  "maxTrialCount": 6,
+  "maxFailedTrialCount": 3,
+  "objective": {
+    "type": "minimize",
+    "goal": 0.99,
+    "objectiveMetricName": "loss"
+  },
+  "algorithm": {
+    "algorithmName": "random"
+  },
+  "parameters": [
+    {
+      "name": "--learning_rate",
+      "parameterType": "double",
+      "feasibleSpace": {
+        "min": "0.01",
+        "max": "0.05"
+      }
+    },
+    {
+      "name": "--batch_size",
+      "parameterType": "int",
+      "feasibleSpace": {
+        "min": "100",
+        "max": "200"
+      }
+    }
+  ]
+}

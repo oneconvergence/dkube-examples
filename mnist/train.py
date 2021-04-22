@@ -12,7 +12,10 @@ import shutil
 # read env variables
 epochs = int(os.getenv("EPOCHS","2"))
 device = os.getenv("DEVICE","cpu")
-batch_size = 128
+batch_size = 1280
+
+#limit training on 1 core
+torch.set_num_threads(1)
 
 # Load dataset
 f = gzip.open('/mnist/mnist.pkl.gz', 'rb')
@@ -46,7 +49,7 @@ class MyDataset(torch.utils.data.Dataset):
         y = self.y[index]
         return (x,y)
 train_loader = torch.utils.data.DataLoader(MyDataset(x_train,y_train), batch_size=batch_size)
-test_loader = torch.utils.data.DataLoader(MyDataset(x_test,y_test), batch_size=batch_size)
+test_loader = torch.utils.data.DataLoader(MyDataset(x_test,y_test), batch_size=x_test.shape[0])
 
 def train(model, device, train_loader, optimizer, epoch):
     model.train()

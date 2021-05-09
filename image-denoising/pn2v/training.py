@@ -346,7 +346,7 @@ def trainNetwork(net, trainData, valData, noiseModel, postfix, device,
     sample = {}
     sample["std"]=net.std
     sample["mean"]=net.mean
-    with open(directory+'/std_mean.json', 'w') as outfile:
+    with open('values/std_mean.json', 'w') as outfile:
         json.dump(sample, outfile, indent=4)
     
     net.to(device)

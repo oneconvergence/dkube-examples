@@ -100,6 +100,8 @@ def main():
     FLAGS, unparsed = parser.parse_known_args()
     my_train_data,my_val_data=get_data('train_data')
     #### Start Training ####
+    if not os.path.exists('values'):
+        os.makedirs('values')
     net = UNet(1, depth=3)
     trainHist, valHist = training.trainNetwork(net=net,trainData=my_train_data, valData=my_val_data,postfix=nameModel, directory=MODEL_DIR, noiseModel=None,numOfEpochs=FLAGS.num_epochs, stepsPerEpoch=STEPS,device=device, virtualBatchSize=20, batchSize=FLAGS.batch_size, learningRate=FLAGS.learning_rate, supervised=True)
     ### Copying the Class File to Model Directory ###

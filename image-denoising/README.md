@@ -56,16 +56,6 @@
 6. Check the *Status* field for lifecycle of job, wait till it shows *complete*.
 
 ## Data Scientist Workflow :
-### Steps for running the training program in IDE
-1. Create a IDE with pytorch framework and version 1.6.
-2. Select the Code Img-DN.
-3. Under Inputs section, in Repos Tab select dataset Img-DN and enter mount path /opt/dkube/input.
-4. Create a new notebook inside workspace/Img-DN/image-denoising/
-   - In first cell type:
-     - %mkdir -p /opt/dkube/output
-     - %rm -rf /opt/dkube/output/*
-   - In 2nd cell type %load model-care.py in a notebook cell and then run.
-5. Note for running the training more than once, please run the cell 1 again.
 
 ### How to Run Notebooks
 1. Create a IDE with pytorch framework and version 1.6.

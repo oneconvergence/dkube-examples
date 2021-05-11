@@ -56,16 +56,6 @@
 6. Check the *Status* field for lifecycle of job, wait till it shows *complete*.
 
 ## Data Scientist Workflow :
-### Steps for running the training program in IDE
-1. Create a IDE with pytorch framework and version 1.6.
-2. Select the Code Img-DN.
-3. Under Inputs section, in Repos Tab select dataset Img-DN and enter mount path /opt/dkube/input.
-4. Create a new notebook inside workspace/Img-DN/image-denoising/
-   - In first cell type:
-     - %mkdir -p /opt/dkube/output
-     - %rm -rf /opt/dkube/output/*
-   - In 2nd cell type %load model-care.py in a notebook cell and then run.
-5. Note for running the training more than once, please run the cell 1 again.
 
 ### How to Run Notebooks
 1. Create a IDE with pytorch framework and version 1.6.
@@ -91,9 +81,8 @@ run 2_CarePrediction.ipynb for predictions.
 1. Create Code with name Img-DN as explained in Step1 above.
 2. Create Dataset with name Img-DN as explained in Step2 above.
 3. Create model with name Img-DN as explained in Step3 above.
-4. Download the notebook from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/dkube-denoising-pipeline.ipynb and upload this in default DKube IDE under pipelines folder.
-5. Run all the cells of dkube-denoising-pipeline.ipynb. This will create a pipeline,and  a run.
-6. Links are displayed in the output cells wherever applicable.
+4. Run the pipeline notebook present in your workspace/Img-DN/image-denoising/ (https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/dkube-denoising-pipeline.ipynb ).This will create a pipeline,and  a run.
+5. Links are displayed in the output cells wherever applicable.
 
 ## Production Workflow
 

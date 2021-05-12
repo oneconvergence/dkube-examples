@@ -36,7 +36,7 @@ def predict(im, net, noiseModel, device, outScaling):
     mseEst: numpy array
         Image containing the MMSE prediction, computed using the prior and noise model.
     '''
-    f = open(MODEL_DIR+'/std_mean.json') 
+    f = open('values/std_mean.json') 
     data = json.load(f) 
     stdTorch=torch.Tensor(np.array(data["std"])).to(device)
     meanTorch=torch.Tensor(np.array(data["mean"])).to(device)

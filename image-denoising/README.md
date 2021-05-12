@@ -11,7 +11,7 @@
  2. Click *+Code* button.
  3. Select Code source as Git.
  4. Enter a unique name say *Img-DN*
- 5. Paste link https://github.com/oneconvergence/dkube-examples.git in the URL text box and enter branch as img-dn.
+ 5. Paste link https://github.com/oneconvergence/dkube-examples.git in the URL text box and enter branch as pytorch.
  6. Click *Add Code* button.
  7. Code will be created and imported in Dkube. Progress of import can be seen.
  8. Please wait till status turns to *ready*.

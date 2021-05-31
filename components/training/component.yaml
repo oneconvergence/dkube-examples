@@ -1,0 +1,108 @@
+name: dkube-training
+description: |
+    Component which can be used to do training for deep learning models on Dkube platform.
+    Dkube training offers,
+    * Advanced options for distributed training, gpu managment & pooling.
+    * Support Hyper parameter tuning.
+    * GDRDMA support for Horovod like training programs.
+    * Ability to orchestrate and run custom training containers, prebuilt dkube datascience containers can also be used.
+    * Renders nice Dashboard for training metrics and utilization graphs for GPU, CPU, Memory.
+    * Support for early stopping if program is not converging - User can abort the Job and resume from previous point in training.
+    * Tags to group related training jobs.
+metadata:
+  annotations: {platform: 'Dkube'}
+  labels: {platform: 'Dkube', logger: 'dkubepl', wfid: '{{workflow.uid}}', runid: '{{pod.name}}', stage: 'training', dkube.garbagecollect: 'true', dkube.garbagecollect.policy: 'all'}
+inputs:
+  - {name: container,       type: Dict,     optional: false,
+     description: 'Required. Container to use for training. Format: {"image":<url>, "username":<>, "password":<>}'}
+  - {name: program,         type: String,   optional: true,     default: '',
+     description: 'Optional. Program imported in Dkube to be run inside container. If not specified container should have entrypoint.'}
+  - {name: commit_id,         type: String,   optional: true,     default: '',
+     description: 'Optional. Program commit ID. If not provided, dkube takes the latest commit.'}
+  - {name: run_script,      type: String,   optional: true,     default: '',
+     description: 'Optional. Script to run the program. If not specified container should have entrypoint.'}
+  - {name: datasets,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input datasets required for training. These datasets must be created in Dkube.'}
+  - {name: input_dataset_mounts,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input datasets mount paths.'}
+  - {name: input_dataset_versions,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input datasets versions.'}
+  - {name: models,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input models required for training. These models must be created in Dkube.'}
+  - {name: input_model_mounts,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input models mount paths.'}
+  - {name: input_model_versions,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input models mount versions.'}
+  - {name: outputs,            type: List,   optional: true, default: '[]',
+     description: 'Required. List of output models of a training'}
+  - {name: output_mounts,            type: List,   optional: true, default: '[]',
+     description: 'Required. List of output model mount paths'}
+  - {name: ngpus,           type: Integer,  optional: true,     default: 0,
+     description: 'Optional. Number of gpus the training program should use.'}
+  - {name: nworkers,        type: Integer,  optional: true,     default: 0,
+     description: 'Optional. Number of workers for training, >0 for distributed training.'}
+  - {name: auto_distribute, type: String,   optional: true,     default: 'false',
+     description: 'Optional. Should Dkube auto distribute based on available number of resources.'}
+  - {name: config,          type: String,   optional: true,      default: '',
+    description: 'Optional. HP file or configuration data required for training program.
+                  Supported inputs - 
+                  d3s://<path> - Path to a file in dkube storage.
+                  <string> - Inline data'}
+  - {name: tuning,          type: String,   optional: true,     default: '',
+     description: 'Optional. HP tuning information. Can be a URL to a file with hptuning definition or inline data.
+                   Supported inputs -
+                   d3s://<path> - Path to a file in dkube storage.
+                   <string> - Inline data, only json formatted string is valid.'}
+  - {name: envs,            type: List,     optional: true,     default: '[]',
+     description: 'Optional. Environments for training program. Exact key value will be made available for the container'}
+  - {name: gdrdma,          type: String,   optional: true,     default: 'false',
+     description: 'Optional. Whether to use GDRDMA for distributed training.'}
+  - {name: access_url,      type: String,   optional: true,     default: '',
+     description: 'Optional. URL at which dkube is accessible, copy paste from the browser of this window. Required for cloud deployments.'}
+  - {name: job_group,      type: String,   optional: true,     default: 'default',
+     description: 'Optional. Runs can be organized into Groups that allow them to be viewed together. This group must be created in Dkube.'}
+  - {name: framework,      type: String,   optional: false,
+     description: 'Required. Framework {tensorflow, pytorch, sklearn, custom...}.'}
+  - {name: version,      type: String,   optional: false,
+     description: 'Required. Framework version.'}
+  - {name: tags,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of user-chosen tags to allow Runs to be better identified or grouped.'}
+outputs:
+  - {name: rundetails,      description: 'Details of the dkube run'}
+  - {name: artifact,        description: 'Identifier in Dkube storage where artifacts of training are stored.'}
+implementation:
+  container:
+    image: ocdr/dkubepl:2.1.7.0
+    command: ['dkubepl']
+    args: [
+      training,
+      --accessurl, {inputValue: access_url},
+      --container, {inputValue: container},
+      --script, {inputValue: run_script},
+      --program, {inputValue: program},
+      --commit_id, {inputValue: commit_id},
+      --datasets, {inputValue: datasets},
+      --input_dataset_mounts, {inputValue: input_dataset_mounts},
+      --input_dataset_versions, {inputValue: input_dataset_versions},
+      --models, {inputValue: models},
+      --input_model_mounts, {inputValue: input_model_mounts},
+      --input_model_versions, {inputValue: input_model_versions},
+      --outputs, {inputValue: outputs},
+      --output_mounts, {inputValue: output_mounts},
+      --ngpus, {inputValue: ngpus},
+      --nworkers, {inputValue: nworkers},
+      --auto, {inputValue: auto_distribute},
+      --config, {inputValue: config},
+      --tuning, {inputValue: tuning},
+      --envs, {inputValue: envs},
+      --gdrdma, {inputValue: gdrdma},
+      --job_group, {inputValue: job_group},
+      --framework, {inputValue: framework},
+      --version, {inputValue: version},
+      --tags, {inputValue: tags},
+      --runid, '{{pod.name}}',
+      --wfid, '{{workflow.uid}}'
+    ]
+    fileOutputs:
+      rundetails:   /tmp/rundetails
+      artifact:     /tmp/artifact

@@ -1,0 +1,38 @@
+name: dkube-storage
+description: |
+    Component which can be used to export artifacts in DKube as kubernetes volumes
+metadata:
+  annotations: {platform: 'Dkube'}
+  labels: {platform: 'Dkube', logger: 'dkubepl', wfid: '{{workflow.uid}}', runid: '{{pod.name}}', stage: 'storage', dkube.garbagecollect: 'true', dkube.garbagecollect.policy: 'all'}
+inputs:
+  - {name: command,        type: String,     optional: false,
+     description: 'Required. Command to storage op to export or reclaim.'}
+  - {name: namespace,       type: String,     default: 'kubeflow',
+     description: 'Required. Namespace to export volumes to.'}
+  - {name: input_volumes,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input artifacts to be exported.'}
+  - {name: output_volumes,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input artifacts to be exported.'}
+  - {name: intermediate_volume,        type: String,     optional: true,     default: '',
+     description: 'Optional. Intermediate artifact to be exported.'}
+  - {name: uid,        type: String,     default: '{{workflow.uid}}',
+     description: 'Optional. UID of artifact to be reclaimed.'}
+outputs:
+  - {name: volumes,        description: 'Volumes exported by this component'}
+implementation:
+  container:
+    image: ocdr/dkubepl:2.1.7.0
+    command: ['dkubepl']
+    args: [
+      storage,
+      --action, {inputValue: command},
+      --namespace, {inputValue: namespace},
+      --input_volumes, {inputValue: input_volumes},
+      --output_volumes, {inputValue: output_volumes},
+      --intermediate_volume, {inputValue: intermediate_volume},
+      --uid, {inputValue: uid},
+      --runid, '{{pod.name}}',
+      --wfid, '{{workflow.uid}}',
+    ]
+    fileOutputs:
+      volumes:     /tmp/volumes

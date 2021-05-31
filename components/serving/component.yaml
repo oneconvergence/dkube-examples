@@ -1,0 +1,72 @@
+name: dkube-serving
+description: |
+    Component which can be used to deploy a trained model on Dkube platform.
+    Dkube serving provides,
+    * Option to deploy with CPU/GPU.
+    * A web server in the front and all the required infra to access the server.
+    * Deployed as microserice. Serving URL is provided for any other application logic to consume the model.
+    * Attempts to decode and present some abstract information about the model.
+metadata:
+  annotations: {platform: 'Dkube'}
+  labels: {platform: 'Dkube', logger: 'dkubepl', wfid: '{{workflow.uid}}', runid: '{{pod.name}}', stage: 'serving', dkube.garbagecollect: 'true', dkube.garbagecollect.policy: 'all'}
+inputs:
+  - {name: model,           type: String,   optional: false,
+     description: 'Required. Trained model in Dkube which is to be deployed for serving.'}
+  - {name: name,      type: String,   optional: true,
+     description: 'Optional. Name of deployment.'}
+  - {name: model_version,           type: String,   optional: true,
+     description: 'Optional. Trained model version.'}
+  - {name: device,          type: String,   optional: true,     default: 'cpu',
+     description: 'Optional. Device to use for serving - allowed values, gpu/cpu/auto.'}
+  - {name: access_url,      type: String,   optional: true,     default: '',
+     description: 'Optional. URL at which dkube is accessible, copy paste from the browser of this window. Required for cloud deployments.'}
+  - {name: serving_image, type: Dict,     optional: false,
+     description: 'Required. Container to use for serving. Format: {"image":<url>, "username":<>, "password":<>}'}
+  - {name: transformer_image, type: Dict,     optional: true,
+     description: 'Required. Container to use as transformer. Format: {"image":<url>, "username":<>, "password":<>}'}
+  - {name: transformer_project,      type: String,   optional: true,
+     description: 'Required. Transformer project.'}
+  - {name: transformer_code,      type: String,   optional: true,
+     description: 'Required. Transformer script.'}
+  - {name: transformer_commit_id,      type: String,   optional: true,
+     description: 'Optional. Transformer project commit ID.'}
+  - {name: min_replicas,      type: String,   optional: true,
+     description: 'Optional. Minimum number of replicas that each Revision should have. If not provided, value from platform config will be used.'}
+  - {name: max_concurrent_requests,      type: String,   optional: true,
+     description: 'Optional. Maximum number of requests an inf pod can process at a time. If not provided, value from platform config will be used.'}
+  - {name: production,      type: String,   optional: true,     default: 'false',
+     description: 'Set the value to true for production deployment.' }
+  - {name: update,      type: String,   optional: true,     default: 'false',
+     description: 'Set the value to true for updating an existing deployment. All fields must me filled in this case.'}
+  - {name: envs,            type: List,     optional: true,     default: '[]',
+     description: 'Optional. Environments for serving program. Exact key value will be made available for the container'}
+outputs:
+  - {name: rundetails,       description: 'Details of the dkube run'}
+  - {name: servingurl,       description: 'URL at which the serving web server is accessible.'}
+implementation:
+  container:
+    image: ocdr/dkubepl:2.1.7.0
+    command: ['dkubepl']
+    args: [
+      serving,
+      --accessurl, {inputValue: access_url},
+      --model, {inputValue: model},
+      --name, {inputValue: name},
+      --model_version, {inputValue: model_version},
+      --device, {inputValue: device},
+      --production, {inputValue: production},
+      --update, {inputValue: update},
+      --serving_image, {inputValue: serving_image},
+      --transformer_image, {inputValue: transformer_image},
+      --transformer_project, {inputValue: transformer_project},
+      --transformer_code, {inputValue: transformer_code},
+      --transformer_commit_id, {inputValue: transformer_commit_id},
+      --min_replicas, {inputValue: min_replicas},
+      --max_concurrent_requests, {inputValue: max_concurrent_requests},
+      --envs, {inputValue: envs},
+      --runid, '{{pod.name}}',
+      --wfid, '{{workflow.uid}}'
+    ]
+    fileOutputs:
+      rundetails: /tmp/rundetails
+      servingurl: /tmp/servingurl

@@ -1,0 +1,23 @@
+code:
+  name: dkube-examples
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: tensorflow
+  private: false
+dataset:
+  s3:
+    - name: mnist
+      bucket: dkube
+      prefix: datasets/mnist.pkl.gz
+model:
+  - name: mnist
+
+pipeline:
+  timeout: 5
+  arguments:
+    code: dkube-examples
+    run_script: python mnist/train.py
+    transformer_script: mnist/transformer.py
+    dataset: mnist
+    dataset_mount_path: /mnist
+    model: mnist
+    model_mount_path: /model

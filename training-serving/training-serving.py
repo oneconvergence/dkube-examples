@@ -11,7 +11,7 @@ dkube_serving_op = component_store.load_component("serving")
 
 
 @kfp.dsl.pipeline(
-    name="dkube training+serving",
+    name="train-serve",
     description="pipeline with dkube training and serving components",
 )
 def training_serving(

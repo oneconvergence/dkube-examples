@@ -11,8 +11,7 @@ import shutil
 
 # read env variables
 epochs = int(os.getenv("EPOCHS","2"))
-use_cuda = torch.cuda.is_available()
-device = torch.device("cuda" if use_cuda else "cpu")
+device = "cuda" if torch.cuda.is_available() else "cpu"
 batch_size = 1280
 
 #limit training on 1 core

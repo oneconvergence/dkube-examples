@@ -14,4 +14,4 @@ def parallel_pipeline():
         op = kfp.dsl.ContainerOp(name='parallel',
             image="ocdr/d3-datascience-tf-cpu:v1.14",
             command=["sleep", "5s"])
-        op.add_toleration(V1Toleration( effect='NoSchedule', key='node.kubernetes.io/unschedulable', operator='Exist
+        op.add_toleration(V1Toleration( effect='NoSchedule', key='node.kubernetes.io/unschedulable', operator='Exist))

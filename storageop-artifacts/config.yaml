@@ -1,0 +1,16 @@
+
+code:
+  name: dkube-examples
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: tensorflow
+  private: false
+datasets:
+  - name: mnist
+    url: https://dkube.s3.amazonaws.com/datasets/mnist.pkl.gz
+models:
+  - name: mnist
+
+arguments:
+  code: dkube-examples
+  dataset: mnist
+  model: mnist

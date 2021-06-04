@@ -4,7 +4,8 @@ dkube <-import("dkube")
 
 username <- Sys.getenv("USER")
 token <- Sys.getenv("DKUBE_USER_ACCESS_TOKEN")
-client <- kfp$Client(existing_token=token)
+host <- Sys.getenv("KF_PIPELINES_ENDPOINT")
+client <- kfp$Client(host=host, existing_token=token, namespace=username)
 api <- dkube$sdk$DkubeApi(token=token)
 
 code_name <- "r-examples"

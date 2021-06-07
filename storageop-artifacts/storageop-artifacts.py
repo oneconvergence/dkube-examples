@@ -1,4 +1,7 @@
-import os,kfp,json
+import json
+import os
+
+import kfp
 
 search_path = os.path.dirname(os.path.abspath(__file__)) + "/../components"
 component_store = kfp.components.ComponentStore(local_search_paths=[search_path])
@@ -22,7 +25,7 @@ def storageop_artifacts(code, dataset, model):
             "export", namespace="kubeflow", input_volumes=input_volumes
         )
 
-        train = kfp.dsl.ContainerOp(
+        _ = kfp.dsl.ContainerOp(
             name="container-op",
             image="docker.io/ocdr/dkube-datascience-tf-cpu:v2.0.0-3",
             command="bash",

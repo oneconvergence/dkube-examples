@@ -1,7 +1,4 @@
-import json
-import os
-
-import kfp
+import os,kfp,json
 
 search_path = os.path.dirname(os.path.abspath(__file__)) + "/../components"
 component_store = kfp.components.ComponentStore(local_search_paths=[search_path])

@@ -11,11 +11,10 @@ dkube_training_op = component_store.load_component("training")
     name='set-envvars-pl',
     description='pl with limits and requests '
 )
-def limits_requests_pipeline(limit_cpu,limit_memory,request_cpu,request_memory):
+def limits_requests_pipeline(code,run_script,limit_cpu,limit_memory,request_cpu,request_memory):
     
     a=[{"LIMIT_CPU":str(limit_cpu)},{"LIMIT_MEM":str(limit_memory)},{"REQUEST_CPU":str(request_cpu)},{"REQUEST_MEM":str(request_memory)}]
     
-
     train       = dkube_training_op(container='{"image":"polinux/stress"}',
                                     framework="custom",program=str(code),
                                     run_script=str(run_script),

@@ -1,0 +1,8 @@
+models:
+  - name: multi-model
+    source: aws_s3
+    bucket: dkube
+    prefix: multi-model
+
+arguments:
+  model: multi-model

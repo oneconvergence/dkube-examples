@@ -1,0 +1,15 @@
+datasets:
+  - name: storage-op-tc
+    source: s3
+    endpoint: https://download.ce8i5.arvadosapi.com
+    bucket: ce8i5-4zz18-j45o88d58u7js60
+    access_key_id: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+    secret_access_key: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+models:
+  - name: storage-op-tc
+
+arguments:
+  dataset: storage-op-tc
+  model: storage-op-tc
+  dataset_version: v1
+  model_version: v1

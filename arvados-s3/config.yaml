@@ -1,0 +1,22 @@
+code:
+  name: arv-s3
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
+  private: false
+datasets:
+  - name: arv-s3
+    source: s3
+    endpoint: https://download.ce8i5.arvadosapi.com
+    bucket: ce8i5-4zz18-j45o88d58u7js60
+    access_key_id: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+    secret_access_key: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+models:
+  - name: arv-s3
+
+arguments:
+  code: arv-s3
+  dataset: arv-s3
+  model: arv-s3
+  run_script: cd arvados-s3; python arvados_training.py
+  dataset_mount_path: /opt/dkube/input
+  model_mount_path: /opt/dkube/output

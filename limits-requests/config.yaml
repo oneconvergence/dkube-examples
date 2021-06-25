@@ -6,10 +6,10 @@ code:
   
 arguments:
   code: dkube-examples
-  run_script: stress --vm-bytes 1000G
-  limit_cpu:  1000
-  limit_memory: 1000Gi
-  request_cpu: 999
-  request_memory: 999Gi
+  run_script: stress --vm 1 --vm-bytes 250M
+  limit_cpu:  1
+  limit_memory: 100Mi
+  request_cpu: 0.5
+  request_memory: 50Mi
   
 status: Failed

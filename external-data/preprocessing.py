@@ -1,63 +1,45 @@
-mport json
+import boto3
+import json
 import os
+import joblib
+import pandas as pd
+import argparse
+from dkube.sdk import DkubeApi
 
-import kfp
+if __name__ == "__main__":
+    
+    DATA_DIR = '/opt/dkube/input'
 
-search_path = os.path.dirname(os.path.abspath(__file__)) + "/../components"
-component_store = kfp.components.ComponentStore(local_search_paths=[search_path])
+    config = json.load(open(os.path.join(DATA_DIR,'config.json')))
 
-dkube_preprocessing_op = component_store.load_component("preprocessing")
-dkube_storage_op = component_store.load_component("storage")
-dkube_training_op = component_store.load_component("training")
-
-
-@kfp.dsl.pipeline(
-    name='external_data',
-    description='utilise data from external and train'
-)
-def externaldata_pipeline(image,
-                          code,
-                          preprocessing_script,
-                          ptrain_dataset,
-                          train_fs_name, 
-                          dataset_mount_points,
-                          featureset_mount_points,
-                          model_name,
-                          training_script,
-                          train_out_mount_points):
-                          
-     with kfp.dsl.ExitHandler(exit_op=storage_op("reclaim",namespace="kubeflow", uid="{{workflow.uid}}")):
-            
-            preprocessing = dkube_preprocessing_op(json.dumps({"image": image}),
-                                            program = code,run_script=preprocessing_script,
-                                            datasets=json.dumps([ptrain_dataset]), 
-                                            output_featuresets=json.dumps([train_fs_name]),
-                                            input_dataset_mounts=json.dumps(dataset_mount_points), 
-                                            output_featureset_mounts=json.dumps(featureset_mount_points))
-            
-            input_volumes = json.dumps(["{{workflow.uid}}-featureset@featureset://" + train_fs_name])
-            storage = dkube_storage_op("export",token, namespace="kubeflow", input_volumes=input_volumes,
-                                 output_volumes=json.dumps(["{{workflow.uid}}-featureset@featureset://"+train_fs_name])).after(preprocessing)
-            
+    with open(os.path.join(DATA_DIR,'credentials'), 'r') as f:
+        creds = f.read()
        
-            list_featureset = kfp.dsl.ContainerOp(
-                name="list-storage",
-                image="docker.io/ocdr/dkube-datascience-tf-cpu:v2.0.0-3",
-                command="bash", 
-                arguments=["-c", "ls /featureset"],
-                pvolumes={
-                         "/featureset": kfp.dsl.PipelineVolume(pvc="{{workflow.uid}}-featureset")
-                         }).after(storage)
-        
-        
-            train = dkube_training_op(token, json.dumps({"image": image}),
-                                    framework="sklearn", version="0.23.2",
-                                    program=code, run_script=training_script,
-                                    featuresets= json.dumps([train_fs_name]), outputs=json.dumps([model_name]),
-                                    input_featureset_mounts=json.dumps(featureset_mount_points),
-                                    output_mounts=json.dumps(train_out_mount_points)).after(preprocessing)
-            
-        
-        
-            
-        
+    access_key = creds.split('\n')[1].split('=')[-1].strip()
+    secret_key = creds.split('\n')[2].split('=')[-1].strip()
+
+    session = boto3.session.Session()
+    s3_client = boto3.resource(service_name='s3',aws_access_key_id=access_key,aws_secret_access_key=secret_key)
+
+    s3_client.Bucket(config['Bucket']).download_file('datasets/heart-data/heart.csv', 'heart.csv')
+
+    ########--- Parse for parameters ---########
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", dest="url", default=None, type=str, help="setup URL")
+    parser.add_argument("--train_fs", dest="train_fs", required=True, type=str, help="train featureset")
+    global FLAGS
+    FLAGS, unparsed = parser.parse_known_args()
+    
+    dkubeURL = FLAGS.url
+    # Dkube user access token for API authentication
+    authToken = os.getenv("DKUBE_USER_ACCESS_TOKEN")
+    # Get client handle
+    api = DkubeApi(URL=dkubeURL, token=authToken)
+
+    out_path = ["/featureset/train"]
+
+    ## Preprocessed training data
+    train_data=pd.read_csv('heart.csv')
+    train_data = train_data.drop('ca',axis = 1)
+    ## Commit Featureset
+    resp = api.commit_featureset(name=FLAGS.train_fs, df=train_data)

@@ -18,12 +18,12 @@ featuresets:
 
 arguments:
   code: external-data
-  preprocessing_script: python external_data*/preprocessing.py --train_fs heart-fs-train
+  preprocessing_script: python external-data*/preprocessing.py --train_fs heart-fs-train
   dataset: heart-data
   featureset: heart-fs-train
   dataset_mount_points: /opt/dkube/input
   featureset_mount_points: /featureset/train
   model: heart-model
-  training_script: python external_data*/training.py
+  training_script: python external-data*/training.py
   train_out_mount_points: /model
   token: __TOKEN__

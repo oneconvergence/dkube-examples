@@ -11,9 +11,6 @@ models:
 
 arguments:
   code: dkube-examples
-  run_script: python mnist/train.py
-  transformer_script: mnist/transformer.py
   dataset: mnist
-  dataset_mount_path: /mnist
   model: mnist
-  model_mount_path: /model
+  token: __TOKEN__

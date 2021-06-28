@@ -11,5 +11,6 @@ arguments:
   limit_memory: 100Mi
   request_cpu: 0.5
   request_memory: 50Mi
-  
+  token: __TOKEN__
+
 status: Failed

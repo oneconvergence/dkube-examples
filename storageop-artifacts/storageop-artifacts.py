@@ -10,9 +10,14 @@ storage_op = component_store.load_component("storage")
 
 
 @kfp.dsl.pipeline(name="StorageOp", description="StorageOp component")
-def storageop_artifacts(code, dataset, model):
+def storageop_artifacts(code, dataset, model, token):
     with kfp.dsl.ExitHandler(
-        exit_op=storage_op("reclaim", namespace="kubeflow", uid="{{workflow.uid}}")
+        exit_op=storage_op(
+            "reclaim",
+            auth_token=str(token),
+            namespace="kubeflow",
+            uid="{{workflow.uid}}",
+        )
     ):
         input_volumes = json.dumps(
             [
@@ -22,7 +27,10 @@ def storageop_artifacts(code, dataset, model):
             ]
         )
         storage = storage_op(
-            "export", namespace="kubeflow", input_volumes=input_volumes
+            "export",
+            auth_token=str(token),
+            namespace="kubeflow",
+            input_volumes=input_volumes,
         )
 
         _ = kfp.dsl.ContainerOp(

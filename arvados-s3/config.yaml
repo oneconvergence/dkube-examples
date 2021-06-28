@@ -1,8 +1,7 @@
 code:
-  name: arv-s3
-  random: False
-  url: https://github.com/pallavi-pannu-oc/pipelines.git
-  branch: main
+  name: dkube-examples
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
   private: false
 datasets:
   - name: arv-s3

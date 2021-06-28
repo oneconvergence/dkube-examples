@@ -22,9 +22,11 @@ def training_serving(
     dataset_mount_path,
     model,
     model_mount_path,
+    token,
 ):
 
     train = dkube_training_op(
+        auth_token=str(token),
         container='{"image":"ocdr/dkube-datascience-tf-cpu:v2.0.0"}',
         framework="tensorflow",
         version="2.0.0",
@@ -38,6 +40,7 @@ def training_serving(
     )
 
     _ = dkube_serving_op(
+        str(token),
         train.outputs["artifact"],
         device="cpu",
         serving_image='{"image":"ocdr/tensorflowserver:2.0.0"}',

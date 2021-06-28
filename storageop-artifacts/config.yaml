@@ -13,3 +13,4 @@ arguments:
   code: dkube-examples
   dataset: mnist
   model: mnist
+  token: __TOKEN__

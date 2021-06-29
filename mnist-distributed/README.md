@@ -27,7 +27,7 @@
  - Code: dkube-examples
  - Framework: Tensorflow
  - Version: 
-   - For mirrored :  2.0.0 or 2.0.0-gpu
+   - For mirrored :    2.0.0-gpu
    - For multiworker : 2.3.0-gpu 
  - Start-up script: 
    - For training using **mirrored strategy**: `python mnist-distributed/mirrored_mnist.py` 

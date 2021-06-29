@@ -2,7 +2,6 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from tensorflow import keras
 from tensorflow.keras import layers
-from mlflow import log_metric
 import gzip, pickle, os
 import numpy as np
 import tensorflow as tf
@@ -48,7 +47,7 @@ def model_with_strategy(learning_rate):
         model.compile(loss="categorical_crossentropy", optimizer=tf.keras.optimizers.Adam(learning_rate), metrics=["accuracy"])
     return model
   
-class DistributedTrainingMnistClassification(object):
+class DistributedTraining(object):
     def __init__(self, learning_rate=0.01, batch_size=64, epochs=2):
         hyperparams = {'BUFFER_SIZE': 10000, 'BATCH_SIZE': batch_size}
         self.learning_rate = learning_rate
@@ -83,5 +82,5 @@ if __name__ == "__main__":
     learning_rate = float(args.learning_rate)
     batch_size = int(args.batch_size)
     epochs = int(args.epochs)
-    model = DistributedTrainingMnistClassification(learning_rate, batch_size, epochs)
+    model = DistributedTraining(learning_rate, batch_size, epochs)
     model.train()

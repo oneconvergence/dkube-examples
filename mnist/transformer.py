@@ -43,7 +43,7 @@ class Transformer(kfserving.KFModel):
     def postprocess(self, inputs: List) -> List:
         prediction = np.argmax(inputs["predictions"][0])
         del inputs['predictions']
-        inputs["prediction"] = int(prediction)
+        inputs["digit"] = int(prediction)
         return inputs
 
 if __name__ == "__main__":

@@ -1,0 +1,29 @@
+code:
+  name: external-data
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
+  private: false
+datasets:
+  - name: heart-data
+    source: aws_s3
+    bucket: dkube
+    prefix: datasets/heart-data/
+    key: __aws-key__
+    secret: __aws-secret__
+models:
+  - name: heart-model
+featuresets:
+  - name: heart-fs-train
+    random: False
+
+arguments:
+  code: external-data
+  preprocessing_script: python external-data*/preprocessing.py --train_fs heart-fs-train
+  dataset: heart-data
+  featureset: heart-fs-train
+  dataset_mount_points: /opt/dkube/input
+  featureset_mount_points: /featureset/train
+  model: heart-model
+  training_script: python external-data*/training.py
+  train_out_mount_points: /model
+  token: __TOKEN__

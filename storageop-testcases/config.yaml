@@ -1,0 +1,33 @@
+code:
+  name: storageop-tc
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
+  private: false
+ 
+datasets:
+  - name: storageop-remote-data
+    random: False
+    source: s3
+    remote: True
+    endpoint: https://download.ce8i5.arvadosapi.com
+    bucket: ce8i5-4zz18-j45o88d58u7js60
+    prefix: ""
+    key: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+    secret: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+  - name: output-dataset-tc
+    random: False
+
+models:
+  - name: storage-op-tc
+arguments:
+  code: storageop-tc
+  preprocessing_script: python storageop-tc/download_data.py
+  dataset: storageop-remote-data
+  dataset_mount_points: /opt/dkube/input
+  output_dataset: output-dataset-tc
+  output_mount_path: /output-dataset-tc
+  dataset_version: v2
+  model_version: v1
+  model: storage-op-tc
+  token: __TOKEN__
+

@@ -1,0 +1,16 @@
+code:
+  name: dkube-examples
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: tensorflow
+  private: false
+  
+arguments:
+  code: dkube-examples
+  run_script: stress --vm 1 --vm-bytes 250M
+  limit_cpu:  1
+  limit_memory: 100Mi
+  request_cpu: 0.5
+  request_memory: 50Mi
+  token: __TOKEN__
+
+status: Failed

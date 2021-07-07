@@ -1,0 +1,40 @@
+code:
+  name: dkube-examples
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
+  private: false
+datasets:
+  - name: arv-s3
+    random: False
+    source: s3
+    remote: True
+    endpoint: https://download.ce8i5.arvadosapi.com
+    bucket: ce8i5-4zz18-j45o88d58u7js60
+    prefix: ""
+    key: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+    secret: 3dnjzwsn4y8mhg03u0mdpucp2jrdcwlskvpmrd1ytdvfippou8
+  - name: output-arvados
+    random: False
+   
+models:
+  - name: arv-s3
+    random: False
+    source: dvs
+featuresets:
+  - name: arv-s3-fs-train
+    random: False
+
+arguments:
+  code: arv-s3
+  preprocessing_script: python arvados-s3/preprocessing.py --train_fs arv-s3-fs-train
+  dataset: arv-s3
+  featureset: arv-s3-fs-train
+  dataset_mount_points: /opt/dkube/input
+  featureset_mount_points: /featureset/train
+  model: arv-s3
+  training_script: python arvados-s3/arvados-training.py
+  train_out_mount_points: /model
+  output_dataset: output-arvados
+  output_mount_path: /output-arvados
+  token: __TOKEN__
+

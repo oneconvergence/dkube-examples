@@ -8,19 +8,16 @@ component_store = kfp.components.ComponentStore(local_search_paths=[search_path]
 
 dkube_training_op = component_store.load_component("training")
 
-username = (
-    os.getenv("username") if os.getenv("username") != None else os.getenv("USERNAME")
-)
 
 
 @kfp.dsl.pipeline(name="homedir-pl", description="code from home dir")
 def homedircode_pipeline(
-    code, dataset, model, dataset_mount_path, model_mount_path, token
+    code, dataset, model, dataset_mount_path, model_mount_path, token, user
 ):
 
     run_script = (
         "python /mnt/dkube/home/"
-        + str(username)
+        + str(user)
         + "/workspace/"
         + str(code)
         + "/mnist/train.py"

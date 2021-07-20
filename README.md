@@ -11,6 +11,6 @@ This repository contains examples for various functions for DKube. Dkube support
 
 ### Examples
 
-- [mnist](mnist) - this example demonstrates end to end workflow of dkube from development to deployment. 
-- [titanic](titanic) - this example demonstrates on how to use featuresets and leaderboard in DKube
-- [noteboks](notebooks) - this directory contains notebooks showing DKube API/SDK, Kubeflow Pipelines and DKube storage op usage
+Each pipeline example contains a pipline definition (.py file) and a config.yaml file. config.yaml shows referance values to run the pipeline. In case DKube resources needs to be created, they are specified under code, datasets and models. Pipeline arguments are specified under arguments.
+
+Some values of `__xxx__` form needs to be provided by the user.

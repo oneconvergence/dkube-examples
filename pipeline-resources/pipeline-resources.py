@@ -5,12 +5,9 @@ import kfp
 import kfp.components as kfplc
 from dkube.sdk import *
 from kfp.components._structures import MetadataSpec
-from robot.libraries.BuiltIn import BuiltIn
-
-print(os.environ)
 
 
-dkube_url = os.getenv("URL") if os.getenv("URL") != None else os.getenv("DKUBE_URL")
+dkube_url = os.getenv("DKUBE_URL")
 
 
 def artifactmgr(user: str, token: str):

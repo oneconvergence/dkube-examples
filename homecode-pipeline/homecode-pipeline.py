@@ -27,11 +27,10 @@ def homedircode_pipeline(
         auth_token=str(token),
         container='{"image":"ocdr/dkube-datascience-tf-cpu:v2.0.0"}',
         framework="custom",
-        version="dummy",
         run_script=run_script,
         datasets=json.dumps([str(dataset)]),
         outputs=json.dumps([str(model)]),
         input_dataset_mounts=json.dumps([str(dataset_mount_path)]),
         output_mounts=json.dumps([str(model_mount_path)]),
-        envs='[{"EPOCHS": "1"}]',
+        #envs='[{"EPOCHS": "1"}]',
     )

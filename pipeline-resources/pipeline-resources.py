@@ -1,14 +1,10 @@
 import os
-from typing import Callable, NamedTuple
 
 import kfp
-import kfp.components as kfplc
 from dkube.sdk import *
-from kfp.components._structures import MetadataSpec
 
 
 dkube_url = os.getenv("DKUBE_URL")
-
 
 def artifactmgr(user: str, token: str):
     import datetime
@@ -62,47 +58,13 @@ def artifactmgr(user: str, token: str):
         model.update_model_source(source="dvs")
         api.create_model(model)
 
-
-def componentize(
-    fn: Callable, name: str, desc: str, image: str, annotations: dict, labels: dict
-):
-    labels.update({"wfid": "{{workflow.uid}}", "runid": "{{pod.name}}"})
-    md = MetadataSpec(annotations=annotations, labels=labels)
-
-    fn._component_human_name = name
-    fn._component_description = desc
-
-    cfunc = kfp.components.create_component_from_func(
-        fn,
-        base_image=image,
-    )
-    cfunc.component_spec.metadata = md
-    envs: Mapping[str, str] = {
-        "pipeline": "true",
-        "wfid": "{{workflow.uid}}",
-        "runid": "{{pod.name}}",
-    }
-    cfunc.component_spec.implementation.container.env = envs
-    cfunc.component_spec.save("artifactmgr.yaml")
-    return cfunc
-
-
-dkube_artifact_op = componentize(
-    artifactmgr,
-    "dkube_artifactmgr",
-    "DKube artifact resource manager",
-    "ocdr/dkube_launcher:viz",
-    {"platform": "Dkube"},
-    {
-        "platform": "Dkube",
-        "logger": "dkubepl",
-        "dkube.garbagecollect": "false",
-        "dkube.garbagecollect.policy": "all",
-    },
-)
-dkube_artifact_op = kfp.components.load_component_from_file("artifactmgr.yaml")
-
+annotations = dict()
+annotations['platform'] = 'Dkube'
+annotations['logger'] = 'dkubepl'
+annotations['dkube.garbagecollect'] = 'false'
+annotations['dkube.garbagecollect.policy'] = 'all'
+dkube_artifact_op = kfp.components.create_component_from_func(func=artifactmgr, base_image="ocdr/dkube_launcher:viz",annotations=annotations, output_component_file='artifactmgr.yaml')
 
 @kfp.dsl.pipeline(name="pl-resources", description="create resources")
 def resources_pipeline(username, token):
-    rs_pl = dkube_artifact_op(str(username), str(token))
+    create_datums = dkube_artifact_op(str(username), str(token))

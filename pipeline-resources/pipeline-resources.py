@@ -10,15 +10,9 @@ def artifactmgr(user: str, token: str):
     import datetime
     import random
     import string
-
+    from dkube.sdk import generate
     from dkube.sdk.api import DkubeApi
     from dkube.sdk.rsrcs import DkubeCode, DkubeDataset, DkubeModel
-
-    def generate(name):
-        timestamp = datetime.datetime.now().strftime("%H%M%S")
-        return "{}-{}{}".format(
-            name, timestamp, "".join([random.choice(string.digits) for n in range(4)])
-        )
 
     api = DkubeApi(token=token)
 
@@ -28,7 +22,7 @@ def artifactmgr(user: str, token: str):
     name = generate(name)
     code = DkubeCode(user, name=name)
     code.update_git_details(
-        "https://github.com/oneconvergence/dkube-examples-internal/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/program"
+        "https://github.com/oneconvergence/dkube-examples.git"
     )
     api.create_code(code)
 
@@ -36,34 +30,18 @@ def artifactmgr(user: str, token: str):
     name = "mnist-ds"
     name = generate(name)
     dataset = DkubeDataset(user, name=name)
-    dataset.update_dataset_source(source="git")
-    dataset.update_git_details(
-        "https://github.com/oneconvergence/dkube-examples-internal/tree/2.0.6/tensorflow/classification/mnist/digits/classifier/data"
-    )
+    dataset.update_dataset_source(source="pub_url")
+    dataset.update_git_details("https://s3.amazonaws.com/img-datasets/mnist.pkl.gz")
     api.create_dataset(dataset)
 
-    # Create the output dataset resources here.
-    output_datasets = ["output-ds-1", "output-ds-2"]
-    for name in output_datasets:
-        name = generate(name)
-        dataset = DkubeDataset(user, name=name)
-        dataset.update_dataset_source(source="dvs")
-        api.create_dataset(dataset)
-
     # Create the output model resources here
-    output_models = ["output-model-1", "output-model-2"]
-    for name in output_models:
-        name = generate(name)
-        model = DkubeModel(user, name=name)
-        model.update_model_source(source="dvs")
-        api.create_model(model)
+    name = "output-model"
+    name = generate(name)
+    model = DkubeModel(user, name=name)
+    model.update_model_source(source="dvs")
+    api.create_model(model)
 
-annotations = dict()
-annotations['platform'] = 'Dkube'
-annotations['logger'] = 'dkubepl'
-annotations['dkube.garbagecollect'] = 'false'
-annotations['dkube.garbagecollect.policy'] = 'all'
-dkube_artifact_op = kfp.components.create_component_from_func(func=artifactmgr, base_image="ocdr/dkube_launcher:viz",annotations=annotations, output_component_file='artifactmgr.yaml')
+dkube_artifact_op = kfp.components.create_component_from_func(func=artifactmgr, base_image="ocdr/dkube-datascience-tf-cpu:v2.0.0-6", output_component_file='artifactmgr.yaml')
 
 @kfp.dsl.pipeline(name="pl-resources", description="create resources")
 def resources_pipeline(username, token):

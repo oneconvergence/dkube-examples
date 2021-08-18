@@ -14,3 +14,31 @@ This repository contains examples for various functions for DKube. Dkube support
 - [mnist](mnist) - this example demonstrates end to end workflow of dkube from development to deployment. 
 - [titanic](titanic) - this example demonstrates on how to use featuresets and leaderboard in DKube
 - [noteboks](notebooks) - this directory contains notebooks showing DKube API/SDK, Kubeflow Pipelines and DKube storage op usage
+
+#### Using script from Homedir
+
+```python3
+@kfp.dsl.pipeline(name="homedir-pl", description="code from home dir")
+def homedircode_pipeline(
+    code, dataset, model, dataset_mount_path, model_mount_path, token, user
+):
+
+    run_script = (
+        "python /mnt/dkube/home/"
+        + str(user)
+        + "/workspace/"
+        + str(code)
+        + "/mnist/train.py"
+    )
+
+    train = dkube_training_op(
+        auth_token=str(token),
+        container='{"image":"ocdr/dkube-datascience-tf-cpu:v2.0.0"}',
+        framework="custom",
+        run_script=run_script,
+        datasets=json.dumps([str(dataset)]),
+        outputs=json.dumps([str(model)]),
+        input_dataset_mounts=json.dumps([str(dataset_mount_path)]),
+        output_mounts=json.dumps([str(model_mount_path)]),
+    )
+```

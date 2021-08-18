@@ -6,7 +6,7 @@ from dkube.sdk import *
 
 dkube_url = os.getenv("DKUBE_URL")
 
-def artifactmgr(user: str, token: str):
+def create_resources(user: str, token: str):
     import datetime
     import random
     import string
@@ -41,8 +41,8 @@ def artifactmgr(user: str, token: str):
     model.update_model_source(source="dvs")
     api.create_model(model)
 
-dkube_artifact_op = kfp.components.create_component_from_func(func=artifactmgr, base_image="ocdr/dkube-datascience-tf-cpu:v2.0.0-6", output_component_file='artifactmgr.yaml')
+dkube_resources_op = kfp.components.create_component_from_func(func=create_resources, base_image="ocdr/dkube-datascience-tf-cpu:v2.0.0-6", output_component_file='create_resources.yaml')
 
 @kfp.dsl.pipeline(name="pl-resources", description="create resources")
 def resources_pipeline(username, token):
-    create_datums = dkube_artifact_op(str(username), str(token))
+    create_datums = dkube_resources_op(str(username), str(token))

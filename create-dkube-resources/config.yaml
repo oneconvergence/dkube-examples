@@ -1,0 +1,3 @@
+arguments:
+  username: __USER__
+  token: __TOKEN__

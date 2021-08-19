@@ -11,6 +11,35 @@ This repository contains examples for various functions for DKube. Dkube support
 
 ### Examples
 
-Each pipeline example contains a pipline definition (.py file) and a config.yaml file. config.yaml shows referance values to run the pipeline. In case DKube resources needs to be created, they are specified under code, datasets and models. Pipeline arguments are specified under arguments.
+- [mnist](mnist) - this example demonstrates end to end workflow of dkube from development to deployment. 
+- [titanic](titanic) - this example demonstrates on how to use featuresets and leaderboard in DKube
+- [noteboks](notebooks) - this directory contains notebooks showing DKube API/SDK, Kubeflow Pipelines and DKube storage op usage
 
-Some values of `__xxx__` form needs to be provided by the user.
+#### Accessing Code from inside container
+Dkube pipeline components makes all the code repos available at /mnt/dkube/home//workspace. Here is one example showing how to access a particular script file from your code repo in dkube component.
+
+```python3
+@kfp.dsl.pipeline(name="homedir-pl", description="code from home dir")
+def homedircode_pipeline(
+    code, dataset, model, dataset_mount_path, model_mount_path, token, user
+):
+
+    run_script = (
+        "python /mnt/dkube/home/"
+        + str(user)
+        + "/workspace/"
+        + str(code)
+        + "/mnist/train.py"
+    )
+
+    train = dkube_training_op(
+        auth_token=str(token),
+        container='{"image":"ocdr/dkube-datascience-tf-cpu:v2.0.0"}',
+        framework="custom",
+        run_script=run_script,
+        datasets=json.dumps([str(dataset)]),
+        outputs=json.dumps([str(model)]),
+        input_dataset_mounts=json.dumps([str(dataset_mount_path)]),
+        output_mounts=json.dumps([str(model_mount_path)]),
+    )
+```

@@ -9,11 +9,6 @@ This repository contains examples for various functions for DKube. Dkube support
 - R - contains examples using tensorflow + R
 - pipelines - contains examples of kubeflow pipelines. 
 
-### Examples
-
-- [mnist](mnist) - this example demonstrates end to end workflow of dkube from development to deployment. 
-- [titanic](titanic) - this example demonstrates on how to use featuresets and leaderboard in DKube
-- [noteboks](notebooks) - this directory contains notebooks showing DKube API/SDK, Kubeflow Pipelines and DKube storage op usage
 
 ### Accessing Code from inside container
 Dkube pipeline components make all the code repos available at /mnt/dkube/home//workspace. Following example shows how to access a particular script file from your code repo in dkube component.

@@ -3,7 +3,7 @@ maxTrialCount: 4
 maxFailedTrialCount: 2
 objective:
   type: maximize
-  goal: 0.98
+  goal: 0.70
   objectiveMetricName: accuracy
 algorithm:
   algorithmName: random

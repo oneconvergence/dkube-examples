@@ -25,8 +25,7 @@ parser.add_argument(
 
 args, _ = parser.parse_known_args()
 
-filename = "/tmp/temp.csv"
-
+filename = "temp.csv"
 
 class Transformer(kfserving.KFModel):
     def __init__(self, name: str, predictor_host: str):
@@ -46,19 +45,15 @@ class Transformer(kfserving.KFModel):
         with open(filename, "w") as f:
             f.write(data)
         data = pd.read_csv(filename)
-        values = data.drop("Survived", 1).values
-        payload = {"inputs": values.tolist(), "token": inputs["token"]}
+        payload = {"instances": data.values.tolist(), "token": inputs["token"]}
         logging.info("token =======> %s", str(inputs["token"]))
         return payload
 
     def postprocess(self, predictions: List) -> List:
         logging.info("prep =======> %s", str(type(predictions)))
-        preds = predictions["outputs"]
-        if (preds[0]) == 0:
-            return {"result": "Dead"}
-        else:
-            return {"result": "Alive"}
-
+        preds = predictions["predictions"]
+        res = f'Your insurance charges would be: ${round(preds[0],2)}'
+        return {"result": res}
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)

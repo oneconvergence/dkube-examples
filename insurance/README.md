@@ -57,7 +57,7 @@
 Add Code **mm-demo**
   - Source: Git
   - URL: https://github.com/oneconvergence/dkube-examples.git
-  - Branch : mm
+  - Branch : monitoring
 
 ## FOR TRAINING:
 1. Run training-pipeline.ipynb notebook

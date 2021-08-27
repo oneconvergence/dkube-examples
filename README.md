@@ -7,9 +7,8 @@ This repository contains examples for various functions for DKube. Dkube support
 - pytorch - contains examples using pytorch + python
 - sklearn - contains examples using sklearn + python
 - R - contains examples using tensorflow + R
+- monitoring - contains examples using various frameworks and showcase the model monitoring feature of DKube.
 
 ### Examples
 
-- [mnist](mnist) - this example demonstrates end to end workflow of dkube from development to deployment. 
-- [titanic](titanic) - this example demonstrates on how to use featuresets and leaderboard in DKube
-- [noteboks](notebooks) - this directory contains notebooks showing DKube API/SDK, Kubeflow Pipelines and DKube storage op usage
+- [insurance](insurance) - this example demonstrates on how to monitor the model in Dkube.

@@ -1,6 +1,6 @@
 # Model Monitoring Insurance Example
 
-## Note : For model training/retraining with DKube, follow the README https://github.com/oneconvergence/dkube-examples/tree/sklearn/insurance
+#### Note : For model training/retraining with DKube, follow the README https://github.com/oneconvergence/dkube-examples/tree/sklearn/insurance
 
 ## Add Training-Data in Dkube
 1. Provide name eg: “s3-insurance-traindata”
@@ -44,16 +44,20 @@
 2. In 1st Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
 3. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
 4. Then Run All Cells. It will start Pushing the data.
-5. After First Push of dataset by this script. Configure Following Dataset in modelmonitor
--  Predict Dataset
+5. After First Push of dataset by this script. Configure the generated datasets in modelmonitor.
+
+## Configure Following Dataset in modelmonitor
+-  **Predict Dataset**
 -  Dataset: {model-monitor}-predict
 -  Type: CSV
-- Labelled Dataset
 
+- **Labelled Dataset**
 - Dataset: {model-monitor}-groundtruth
 - Type: CSV
-- Ground Truth Column Name: GT_target
-- Prediction Column Name: charges
+
+- **Ground Truth Column Name**: GT_target
+- **Prediction Column Name**: charges
+
 6. After that add Alerts - generally this script will be creating alert on features age, sex, bmi, region. Configure one alert for each individual feature. With threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
 7. Start Monitor.
 

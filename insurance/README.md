@@ -7,18 +7,18 @@ Add Code **insurance**
   - Branch : sklearn
 
 ## Dataset 
-Add dataset **insurance**
-  - Source: other
-  - URL: https://storage.googleapis.com/insurance-data/insurance/insurance.csv
+1. Add dataset **insurance-data**
+2. Versioning: None
+3. Source s3:
+4. Check for AWS
+5. Provide your aws key and secret
+6. Bucket: mm-workflow
+7. Prefix: mm-demo
+8. Save
 
 ## Model
-Add Model **insurance**
+Add Model **insurance-model**
   - Source: None
-
-## Featureset
-Add featuresret **insurance-fs**
-  - Spec upload: None
-
 
 ## Data scientist workflow
 
@@ -30,9 +30,12 @@ From IDE section launch Jupyter lab with the sklearn framework, with code repo *
 
 ## MLE Workflow
 
-  - From **workspace/insurance/insurance** run **pipeline.ipynb** to build the pipeline, the pipeline includes preprocessing, training and serving stages. 
-  - **preprocessing**: the preproceessing state takes insurance data as input, and after the feature engineering on data it generates a feetureset. 
-  - **training**: the training stage takes the generated featureset as input, train a linear regression model and outputs the model.
+  - For Training/Retraining a model
+
+  - From **workspace/insurance/insurance** run **pipeline.ipynb** to build the pipeline.For retraining specify input_train_type = 'retraining' in the 7th cell.
+  - The pipeline includes preprocessing, training and serving stages. 
+  - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
+  - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
   - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 
   
 ## Inference webapp

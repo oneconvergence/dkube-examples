@@ -5,8 +5,10 @@ metadata:
   annotations: {platform: 'Dkube'}
   labels: {platform: 'Dkube', logger: 'dkubepl', wfid: '{{workflow.uid}}', runid: '{{pod.name}}', stage: 'storage', dkube.garbagecollect: 'true', dkube.garbagecollect.policy: 'all'}
 inputs:
-  - {name: command,        type: String,     optional: false,
+  - {name: command,        type: String,     optional: true,
      description: 'Required. Command to storage op to export or reclaim.'}
+  - {name: auth_token,      type: String,   optional: true,
+     description: 'Deprecated. Dkube authentication token.'}
   - {name: namespace,       type: String,     default: 'kubeflow',
      description: 'Required. Namespace to export volumes to.'}
   - {name: input_volumes,        type: List,     optional: true,     default: '[]',
@@ -21,11 +23,12 @@ outputs:
   - {name: volumes,        description: 'Volumes exported by this component'}
 implementation:
   container:
-    image: ocdr/dkubepl:2.1.7.0
+    image: ocdr/dkubepl:2.3.0.2
     command: ['dkubepl']
     args: [
       storage,
       --action, {inputValue: command},
+      --token, {inputValue: auth_token},
       --namespace, {inputValue: namespace},
       --input_volumes, {inputValue: input_volumes},
       --output_volumes, {inputValue: output_volumes},

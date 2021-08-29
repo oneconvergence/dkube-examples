@@ -13,7 +13,9 @@ metadata:
   annotations: {platform: 'Dkube'}
   labels: {platform: 'Dkube', logger: 'dkubepl', wfid: '{{workflow.uid}}', runid: '{{pod.name}}', stage: 'training', dkube.garbagecollect: 'true', dkube.garbagecollect.policy: 'all'}
 inputs:
-  - {name: container,       type: Dict,     optional: false,
+  - {name: auth_token,      type: String,   optional: true,
+     description: 'Deprecated. Dkube authentication token.'}
+  - {name: container,       type: Dict,     optional: true,
      description: 'Required. Container to use for training. Format: {"image":<url>, "username":<>, "password":<>}'}
   - {name: program,         type: String,   optional: true,     default: '',
      description: 'Optional. Program imported in Dkube to be run inside container. If not specified container should have entrypoint.'}
@@ -27,6 +29,12 @@ inputs:
      description: 'Optional. List of input datasets mount paths.'}
   - {name: input_dataset_versions,        type: List,     optional: true,     default: '[]',
      description: 'Optional. List of input datasets versions.'}
+  - {name: featuresets,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input featuresets required for training. These featuresets must be created in Dkube.'}
+  - {name: input_featureset_mounts,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input featureset mount paths.'}
+  - {name: input_featureset_versions,        type: List,     optional: true,     default: '[]',
+     description: 'Optional. List of input featureset versions.'}
   - {name: models,        type: List,     optional: true,     default: '[]',
      description: 'Optional. List of input models required for training. These models must be created in Dkube.'}
   - {name: input_model_mounts,        type: List,     optional: true,     default: '[]',
@@ -45,7 +53,7 @@ inputs:
      description: 'Optional. Should Dkube auto distribute based on available number of resources.'}
   - {name: config,          type: String,   optional: true,      default: '',
     description: 'Optional. HP file or configuration data required for training program.
-                  Supported inputs - 
+                  Supported inputs -
                   d3s://<path> - Path to a file in dkube storage.
                   <string> - Inline data'}
   - {name: tuning,          type: String,   optional: true,     default: '',
@@ -61,9 +69,9 @@ inputs:
      description: 'Optional. URL at which dkube is accessible, copy paste from the browser of this window. Required for cloud deployments.'}
   - {name: job_group,      type: String,   optional: true,     default: 'default',
      description: 'Optional. Runs can be organized into Groups that allow them to be viewed together. This group must be created in Dkube.'}
-  - {name: framework,      type: String,   optional: false,
+  - {name: framework,      type: String,   optional: true,
      description: 'Required. Framework {tensorflow, pytorch, sklearn, custom...}.'}
-  - {name: version,      type: String,   optional: false,
+  - {name: version,      type: String,   optional: true,
      description: 'Required. Framework version.'}
   - {name: tags,        type: List,     optional: true,     default: '[]',
      description: 'Optional. List of user-chosen tags to allow Runs to be better identified or grouped.'}
@@ -72,11 +80,12 @@ outputs:
   - {name: artifact,        description: 'Identifier in Dkube storage where artifacts of training are stored.'}
 implementation:
   container:
-    image: ocdr/dkubepl:2.1.7.0
+    image: ocdr/dkubepl:2.3.0.2
     command: ['dkubepl']
     args: [
       training,
       --accessurl, {inputValue: access_url},
+      --token, {inputValue: auth_token},
       --container, {inputValue: container},
       --script, {inputValue: run_script},
       --program, {inputValue: program},
@@ -84,6 +93,9 @@ implementation:
       --datasets, {inputValue: datasets},
       --input_dataset_mounts, {inputValue: input_dataset_mounts},
       --input_dataset_versions, {inputValue: input_dataset_versions},
+      --input_featuresets, {inputValue: featuresets},
+      --input_featureset_mounts, {inputValue: input_featureset_mounts},
+      --input_featureset_versions, {inputValue: input_featureset_versions},
       --models, {inputValue: models},
       --input_model_mounts, {inputValue: input_model_mounts},
       --input_model_versions, {inputValue: input_model_versions},

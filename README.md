@@ -38,3 +38,10 @@ def homedircode_pipeline(
         output_mounts=json.dumps([str(model_mount_path)]),
     )
 ```
+### Examples
+- [conditional-stages](conditional-stages) - this example demonstrates conditional execution of stages based on input. 
+- [create-dkube-resources](create-dkube-resources) - this example demonstrates creation of dkube resources inside pipeline stages.
+- [limits-requests](limits-requests) - this example demonstrates setting up limit on resources and request for these resources.
+- [multiple-parallel](multiple-parallel) -  this example demonstrates how we can have multiple stages running in parallel.
+- [storageop-artifacts](storageop-artifacts)  - this example demonstrates example of Dkube storage op for creating volumes.
+- [training-serving](training-serving) - this example demonstrate a simple training and serving of the model using kubeflow pipelines.

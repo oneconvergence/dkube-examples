@@ -6,7 +6,8 @@ Add Code **insurance**
   - URL: https://github.com/oneconvergence/dkube-examples.git
   - Branch : sklearn
 
-## Dataset 
+## Add Dataset (AWS-S3 OR SQL)
+### AWS-S3
 1. Add dataset **insurance-data**
 2. Versioning: None
 3. Source s3:
@@ -15,6 +16,18 @@ Add Code **insurance**
 6. Bucket: mm-workflow
 7. Prefix: mm-demo
 8. Save
+
+### SQL
+1. Add dataset **insurance-data**
+2. Versioning: None
+3. Source : SQL
+4. Provider : MYSQL
+5. Select password and fill the details
+   - Username : **
+   - Password : **
+   - HostAddress: **
+   - PortNumber : **
+   - Database Name : monitoring
 
 ## Model
 Add Model **insurance-model**
@@ -32,7 +45,7 @@ From IDE section launch Jupyter lab with the sklearn framework, with code repo *
 
   - For Training/Retraining a model
 
-  - From **workspace/insurance/insurance** run **pipeline.ipynb** to build the pipeline.For retraining specify input_train_type = 'retraining' in the 7th cell.
+  - From **workspace/insurance/insurance** run **pipeline.ipynb** to build the pipeline.For retraining specify input_train_type = 'retraining' in the 7th cell and specify the source if your data is in sql.
   - The pipeline includes preprocessing, training and serving stages. 
   - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.

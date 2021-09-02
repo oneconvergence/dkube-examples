@@ -24,7 +24,7 @@
    - PortNumber : **
    - Database Name : monitoring
 
-### Pipeline
+### Pipeline (Training or Retraining)
 
 1. From **workspace/insurance/insurance** run **pipeline.ipynb** to build the pipeline.In 1st cell, for retraining specify input_train_type = 'retraining' and specify the source if your data is in sql.
 2. The pipeline includes preprocessing, training and serving stages. 

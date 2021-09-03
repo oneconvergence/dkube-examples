@@ -70,7 +70,7 @@
 8. Click Next and save.
 
 ## Data Generation
-1. Run data_generation.ipynb notebook for generating predict and groundtruth datasets.
+1. Open data_generation.ipynb notebook for generating predict and groundtruth datasets.
 2. In 6th Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
 3. In 6th cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
 4. In 6th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name.

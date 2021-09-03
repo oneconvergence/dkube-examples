@@ -1,0 +1,18 @@
+code:
+  name: external-data
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
+  private: false
+datasets:
+  - name: output-data
+    source: dvs
+models:
+  - name: heart-model
+
+
+arguments:
+  code: external-data
+  preprocessing_script: python external-data/preprocessing.py
+  dataset: output-data
+  dataset_mount_points: /opt/dkube/output
+  token: __TOKEN__

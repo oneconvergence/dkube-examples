@@ -45,4 +45,4 @@ def homedircode_pipeline(
 - [multiple-parallel](multiple-parallel) -  this example demonstrates how we can have multiple stages running in parallel.
 - [storageop-artifacts](storageop-artifacts)  - this example demonstrates example of Dkube storage op for creating volumes.
 - [training-serving](training-serving) - this example demonstrate a simple training and serving of the model using kubeflow pipelines.
-- [preprocessing-pipeline](preprocessing-pipeline) - this example demonstrate a simple download of external data using kubeflow pipelines.
+- [preprocessing](preprocessing) - this example demonstrate a simple download of external data using kubeflow pipelines.

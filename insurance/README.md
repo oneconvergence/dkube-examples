@@ -104,9 +104,9 @@
 - **Ground Truth Column Name**: GT_target
 - **Prediction Column Name**: charges
 
-## Alerts **
-1. Add Alerts 
-   - The datageneration script will be generating drift on features age, sex, bmi, region. 
+## Alerts
+Add Alerts 
+   - The datageneration script will be generating drift on the following features - age, sex, bmi, region. 
    - Suggest to configure a separate alert for each individual feature. 
    - Use a threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
    - It fires an alert when calculated drift goes under the configured threshold

@@ -12,7 +12,7 @@
 
 ### Dataset (AWS OR SQL)
 
-- Note: Skip this step if your data is in aws-s3.It will be automatically created in pipeline.
+- ### Note: Skip this step if your data is in aws-s3.It will be automatically created in pipeline.
 
 1. Add dataset **insurance-data**
 2. Versioning: None
@@ -24,6 +24,12 @@
    - HostAddress: **
    - PortNumber : **
    - Database Name : monitoring
+
+## Launch IDE
+1. Create an IDE (jupterlab) and add the below environment variables in configuration tab
+2. AWS_ACCESS_KEY_ID : your_access_key
+3. AWS_SECRET_ACCESS_KEY : your_secret_key
+4. Click Submit
 
 ### Pipeline
 
@@ -53,8 +59,8 @@
 7. Submit
 
 ## Add training data 
-1. Prefix: mm-demo/training-data
-2. Type: CSV
+1. Name : insurance-training-data
+2. Type : csv
 3. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
 4. Note: Download the script in your setup and then add it by browsing.
 5. Save training data.
@@ -71,8 +77,8 @@
 
 ## Data Generation
 1. Open data_generation.ipynb notebook for generating predict and groundtruth datasets.
-2. In 6th Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
-3. In 6th cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
+2. In 1st Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
+3. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
 4. In 6th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name.
 5. Then Run All Cells. It will start Pushing the data.
 

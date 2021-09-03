@@ -105,7 +105,7 @@
 - **Prediction Column Name**: charges
 
 ## Alerts
-Add Alerts 
+Add Feature Alerts 
    - The datageneration script will be generating drift on the following features - age, sex, bmi, region. 
    - Suggest to configure a separate alert for each individual feature. 
    - Use a threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.

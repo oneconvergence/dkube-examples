@@ -5,6 +5,5 @@ import kfp
     description='An example pipeline to launch number of stages in parallel'
 )
 def parallel_pipeline():
-    count = 22
-    for i in range(count):
+    for i in range(22):
         op = kfp.dsl.ContainerOp(name='parallel',image="alpine",command=["sleep", "5s"])

@@ -26,15 +26,20 @@
    - Database Name : monitoring
 
 ## Launch IDE
-1. Create an IDE (jupterlab) and add the below environment variables in configuration tab
-2. AWS_ACCESS_KEY_ID : your_access_key
-3. AWS_SECRET_ACCESS_KEY : your_secret_key
-4. Click Submit
+1. Create an IDE (jupterlab) 
+   - Specify Code as 'insurance' (created above)
+   - Use sklearn framework
+2. Add the below environment variables in configuration tab
+   - AWS_ACCESS_KEY_ID : your_access_key
+   - AWS_SECRET_ACCESS_KEY : your_secret_key
+3. Click Submit
 
-### Pipeline
+### Pipeline (Training or Retraining)
 
-1. From **workspace/insurance/insurance** run **pipeline.ipynb** to build the pipeline.In 1st cell, for retraining specify input_train_type = 'retraining' and specify the source if your data is in sql.
-2. The pipeline includes preprocessing, training and serving stages. 
+1. From **workspace/insurance/insurance** open **pipeline.ipynb** to build the pipeline.
+2. In 1st cell, specify input_train_type to 'training' or 'retraining'.
+   - For 'retraining', specify the source if your data is in sql.
+3. The pipeline includes preprocessing, training and serving stages. 
   - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
   - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 
@@ -59,11 +64,13 @@
 7. Submit
 
 ## Add training data 
-1. Name : insurance-training-data
+1. Name : insurance-training-data 
+   - This is DKube local dataset, created by the training/retraining pipeline above
 2. Type : csv
-3. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
-4. Note: Download the script in your setup and then add it by browsing.
-5. Save training data.
+3. Version: v2
+4. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
+5. Note: Download the script in your setup and then add it by browsing.
+6. Save training data.
 
 ## Update Schema
 1. Edit the model monitor
@@ -96,6 +103,18 @@
 - **Ground Truth Column Name**: GT_target
 - **Prediction Column Name**: charges
 
-6. After that add Alerts - generally this script will be creating alert on features age, sex, bmi, region. Configure one alert for each individual feature. With threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
-7. Start Monitor.
+## Alerts **
+1. Add Alerts 
+   - The datageneration script will be generating drift on features age, sex, bmi, region. 
+   - Suggest to configure a separate alert for each individual feature. 
+   - Use a threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
+   - It fires an alert when calculated drift goes under the configured threshold
+
+## SMTP Settings
+Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.
+
+## Start Monitor.
+Click on Start for the specific monitor on Modelmonitor dashboard. 
+   - Modelmonitor can only be started in 'ready' state.
+   - It can be stopped anytime. Previous data will not be erased.
 

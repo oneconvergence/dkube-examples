@@ -4,7 +4,8 @@
 
 ### Code
 
-1. Add Code **insurance**
+1. Add Code
+  - Name: insurance
   - Source: Git
   - URL: https://github.com/oneconvergence/dkube-examples.git
   - Branch : monitoring

@@ -38,12 +38,15 @@
 ### Pipeline (Training or Retraining)
 
 1. From **workspace/insurance/insurance** open **pipeline.ipynb** to build the pipeline.
-2. In 1st cell, specify input_train_type to 'training' or 'retraining'.
-   - For 'retraining', specify the source if your data is in sql.
+2. In 1st cell, specify input_train_type as 'training'
+   - Specify the source as 'sql', if your data is in sql.
 3. The pipeline includes preprocessing, training and serving stages. 
   - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
   - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 
+4. Verify that the pipeline has created the following resources
+  - Datasets: 'insurance-training-data' with version v2
+  - Model: 'insurance-model' with version v2
 
 
 ### Inference
@@ -64,7 +67,7 @@
 6. Change model run frequency to 5 hours. (in UI it’s five hours but it will run in every 5 mins because of d3qatest tag)
 7. Submit
 
-## Add training data 
+### Add training data 
 1. Name : insurance-training-data 
    - This is DKube local dataset, created by the training/retraining pipeline above
 2. Type : csv
@@ -73,7 +76,7 @@
 5. Note: Download the script in your setup and then add it by browsing.
 6. Save training data.
 
-## Update Schema
+### Update Schema
 1. Edit the model monitor
 2. Go to schema and change
 3. charges as prediction output - continuous
@@ -83,16 +86,18 @@
 7. Select all Input features and unselect charges, unique_id, and timestamp.
 8. Click Next and save.
 
-## Data Generation
+### Data Generation
 1. Open data_generation.ipynb notebook for generating predict and groundtruth datasets.
 2. In 1st Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
 3. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
 4. In 6th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name.
 5. Then Run All Cells. It will start Pushing the data.
 
-**After First Push of dataset by this script, configure the generated datasets in modelmonitor as follows.**
+6. **After First Push of dataset by this script, configure the generated datasets in modelmonitor as follows.**
+   - Verify that the following datasets are created: {model-monitor}-predict, {model-monitor}-groundtruth
+   - This step will be more streamlined in coming releases.
 
-## Configure Following Dataset in modelmonitor
+### Configure Following Dataset in modelmonitor
 **Predict Dataset**
 -  Dataset: {model-monitor}-predict
 -  Type: CSV
@@ -104,18 +109,34 @@
 - **Ground Truth Column Name**: GT_target
 - **Prediction Column Name**: charges
 
-## Alerts
+### Alerts
 Add Feature Alerts 
-   - The datageneration script will be generating drift on the following features - age, sex, bmi, region. 
-   - Suggest to configure a separate alert for each individual feature. 
-   - Use a threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
-   - It fires an alert when calculated drift goes under the configured threshold
+ - The datageneration script will be generating drift on the following features - age, sex, bmi, region. 
+ - Suggest to configure a separate alert for each individual feature. 
+ - Use a threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
+ - It fires an alert when calculated drift goes under the configured threshold
 
-## SMTP Settings
+### SMTP Settings
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.
 
-## Start Monitor.
+### Start Monitor.
 Click on Start for the specific monitor on Modelmonitor dashboard. 
    - Modelmonitor can only be started in 'ready' state.
    - It can be stopped anytime. Previous data will not be erased.
 
+
+## Retraining
+1. Stop the modelmonitor
+2. Open pipeline.ipynb
+   - In 1st cell, specify input_train_type to 'retraining'
+   - Run all the cells
+3. This creates a new version of dataset and a new version of model
+   - New dataset version will be created for 'insurance-training-data' dataset
+   - New model version will be created for 'insurance-model' model
+4. Edit modelmonitor
+   - Specify the new model version on basic page
+   - Specify new dataset version on Training data page
+   - Save & Submit
+   - Click Next to go to the schema page and Accept the regenerated schema.
+   - Wait for a few (30) sec
+   - Start the modelmonitor

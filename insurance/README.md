@@ -33,6 +33,7 @@
    - AWS_ACCESS_KEY_ID : your_access_key
    - AWS_SECRET_ACCESS_KEY : your_secret_key
    - AWS_BUCKET
+     - if no bucket name is specified, it assumes mm-workflow 
 3. Click Submit
 
 ### Pipeline (Training or Retraining)

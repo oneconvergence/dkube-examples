@@ -45,7 +45,7 @@
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
   - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 
 4. Verify that the pipeline has created the following resources
-  - Datasets: 'insurance-training-data' with version v2
+  - Datasets: 'insurance-training-data' with version v2. The base dataset is sourced from AWS
   - Model: 'insurance-model' with version v2
 
 

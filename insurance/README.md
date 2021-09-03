@@ -32,8 +32,6 @@
 2. Add the below environment variables in configuration tab
    - AWS_ACCESS_KEY_ID : your_access_key
    - AWS_SECRET_ACCESS_KEY : your_secret_key
-   - AWS_BUCKET
-     - if no bucket name is specified, it assumes mm-workflow 
 3. Click Submit
 
 ### Pipeline (Training or Retraining)
@@ -41,7 +39,7 @@
 1. From **workspace/insurance/insurance** open **pipeline.ipynb** to build the pipeline.
 2. In 1st cell, specify input_train_type as 'training'
    - Specify the source as 'sql', if your data is in sql.
-3. The pipeline includes preprocessing, training and serving stages. 
+3. The pipeline includes preprocessing, training and serving stages. Run all cells
   - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
   - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 

@@ -1,0 +1,10 @@
+datasets:
+  - name: output-data
+    source: dvs
+
+
+arguments:
+  dataset: output-data
+  dataset_mount_points: /opt/dkube/output
+  token: __TOKEN__
+

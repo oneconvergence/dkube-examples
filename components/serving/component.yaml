@@ -10,7 +10,9 @@ metadata:
   annotations: {platform: 'Dkube'}
   labels: {platform: 'Dkube', logger: 'dkubepl', wfid: '{{workflow.uid}}', runid: '{{pod.name}}', stage: 'serving', dkube.garbagecollect: 'true', dkube.garbagecollect.policy: 'all'}
 inputs:
-  - {name: model,           type: String,   optional: false,
+  - {name: auth_token,      type: String,   optional: true,
+     description: 'Deprecated. Dkube authentication token.'}
+  - {name: model,           type: String,   optional: true,
      description: 'Required. Trained model in Dkube which is to be deployed for serving.'}
   - {name: name,      type: String,   optional: true,
      description: 'Optional. Name of deployment.'}
@@ -20,7 +22,7 @@ inputs:
      description: 'Optional. Device to use for serving - allowed values, gpu/cpu/auto.'}
   - {name: access_url,      type: String,   optional: true,     default: '',
      description: 'Optional. URL at which dkube is accessible, copy paste from the browser of this window. Required for cloud deployments.'}
-  - {name: serving_image, type: Dict,     optional: false,
+  - {name: serving_image, type: Dict,     optional: true,
      description: 'Required. Container to use for serving. Format: {"image":<url>, "username":<>, "password":<>}'}
   - {name: transformer_image, type: Dict,     optional: true,
      description: 'Required. Container to use as transformer. Format: {"image":<url>, "username":<>, "password":<>}'}
@@ -45,11 +47,12 @@ outputs:
   - {name: servingurl,       description: 'URL at which the serving web server is accessible.'}
 implementation:
   container:
-    image: ocdr/dkubepl:2.1.7.0
+    image: ocdr/dkubepl:2.3.0.2
     command: ['dkubepl']
     args: [
       serving,
       --accessurl, {inputValue: access_url},
+      --token, {inputValue: auth_token},
       --model, {inputValue: model},
       --name, {inputValue: name},
       --model_version, {inputValue: model_version},

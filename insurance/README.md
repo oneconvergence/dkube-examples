@@ -74,15 +74,16 @@
 2. In 6th Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
 3. In 6th cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
 4. In 6th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name.
-4. Then Run All Cells. It will start Pushing the data.
-5. After First Push of dataset by this script. Configure the generated datasets in modelmonitor.
+5. Then Run All Cells. It will start Pushing the data.
+
+**After First Push of dataset by this script, configure the generated datasets in modelmonitor as follows.**
 
 ## Configure Following Dataset in modelmonitor
--  **Predict Dataset**
+**Predict Dataset**
 -  Dataset: {model-monitor}-predict
 -  Type: CSV
 
-- **Labelled Dataset**
+**Labelled Dataset**
 - Dataset: {model-monitor}-groundtruth
 - Type: CSV
 

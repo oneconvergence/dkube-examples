@@ -22,7 +22,7 @@ def training_serving(
     dataset_mount_path,
     model,
     model_mount_path,
-    ngpus=0
+    ngpus=0,
 ):
 
     train = dkube_training_op(
@@ -36,11 +36,11 @@ def training_serving(
         input_dataset_mounts=json.dumps([str(dataset_mount_path)]),
         output_mounts=json.dumps([str(model_mount_path)]),
         envs='[{"EPOCHS": "1"}]',
-        ngpus=ngpus
+        ngpus=ngpus,
     )
 
     _ = dkube_serving_op(
-        train.outputs["artifact"],
+        model=train.outputs["artifact"],
         device="cpu",
         serving_image='{"image":"ocdr/tensorflowserver:2.0.0"}',
         transformer_image='{"image":"ocdr/dkube-datascience-tf-cpu:v2.0.0"}',

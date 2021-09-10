@@ -6,7 +6,7 @@ code:
 datasets:
   - name: mnist
     source: pub_url
-    url: https://dkube.s3.amazonaws.com/datasets/mnist.pkl.gz
+    url: https://dkube.s3.amazonaws.com/datasets/small_mnist/mnist.pkl.gz
 models:
   - name: mnist
 

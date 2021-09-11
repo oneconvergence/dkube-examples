@@ -71,11 +71,11 @@
    - This is DKube local dataset, created by the training/retraining pipeline above
 2. Type : csv
 3. If training data source is SQL
-  - Add query: `select * from insurance` (the table name can be different)
-5. If training Version: v2 
-6. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
-7. Note: Download the script in your setup and then add it by browsing.
-8. Save training data.
+      - Add query: `select * from insurance` (the table name can be different)
+4. If training Version: v2 
+5. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
+6. Note: Download the script in your setup and then add it by browsing.
+7. Save training data.
 
 ### Update Schema
 1. Edit the model monitor
@@ -104,14 +104,14 @@
   -  Dataset: {model-monitor}-predict
   -  Type: CSV
 2. If source SQL
-  - Query: `select * from insurance_predict` (table will be added by the datagen script)
+      - Query: `select * from insurance_predict` (table will be added by the datagen script)
 
 **Labelled Dataset**
 1. If source S3
   -  Dataset: {model-monitor}-groundtruth
   -  Type: CSV
 2. If source SQL
-  - Query: `select * from insurance_gt`(table will be added by the datagen script)
+      - Query: `select * from insurance_gt`(table will be added by the datagen script)
 
 - **Ground Truth Column Name**: GT_target
 - **Prediction Column Name**: charges

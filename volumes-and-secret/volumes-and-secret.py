@@ -1,7 +1,6 @@
 import kubernetes
 from kfp import components, dsl
 
-@dsl.python_component(name, base_image)
 def print_secret(user):
     '''Displays access-token secret'''
     from kubernetes import client, config

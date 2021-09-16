@@ -18,7 +18,7 @@
 3. Give a project name, say titanic.
 4. Check the enable leaderboard option and click on submit.
 5. Click on titanic project and click on evaluation tab and then select the evaluation source repo as titanic created in step 1.
-6. Give the evaluation script as python titanic/owner/eval.py and click on save button.
+6. Give the evaluation script as `python titanic/owner/eval.py` and click on save button.
 
 ### Step 3 :Upload Train & Eval dataset: 
 1. Click on Repos in left pane and then click on +dataset.

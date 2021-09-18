@@ -5,6 +5,6 @@ code:
   private: false
 
 arguments:
-  code: dkube-examples
-  predict_script: python metrics-pipeline/metrics.py
-  token: __TOKEN__
+  code: dkube-examples
+  predict_script: python metrics-pipeline/metrics.py
+  token: __TOKEN__

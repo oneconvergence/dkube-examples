@@ -4,7 +4,7 @@
   "maxFailedTrialCount": 3,
   "objective": {
     "type": "minimize",
-    "goal": 0.99,
+    "goal": 0.001,
     "objectiveMetricName": "loss"
   },
   "algorithm": {
@@ -23,8 +23,8 @@
       "name": "--batch_size",
       "parameterType": "int",
       "feasibleSpace": {
-        "min": "100",
-        "max": "200"
+        "min": "10",
+        "max": "20"
       }
     }
   ]

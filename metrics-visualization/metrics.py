@@ -1,19 +1,47 @@
 import json
-
+import pandas as pd
 
 def produce_metrics():
-    accuracy = 0.9
-    metrics = {
-        "metrics": [
+    matrix = [
+        ['yummy', 'yummy', 10],
+        ['yummy', 'not yummy', 2],
+        ['not yummy', 'yummy', 6],
+        ['not yummy', 'not yummy', 7]
+    ]
+
+    df = pd.DataFrame(matrix,columns=['target','predicted','count'])
+
+    metadata = {
+        "outputs": [
             {
-                "name": "accuracy-score",  # The name of the metric. Visualized as the column name in the runs table.
-                "numberValue": accuracy,  # The value of the metric. Must be a numeric value.
-                "format": "PERCENTAGE",  # The optional format of the metric. Supported values are "RAW" (displayed in raw format) and "PERCENTAGE" (displayed in percentage format).
+                "type": "confusion_matrix",
+                "format": "csv",
+                "schema": [
+                    {
+                        "name": "target",
+                        "type": "CATEGORY"
+                    },
+                    {
+                        "name": "predicted",
+                        "type": "CATEGORY"
+                    },
+                    {
+                        "name": "count",
+                        "type": "NUMBER"
+                    }
+                ],
+                "source": df.to_csv(header=False, index=False),
+                "storage": "inline",
+                "labels": [
+                    "yummy",
+                    "not yummy"
+                ]
             }
         ]
     }
+
     with open("/output/metrics.json", "w") as f:
-        json.dump(metrics, f)
+        json.dump(metadata, f)
 
 
 produce_metrics()

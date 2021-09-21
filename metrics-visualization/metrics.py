@@ -66,24 +66,6 @@ def produce_metrics():
 
     with open("/output/metrics.json", "w") as f:
         json.dump(metadata, f)
-    accuracy_score = 0.6
-    roc_auc_score = 0.75
-    metrics = {
-        'metrics': [
-            {
-                'name': 'accuracy-score',
-                'numberValue':  accuracy_score,
-                'format': 'PERCENTAGE'
-            },
-            {
-                'name': 'roc-auc-score',
-                'numberValue':  roc_auc_score,
-                'format': 'RAW'       
-            }
-        ]
-    }
-    with open('/output/mlpipeline-metrics.json', 'w') as f:
-        json.dump(metrics, f)
 
 
 produce_metrics()

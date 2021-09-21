@@ -17,6 +17,6 @@ def metrics_pipeline(code, predict_script, token):
         json.dumps({"image": "faizanbashir/python-datascience:3.6"}),
         program=str(code),
         run_script=str(predict_script),
-        file_outputs={"mlpipeline-ui-metadata": "/output/metrics.json", "mlpipeline-metrics":"/output/mlpipeline-metrics.json"},
+        file_outputs={"mlpipeline-ui-metadata": "/output/metrics.json"},
     )
 

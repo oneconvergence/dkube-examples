@@ -12,7 +12,7 @@ def produce_metrics():
             }
         ]
     }
-    with open("/tmp/metrics.json", "w") as f:
+    with open("/output/metrics.json", "w") as f:
         json.dump(metrics, f)
 
 

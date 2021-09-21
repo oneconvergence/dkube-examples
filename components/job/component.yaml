@@ -48,7 +48,7 @@ outputs:
   - {name: output, description: 'output file from the job'}
 implementation:
   container:
-    image: ocdr/dkube_pylauncher:2.2 
+    image: ocdr/dkube_pylauncher:2.3
     command: ["python3", "-u", "/dkubepl/main.py"]
     args: [
       {inputValue: job_prefix},

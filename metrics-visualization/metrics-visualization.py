@@ -14,7 +14,7 @@ def metrics_pipeline(code, predict_script, token):
     _ = dkube_job_op(
         "metrics",
         str(token),
-        json.dumps({"image": "ocdr/dkube_pylauncher:2.3"}),
+        json.dumps({"image": "python:rc-alpine"}),
         program=str(code),
         run_script=str(predict_script),
         file_outputs={"mlpipeline-ui-metadata": "/output/metrics.json"},

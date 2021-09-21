@@ -10,11 +10,19 @@ def produce_metrics():
     ]
 
     df = pd.DataFrame(matrix,columns=['target','predicted','count'])
-    roc = [[1.0, 0.635165,0.0], [1.0, 0.766586,1.0], [1.0, 0.724564,1.0],[1.0, 0.766586,1.0],[1.0, 0.889199,1.0],[1.0, 0.966586,1.0],[1.0, 0.535165,0.0],[1.0, 0.55165,0.0],[1.0, 0.525165,0.0],[1.0, 0.5595165,0.0] ]
+    roc = [
+        [1.0, 0.635165,0.0], 
+        [1.0, 0.766586,1.0], 
+        [1.0, 0.724564,1.0],
+        [1.0, 0.766586,1.0],
+        [1.0, 0.889199,1.0],
+        [1.0, 0.966586,1.0],
+        [1.0, 0.535165,0.0],
+        [1.0, 0.55165,0.0],
+        [1.0, 0.525165,0.0],
+        [1.0, 0.5595165,0.0] ]
     df_roc = pd.DataFrame(roc,columns = ['fpr','tpr','thresholds'])
-    roc_file = '/output/roc.csv'
-    with open(roc_file, 'w') as f:
-        df_roc.to_csv(f, columns=['fpr', 'tpr', 'thresholds'], header=False, index=False)
+    
 
     metadata = {
         "outputs": [
@@ -50,7 +58,8 @@ def produce_metrics():
                 {'name': 'tpr', 'type': 'NUMBER'},
                 {'name': 'thresholds', 'type': 'NUMBER'},
             ],
-            'source': roc_file
+            'storage': 'inline',
+            'source': df_roc.to_csv(header=False, index=False)
             }
         ]
     }

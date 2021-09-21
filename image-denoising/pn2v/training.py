@@ -412,6 +412,8 @@ def trainNetwork(net, trainData, valData, noiseModel, postfix, device,
                 losses.append(loss.item())
             net.train(True)
             avgValLoss=np.mean(losses)
+            ## collecting metrics for htuning in katib ##
+            print("Avg_Val_loss=",avgValLoss)
             if len(valHist)==0 or avgValLoss < np.min(np.array(valHist)):
                 torch.save(net,os.path.join(directory,"best_"+postfix+".net"))
             valHist.append(avgValLoss)

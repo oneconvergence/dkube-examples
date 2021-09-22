@@ -60,6 +60,13 @@ def produce_metrics():
             ],
             'storage': 'inline',
             'source': df_roc.to_csv(header=False, index=False)
+            },
+            {
+            "storage": "inline",
+            "type": "table",
+            "format": "csv",
+            "header": ["cv_accuracy", "cv_brier_score"],
+            "source": "0.78, 0.88",
             }
         ]
     }

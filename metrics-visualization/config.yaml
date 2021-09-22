@@ -1,6 +1,6 @@
 code:
   name: dkube-examples
-  url: https://github.com/rahul-179/dkube-examples.git
+  url: https://github.com/oneconvergence/dkube-examples.git
   branch: pipelines
   private: false
 

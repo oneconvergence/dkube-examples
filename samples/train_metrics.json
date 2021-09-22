@@ -1,7 +1,27 @@
+# sample for regression
+
 {
     "train_metrics": {
         "mse": 580148.0536563194,
         "mae": 567.6535461416039,
         "rmse": 761.6745063715337
+    }
+}
+
+# sample for classification
+{
+    "train_metrics": {
+        "accuracy": 0.812,
+        "precision": 0.795,
+        "f1_score": 0811,
+    }
+}
+
+# sample for metrics which are in vecors (use numpy.array.tolist() to convert metric array to list)
+{
+    "train_metrics": {
+        "accuracy": 0.812,
+        "precision": 0.795,
+        "f1_score": [0.765, 0.891,0.68],
     }
 }

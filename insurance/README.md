@@ -23,7 +23,7 @@
    - Password : **
    - HostAddress: **
    - PortNumber : **
-   - Database Name : monitoring
+   - Database Name : **
 
 ## Launch IDE
 1. Create an IDE (jupterlab) 
@@ -69,8 +69,11 @@
 ### Add training data 
 1. Name : insurance-training-data 
    - This is DKube local dataset, created by the training/retraining pipeline above
-2. Type : csv
-3. Version: v2
+
+2. If training data source is S3/d3 select version: eg. v2 
+   - Type : csv
+3. If training data source is SQL
+      - Add query: `select * from insurance` (the table name can be different)
 4. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
 5. Note: Download the script in your setup and then add it by browsing.
 6. Save training data.
@@ -98,12 +101,18 @@
 
 ### Configure Following Dataset in modelmonitor
 **Predict Dataset**
--  Dataset: {model-monitor}-predict
--  Type: CSV
+1. If source S3
+  -  Dataset: {model-monitor}-predict
+  -  Type: CSV
+2. If source SQL
+      - Query: `select * from insurance_predict` (table will be added to the DB by the datagen script)
 
 **Labelled Dataset**
-- Dataset: {model-monitor}-groundtruth
-- Type: CSV
+1. If source S3
+  -  Dataset: {model-monitor}-groundtruth
+  -  Type: CSV
+2. If source SQL
+      - Query: `select * from insurance_gt` (table will be added to the DB by the datagen script)
 
 - **Ground Truth Column Name**: GT_target
 - **Prediction Column Name**: charges

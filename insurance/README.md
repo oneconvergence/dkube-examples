@@ -26,7 +26,7 @@
    - Database Name : **
 
 ## Launch IDE
-1. Create an IDE (jupterlab)
+1. Create an IDE (JupyterLab)
    - Use sklearn framework
 2. Add the below environment variables in configuration tab
    - AWS_ACCESS_KEY_ID : your_access_key
@@ -45,6 +45,13 @@
 4. Verify that the pipeline has created the following resources
   - Datasets: 'insurance-training-data' with version v2. The base dataset is sourced from AWS
   - Model: 'insurance-model' with version v2
+
+### Inference
+  - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.
+  - Run command  
+  - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance 
+  - Open http://localhost:8501/ in your browser,
+  - Fill serving URL, auth token and other details and click predict.
 
 ## MODEL MONITOR
 
@@ -78,7 +85,7 @@
   - charges as prediction output.
   - unique_id as RowID
   - Timestamp as timestamp
-3. Select all or interested Input features and unselect charges, unique_id, and timestamp.
+3. Select all or interested Input features.
 4. Click Next and save.
 
 ### Data Generation
@@ -114,13 +121,13 @@
 Add Feature Drift Alerts 
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region. 
  - Suggest to configure a separate alert for each individual feature. 
- - Use a threshold between 0 to 1. generally advised 0.5 to 0.6 inclusive.
+ - Use a threshold between 0 to 1. generally advised 0.4 to 0.5 inclusive.
  - It fires an alert when calculated drift goes under the configured threshold
 
 Add Performance Decay Alerts
   - Create an alert and choose Perormance Decay from dropdown.
-  - Seelct absolute and choose mse from down.
-  - Provide threshold value 35000000 and save.
+  - Selct percentage and choose metrics from down.
+  - Provide percentage threshold value betweeen 5 to 10 and save.
 
 ### SMTP Settings
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.

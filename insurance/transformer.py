@@ -25,7 +25,7 @@ parser.add_argument(
 
 args, _ = parser.parse_known_args()
 
-filename = "temp.csv"
+filename = "/tmp/temp.csv"
 
 class Transformer(kfserving.KFModel):
     def __init__(self, name: str, predictor_host: str):

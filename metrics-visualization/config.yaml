@@ -1,0 +1,10 @@
+code:
+  name: dkube-examples
+  url: https://github.com/oneconvergence/dkube-examples.git
+  branch: pipelines
+  private: false
+
+arguments:
+  code: dkube-examples
+  predict_script: python metrics-visualization/metrics.py
+  token: __TOKEN__

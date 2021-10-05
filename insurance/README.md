@@ -26,8 +26,7 @@
    - Database Name : **
 
 ## Launch IDE
-1. Create an IDE (jupterlab) 
-   - Specify Code as 'insurance' (created above)
+1. Create an IDE (JupyterLab)
    - Use sklearn framework
 2. Add the below environment variables in configuration tab
    - AWS_ACCESS_KEY_ID : your_access_key
@@ -47,14 +46,12 @@
   - Datasets: 'insurance-training-data' with version v2. The base dataset is sourced from AWS
   - Model: 'insurance-model' with version v2
 
-
 ### Inference
   - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.
   - Run command  
   - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance 
   - Open http://localhost:8501/ in your browser,
   - Fill serving URL, auth token and other details and click predict.
-
 
 ## MODEL MONITOR
 
@@ -74,19 +71,22 @@
    - Type : csv
 3. If training data source is SQL
       - Add query: `select * from insurance` (the table name can be different)
-4. Add transformer script: https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py
+4. Download the [transformer script](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py) and upload. 
 5. Note: Download the script in your setup and then add it by browsing.
 6. Save training data.
+
+### Upload train metrics
+1. Dwonload the json from from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/train_metrics.json), and upload into train metrics tab.
+2.  Click Save
 
 ### Update Schema
 1. Edit the model monitor
 2. Go to schema and change
-3. charges as prediction output - continuous
-4. unique_id as RowID - continuous
-5. Timestamp as timestamp - continuous
-6. Change value type: Age and bmi to continuous
-7. Select all Input features and unselect charges, unique_id, and timestamp.
-8. Click Next and save.
+  - charges as prediction output.
+  - unique_id as RowID
+  - Timestamp as timestamp
+3. Select all or interested Input features.
+4. Click Next and save.
 
 ### Data Generation
 1. Open data_generation.ipynb notebook for generating predict and groundtruth datasets.
@@ -118,11 +118,16 @@
 - **Prediction Column Name**: charges
 
 ### Alerts
-Add Feature Alerts 
+Add Feature Drift Alerts 
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region. 
  - Suggest to configure a separate alert for each individual feature. 
- - Use a threshold between 0 to 1. generally advised 0.02 to 0.03 inclusive.
+ - Use a threshold between 0 to 1. generally advised 0.05 to 0.1 for all categorical or all continious columns columns,  0.05 to 0.01 for mixed categorical and continious columns columns.
  - It fires an alert when calculated drift goes under the configured threshold
+
+Add Performance Decay Alerts
+  - Create an alert and choose Perormance Decay from dropdown.
+  - Selct percentage and choose metrics from down.
+  - Provide percentage threshold value betweeen 5 to 10 and save.
 
 ### SMTP Settings
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.

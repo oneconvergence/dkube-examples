@@ -4,7 +4,7 @@
 This example generates data and requires an S3 bucket  or an SQL Database for storing it.
 
 ### S3 Bucket
-Create AWS S3 bucket with the name mm-workflow. You need the following to access the bucket
+Create an AWS S3 bucket with the name mm-workflow. You need the following to access the bucket
    - AWS_ACCESS_KEY_ID : your_access_key
    - AWS_SECRET_ACCESS_KEY : your_secret_key
 ### SQL Database

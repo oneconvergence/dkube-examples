@@ -11,7 +11,7 @@ from sqlalchemy import create_engine
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_source", dest="data_source", default='aws_s3', type=str, help="source of remote dataset")
+    parser.add_argument("--data_source", dest="data_source", default='local', type=str, help="source of the dataset")
     parser.add_argument("--train_type", dest="train_type", default='training', type=str, help="training or retraining")
     parser.add_argument("--monitor_name", dest="monitor_name", default='mm-demo', type=str, help="modelmonitor name")
     parser.add_argument("--user",dest="user",type=str,help="dkube user name")
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     
     
     ### AWS-S3 DATASOURCE ###
-    if data_source == "aws_s3":
+    if data_source == "aws_s3" and input_train_type == 'retraining':
         config = json.load(open(os.path.join(DATA_DIR, "config.json")))
         with open(os.path.join(DATA_DIR, "credentials"), "r") as f:
             creds = f.read()
@@ -70,17 +70,33 @@ if __name__ == "__main__":
                 path, filename = os.path.split(s3_object.key)
                 if filename.endswith('GTpredict_data.csv'):
                     my_bucket.download_file(s3_object.key, filename)
+               
+                final_df = pd.DataFrame()
+                for file in glob.glob("*GTpredict_data.csv"):
+                    data = pd.read_csv(file)
+                    final_df = pd.concat([final_df,data])
 
+                final_df.rename(columns={'GT_target':'charges'}, inplace=True)
+                final_df.to_csv('/train-data/data.csv',index=False)
+            
+        if input_train_type == 'training' and s3_object.key.startswith(mm_name+'/training'):
+            path, filename = os.path.split(s3_object.key)
+            if filename == 'insurance.csv':
+                data = pd.read_csv(DATA_DIR+'/training.csv')
+                data.to_csv('/train-data/data.csv',index=False)
+                
+   ### LOCAL DATA SOURCE #####          
+    if data_source == 'local':
         if input_train_type == 'training':
-            data = pd.read_csv('https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv')
+            data = pd.read_csv(DATA_DIR+'/insurance.csv')
             data.to_csv('/train-data/data.csv',index=False)
-
-        if input_train_type =='retraining':
+        
+        if input_train_type == 'retraining':
             final_df = pd.DataFrame()
-            for file in glob.glob("*GTpredict_data.csv"):
+            for file in glob.glob(os.path.join(DATA_DIR, "*.csv")):
                 data = pd.read_csv(file)
                 final_df = pd.concat([final_df,data])
 
             final_df.rename(columns={'GT_target':'charges'}, inplace=True)
-            final_df.to_csv('/train-data/data.csv',index=False)
+            final_df.to_csv('data.csv',index=False)
 

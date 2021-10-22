@@ -27,7 +27,7 @@ Create a database in your MySql server. You need the following to access the dat
 
 ### Dataset (AWS OR SQL)
 
-- ### Note: Skip this step if your data is in aws-s3.It will be automatically created in pipeline.
+- ### Note: Skip this step if your data is in aws-s3 or local.It will be automatically created in pipeline.
 
 1. Add dataset **insurance-data**
 2. Versioning: None
@@ -43,7 +43,7 @@ Create a database in your MySql server. You need the following to access the dat
 ## Launch IDE
 1. Create an IDE (JupyterLab)
    - Use sklearn framework
-2. Add the below environment variables in configuration tab
+2. Add the below environment variables in configuration tab if your data is in aws_s3, if your data is in local move to step 3.
    - AWS_ACCESS_KEY_ID : your_access_key
    - AWS_SECRET_ACCESS_KEY : your_secret_key
 3. Click Submit
@@ -52,7 +52,7 @@ Create a database in your MySql server. You need the following to access the dat
 
 1. From **workspace/insurance/insurance** open **pipeline.ipynb** to build the pipeline.
 2. In 1st cell, specify input_train_type as 'training'
-   - Specify the source as 'sql', if your data is in sql.
+   - Specify the source as 'sql', if your data is in sql, or 'aws_s3' if your data is in aws_s3, by default it's local.
 3. The pipeline includes preprocessing, training and serving stages. Run all cells
   - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
@@ -107,8 +107,9 @@ Create a database in your MySql server. You need the following to access the dat
 1. Open data_generation.ipynb notebook for generating predict and groundtruth datasets.
 2. In 1st Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
 3. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
-4. In 6th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name.
-5. Then Run All Cells. It will start Pushing the data.
+4. In 7th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name, or
+   DATASET_SOURCE.AWS_S3 if you want to push the data in aws-s3.
+5. Then Run All Cells. It will start Pushing the data, by default it will push the data to local.
 
 6. **After First Push of dataset by this script, configure the generated datasets in modelmonitor as follows.**
    - Verify that the following datasets are created: {model-monitor}-predict, {model-monitor}-groundtruth
@@ -116,14 +117,14 @@ Create a database in your MySql server. You need the following to access the dat
 
 ### Configure Following Dataset in modelmonitor
 **Predict Dataset**
-1. If source S3
+1. If source S3 or local
   -  Dataset: {model-monitor}-predict
   -  Type: CSV
 2. If source SQL
       - Query: `select * from insurance_predict` (table will be added to the DB by the datagen script)
 
 **Labelled Dataset**
-1. If source S3
+1. If source S3 or local
   -  Dataset: {model-monitor}-groundtruth
   -  Type: CSV
 2. If source SQL

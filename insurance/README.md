@@ -46,18 +46,21 @@ Create a database in your MySql server. You need the following to access the dat
 2. Add the below environment variables in configuration tab if your data is in aws_s3, if your data is in local move to step 3.
    - AWS_ACCESS_KEY_ID : your_access_key
    - AWS_SECRET_ACCESS_KEY : your_secret_key
-3. Click Submit
+3. Click Submit.
+4. Upload the [resources-notebook](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/resources.ipynb) and fill the details in 1st cell:
+   - MONITOR_NAME = {your_modelmonitor_name}
+   - DATA_SOURCE = {'local','aws_s3','sql'}
+   - INPUT_TRAIN_TYPE = {'training','retraining'}
+5. Run all the cells in resources.ipynb.
 
 ### Pipeline (Training or Retraining)
 
 1. From **workspace/insurance/insurance** open **pipeline.ipynb** to build the pipeline.
-2. In 1st cell, specify input_train_type as 'training'
-   - Specify the source as 'sql', if your data is in sql, or 'aws_s3' if your data is in aws_s3, by default it's local.
-3. The pipeline includes preprocessing, training and serving stages. Run all cells
+2. The pipeline includes preprocessing, training and serving stages. Run all cells
   - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
   - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
   - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 
-4. Verify that the pipeline has created the following resources
+3. Verify that the pipeline has created the following resources
   - Datasets: 'insurance-training-data' with version v2. The base dataset is sourced from AWS
   - Model: 'insurance-model' with version v2
 
@@ -68,7 +71,13 @@ Create a database in your MySql server. You need the following to access the dat
   - Open http://localhost:8501/ in your browser,
   - Fill serving URL, auth token and other details and click predict.
 
-## MODEL MONITOR
+### MODEL MONITOR (SDK)
+1. From **workspace/insurance/insurance**, open data_generation.ipynb notebook for pushing the groundtruth and predict datasets.
+2. In 1st cell, Update Frequency according to what you set in Modelmonitor. 
+3. Then Run All Cells. It will start Pushing the data.
+4. From **workspace/insurance/insurance** run all the cells in the modelmonitor.ipynb. New model monitor will be created. 
+
+## MODEL MONITOR (UI)
 
 1. From model monitoring create a new monitor
 2. Give a name.
@@ -105,13 +114,9 @@ Create a database in your MySql server. You need the following to access the dat
 
 ### Data Generation
 1. Open data_generation.ipynb notebook for generating predict and groundtruth datasets.
-2. In 1st Cell Fill MonitorName with the name of your monitor name MonitorName="{your_model_monitor_name}"
-3. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
-4. In 7th cell. Set DATASET_SOURCE as DataSource.SQL if you want to push the data in SQL and fill the below details hostname,username,password,database_name, or
-   DATASET_SOURCE.AWS_S3 if you want to push the data in aws-s3.
-5. Then Run All Cells. It will start Pushing the data, by default it will push the data to local.
-
-6. **After First Push of dataset by this script, configure the generated datasets in modelmonitor as follows.**
+2. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
+3. Then Run All Cells. It will start Pushing the data, by default it will push the data to local.
+4. **After First Push of dataset by this script, configure the generated datasets in modelmonitor as follows.**
    - Verify that the following datasets are created: {model-monitor}-predict, {model-monitor}-groundtruth
    - This step will be more streamlined in coming releases.
 
@@ -121,6 +126,7 @@ Create a database in your MySql server. You need the following to access the dat
   -  Dataset: {model-monitor}-predict
   -  Type: CSV
 2. If source SQL
+      - Dataset: insurance-data
       - Query: `select * from insurance_predict` (table will be added to the DB by the datagen script)
 
 **Labelled Dataset**
@@ -128,6 +134,7 @@ Create a database in your MySql server. You need the following to access the dat
   -  Dataset: {model-monitor}-groundtruth
   -  Type: CSV
 2. If source SQL
+      - Dataset: insurance-data
       - Query: `select * from insurance_gt` (table will be added to the DB by the datagen script)
 
 - **Ground Truth Column Name**: GT_target
@@ -153,19 +160,27 @@ Click on Start for the specific monitor on Modelmonitor dashboard.
    - Modelmonitor can only be started in 'ready' state.
    - It can be stopped anytime. Previous data will not be erased.
 
-
-## Retraining
-1. Stop the modelmonitor
-2. Open pipeline.ipynb
-   - In 1st cell, specify input_train_type to 'retraining'
-   - Run all the cells
-3. This creates a new version of dataset and a new version of model
+## Retraining 
+1. **UI**: Stop the modelmonitor. If you are retraining using monitoring.ipynb, move to step 2.
+2. Open resources.ipynb and set INPUT_TRAIN_TYPE = 'retraining' and run all the cells.
+3. Open pipeline.ipynb and run all the cells.
+4. This creates a new version of dataset and a new version of model
    - New dataset version will be created for 'insurance-training-data' dataset
    - New model version will be created for 'insurance-model' model
-4. Edit modelmonitor
+5. **For retraining using UI**
+   - Edit the model monitor.
    - Specify the new model version on basic page
    - Specify new dataset version on Training data page
    - Save & Submit
    - Click Next to go to the schema page and Accept the regenerated schema.
    - Wait for a few (30) sec
    - Start the modelmonitor
+6. **For retraining using SDK**
+   - Open modelmonitoring.ipynb.
+   - Run the Retraining (7th) cell and it will update the dataset and model version automatically in your model monitor.
+
+## CLEANUP
+1. After your expirement is complete, 
+  - Open resources.ipynb and set CLEANUP=True in last Cleanup cell and run.
+  - Open modelmonitor.ipynb and set CLEANUP=True in last Cleanup cell and run.
+

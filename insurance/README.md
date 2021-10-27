@@ -38,7 +38,7 @@
   - **If your data is in SQL:**
      - Add these [USERNAME, PASSWORD, HOSTADDRESS,DATABASENAME] environment variables with your secret values in configuration tab    
 3. Click Submit.
-4. Download [resources.ipynb]((https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/resources.ipynb) and upload the notebook and fill the details in the first cell.
+4. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/resources.ipynb) and upload the notebook and fill the details in the first cell.
      - **MODELMONITOR_NAME** = {your model monitor name}
      - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
      - **INPUT_TRAIN_TYPE** = {'training'}

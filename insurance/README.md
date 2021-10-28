@@ -1,7 +1,8 @@
 # INSURANCE EXAMPLE
 
-- This example supports 3 dataset sources i.e. **Local, Aws_S3 and SQL**. 
+- This example supports 3 dataset sources i.e. **Local, AWS S3 and SQL**. 
 - By default this example uses local data source.
+  - Local data source is created in DKube storage space
 - The notebooks in this example can be run inside or outside Dkube.
 
 ## Example Flow
@@ -14,8 +15,15 @@
 
 ## Prerequisites
 - For Aws_S3 **(S3 bucket is required)**
-  - Create an AWS S3 bucket with the name mm-workflow. You need access and secret key to access the bucket.
-- For SQL **(SQL database is required)**. You need username,password,hostaddress,portnumber,databasename to access the SQL database.
+  - Create an AWS S3 bucket with the name mm-workflow. 
+  - You need access and secret keys to access the bucket.
+- For SQL **(SQL database is required)**. 
+  - You need the following to access the SQL Database
+    - username
+    - password
+    - hostaddress (server address)
+    - portnumber
+    - databasename
 
 
 ## Dkube Resources
@@ -30,9 +38,15 @@
 - Username, Password, HostAddress, PortNumber, Database Name
 
 ### Launch IDE (Inside Dkube)
-1. Create an IDE (JupyterLab)
+
+1. Add Code. Create Code Repo in Dkube with the following information
+  - Name: insurance
+  - Source: Git
+  - URL: https://github.com/oneconvergence/dkube-examples.git
+  - Branch : monitoring
+2. Create an IDE (JupyterLab)
    - Use sklearn framework
-2. **If your data is in local**, move to step 3 directly.
+**If your data is in local**, move to step 3 directly.
   - **If your data is in aws_s3:**
      - Add these [AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY] environment variables with your secret values in configuration tab 
   - **If your data is in SQL:**

@@ -10,12 +10,13 @@
 7. Submit
 
 ### 2. Add training data 
-1. Name : insurance-training-data 
-   - This is DKube local dataset, created by the training/retraining pipeline above
+1. Name : insurance-data 
+   - This is DKube local dataset, created by the train.ipynb pipeline above
 
-2. If training data source is S3/d3 select version: eg. v2 
+2. If training data source is S3/d3 select version: eg. v1
    - Type : csv
 3. If training data source is SQL
+      - Name: insurance-data-sql
       - Add query: `select * from insurance` (the table name can be different)
 4. Download the [transformer script](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/transform-data.py) and upload. 
 5. Note: Download the script in your setup and then add it by browsing.
@@ -40,7 +41,7 @@
   -  Dataset: {model-monitor}-predict
   -  Type: CSV
 2. If source SQL
-      - Dataset: insurance-data
+      - Dataset: insurance-data-sql
       - Query: `select * from insurance_predict` (table will be added to the DB by the datagen script)
 
 **Labelled Dataset**
@@ -48,7 +49,7 @@
   -  Dataset: {model-monitor}-groundtruth
   -  Type: CSV
 2. If source SQL
-      - Dataset: insurance-data
+      - Dataset: insurance-data-sql
       - Query: `select * from insurance_gt` (table will be added to the DB by the datagen script)
 
 - **Ground Truth Column Name**: GT_target
@@ -70,29 +71,3 @@ Add Performance Decay Alerts
 Click on Start for the specific monitor on Modelmonitor dashboard. 
    - Modelmonitor can only be started in 'ready' state.
    - It can be stopped anytime. Previous data will not be erased.
-
-### SMTP Settings
-Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.
-
-## Data Generation
-1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/data_generation.ipynb) notebook for generating predict and groundtruth datasets.
-2. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the d3qatest tag was provided replace it with to use frequency in minutes. For eg: for 5 minutes replace it with `5m` else use `5h` for hours assuming Frequency specified in monitor was 5.
-3. Then Run All Cells. It will start Pushing the data, by default it will push the data to local.
-
-## Retraining
-1. Stop the modelmonitor.
-3. Open resources.ipynb and set INPUT_TRAIN_TYPE = 'retraining' and run all the cells.
-4. Open train.ipynb and run all the cells.
-5. This creates a new version of dataset and a new version of model
-   - New dataset version will be created for 'insurance-training-data' dataset
-   - New model version will be created for 'insurance-model' model
-6. Edit modelmonitor (UI)
-   - Specify the new model version on basic page
-   - Specify new dataset version on Training data page
-   - Save & Submit
-   - Click Next to go to the schema page and Accept the regenerated schema.
-   - Wait for a few (30) sec
-   - Start the modelmonitor
-
-## Cleanup
-1. After your expirement is complete, Open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/resources.ipynb) and set CLEANUP=True in last Cleanup cell and run.

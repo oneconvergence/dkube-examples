@@ -42,13 +42,20 @@ if __name__ == "__main__":
 
         engine = create_engine("mysql+pymysql://{user}:{pw}@{host}/{db}"
                                 .format(host=hostname, db=databasename, user=username, pw=password))
-        query = "SELECT * FROM insurance"
-        train_df = pd.read_sql(query, engine)
-        train_df.to_csv('/train-data/data.csv')
-    
+        
+        if input_train_type == 'training':
+            query = "SELECT * FROM insurance"
+            train_df = pd.read_sql(query, engine)
+            train_df.to_csv('/train-data/data.csv',index=False)
+        
+        if input_train_type == 'retraining':
+            query = "SELECT * FROM insurance_gt"
+            train_df = pd.read_sql(query, engine)
+            train_df.rename(columns={'GT_target':'charges'}, inplace=True)
+            train_df.to_csv('/train-data/data.csv',index=False)
     
     ### AWS-S3 DATASOURCE ###
-    if data_source == "aws_s3" and input_train_type == 'retraining':
+    if data_source == "aws_s3":
         config = json.load(open(os.path.join(DATA_DIR, "config.json")))
         with open(os.path.join(DATA_DIR, "credentials"), "r") as f:
             creds = f.read()
@@ -79,11 +86,12 @@ if __name__ == "__main__":
                 final_df.rename(columns={'GT_target':'charges'}, inplace=True)
                 final_df.to_csv('/train-data/data.csv',index=False)
             
-        if input_train_type == 'training' and s3_object.key.startswith(mm_name+'/training'):
-            path, filename = os.path.split(s3_object.key)
-            if filename == 'insurance.csv':
-                data = pd.read_csv(DATA_DIR+'/training.csv')
-                data.to_csv('/train-data/data.csv',index=False)
+            if input_train_type == 'training' and s3_object.key.startswith("monitoring-insurance/training-data/"):
+                path, filename = os.path.split(s3_object.key)
+                if filename == "insurance.csv":
+                    my_bucket.download_file(s3_object.key, filename)
+                    data = pd.read_csv("insurance.csv")
+                    data.to_csv('/train-data/data.csv',index=False)
                 
    ### LOCAL DATA SOURCE #####          
     if data_source == 'local':
@@ -98,5 +106,4 @@ if __name__ == "__main__":
                 final_df = pd.concat([final_df,data])
 
             final_df.rename(columns={'GT_target':'charges'}, inplace=True)
-            final_df.to_csv('data.csv',index=False)
-
+            final_df.to_csv('/train-data/data.csv',index=False)

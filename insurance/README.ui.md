@@ -23,7 +23,7 @@
 6. Save training data.
 
 ### 2. Upload train metrics
-1. Dwonload the json from from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/train_metrics.json), and upload into train metrics tab.
+1. Download the json from from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/train_metrics.json), and upload into train metrics tab.
 2.  Click Save
 
 ### 3. Update Schema

@@ -56,10 +56,10 @@
      - **MODELMONITOR_NAME** = {your model monitor name}
      - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
      - **INPUT_TRAIN_TYPE** = {'training'}
+     - **DKUBEUSERNAME** = {your dkube username}
      - The following will be derived from the environment automatically. Otherwise, please fill in 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
-       - **DKUBEUSERNAME** = {your dkube username}
        - If the data source is **aws_s3**, fill the below details also:
          - **ACCESS_KEY** = {your s3 access key}
          - **SECRET_KEY** = {your s3 secret key}

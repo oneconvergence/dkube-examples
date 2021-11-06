@@ -10,7 +10,7 @@ storage_op = component_store.load_component("storage")
 
 
 @kfp.dsl.pipeline(name="StorageOp", description="StorageOp component")
-def storageop_artifacts(username, code, dataset, model):
+def storageop_artifacts(username="", code="", dataset="", model=""):
     with kfp.dsl.ExitHandler(
         exit_op=storage_op("reclaim", namespace=str(username), uid="{{workflow.uid}}")
     ):

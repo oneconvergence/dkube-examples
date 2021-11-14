@@ -69,7 +69,7 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 - Change the transformer script to: titanic/transformer.py.
 - Submit
 
-### Release, Publish and Deploy (Dkube version 2.2.x.x)
+## Release, Publish and Deploy (Dkube version 2.2.x.x)
 
 1. *Release Model*
 - Click on model name titanic-model .
@@ -92,11 +92,36 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 - Check in Model Serving and wait for the deployed model to change to running state.
 - Deployed Model can used to test the prediction.
 
-4. *Inference*
--  Go to `https://<URL>:32222/inference`
--  Go to model serving tab and copy the prediction endpoint of titanic-model and paste in model serving URL.
--  Copy the auth token from developer settings and paste in Authorization Token.  
--  Select model type as sk-stock  
--  Copy the contents of https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/titanic/titanic_sample.csv and save then as CSV, and upload.  
--  Click predict.
+## Publish and Deploy (Dkube version 3.0.x.x)
+
+1. *Publish Model*
+- Navigate to Models-> titanic-model : select a model version
+- Click on Publish Model icon under ACTIONS column
+- Give the publish model name
+- Select the serving image as ocdr/tensorflowserver:2.0.0
+- Click on Transformer checkbox
+- Change transformer code to titanic/transformer.py
+- Click on Submit
+
+2. *Deploy Model*
+- Click on Models in the navigation pane
+- Click on the drop down next to 'Owned by me' and select 'Published'
+- Click on the published model 'titanic-model'
+- Select the published version and click on the deploy model icon under ACTIONS column
+- Enter the deploy model name, select Deployment / Test and select Deploy using / CPU. Click Submit
+- Check in Deployments and wait for the deployed model to change to running state
+- Deployed Model can be used to test the prediction.
+
+## Inference
+- Go to
+  - Deployments in 2.1.x.x version
+  - Model Serving in 2.2.x.x version
+  - Deployments in 3.0.x.x version
+- Copy the prediction Endpoint for the model 'titanic-model'
+- Create a browser tab and go to https://<dkube_url>/inference
+- Paste the Endpoint URL
+- Copy Auth token from Developer settings in Dkube page and Paste in inference page
+- Select model type as sk-stock
+- Copy the contents of https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/titanic/titanic_sample.csv and save then as CSV, and upload.
+- Click predict
 

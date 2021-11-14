@@ -103,30 +103,42 @@ run 2_CarePrediction.ipynb for predictions.
 - Transformer script: image-denoising/transformer.py
 - Submit
 ### Deploy model
-- Click on Model catalog and select the published model.
-- Click on the deploy model icon under ACTIONS column.
-- Enter the deploy model name and select CPU and click Submit.
-- Check in Model Serving and wait for the deployed model to change to running state.
+- Click on Model catalog and select the published model
+- Click on the deploy model icon under ACTIONS column
+- Enter the deploy model name and select CPU and click Submit
+- Check in Model Serving and wait for the deployed model to change to running state
+### How to create Test inference
+- Go to Repos, click on Models and click on the model (Img-DN).
+- Click on test inference under actions for the model version you want.
+- Check on the transformer and fill the transformer Script : image-denoising/transformer.py
+- Select CPU and click submit
 
-### How to create Test inference.
-1. Go to Repos, click on Models and click on the model (Img-DN).
-2. Click on test inference under actions for the model version you want.
-3. Fill the below details in test-inference form.
+## Publish and Deploy Model (Dkube version 3.0.x.x)
+- Models->Img-DN: select a model version
+- Click on Publish model icon under ACTIONS column
+- Transformer: True
+- Transformer script: image-denoising/transformer.py
+- Submit
+### Deploy model
+- Click on Models in the navigation pane
+- Click on the drop down next to 'Owned by me' and select 'Published'
+- Click on the published model 'Img-DN'
+- Select the published version and click on the deploy model icon under ACTIONS column
+- Enter the deploy model name 'Img-DN-deploy', select Deployment / Test and select Deploy using / CPU. Click Submit
+- Check in Deployments and wait for the deployed model to change to running state
 
-### Test-Inference Details
-1. Serving image : (use default one)
-2. Transformer image : (use default)
-3. Transformer Code (use default)
-4. Check on the transformer and fill the transformer Script : image-denoising/transformer.py
-5. Select CPU and click submit.
-
-### How to Test Inference in DKube Webapp
-1. Download data sample from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/img1.png
-2. Open the URL https://<dkube_url>/inference
-3. Go to test inferences in 2.1.x.x release or model serving in 2.2.x.x and copy the prediction endpoint for the model and paste it into the serving URL field.
-4. Copy token from developer settings and paste into token field.
-5. Select model steel from the dropdown.
-6. Upload the downloaded image and click predict.
+## How to Test Inference in DKube Webapp
+1. Go to
+- Deployments in 2.1.x.x version
+- Model Serving or Test Inferences in 2.2.x.x version
+- Deployments in 3.0.x.x version
+2. Copy the prediction Endpoint for the model 'Img-DN-deploy'
+3. Create a browser tab and go to https://<dkube_url>/inference
+4. Paste the Endpoint URL
+5. Copy Auth token from Developer settings in Dkube page and Paste in inference page
+6. Select model steel from the dropdown.
+7. Download data sample from https://github.com/oneconvergence/dkube-examples/tree/pytorch/image-denoising/img1.png
+8. Upload the downloaded image and click predict
 
 ### Custom Webapp
 1. Go to webapp directory, and build a docker image with given **Dockerfile** by typing **docker build . -t ocdr/streamlit-webapp:img-dn**

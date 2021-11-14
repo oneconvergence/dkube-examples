@@ -56,10 +56,29 @@
 - Enter the deploy model name and select CPU and click Submit.
 - Check in Model Serving and wait for the deployed model to change to running state.
 
+## Publish and Deploy Model (Dkube version 3.0.x.x)
+- Models->mnist: select a model version
+- Click on Publish model icon under ACTIONS column
+- Transformer: True
+- Transformer script: mnist/transformer.py
+- Submit
+### Deploy model
+- Click on Models in the navigation pane
+- Click on the drop down next to 'Owned by me' and select 'Published'
+- Click on the published model 'mnist'
+- Select the published version and click on the deploy model icon under ACTIONS column
+- Enter the deploy model name, select Deployment / Test and select Deploy using / CPU. Click Submit
+- Check in Deployments and wait for the deployed model to change to running state
+
 ## Test inference
-- +tab and go to https://<dkube_url>/inference
-- Go to test inferences in 2.1.x.x release or model serving in 2.2.x.x and copy the prediction endpoint for the model.
-- Copy Auth token from Developer settings
+- Go to
+  - Deployments in 2.1.x.x version
+  - Model Serving in 2.2.x.x version
+  - Deployments in 3.0.x.x version
+- Copy the prediction Endpoint for the model
+- Create a browser tab and go to https://<dkube_url>/inference
+- Paste the Endpoint URL
+- Copy Auth token from Developer settings in Dkube page and Paste in inference page
 - Choose mnist
 - Upload 3.png from repo
 - Click predict

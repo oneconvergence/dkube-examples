@@ -19,7 +19,7 @@
 ## Step2: Create a dataset
  1. Click *Datasets* side menu option.
  2. Click *+Dataset* button.
- 3. Select *Others* option.
+ 3. Select *Other* option for dataset source
  4. Enter a unique name say *Img-DN*
  5. Enter URL as https://storage.googleapis.com/image-denoising/Convallaria_diaphragm/20190520_tl_25um_50msec_05pc_488_130EM_Conv.tif
  6. Click *Add Dataset* button.
@@ -45,7 +45,8 @@
     - **Basic Tab** :
 	  - Enter a unique name say *Img-DN*
  	  - **Container** section
-		- Framework - pytorch.
+		- Framework - pytorch
+        - Select the default Framework Version 1.6
 		- Code section - Please select the workspace *image-dn* created in **Step1**.
 		- Start-up script -`python image-denoising/model-care.py`
     - **Repos Tab**

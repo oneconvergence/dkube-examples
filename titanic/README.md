@@ -19,6 +19,7 @@
 4. Check the enable leaderboard option and click on submit.
 5. Click on titanic project and click on evaluation tab and then select the evaluation source repo as titanic created in step 1.
 6. Give the evaluation script as `python titanic/owner/eval.py` and click on save button.
+7. The Project leaderboard service is available once the status changes from 'in-progress' to 'ready'
 
 ### Step 3 :Upload Train & Eval dataset: 
 1. Click on Repos in left pane and then click on +dataset.
@@ -97,10 +98,9 @@ The pipeline.ipynb file automatically creates a code repo named titanic-code, fe
 1. *Publish Model*
 - Navigate to Models-> titanic-model : select a model version
 - Click on Publish Model icon under ACTIONS column
-- Give the publish model name
 - Select the serving image as ocdr/tensorflowserver:2.0.0
 - Click on Transformer checkbox
-- Change transformer code to titanic/transformer.py
+- Change transformer script to titanic/transformer.py
 - Click on Submit
 
 2. *Deploy Model*

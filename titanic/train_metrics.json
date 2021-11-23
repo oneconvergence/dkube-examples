@@ -1,0 +1,7 @@
+{
+    "train_metrics": {
+        "accuracy": 0.74206346,
+        "precision": 0.733,
+        "f1_score": 0.5660826 
+    }
+}

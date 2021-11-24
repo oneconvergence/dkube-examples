@@ -11,4 +11,5 @@ This repository contains examples for various functions for DKube. Dkube support
 
 ### Examples
 
-- [insurance](insurance) - this example demonstrates on how to monitor the model in Dkube.
+- [insurance](insurance) - this example demonstrates on how to monitor the regression model in Dkube.
+- [titanic](titanic) - this example demonstrates on how to monitor the classification model in Dkube.

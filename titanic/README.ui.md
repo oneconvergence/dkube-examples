@@ -22,6 +22,9 @@
 4. Download the [transformer script](https://github.com/oneconvergence/dkube-examples/tree/monitoring/titanic/transform_data.py) for s3/d3 data source and upload. 
 5. Note: Download the script in your setup and then add it by browsing and save training data.
 
+### 2. Upload train metrics
+1. Download the json from from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/titanic/train_metrics.json), and upload into train metrics tab.
+2. Click Save
 
 ### 3. Update Schema
 1. Edit the model monitor
@@ -29,7 +32,7 @@
   - Survived as prediction output.
   - PassengerId as RowID
   - Timestamp as timestamp
-3. Select all or interested Input features.
+3. Select all features except above 3 for this example.
 4. Click Next and save.
 
 ### 4. Configure Following Dataset in modelmonitor

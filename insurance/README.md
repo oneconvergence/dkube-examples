@@ -50,7 +50,10 @@
        - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
    - **If your data is in SQL:**
      - Add the following environment variables with your secret values in configuration tab
-       - DBUSERNAME, DBPASSWORD, DBHOSTNAME(should be specified in following format ip:port or domain:port), DATABASENAME    
+       - DBUSERNAME
+       - DBPASSWORD
+       - DBHOSTNAME(should be specified in following format ip:port or domain:port)
+       - DATABASENAME    
 3. Click Submit.
 4. From **workspace/insurance/insurance** open resources.ipynb and fill the following details in the first cell. 
      - **DKUBEUSERNAME** = {your dkube username}

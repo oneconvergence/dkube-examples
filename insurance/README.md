@@ -50,13 +50,16 @@
        - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
    - **If your data is in SQL:**
      - Add the following environment variables with your secret values in configuration tab
-       - DBUSERNAME, DBPASSWORD, DBHOSTNAME, DATABASENAME    
+       - DBUSERNAME
+       - DBPASSWORD
+       - DBHOSTNAME(should be specified in following format ip:port or domain:port)
+       - DATABASENAME    
 3. Click Submit.
 4. From **workspace/insurance/insurance** open resources.ipynb and fill the following details in the first cell. 
+     - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
      - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
      - **INPUT_TRAIN_TYPE** = {'training'}
-     - **DKUBEUSERNAME** = {your dkube username}
      - The following will be derived from the environment automatically. Otherwise, please fill in 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
@@ -68,6 +71,7 @@
          - **DATABASENAME** = {sql database name} 
          - **DBUSERNAME** = {your username}
          - **DBPASSWORD** = {your password}
+         - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
 
 ### Launch IDE (Outside Dkube)
@@ -76,10 +80,10 @@
 
 1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/resources.ipynb)
 2. Open the notebook and fill the details in the first cell.
+   - **DKUBEUSERNAME** = {your dkube username}
    - **MODELMONITOR_NAME** = {your model monitor name}
    - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
    - **INPUT_TRAIN_TYPE** = {'training'}
-   - **DKUBEUSERNAME** = {your dkube username}
    - **TOKEN** = {your dkube authentication token}
    - **DKUBE_URL** = {your dkube url}
    - If the data source is **aws_s3**, fill the below details also:
@@ -90,6 +94,7 @@
      - **DATABASENAME** = {sql database name} 
      - **DBUSERNAME** = {your username}
      - **DBPASSWORD** = {your password}
+     - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)
 3. Run all the cells.
 
 ## Section 2: Insurance Model Training (Optional)

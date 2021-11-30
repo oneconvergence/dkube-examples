@@ -48,9 +48,12 @@
    - **If your data is in aws_s3:**
      - Add the following environment variables with your secret values in configuration tab 
        - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
-   - **If your data is in SQL:**
+   - **If your data is in SQL:**DBHOSTNAME,
      - Add the following environment variables with your secret values in configuration tab
-       - DBUSERNAME, DBPASSWORD, DBHOSTNAME, DATABASENAME    
+       - DBUSERNAME
+       - DBPASSWORD
+       - DBHOSTNAME(should be specified in following format ip:port or domain:port)
+       - DATABASENAME    
 3. Click Submit.
 4. From **workspace/titanic/titanic** open resources.ipynb and fill the following details in the first cell. 
      - **MODELMONITOR_NAME** = {your model monitor name}
@@ -68,6 +71,7 @@
          - **DATABASENAME** = {sql database name} 
          - **DBUSERNAME** = {your username}
          - **DBPASSWORD** = {your password}
+         - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
 
 ### Launch IDE (Outside Dkube)
@@ -90,6 +94,7 @@
      - **DATABASENAME** = {sql database name} 
      - **DBUSERNAME** = {your username}
      - **DBPASSWORD** = {your password}
+     - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)     
 3. Run all the cells.
 
 ## Section 2: Titanic Model Training (Optional)

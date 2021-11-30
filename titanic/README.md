@@ -43,7 +43,7 @@
   - URL: https://github.com/oneconvergence/dkube-examples.git
   - Branch : monitoring
 2. Create an IDE (JupyterLab)
-   - Use sklearn framework
+   - Use tensorflow framework and version as 2.0.0
    - **If your data is in local**, move to step 3 directly.
    - **If your data is in aws_s3:**
      - Add the following environment variables with your secret values in configuration tab 

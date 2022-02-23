@@ -1,4 +1,3 @@
-import kfserving
 from typing import List, Dict
 from PIL import Image
 import logging
@@ -13,15 +12,6 @@ import os
 import logging
 import cv2
 
-DEFAULT_MODEL_NAME = "model"
-
-parser = argparse.ArgumentParser(parents=[kfserving.kfserver.parser])
-parser.add_argument('--model_name', default=DEFAULT_MODEL_NAME,
-                    help='The name that the model is served under.')
-parser.add_argument('--predictor_host', help='The URL for the model predict function', required=True)
-
-args, _ = parser.parse_known_args()
-
 filename = '/tmp/temp.jpg'
 img_w = 28
 img_h = 28
@@ -35,10 +25,7 @@ def b64_filewriter(filename, content):
     fp.close()
 
 
-class ImageTransformer(kfserving.KFModel):
-    def __init__(self, name: str, predictor_host: str):
-        super().__init__(name)
-        self.predictor_host = predictor_host
+class ImageTransformer():
 
     def preprocess(self, inputs: Dict) -> Dict:
         del inputs['instances']
@@ -62,7 +49,3 @@ class ImageTransformer(kfserving.KFModel):
         inputs["digit"] = int(prediction)
         return inputs
 
-if __name__ == "__main__":
-    transformer = ImageTransformer(args.model_name, predictor_host=args.predictor_host)
-    kfserver = kfserving.KFServer()
-    kfserver.start(models=[transformer])

@@ -7,7 +7,6 @@ import base64
 import argparse
 
 import sys,json
-import requests
 import os
 import logging
 import cv2

@@ -19,7 +19,7 @@
 
 ## Launch Notebook
 - Create Jupyterlab IDE with tensorflow framework.
-- Select the Code mnist.
+- Select the Code dkube-examples.
 - Repos->Inputs->Datasets: select mnist and enter mountpath as /mnist.
 - Run workspace/dkube-examples/mnist/train.ipynb
 - You can experient in the notebook and develop your code. Once you are ready for a formal run, export your code into python script(s)

@@ -5,6 +5,11 @@ Computing metrics statistics
 2. Run following command to fetch metrics for a given deployment, metrics type and given duration (in days).
 
     a). To get deployment id, click on the deployment and copy the id
+3. export DKUBE_URL and DKUBE_USER_ACCESS_TOKEN
+
+    a) export DKUBE_URL="https://x.x.x.x:32222
+    
+    b) export DKUBE_USER_ACCESS_TOKEN="dkube oauth token"
 
 
 $python3 ./mm_metrics.py -i 5a9af1a1-e3ca-4dbe-9546-783affad25d3 -n 4 -t health

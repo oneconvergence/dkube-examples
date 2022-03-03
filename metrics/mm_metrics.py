@@ -19,12 +19,12 @@ parser.add_argument('-o','--output', type=argparse.FileType('w'), default='-', h
 
 args = parser.parse_args()
 
-
 token = os.environ.get("DKUBE_USER_ACCESS_TOKEN")
 dkube_url = os.environ.get("DKUBE_URL")
 
 if not token or not dkube_url:
-    logger.error("access_token and dkube_url needs to be set")
+    print("DKUBE_USER_ACCESS_TOKEN and DKUBE_URL env variable needs to be set.")
+    sys.exit(-1)
     
 headers = {
     "Authorization": "Bearer " + token,
@@ -36,7 +36,6 @@ end_time = parse_datetime("now")
 start_time = end_time - timedelta(days=args.n)
 duration = args.s * 2
 deployment_id=args.id
-
 
 queries = {
     "health" : {
@@ -54,16 +53,16 @@ output = []
 while start_time < end_time:
     
     dfs = []
-    for k,v in queries[args.type].items():
+    for metric,query in queries[args.type].items():
         data = prom.custom_query_range(
-            v,
+            query,
             start_time=start_time,
             end_time=start_time + timedelta(days=1),
             step=f"{args.s}m",
         )
 
         df=MetricRangeDataFrame(data, columns=["timestamp","value"], dtype="Float64")
-        df=df.describe(percentiles=[]).rename(columns = {'value': k })
+        df=df.describe(percentiles=[]).rename(columns = {'value': metric })
         dfs.append(df)
 
     start_time += timedelta(days=1)

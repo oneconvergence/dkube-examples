@@ -41,7 +41,7 @@ If it is external, click on Deployments in the left tab and import a deployment 
 4. Click Next and save.
 
 ### 4. Performance Monitoring
-1. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/performance_soft_thresholds.json)
+1. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/titanic/performance_soft_thresholds.json)
 )
 2. In Compute Metrics select Labelled dataset
 1. **If source is S3** :
@@ -49,6 +49,7 @@ If it is external, click on Deployments in the left tab and import a deployment 
   -  Dataset Format : Tabular
   -  Select Prediction column name as “Survived”
   -  Select Groundtruth column name as GT_target.
+  -  Select Timestamp column as timestamp.
 
 2. **If source is local** :
   -  Dataset: {model-monitor}-groundtruth
@@ -56,13 +57,15 @@ If it is external, click on Deployments in the left tab and import a deployment 
   -  Select Dataset Version as v1.
   -  Select Prediction column name as “Survived”
   -  Select Groundtruth column name as GT_target.
+  -  Select Timestamp column as timestamp.
 
 3. **If source is sql**:
-- Dataset : insurance-data-sql
-- Sql query field : select * from titanic_gt
-- Dataset Format : Tabular
-- Select Prediction column name as “Survived”
-- Select Groundtruth column name as GT_target.
+  -  Dataset : insurance-data-sql
+  -  Sql query field : select * from titanic_gt
+  -  Dataset Format : Tabular
+  -  Select Prediction column name as “Survived”
+  -  Select Groundtruth column name as GT_target.
+  -  Select Timestamp column as timestamp.
 
 4. Click on Submit.
 

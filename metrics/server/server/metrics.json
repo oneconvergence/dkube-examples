@@ -1,7 +1,7 @@
 [
     {
         "metric": {
-            "__name__": "CPUUtilization"
+            "name": "CPUUtilization"
         },
         "values": [
             [
@@ -16,7 +16,7 @@
     },
     {
         "metric": {
-            "__name__": "MemoryUtilization"
+            "name": "MemoryUtilization"
         },
         "values": [
             [
@@ -31,7 +31,7 @@
     },
     {
         "metric": {
-            "__name__": "Invocations"
+            "name": "Invocations"
         },
         "values": [
             [
@@ -46,7 +46,7 @@
     },
     {
         "metric": {
-            "__name__": "Invocation4XXErrors"
+            "name": "Invocation4XXErrors"
         },
         "values": [
             [
@@ -61,7 +61,7 @@
     },
     {
         "metric": {
-            "__name__": "Invocation5XXErrors"
+            "name": "Invocation5XXErrors"
         },
         "values": [
             [
@@ -76,7 +76,7 @@
     },
     {
         "metric": {
-            "__name__": "ModelLatency"
+            "name": "ModelLatency"
         },
         "values": [
             [

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-server
+  namespace: default
+  labels:
+    app: metrics-server
+spec:
+  selector:
+    matchLabels:
+      app: metrics-server
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: metrics-server
+    spec:
+      containers:
+        - name: metrics-server
+          image: ocdr/metrics-server
+          ports:
+            - name: metrics-api
+              containerPort: 8000
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: metrics-server
+  namespace: default
+spec:
+  ports:
+  - name: metrics-api
+    port: 80
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: metrics-server
+  sessionAffinity: None
+  type: NodePort

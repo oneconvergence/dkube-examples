@@ -6,51 +6,60 @@ import datetime
 
 print("*******************Custom Metrics Generator***************************")
 url = "http://dkube-exporter.dkube:9401/modelmonitor/metrics"
+monitor_id = os.getenv("MM_ID")
+print(monitor_id)
+run_id = os.getenv("MM_RUNID")
 
-monitor_id = sys.argv[1]
-print("monitor id is ",monitor_id)
+with open(MM_CONFIG_FILE) as f:
+    configuration = json.load(f)
 
 metric_value = random.random()
 
+def get_timestamp():
+    run_end_time = int(time.time())
+    run_freq = configuration["drift_monitoring"]["frequency"] * 60
+    run_end_time = run_end_time - (run_end_time % run_freq) + run_freq
+    return run_end_time
+
 payload = json.dumps({
   "id": monitor_id,
-  "timestamp": math.ceil(datetime.datetime.utcnow().timestamp()),
+  "timestamp": get_timestamp(),
 "metrics": [
-    {        "label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f","mm_feature":"age"},
+    {        "label_values": {"run_id": run_id,"mm_feature":"age"},
             "metric_name": "pval",
             "type": "data_drift",
-            "generated_value":0.0
+            "generated_value":metric_value
     },
-    {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f","mm_feature":"bmi"},
+    {"label_values": {"run_id": run_id,"mm_feature":"bmi"},
        "metric_name": "pval",
        "type": "data_drift",
-       "generated_value": 0.189
+       "generated_value": metric_value
     },
-    {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f","mm_feature":"smoker"},
+    {"label_values": {"run_id": run_id,"mm_feature":"smoker"},
        "metric_name": "pval",
        "type": "data_drift",
-       "generated_value": 0.0},
-    {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f"}, 
+       "generated_value": metric_value},
+    {"label_values": {"run_id": run_id}, 
        "metric_name": "accuracy", 
        "type": "performance_drift", 
-       "generated_value": 1.0},
-      {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f"}, 
+       "generated_value": metric_value},
+      {"label_values": {"run_id": run_id}, 
        "metric_name": "precision", 
        "type": "performance_drift", 
        "generated_value": metric_value}, 
-      {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f"}, 
+      {"label_values": {"run_id":run_id}, 
        "metric_name": "recall", 
        "type": "performance_drift", 
        "generated_value": metric_value}, 
-      {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f"}, 
+      {"label_values": {"run_id": run_id}, 
        "metric_name": "f1_score", 
        "type": "performance_drift", 
        "generated_value": metric_value}, 
-      {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f"}, 
+      {"label_values": {"run_id": run_id}, 
        "metric_name": "jaccard_score", 
        "type": "performance_drift", 
        "generated_value": metric_value}, 
-      {"label_values": {"run_id": "c07a61a4-f660-4a7f-84e1-05f7330e748f"}, 
+      {"label_values": {"run_id": run_id}, 
        "metric_name": "roc_auc_score", 
        "type": "performance_drift", 
        "generated_value": metric_value}

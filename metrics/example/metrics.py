@@ -25,21 +25,7 @@ payload = json.dumps({
   "id": monitor_id,
   "timestamp": get_timestamp(),
 "metrics": [
-    {        "label_values": {"run_id": run_id,"mm_feature":"age"},
-            "metric_name": "pval",
-            "type": "data_drift",
-            "generated_value":metric_value
-    },
-    {"label_values": {"run_id": run_id,"mm_feature":"bmi"},
-       "metric_name": "pval",
-       "type": "data_drift",
-       "generated_value": metric_value
-    },
-    {"label_values": {"run_id": run_id,"mm_feature":"smoker"},
-       "metric_name": "pval",
-       "type": "data_drift",
-       "generated_value": metric_value},
-    {"label_values": {"run_id": run_id}, 
+      {"label_values": {"run_id": run_id}, 
        "metric_name": "accuracy", 
        "type": "performance_drift", 
        "generated_value": metric_value},

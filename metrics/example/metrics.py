@@ -18,7 +18,7 @@ metric_value = random.random()
 def get_timestamp():
     run_end_time = int(time.time())
     run_freq = configuration["drift_monitoring"]["frequency"] * 60
-    run_end_time = run_end_time - (run_end_time % run_freq) + run_freq
+    run_end_time = run_end_time - (run_end_time % run_freq )
     return run_end_time
 
 payload = json.dumps({

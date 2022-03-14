@@ -4,3 +4,7 @@
 - Give docker image as **ocdr/test-metrics:v2**
 - Give Startup script as `python metrics.py
 - Click on submit.
+
+### Customize the script
+- Reporting Performance Metrics
+  - Update metric_name and metric_value

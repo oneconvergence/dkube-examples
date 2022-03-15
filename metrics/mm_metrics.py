@@ -76,9 +76,9 @@ while start_time < end_time:
         if len(data) == 0:
             continue
         
-        data1 = [{"metric":x["metric"],"values":[ [float(value[0]),float(value[1])] for value in x["values"]]} for x in data]
+        data = [{"metric":x["metric"],"values":[ [float(value[0]),float(value[1])] for value in x["values"]]} for x in data]
 
-        df=MetricRangeDataFrame(data1, columns=["timestamp","value"], dtype="Float64")
+        df=MetricRangeDataFrame(data, columns=["timestamp","value"], dtype="Float64")
         #reinitialize df again from same values since df.describe somes failes on original df
         df = DataFrame(df.values, index=df.index, columns=df.columns, dtype="Float64")
 

@@ -1,4 +1,4 @@
-This reference implementation is an example for a custom Performance Monitor exporting business metrics that are not directly supported by DKube.
+This reference implementation is an example for a custom Performance Monitor exporting business metrics that are not directly supported by DKube. This can be used as custom docker in Performance monitoring configuration.
 
 ### Custom Compute Metrics Usage for Modelmonitor
 - Click on Deployments and navigate to the Monitors tab.

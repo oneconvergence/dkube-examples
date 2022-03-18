@@ -29,13 +29,13 @@
 2. Create an IDE (JupyterLab)
    - Use sklearn framework  
 3. Click Submit.
-4. Open Jupyterlab and from **workspace/insurance/insurance_cloudevents** open resources.ipynb and fill the following details in the first cell. 
+4. Open Jupyterlab and from **workspace/insurance/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
      - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
      - **S3_KEY** = {MINIO access key}
      - **S3_SECRET_KEY** = {MINIO access secret key}
      - **S3_ENDPOINT** = {MINIO Endpoint}
-     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise, please fill in 
+     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
@@ -44,7 +44,7 @@
 
 #### Note: Follow the instructions if you are running Notebook IDE outside DKube, for example in VSCode. This is the case with minimal DKube. 
 
-1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance/resources.ipynb)
+1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb)
 2. Open the notebook and fill the details in the first cell.
    - **DKUBEUSERNAME** = {your dkube username}
    - **MODELMONITOR_NAME** = {your model monitor name}
@@ -55,7 +55,9 @@
      - **S3_ENDPOINT** = {MINIO Endpoint}
 3. Run all the cells.
 
-## Section 2: Insurance Model Training
+**Note:** In case the monitor is being created on minimal DKube fill the **DKUBEUSERNAME**, **TOKEN**, and **DKUBE_URL** for the minimal DKube. 
+
+## Section 2: Insurance Model Training (Required to deploy model)
 
 #### Note: This uses DKube Runs, Kubeflow Pipelines and KfServing. It requires full Dkube installed. 
 

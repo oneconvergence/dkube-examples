@@ -13,3 +13,6 @@ This repository contains examples for various functions for DKube. Dkube support
 
 - [insurance](insurance) - this example demonstrates on how to monitor the regression model in Dkube.
 - [titanic](titanic) - this example demonstrates on how to monitor the classification model in Dkube.
+- [insurance_cloudevents](insurance_cloudevents) - this example demonstrates on how to monitor the regression model when the predict data source is cloudevents.
+- [insurance_sagemaker](insurance_sagemaker) - this example demonstrates the deployment of model into sagemaker (outside Dkube) and monitoring on Dkube.
+- [metrics](metrics) - this contains an example for a custom Performance Monitor exporting business metrics that are not directly supported by DKube.

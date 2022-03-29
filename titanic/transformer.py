@@ -48,7 +48,6 @@ class Transformer(kfserving.KFModel):
         data = pd.read_csv(filename)
         values = data.drop("Survived", 1).values
         payload = {"inputs": values.tolist(), "token": inputs["token"]}
-        logging.info("token =======> %s", str(inputs["token"]))
         return payload
 
     def postprocess(self, predictions: List) -> List:

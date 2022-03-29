@@ -46,14 +46,12 @@ class Transformer(kfserving.KFModel):
             f.write(data)
         data = pd.read_csv(filename)
         payload = {"instances": data.values.tolist(), "token": inputs["token"]}
-        logging.info("token =======> %s", str(inputs["token"]))
         return payload
 
     def postprocess(self, predictions: List) -> List:
         logging.info("prep =======> %s", str(type(predictions)))
         preds = predictions["predictions"]
-        res = f'Your insurance charges would be: ${round(preds[0],2)}'
-        return {"result": res}
+        return {"result": preds}
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)

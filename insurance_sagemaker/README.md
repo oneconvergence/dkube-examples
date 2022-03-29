@@ -2,7 +2,7 @@
 This example demonstrates the deployment of model into sagemaker (outside Dkube) and monitoring on Dkube.
 ## Prerequisites
 - **(S3 bucket is required)**. You need access and secret keys to access the bucket.
-- Sagemaker access is required.
+- Sagemaker access with execution role is required.
 
 ### Section 1: Create Dkube Resources
 Add Code. Create Code Repo in Dkube with the following information
@@ -13,7 +13,11 @@ Add Code. Create Code Repo in Dkube with the following information
 - Create an IDE (JupyterLab)
    - Use sklearn framework
    - Add the following environment variables with your secret values in configuration tab
-       - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, BUCKET, ROLE, REGION_NAME
+       - **AWS_ACCESS_KEY_ID**
+       - **AWS_SECRET_ACCESS_KEY** 
+       - **BUCKET** (Bucket name where the model files and logs will get stored)
+       - **ROLE** (AWS IAM Role ARN, eg: `arn:aws:iam::123456789:role/service-role/AmazonSageMaker-ExecutionRole-YYYYMMDDTSSSSS`)
+       - **REGION_NAME** (AWS region name, eg: us-east-1)
    - Click on submit.
    - From **workspace/sagemaker/insurance_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb). This step will create the resources required.
 
@@ -27,5 +31,4 @@ Run all the cells of [modelmonitor.ipynb](https://github.com/oneconvergence/dkub
  After your experiment is complete.
 -  Open resources.ipynb(and set CLEANUP=True) in last Cleanup cell and run
 -  Open modelmonitor.ipynb(and set CLEANUP=True) in the last Cleanup cell and run.
-
-
+- Open sagemaker-insurance.ipynb (and set CLEANUP=True) in the last Cleanup cell and run.

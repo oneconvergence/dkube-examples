@@ -1,13 +1,4 @@
-This repository contains examples for various functions for DKube. Dkube supports Tensorflow, Pytorch, Sklearn frameworks for end to end development and deployments. To see examples for a particular framework/Language, choose the appropriate git branch.
-
-
-### Branches
-
-- tensorflow - contains examples using tensorflow + python
-- pytorch - contains examples using pytorch + python
-- sklearn - contains examples using sklearn + python
-- R - contains examples using tensorflow + R
-- monitoring - contains examples using various data sources and showcase the model monitoring feature of DKube.
+This branch contains examples for monitoring a deployment. A deployment could be an inference service deployed on local DKube or external SageMaker/DKube clusters. The examples showcase Deployment service monitoring (Health of a deployment) as well as model drift and performance monitoring. For model monitoring, we support classification and regression models for tabular or image data. 
 
 ### Model Monitoring Examples
 

@@ -29,6 +29,6 @@ Run all the cells of [data_generation.ipynb](https://github.com/oneconvergence/d
 Run all the cells of [modelmonitor.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/modelmonitor.ipynb).This will create the model monitor in Dkube.
 ### Section 5: Cleanup
  After your experiment is complete.
--  Open resources.ipynb(and set CLEANUP=True) in last Cleanup cell and run
--  Open modelmonitor.ipynb(and set CLEANUP=True) in the last Cleanup cell and run.
 - Open sagemaker-insurance.ipynb (and set CLEANUP=True) in the last Cleanup cell and run.
+-  Open modelmonitor.ipynb(and set CLEANUP=True) in the last Cleanup cell and run.
+-  Open resources.ipynb(and set CLEANUP=True) in last Cleanup cell and run

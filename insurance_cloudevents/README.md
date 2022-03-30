@@ -87,6 +87,7 @@ Configure your SMTP server settings on Operator screen. This is optional. If SMT
 
 ## Section 6: Cleanup
 1. After your experiment is complete, 
-   - Open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and set CLEANUP=True in last Cleanup cell and run.
    - Open [modelmonitor.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/modelmonitor.ipynb) and set CLEANUP=True in last Cleanup cell and run.
+   - Open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and set CLEANUP=True in last Cleanup cell and run.
+
 

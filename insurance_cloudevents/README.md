@@ -30,15 +30,18 @@
    - Use sklearn framework  
 3. Click Submit.
 4. Open Jupyterlab and from **workspace/insurance/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
+     - **DKUBE_IP** = {IP of the DKube setup without https:// and without port number eg: 1.2.3.4}
      - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
-     - **S3_KEY** = {MINIO access key}
-     - **S3_SECRET_KEY** = {MINIO access secret key}
-     - **S3_ENDPOINT** = {MINIO Endpoint}
+     - **MINIO_KEY** = {MINIO access key}
+     - **MINIO_SECRET_KEY** = {MINIO access secret key}
      - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
+6. MINIO_KEY and MINIO_SECRET values can be obtained by running the following commands from the DKube Full setup terminal,
+    - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+    - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
 
 ### Launch IDE (Outside Dkube)
 
@@ -46,13 +49,13 @@
 
 1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb)
 2. Open the notebook and fill the details in the first cell.
-   - **DKUBEUSERNAME** = {your dkube username}
-   - **MODELMONITOR_NAME** = {your model monitor name}
-   - **TOKEN** = {your dkube authentication token}
-   - **DKUBE_URL** = {your dkube url}
-   - **S3_KEY** = {MINIO access key}
-     - **S3_SECRET_KEY** = {MINIO access secret key}
-     - **S3_ENDPOINT** = {MINIO Endpoint}
+    - **DKUBE_IP** = {IP of the DKube Full setup without https:// and without port number eg: 1.2.3.4}
+    - **DKUBEUSERNAME** = {your dkube username}
+    - **MODELMONITOR_NAME** = {your model monitor name}
+    - **TOKEN** = {your dkube authentication token}
+    - **DKUBE_URL** = {your dkube url}
+    - **MINIO_KEY** = {MINIO access key of Dkube Full setup where deployment is running}
+    - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube Full setup where deployment is running}
 3. Run all the cells.
 
 **Note:** In case the monitor is being created on minimal DKube fill the **DKUBEUSERNAME**, **TOKEN**, and **DKUBE_URL** for the minimal DKube. 
@@ -81,6 +84,8 @@ DKube provides Python SDK for creating a modelmonitor programmatically. You coul
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/data_generation.ipynb) notebook for making predictions with the deployemnt endpoint and generate groundtruth datasets.
 2. In 1st cell, Update Frequency according to what you set in Modelmonitor for Drift. For eg: for 5 minutes, specify it as `5m` and to specify the frequency in hours use `5h` for 5 hours interval.
 3. Then Run All Cells. It will start Pushing the data. It uses the data definitions specified in resources.ipynb file.
+
+**Note:** Livedata will be created on the MINIO under deployment id. In the case of minimal dkube, we will create on the remote minio where deployments are running.
 
 ## Section 5: SMTP Settings (Optional)
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.

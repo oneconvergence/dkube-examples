@@ -1,22 +1,72 @@
 {
-	"mse": {
-		"hard": 43601921.76,
-		"soft": 39968428.279999994
-	},
-	"rmse": {
-		"hard": 7233.360000000001,
-		"soft": 6630.58
-	},
-	"mae": {
-		"hard": 4882.68,
-		"soft": 4475.79
-	},
-	"mape": {
-		"hard": 0.5250794400000001,
-		"soft": 0.48132282000000004
-	},
-	"r2_score": {
-		"hard": 0.8795999999999999,
-		"soft": 0.8063
-	}
+    "mae": {
+        "type": "performance",
+        "soft": 150000,
+        "hard": 165000
+    },
+    "mape": {
+        "type": "performance",
+        "soft": 10,
+        "hard": 15
+    },
+    "mse": {
+        "type": "performance",
+        "soft": 20000000000,
+        "hard": 25000000000
+    },
+    "r2_score": {
+        "type": "performance",
+        "soft": 0.8063,
+        "hard": -40
+    },
+    "rmse": {
+        "type": "performance",
+        "soft": 167000,
+        "hard": 170000
+    },
+    "prediction_rate": {
+	"type": "health",
+	"soft": 0.006,
+	"hard": 0.010
+    },
+    "error_rate": {
+	"type": "health",
+	"soft": 0,
+	"hard": 0.003
+    },
+    "average_latency": {
+	"type": "health",
+	"soft": 500,
+	"hard": 1000
+    },
+    "cpu_usage": {
+	"type": "health",
+	"soft": 0.01,
+	"hard": 0.02
+    },
+    "memory": {
+	"type": "health",
+	"soft": 400,
+	"hard": 500
+    },
+    "age": {
+	"type": "drift",
+	"soft": 0.7,
+	"hard": 0.1
+    },
+    "sex": {
+	"type": "drift",
+	"soft": 0.3,
+	"hard": 0.1
+    },
+    "bmi": {
+	"type": "drift",
+	"soft": 0.5,
+	"hard": 0.1
+    },
+    "smoker": {
+	"type": "drift",
+	"soft": 0.5,
+	"hard": 0.1
+    }
 }

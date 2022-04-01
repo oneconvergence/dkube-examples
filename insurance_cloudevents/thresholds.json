@@ -24,30 +24,35 @@
         "soft": 167000,
         "hard": 170000
     },
-    "prediction_rate": {
+    "requests_rate": {
 	"type": "health",
 	"soft": 0.006,
 	"hard": 0.010
     },
-    "error_rate": {
+    "4xx_requests_rate": {
 	"type": "health",
 	"soft": 0,
 	"hard": 0.003
     },
-    "average_latency": {
+    "5xx_requests_rate": {
+	"type": "health",
+	"soft": 0,
+	"hard": 0.003
+    },
+    "latency_avg": {
 	"type": "health",
 	"soft": 500,
 	"hard": 1000
     },
-    "cpu_usage": {
+    "cpu_utilization": {
 	"type": "health",
 	"soft": 0.01,
 	"hard": 0.02
     },
-    "memory": {
+    "memory_utilization": {
 	"type": "health",
-	"soft": 400,
-	"hard": 500
+	"soft": 400000000,
+	"hard": 500000000
     },
     "age": {
 	"type": "drift",

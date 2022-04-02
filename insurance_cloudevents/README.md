@@ -30,7 +30,7 @@
    - Use sklearn framework  
 3. Click Submit.
 4. Open Jupyterlab and from **workspace/insurance/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
-     - **DKUBE_IP** = {IP of the DKube setup without https:// and without port number eg: 1.2.3.4}
+     - **DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}
      - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
      - **MINIO_KEY** = {MINIO access key}
@@ -39,7 +39,7 @@
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
-6. MINIO_KEY and MINIO_SECRET values can be obtained by running the following commands from the DKube Full setup terminal,
+6. MINIO_KEY and MINIO_SECRET values can be obtained by running the following commands on the DKube setup where the prediction deployment is running
     - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
     - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
 
@@ -49,13 +49,13 @@
 
 1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb)
 2. Open the notebook and fill the details in the first cell.
-    - **DKUBE_IP** = {IP of the DKube Full setup without https:// and without port number eg: 1.2.3.4}
+    - **DKUBE_IP** = {IP address of the DKube where the prediction deployment is running}
     - **DKUBEUSERNAME** = {your dkube username}
     - **MODELMONITOR_NAME** = {your model monitor name}
     - **TOKEN** = {your dkube authentication token}
     - **DKUBE_URL** = {your dkube url}
-    - **MINIO_KEY** = {MINIO access key of Dkube Full setup where deployment is running}
-    - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube Full setup where deployment is running}
+    - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
+    - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
 3. Run all the cells.
 
 **Note:** In case the monitor is being created on minimal DKube fill the **DKUBEUSERNAME**, **TOKEN**, and **DKUBE_URL** for the minimal DKube. 

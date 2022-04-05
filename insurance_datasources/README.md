@@ -101,13 +101,14 @@
 
 #### Note: This uses DKube Runs, Kubeflow Pipelines and KfServing. If your DKube configuration doesn't support this, please skip this step and go to Modelmonitoring Section. This is the case with minimal DKube.
 
-1. Set `USE_REMOTE_DEPLOYMENT` to False in **resources.ipynb** in 1st cell and run all the cells.
-2. From **workspace/insurance/insurance_datasources** open **train.ipynb** to build the pipeline.
-3. The pipeline includes preprocessing, training and serving stages. Run all cells
+
+1. From **workspace/insurance/insurance_datasources** open **train.ipynb** to build the pipeline.
+  - This notebook trains and deploys a model locally. Therefore, it sets the `USE_REMOTE_DEPLOYMENT` to False.  
+2. The pipeline includes preprocessing, training and serving stages. Run all cells
      - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
      - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
      - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference. 
-4. Verify that the pipeline has created the following resources
+3. Verify that the pipeline has created the following resources
      - Datasets: 'insurance-training-data' with version v2.
      - Model: 'insurance-model' with version v2
 

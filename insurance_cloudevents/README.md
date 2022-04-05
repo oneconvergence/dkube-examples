@@ -39,7 +39,7 @@
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
-6. MINIO_KEY and MINIO_SECRET values can be obtained by running the following commands on the DKube setup where the prediction deployment is running
+6. MINIO_KEY and MINIO_SECRET values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
     - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
     - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
 

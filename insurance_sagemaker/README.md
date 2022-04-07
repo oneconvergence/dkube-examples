@@ -5,12 +5,13 @@ This example demonstrates the deployment of model into sagemaker (outside Dkube)
 - Sagemaker access with execution role is required.
 
 ### Section 1: Create Dkube Resources
-Add Code. Create Code Repo in Dkube with the following information
+- Add Code. Create Code Repo in Dkube with the following information
   -  Name: sagemaker
   -  Source: Git
   -  URL: https://github.com/oneconvergence/dkube-examples.git
   -  Branch : monitoring
 - Create an IDE (JupyterLab)
+   - In case you are running a Jupyterlab IDE already, you can fill the secret values in [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb) and skip the IDE creation.
    - Use sklearn framework
    - Add the following environment variables with your secret values in configuration tab
        - **AWS_ACCESS_KEY_ID**

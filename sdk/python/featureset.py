@@ -117,7 +117,7 @@ if __name__ == "__main__":
     preprocess_name = generate('mnist-fs')
     preprocess = DkubePreprocessing(
         user, name=preprocess_name, description='triggered from dkube sdk')
-    preprocess.update_container(image_url="ocdr/d3-datascience-tf-cpu:v1.14")
+    preprocess.update_container(image_url="ocdr/dkube-datascience-tf-cpu:v2.3.0-10")
     preprocess.update_startupscript("sleep 20")
     preprocess.add_code(code_name)
     preprocess.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     
     training_name= generate('mnist')
     training = DkubeTraining(user, name=training_name, description='triggered from dkube sdk')
-    training.update_container(framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
+    training.update_container(framework="tensorflow_2.0.0", image_url="ocdr/dkube-datascience-tf-cpu:v2.0.0-10")
     training.update_startupscript("python model.py")
     #training.update_startupscript("sleep 1000")
     training.add_code(code_name)

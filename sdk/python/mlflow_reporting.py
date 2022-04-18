@@ -48,7 +48,7 @@ def create_dkube_run(url, token, user):
     training = DkubeTraining(user, name=training_name,
                              description='Run to test mlflow metric reporting')
     training.update_container(
-        framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
+        framework="tensorflow_2.0.0", image_url="ocdr/dkube-datascience-tf-cpu:v2.0.0-10")
     training.add_code('mlflow-test')
     training.disable_execution()
     api.create_training_run(training, wait_for_completion=False)

@@ -27,7 +27,7 @@ if __name__ == "__main__":
     
     training_name= generate('mnist')
     training = DkubeTraining(user, name=training_name, description='triggered from dkube sdk')
-    training.update_container(framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu:v1.14")
+    training.update_container(framework="tensorflow_2.0.0", image_url="ocdr/dkube-datascience-tf-cpu:v2.0.0-10")
     training.update_startupscript("python model.py")
     training.add_code(code_name)
     training.add_input_dataset(dataset_name, mountpath='/opt/dkube/input')
@@ -40,11 +40,11 @@ if __name__ == "__main__":
 
     jl_notebook_name= generate('mnist')
     jl_notebook = DkubeIDE(user, name=jl_notebook_name, description='triggered from dkube sdk')
-    jl_notebook.update_container(framework="tensorflow_1.14", image_url="ocdr/d3-datascience-tf-cpu-multiuser:v1.14-4")
+    jl_notebook.update_container(framework="tensorflow_2.0.0", image_url="ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-10")
     
     rs_notebook_name= generate('mnist')
     rs_notebook = DkubeIDE(user, name=rs_notebook_name, description='triggered from dkube sdk')
-    rs_notebook.update_container(framework="tensorflow_1.14", image_url="ocdr/dkube-datascience-rs-tf-cpu-multiuser:v1.14-4")
+    rs_notebook.update_container(framework="tensorflow_2.0.0", image_url="ocdr/dkube-datascience-rs-tf-cpu-multiuser:v2.0-10")
     
     api.create_code(code)
     api.create_dataset(dataset)

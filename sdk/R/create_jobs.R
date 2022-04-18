@@ -13,8 +13,8 @@ dataset_name <- 'mnist-1532'
 model_name <- 'mnist'
 training_code <- "python model.py"
 transformer_code <- "tf/classification/mnist-fs/digits/transformer/transformer.py"
-framework <- "tensorflow_1.14"
-training_image <- "ocdr/d3-datascience-tf-cpu:fs-v1.14"
+framework <- "tensorflow_2.0.0"
+training_image <- "ocdr/dkube-datascience-tf-cpu:fs-v2.0.0"
 inp_path <- "/opt/dkube/input"
 out_path <- "/opt/dkube/output"
 
@@ -32,5 +32,5 @@ serving <- dkube$sdk$rsrcs$DkubeServing(user, name=serving_name, description='se
 serving$update_transformer_code(code=code_name, code=transformer_code)
 serving$update_transformer_image(image_url=training_image)
 serving$update_serving_model(model_name)
-serving$update_serving_image(image_url='ocdr/tensorflowserver:1.14')
+serving$update_serving_image(image_url='ocdr/tensorflowserver:2.0.0')
 api$create_test_inference(serving)

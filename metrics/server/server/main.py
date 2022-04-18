@@ -45,5 +45,5 @@ async def get_metrics(request: MetricRangeRequest, current_user: str = Depends(g
     index += 1
     data = []
     for k,v in metric.items():
-        data.append({"metric":{"name":k}, "values": [[time.time(), v]]})
+        data.append({"metric":{"name":k}, "values": [[int(time.time()), v]]})
     return {"status": "success", "data": data}

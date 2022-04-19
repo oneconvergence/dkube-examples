@@ -8,18 +8,25 @@ print("*******************Custom Metrics Generator***************************")
 url = "http://dkube-exporter.dkube:9401/modelmonitor/metrics"
 monitor_id = os.getenv("MM_ID")
 run_id = os.getenv("MM_RUNID")
-
-with open(MM_CONFIG_FILE) as f:
+performance_frequency = 0
+with open(os.getenv("MM_CONFIG_FILE")) as f:
     configuration = json.load(f)
-
-metric_value = random.random()
+    if configuration:
+        drift_monitoring = configuration.get("performance_monitoring")
+        performance_frequency = drift_monitoring.get("frequency", 0)
+    
+if not performance_frequency: 
+    exit(f"performance frequency is {performance_frequency}, it should be greater than 5 minutes")
 
 def get_timestamp():
     run_end_time = int(time.time())
-    run_freq = configuration["drift_monitoring"]["frequency"] * 60
+    run_freq = performance_frequency * 60
     run_end_time = run_end_time - (run_end_time % run_freq )
     return run_end_time
 
+    
+
+metric_value = random.random()
 payload = json.dumps({
   "id": monitor_id,
   "timestamp": get_timestamp(),

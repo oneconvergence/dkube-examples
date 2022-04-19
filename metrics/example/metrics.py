@@ -11,7 +11,7 @@ monitor_id = os.getenv("MM_ID")
 run_id = os.getenv("MM_RUNID")
 
 with open(MM_CONFIG_FILE) as f:
-    configuration = json.load(f
+    configuration = json.load(f)
 
 metric_value = random.random()
 

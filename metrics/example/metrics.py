@@ -1,5 +1,5 @@
 import json
-import math,sys,time
+import math,os,time
 import random
 import requests
 import datetime
@@ -7,7 +7,6 @@ import datetime
 print("*******************Custom Metrics Generator***************************")
 url = "http://dkube-exporter.dkube:9401/modelmonitor/metrics"
 monitor_id = os.getenv("MM_ID")
-print(monitor_id)
 run_id = os.getenv("MM_RUNID")
 
 with open(MM_CONFIG_FILE) as f:

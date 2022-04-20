@@ -4,7 +4,7 @@
 ## 1. Create Model Monitor
 1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
 - If it is external, click on Deployments in the left tab and import a deployment by filling the details. 
-- For this example, you could import a Deployment just by specifying a valid Name and click on Import and submit the form. None of the other parameters need to be filled in.
+  - For this example, you could import a Deployment just by specifying the same name you specified in resources.ipynb for MONITOR_NAME and click on Import and submit the form. None of the other parameters need to be filled in.
 2. click on Add Monitor in the actions tab.
 3. In Basics Tab, select the **Model type** as Regression, **Model input** as Tabular and give the timezone as UTC.
 

@@ -31,15 +31,6 @@
     - Select dataset format as Tabular.
     - Provide sql query as "select * from insurance_predict"
 
-### 3. Update Schema
-1. Edit the model monitor
-2. Go to schema and change
-  - charges as prediction output.
-  - unique_id as RowID
-  - Timestamp as timestamp
-3. Select all or interested Input features.
-4. Click Next and save.
-
 ### 4. Performance Monitoring
 1. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
 )
@@ -66,7 +57,16 @@
 
 4. Click on Submit.
 
-### 5. Alerts
+### 5. Update Schema
+1. Edit the model monitor
+2. Go to schema and change
+  - charges as prediction output.
+  - unique_id as RowID
+  - Timestamp as timestamp
+3. Select all or interested Input features.
+4. Click Next and save.
+
+### 6. Alerts
 Add Feature Drift Alerts
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
  - Suggest to configure a separate alert for each individual feature.
@@ -79,7 +79,7 @@ Add Performance Decay Alerts
   - Provide a percentage threshold value between 5 to 10 and save.
 
 
-### 6. Start Monitor.
+### 7. Start Monitor.
 Click on Start for the specific monitor on Modelmonitor dashboard.
    - Modelmonitor can only be started in 'ready' state.
    - It can be stopped anytime. Previous data will not be erased.

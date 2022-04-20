@@ -13,12 +13,12 @@
 2. **Add Train Data** :
 -  If data source is **aws_s3 / local**
    - Select dataset as insurance-data and version as v1 if your data source is aws_s3 or local.
-   - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/transform-data.py)
+   - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/transform-data.py)
 - If your datasource is **sql**
   - Select dataset as insurance-data-sql.
   - Select dataset format as Tabular.
   - Provide sql query as "select * from insurance"
-  - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/transform-data.py)
+  - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/transform-data.py)
 
 3. **Add Predict Data**:
 - If data source is **aws_s3 / local**
@@ -41,7 +41,7 @@
 4. Click Next and save.
 
 ### 4. Performance Monitoring
-1. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/performance_soft_thresholds.json)
+1. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
 )
 2. In Compute Metrics select Labelled dataset
 1. **If source is S3** :

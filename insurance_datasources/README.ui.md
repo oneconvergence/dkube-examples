@@ -9,8 +9,9 @@
 3. In Basics Tab, select the **Model type** as Regression, **Model input** as Tabular and give the timezone as UTC.
 
 ### 2. Drift Monitoring
-1. Check Enabled option and provide frequency as 5 minutes and algorithm as auto.
-2. **Add Train Data** :
+1. Goto Drift tab
+2. Check Enabled option and provide frequency as 5 minutes and algorithm as auto.
+3. **Add Train Data** :
 -  If data source is **aws_s3 / local**
    - Select dataset as insurance-data and version as v1 if your data source is aws_s3 or local.
    - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/transform-data.py)
@@ -32,7 +33,8 @@
     - Provide sql query as "select * from insurance_predict"
 
 ### 4. Performance Monitoring
-1. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
+1. Goto Performance tab
+2. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
 )
 2. In Compute Metrics select Labelled dataset
 1. **If source is S3** :

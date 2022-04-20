@@ -95,6 +95,8 @@
      - **DBUSERNAME** = {your username}
      - **DBPASSWORD** = {your password}
      - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)
+   - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
+     - **RUN_FREQUENCY** = {integer value. units are minutes}
 3. Run all the cells.
 
 ## Section 2: Insurance Model Training (Optional)
@@ -121,8 +123,7 @@
 
 ## Section 3: Data Generation
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_datasources/data_generation.ipynb) notebook for generating predict and groundtruth datasets.
-2. In 1st cell, Update Frequency according to what you set in Modelmonitor. If the **d3qatest** tag was provided when creating a modelmonitor, specify the frequency in minutes. For eg: for 5 minutes, specify it as `5m`. If **d3qatest** tag was not specified on the modelmonitor, specify the frequency in hours. use `5h` for 5 hours interval.
-3. Then Run All Cells. It will start Pushing the data. It uses the data definitions specified in resources.ipynb file.
+2. Run All Cells. It will start Pushing the data. It uses the data definitions specified in resources.ipynb file.
 
 ## Section 4: Modelmonitoring
 DKube provides Python SDK for creating a modelmonitor programmatically. You could also choose to create a modelmonitor from the DKube UI. Follow one of the following workflows as per your need.

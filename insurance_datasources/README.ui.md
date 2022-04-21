@@ -34,8 +34,7 @@
 
 ### 4. Performance Monitoring
 1. Goto Performance tab
-2. Check Enabled option and provide frequency as 5 minutes and upload soft thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
-)
+2. Check Enabled option and provide frequency as 5 minutes 
 2. In Compute Metrics select Labelled dataset
 1. **If source is S3** :
   -  Dataset: {model-monitor}-groundtruth
@@ -75,14 +74,33 @@
 Add Feature Drift Alerts
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
  - Suggest to configure a separate alert for each individual feature.
- - Use a threshold between 0 to 1. generally advised 0.05 to 0.1 for all categorical or all continuous columns columns.
- - It fires an alert when calculated drift goes under the configured threshold
+ - Use a threshold between 0 to 1. generally advised 0.01 to 0.1 for all categorical or all continuous columns columns.
+ - It fires an alert when calculated drift goes under the configured threshold.
 
 Add Performance Decay Alerts
   - Create an alert and choose Performance Decay from dropdown.
-  - Select percentage and choose metrics from down.
-  - Provide a percentage threshold value between 5 to 10 and save.
+  - Select absolute and choose metrics from down.
+  - Provide absolute threshold value. 
+    - Example. for mae metric, specify 2000 as threshold
+    - Depending on the metric, choose > or < operator. For mae, choose >
+  - It fires an alert when mae value goes above 2000
 
+Notes:
+ - You could also configure *Breach incidents*. If the metric continuously braches the specified number of times, it is considered alert. 
+ - A follow up action could be specified to send an email. SMTP configuration needs to be specified on Configuration page on Operator view.
+ - You could also combine multiple conditions while creating an alert. This can be done by clicking on *+* button
+A complex 
+
+### 7. Thresholds
+1. Click on *Upload thresholds* and upload the sample thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
+)
+- Soft and Hard thresholds are configured for each metric. Status of a metric is computed as follows.
+  - Breaching soft threshold is considered a warning and is represented using the color *Orange*
+  - Breaching hard threshold is considered critical and is represented using the color *Red*
+  - Otherwise the metric is considered healthy and is represented using the color *Green*
+- This computed information is also shown on monitors tab. 
+  - Drift monitoring is considered critical if any one of the drift features are in critical state
+  - Performance monitoring is considered critical if any one of the performance metrics are in critical state
 
 ### 7. Start Monitor.
 Click on Start for the specific monitor on Modelmonitor dashboard.

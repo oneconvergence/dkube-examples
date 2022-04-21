@@ -92,8 +92,7 @@ Notes:
 A complex 
 
 ### 7. Thresholds
-1. Click on *Upload thresholds* and upload the sample thresholds from [link]([link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
-)
+1. Click on *Upload thresholds* and upload the sample thresholds from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance_datasources/thresholds.json)
 - Soft and Hard thresholds are configured for each metric. Status of a metric is computed as follows.
   - Breaching soft threshold is considered a warning and is represented using the color *Orange*
   - Breaching hard threshold is considered critical and is represented using the color *Red*

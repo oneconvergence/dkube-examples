@@ -75,7 +75,7 @@
 Add Feature Drift Alerts
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
  - Suggest to configure a separate alert for each individual feature.
- - Use a threshold between 0 to 1. generally advised 0.05 to 0.1 for all categorical or all continuous columns columns,  0.05 to 0.01 for mixed categorical and continuous columns columns.
+ - Use a threshold between 0 to 1. generally advised 0.05 to 0.1 for all categorical or all continuous columns columns.
  - It fires an alert when calculated drift goes under the configured threshold
 
 Add Performance Decay Alerts

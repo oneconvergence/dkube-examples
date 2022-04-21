@@ -57,15 +57,18 @@
 - Select Prediction column name as “charges”
 - Select Groundtruth column name as GT_target.
 
-4. Click on Submit.
+4. Click on Submit. 
+- Monitor goes to baselining state while it performs transformation and computes schema.
+- When the computation completes, it automatically takes you to schema page.
+- You could also choose go back to Dashboard and click on update schema action.
 
 ### 5. Update Schema
-1. Edit the model monitor
-2. Go to schema and change
+1. If you are already on schema page, go to step 2. Otherwise, click on update schema action button.
+2. Update the following
   - charges as prediction output.
   - unique_id as RowID
   - Timestamp as timestamp
-3. Select all or interested Input features.
+  - Select all or interested Input features.
 4. Click Next and save.
 
 ### 6. Alerts

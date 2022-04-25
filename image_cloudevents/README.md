@@ -1,5 +1,3 @@
-# This example is currently in development phase.
-
 # CHEST-XRAY IMAGE EXAMPLE
 
 - This example only supports predict dataset sources as **CloudEvents**. 

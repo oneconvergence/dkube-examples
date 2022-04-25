@@ -3,58 +3,33 @@
 
 ## 1. Create Model Monitor
 1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
-If it is external, click on Deployments in the left tab and import a deployment by filling the details.
+If it is external, then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
 2. click on Add Monitor in the actions tab.
 3. In Basics Tab, select the Model type as Regression and give the timezone as UTC.
 
 ### 2. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as auto.
 2. **Add Train Data** :
--  If data source is **aws_s3 / local**
-   - Select dataset as insurance-data and version as v1 if your data source is aws_s3 or local.
+   - Select dataset as `insurance-data` and version as v1 if your data source is aws_s3 or local.
    - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/transform-data.py)
-- If your datasource is **sql**
-  - Select dataset as insurance-data-sql.
-  - Select dataset format as Tabular.
-  - Provide sql query as "select * from insurance"
-  - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/monitoring/insurance/transform-data.py)
 
 3. **Add Predict Data**:
 - If data source is **aws_s3 / local**
-     -  Select dataset as {MONITOR_NAME}-predict.
-     -  If the dataset is local then select the version as v1.
-     -  Select dataset format as Tabular.
+     -  Select dataset `insurance-mm-kf-s3`.
+     -  Fill deployment ID in Prefix/Subpath
+     -  Select dataset content as **Cloudevents**.
      -  Date suffix is yyyy/dd/mm/hh
-- If your datasource is **sql**, 
-    - Select dataset as insurance-data-sql.
-    - Select dataset format as Tabular.
-    - Provide sql query as "select * from insurance_predict"
 
 ### 3. Performance Monitoring
 1. Check Enable and provide frequency as 5 minutes.
 2. In Compute Metrics select Labelled dataset
-1. **If source is S3** :
-  -  Dataset: {model-monitor}-groundtruth
+  -  Select dataset `insurance-mm-kf-s3`.
   -  Dataset Format : Tabular
-  -  Select Prediction column name as “charges”
-  -  Select Groundtruth column name as GT_target.
-
-2. **If source is local** :
-  -  Dataset: {model-monitor}-groundtruth
-  -  Dataset Format : Tabular
-  -  Select Dataset Version as v1.
   -  Fill Prediction column name as “charges”
   -  Fill Groundtruth column name as "GT_target".
   -  Fill timestamp column as "timestamp"
 
-3. **If source is sql**:
-  - Dataset : insurance-data-sql
-  - Sql query field : select * from insurance_gt
-  - Dataset Format : Tabular
-  - Select Prediction column name as “charges”
-  - Select Groundtruth column name as GT_target.
-
-4. Click on Submit.
+3. Click on Submit.
 
 ### 4. Update Schema
 1. Edit the model monitor
@@ -77,10 +52,9 @@ Add Performance Decay Alerts
   - Select `mse` metric from down.
   - Provide 2000 as threshold value.
 
-
 ### 6. Upload threshold file, 
 - From model monitor actions, click on Upload thresholds. 
-- Download the threshold file [thresholds.json](https://github.com/oneconvergence/dkube-examples/blob/monitoring/insurance_datasources/thresholds.json) and upload.
+- Download the threshold file [thresholds.json](https://github.com/oneconvergence/dkube-examples/blob/monitoring/insurance_cloudevents/thresholds.json) and upload.
 
 ### 7. Start Monitor.
 Click on Start for the specific monitor on Modelmonitor dashboard.

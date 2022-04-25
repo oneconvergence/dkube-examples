@@ -1,4 +1,4 @@
-# MODEL MONITORING INSURANCE EXAMPLE (UI)
+# MODEL MONITORING INSURANCE CLOUDEVENTS EXAMPLE (UI)
 
 
 ## 1. Create Model Monitor
@@ -24,6 +24,7 @@ If it is external, then first add the cluster and click on Deployments in the le
 1. Check Enable and provide frequency as 5 minutes.
 2. In Compute Metrics select Labelled dataset
   -  Select dataset `insurance-mm-kf-s3`.
+  -  Prefix/subpath: {deployment ID}/livedata
   -  Dataset Format : Tabular
   -  Fill Prediction column name as “charges”
   -  Fill Groundtruth column name as "GT_target".

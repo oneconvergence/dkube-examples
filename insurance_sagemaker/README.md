@@ -6,7 +6,7 @@ This example demonstrates the deployment of model into sagemaker (outside Dkube)
 
 ### Section 1: Create Dkube Resources
 - Add Code. Create Code Repo in Dkube with the following information
-  -  Name: sagemaker
+  -  Name: monitoring-examples
   -  Source: Git
   -  URL: https://github.com/oneconvergence/dkube-examples.git
   -  Branch : monitoring

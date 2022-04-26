@@ -19,6 +19,8 @@ This example demonstrates the deployment of model into sagemaker (outside Dkube)
        - **BUCKET** (Bucket name where the model files and logs will get stored)
        - **ROLE** (AWS IAM Role ARN, eg: `arn:aws:iam::123456789:role/service-role/AmazonSageMaker-ExecutionRole-YYYYMMDDTSSSSS`)
        - **REGION_NAME** (AWS region name, eg: us-east-1)
+       - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
+         - **RUN_FREQUENCY** = {integer value. units are minutes}
    - Click on submit.
    - From **workspace/sagemaker/insurance_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb). This step will create the resources required.
 

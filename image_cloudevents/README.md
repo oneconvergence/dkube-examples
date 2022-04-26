@@ -56,6 +56,8 @@
     - **DKUBE_URL** = {your dkube url}
     - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
     - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
+    - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
+         - **RUN_FREQUENCY** = {integer value. units are minutes}
 3. Run all the cells.
 
 **Note:** In case the monitor is being created on minimal DKube fill the **DKUBEUSERNAME**, **TOKEN**, and **DKUBE_URL** for the minimal DKube. 
@@ -82,7 +84,7 @@ DKube provides Python SDK for creating a modelmonitor programmatically. You coul
 
 ## Section 4: Data Generation
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_cloudevents/data_generation.ipynb) notebook for making predictions with the deployemnt endpoint and generate groundtruth datasets.
-2. In 1st cell, Update Frequency according to what you set in Modelmonitor for Drift. For eg: for 5 minutes, specify it as `5m` and to specify the frequency in hours use `5h` for 5 hours interval.
+2. In 1st cell, update no_of_monitoring_runs to set how many times you want to generate data for model monitor, by default it's set to 6.
 3. Then Run All Cells. It will start Pushing the data. It uses the data definitions specified in resources.ipynb file.
 
 **Note:** Livedata will be created on the MINIO under deployment id. In the case of minimal dkube, we will create on the remote minio where deployments are running.

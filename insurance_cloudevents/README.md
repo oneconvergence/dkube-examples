@@ -33,17 +33,17 @@
      - **DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}
      - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
-     - **MINIO_KEY** = {MINIO access key}
-     - **MINIO_SECRET_KEY** = {MINIO access secret key}
+     - **MINIO_KEY** = {MINIO access key}, **MINIO_SECRET_KEY** = {MINIO access secret key}
+       - MINIO_KEY and MINIO_SECRET values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
+         - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+         - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
      - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
      - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
          - **RUN_FREQUENCY** = {integer value. units are minutes}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
-6. MINIO_KEY and MINIO_SECRET values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
-    - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
-    - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
+
 
 ### Launch IDE (Outside Dkube)
 

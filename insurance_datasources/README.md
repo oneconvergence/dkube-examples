@@ -38,7 +38,7 @@
 #### Note: Follow the instructions if you are running Notebook IDE inside DKube.
 
 1. Add Code. Create Code Repo in Dkube with the following information
-  - Name: insurance
+  - Name: monitoring-examples
   - Source: Git
   - URL: https://github.com/oneconvergence/dkube-examples.git
   - Branch : monitoring

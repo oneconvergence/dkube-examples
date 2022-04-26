@@ -38,7 +38,7 @@
 #### Note: Follow the instructions if you are running Notebook IDE inside DKube.
 
 1. Add Code. Create Code Repo in Dkube with the following information
-  - Name: titanic
+  - Name: monitoring-examples
   - Source: Git
   - URL: https://github.com/oneconvergence/dkube-examples.git
   - Branch : monitoring
@@ -72,6 +72,8 @@
          - **DBUSERNAME** = {your username}
          - **DBPASSWORD** = {your password}
          - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)
+     - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
+         - **RUN_FREQUENCY** = {integer value. units are minutes}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
 
 ### Launch IDE (Outside Dkube)

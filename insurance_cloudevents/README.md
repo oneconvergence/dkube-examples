@@ -62,8 +62,17 @@
     - **MODELMONITOR_NAME** = {your model monitor name}
     - **TOKEN** = {your dkube authentication token}
     - **DKUBE_URL** = {your dkube url}
-    - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
-    - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
+    - **MINIO_KEY** = {MINIO access key}, **MINIO_SECRET_KEY** = {MINIO access secret key}
+       - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
+         - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
+           - `curl -X 'GET' \
+                'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
+                -H 'accept: application/json' \
+                -H 'Authorization: Bearer <TOKEN>'`
+         - If you have access to Kubernetes, you can get the secrets by running the following commands
+           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
+
 3. Run all the cells.
 
 **Note:** In case the monitor is being created on minimal DKube fill the **DKUBEUSERNAME**, **TOKEN**, and **DKUBE_URL** for the minimal DKube. 

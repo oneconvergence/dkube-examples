@@ -33,8 +33,16 @@
      - **DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}
      - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
-     - **MINIO_KEY** = {MINIO access key}
-     - **MINIO_SECRET_KEY** = {MINIO access secret key}
+     - **MINIO_KEY** = {MINIO access key} **MINIO_SECRET_KEY** = {MINIO access secret key}
+       - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
+         - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
+           - `curl -X 'GET' \
+                'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
+                -H 'accept: application/json' \
+                -H 'Authorization: Bearer <TOKEN>'`
+         - If you have access to Kubernetes, you can get the secrets by running the following commands
+           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
      - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
@@ -56,6 +64,15 @@
     - **DKUBE_URL** = {your dkube url}
     - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
     - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
+      - MINIO_KEY and MINIO_SECRET_KEY can be obtained in one of the following ways.
+         - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
+           - `curl -X 'GET' \
+                'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
+                -H 'accept: application/json' \
+                -H 'Authorization: Bearer <TOKEN>'`
+         - If you have access to Kubernetes, you can get the secrets by running the following commands
+           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
     - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
          - **RUN_FREQUENCY** = {integer value. units are minutes}
 3. Run all the cells.

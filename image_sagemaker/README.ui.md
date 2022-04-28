@@ -1,31 +1,38 @@
-# MODEL MONITORING IMAGE EXAMPLE (UI)
+# MODEL MONITORING IMAGE SAGEMAKER EXAMPLE (UI)
 
 ## 1. Create Model Monitor
-1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
-If it is external, then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
+1. Deployment in Dkube need to be external. First add the sagemaker cluster , and click on Deployments in the left tab and import a deployment by filling the details.
 2. click on Add Monitor in the actions tab.
 3. In Basics Tab, select the Model type as Classification and add below details, 
   - Data type: Image
   - Image Shape: Height:200, Width:200, Channels:1, Channel order: Channels Last
   - timezone as UTC.
 
-### 2. Drift Monitoring
+## 2. Add resources:
+1. **Add Cluster**
+  - From operator page add cluster.
+  - Cluster type Sagemaker
+  - Select Access keys authentication method.
+  - Provide your AWS access keys and region.
+  - Click Add cluster.
+
+### 3. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as Kolmogorov-Smirnov.
 2. **Add Train Data** :
    - Select dataset as `chest-xray` and version as v1 if your data source is aws_s3 or local.
 
 3. **Add Predict Data**:
 - If data source is **aws_s3 / local**
-     -  Select dataset `image-mm-kf-s3`.
-     -  Fill deployment ID in Prefix/Subpath
-     -  Select dataset content as **Cloudevents**.
+     -  Select dataset {MONITOR_NAME}-aws.
+     -  Prefix/Subpath: `sagemaker/Demo-ImageModelMonitor/datacapture/{MONITOR_NAME}/AllTraffic/`
+     -  Select dataset content as **Sagemakerlogs**.
      -  Date suffix is yyyy/dd/mm/hh
 
-### 3. Performance Monitoring
+### 4. Performance Monitoring
 1. Check Enable and provide frequency as 5 minutes.
 2. In Compute Metrics select Labelled dataset
-  -  Select dataset `image-mm-kf-s3`.
-  -  Prefix/subpath: {deployment ID}/livedata
+  -  Select dataset {MONITOR_NAME}-aws.
+  -  Prefix/Subpath: {MONITOR_NAME}/groundtruth
   -  Dataset Format : Tabular
   -  Fill Prediction column name as output
   -  Fill Groundtruth column name as "label".

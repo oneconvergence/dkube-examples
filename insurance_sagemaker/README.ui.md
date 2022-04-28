@@ -2,7 +2,7 @@
 
 
 ## 1. Create Model Monitor
-1. Deployment in Dkube need to be external. First add the sagemaker , then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
+1. Deployment in Dkube need to be external. First add the sagemaker cluster, and click on Deployments in the left tab and import a deployment by filling the details.
 2. click on Add Monitor in the actions tab.
 3. In Basics Tab, select the Model type as Regression and give the timezone as UTC.
 

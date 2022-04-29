@@ -12,7 +12,7 @@ This example demonstrates the deployment of model into sagemaker (outside Dkube)
   -  Branch : monitoring
 - Create an IDE (JupyterLab)
    - In case you are running a Jupyterlab IDE already, you can fill the secret values in [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb) and skip the IDE creation.
-   - Use sklearn framework
+   - Use Tensorflow framework with version 2.0.0
    - Add the following environment variables with your secret values in configuration tab
        - **AWS_ACCESS_KEY_ID**
        - **AWS_SECRET_ACCESS_KEY** 
@@ -22,7 +22,7 @@ This example demonstrates the deployment of model into sagemaker (outside Dkube)
        - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
          - **RUN_FREQUENCY** = {integer value. units are minutes}
    - Click on submit.
-   - From **workspace/sagemaker/insurance_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb). This step will create the resources required.
+   - From **workspace/monitoring-examples/insurance_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb). This step will create the resources required.
 
 ### Section 2: Deploy the model into sagemaker 
 Run all the cells of [sagemaker-insurance.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/sagemaker-insurance.ipynb). This step will deploy the model in sagemaker and create the endpoint.

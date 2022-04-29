@@ -12,7 +12,7 @@ If it is external, then first add the cluster and click on Deployments in the le
 ### 2. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as Kolmogorov-Smirnov.
 2. **Add Train Data** :
-   - Select dataset as `chest-xray-data` and version as v1 if your data source is aws_s3 or local.
+   - Select dataset as `chest-xray` and version as v1 if your data source is aws_s3 or local.
 
 3. **Add Predict Data**:
 - If data source is **aws_s3 / local**

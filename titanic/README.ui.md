@@ -1,4 +1,4 @@
-# MODEL MONITORING INSURANCE EXAMPLE (UI)
+# MODEL MONITORING Titanic EXAMPLE (UI)
 
 
 ## 1. Create Model Monitor
@@ -60,7 +60,7 @@ If it is external, click on Deployments in the left tab and import a deployment 
   -  Select Timestamp column as timestamp.
 
 3. **If source is sql**:
-  -  Dataset : insurance-data-sql
+  -  Dataset : titanic-data-sql
   -  Sql query field : select * from titanic_gt
   -  Dataset Format : Tabular
   -  Select Prediction column name as “Survived”
@@ -71,7 +71,7 @@ If it is external, click on Deployments in the left tab and import a deployment 
 
 ### 5. Alerts
 Add Feature Drift Alerts 
- - The datageneration script will be generating drift on the following features - age, fare, Pclass, Sibsp, Sex
+ - The datageneration script will be generating drift on the following features - Age, Fare, Pclass, Sibsp, Sex
  - Suggest to configure a separate alert for each individual feature. 
  - Use a threshold between 0 to 1. generally advised 0.05 to 0.1 for all categorical or all continious columns columns,  0.05 to 0.01 for mixed categorical and continious columns columns.
  - It fires an alert when calculated drift goes under the configured threshold
@@ -85,4 +85,3 @@ Add Performance Decay Alerts
 Click on Start for the specific monitor on Modelmonitor dashboard. 
    - Modelmonitor can only be started in 'ready' state.
    - It can be stopped anytime. Previous data will not be erased.
-

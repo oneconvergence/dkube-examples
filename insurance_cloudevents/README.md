@@ -27,7 +27,7 @@
   - URL: https://github.com/oneconvergence/dkube-examples.git
   - Branch : **monitoring**
 2. Create an IDE (JupyterLab)
-   - Use sklearn framework  
+   - Use Tensorflow framework with version 2.0.0
 3. Click Submit.
 4. Open Jupyterlab and from **workspace/monitoring-examples/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
      - **DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}

@@ -12,7 +12,7 @@ This example demonstrates the deployment of model into sagemaker (outside Dkube)
   -  Branch : monitoring
 - Create an IDE (JupyterLab)
    - In case you are running a Jupyterlab IDE already, you can fill the secret values in [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb) and skip the IDE creation.
-   - Use sklearn framework
+   - Use Tensorflow framework with version 2.0.0
    - Add the following environment variables with your secret values in configuration tab
        - **AWS_ACCESS_KEY_ID**
        - **AWS_SECRET_ACCESS_KEY** 

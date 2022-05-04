@@ -1,0 +1,27 @@
+{
+    "mae": {
+        "type": "performance",
+        "soft": 8500,
+        "hard": 10000
+    },
+    "mape": {
+        "type": "performance",
+        "soft": 0.3,
+        "hard": 0.5
+    },
+    "mse": {
+        "type": "performance",
+        "soft": 9500000,
+        "hard": 10000000
+    },
+    "r2_score": {
+        "type": "performance",
+        "soft": 0.8063,
+        "hard": 0.2
+    },
+    "rmse": {
+        "type": "performance",
+        "soft": 8500,
+        "hard": 10000
+    }
+}

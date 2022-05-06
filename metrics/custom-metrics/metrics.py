@@ -17,6 +17,7 @@ def get_timestamp():
     timestamp = int(time.time())
     return timestamp
 
+metrics_list = list()
 metrics = dict()
 metrics['timestamp'] = get_timestamp()
 metrics['mse'] = random.randrange(100000000, 150000000, 5) 
@@ -25,8 +26,9 @@ metrics['rmse'] = random.randrange(8000, 15000, 5)
 metrics['mape'] = round(random.uniform(0,1), 2)
 metrics['r2_score'] = round(random.uniform(0,1), 2)
 metrics['samples'] = random.randrange(0, 200, 5)
+metrics_list.append(metrics)
 
-formatted_metrics = json.dumps(metrics, indent=4) 
+formatted_metrics = json.dumps(metrics_list, indent=4) 
 with open(METRICS_FILE, "w") as f:
    f.write(formatted_metrics)
    f.flush()

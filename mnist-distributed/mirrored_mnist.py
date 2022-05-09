@@ -6,6 +6,7 @@ import gzip, pickle, os
 import numpy as np
 import tensorflow as tf
 import argparse
+import ast
 
 MODEL_DIR = "/model/"
 input_shape = (28, 28, 1)

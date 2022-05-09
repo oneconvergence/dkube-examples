@@ -30,7 +30,8 @@ def data_loader(hyperparams):
     )
     
 def model_with_strategy(learning_rate):
-    strategy = tf.distribute.MirroredStrategy()
+    gpus = tf.config.list_logical_devices('GPU')
+    strategy = tf.distribute.MirroredStrategy(gpus)
     with strategy.scope():
         model = keras.Sequential(
                 [

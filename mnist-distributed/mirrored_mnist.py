@@ -31,8 +31,7 @@ def data_loader(hyperparams):
     
 def model_with_strategy(learning_rate):
     gpus = tf.config.list_logical_devices('GPU')
-    if TF_CONFIG and ast.literal_eval(TF_CONFIG)['task']['type'] != 'ps':
-        strategy = tf.distribute.MirroredStrategy(gpus)
+    strategy = tf.distribute.MirroredStrategy(gpus)
     with strategy.scope():
         model = keras.Sequential(
                 [
@@ -58,7 +57,7 @@ class DistributedTraining(object):
         
     def train(self):
         if TF_CONFIG and ast.literal_eval(TF_CONFIG)['task']['type'] != 'ps':
-            model = model_with_strategy(self.learning_rate)i
+            model = model_with_strategy(self.learning_rate)
             #steps per epoch are reduced here to train on limited resources
             #you are free to remove this argument
             history = model.fit(self.train_dataset, 

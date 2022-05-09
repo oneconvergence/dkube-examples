@@ -11,6 +11,8 @@ MODEL_DIR = "/model/"
 input_shape = (28, 28, 1)
 num_classes = 10
 
+TF_CONFIG = os.environ.get('TF_CONFIG')
+
 def data_loader(hyperparams):
     f = gzip.open('/mnist/mnist.pkl.gz', 'rb')
     dataset = pickle.load(f, encoding='bytes')

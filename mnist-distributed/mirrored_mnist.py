@@ -31,7 +31,8 @@ def data_loader(hyperparams):
     
 def model_with_strategy(learning_rate):
     gpus = tf.config.list_logical_devices('GPU')
-    strategy = tf.distribute.MirroredStrategy(gpus)
+    if TF_CONFIG and ast.literal_eval(TF_CONFIG)['task']['type'] != 'ps':
+        strategy = tf.distribute.MirroredStrategy(gpus)
     with strategy.scope():
         model = keras.Sequential(
                 [
@@ -56,22 +57,23 @@ class DistributedTraining(object):
         self.train_dataset, self.test_dataset = data_loader(hyperparams)
         
     def train(self):
-        model = model_with_strategy(self.learning_rate)
-        #steps per epoch are reduced here to train on limited resources
-        #you are free to remove this argument
-        history = model.fit(self.train_dataset, 
-                            epochs=self.epochs,
-                            shuffle=True,
-                            steps_per_epoch=30,
-                            validation_data=self.test_dataset,
-                            validation_steps=30,
-                            verbose=0)
-        
-        tf.saved_model.save(model,MODEL_DIR + str(1))
-        val_losses = history.history['val_loss']
-        val_accuracies = history.history['val_accuracy']
-        for epoch, val_loss, val_accuracy in zip(range(self.epochs), val_losses, val_accuracies):
-          print("epoch {}:\nval_loss={:.2f}\nval_accuracy={:.2f}\n".format(epoch + 1, val_loss, val_accuracy))
+        if TF_CONFIG and ast.literal_eval(TF_CONFIG)['task']['type'] != 'ps':
+            model = model_with_strategy(self.learning_rate)i
+            #steps per epoch are reduced here to train on limited resources
+            #you are free to remove this argument
+            history = model.fit(self.train_dataset, 
+                                epochs=self.epochs,
+                                shuffle=True,
+                                steps_per_epoch=30,
+                                validation_data=self.test_dataset,
+                                validation_steps=30,
+                                verbose=0)
+            
+            tf.saved_model.save(model,MODEL_DIR + str(1))
+            val_losses = history.history['val_loss']
+            val_accuracies = history.history['val_accuracy']
+            for epoch, val_loss, val_accuracy in zip(range(self.epochs), val_losses, val_accuracies):
+              print("epoch {}:\nval_loss={:.2f}\nval_accuracy={:.2f}\n".format(epoch + 1, val_loss, val_accuracy))
           
           
 if __name__ == "__main__":

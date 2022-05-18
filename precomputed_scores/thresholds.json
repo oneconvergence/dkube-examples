@@ -1,13 +1,16 @@
 {
 	"accuracy": {
+        "type": "performance",
 		"hard": 0.890476152,
 		"soft": 0.816269806
 	},
 	"precision": {
+        "type": "performance",
 		"hard": 0.8795999999999999,
 		"soft": 0.8063
 	},
 	"f1_score": {
+        "type": "performance",
 		"hard": 0.67929912,
 		"soft": 0.62269086
 	}

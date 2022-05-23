@@ -14,7 +14,7 @@
 
 
 ## Prerequisites
-- For Aws_S3 **(S3 bucket is required)**
+- For Aws-S3 **(S3 bucket is required)**
   - Create an AWS S3 bucket with the name mm-workflow. 
   - You need access and secret keys to access the bucket.
 - For SQL **(SQL database is required)**. 
@@ -40,7 +40,7 @@
 2. Create an IDE (JupyterLab)
    - Use Tensorflow framework with version 2.0.0
    - **If your data is in local**, move to step 3 directly.
-   - **If your data is in aws_s3:**
+   - **If your data is in aws-s3:**
      - Add the following environment variables with your secret values in configuration tab 
        - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
    - **If your data is in SQL:**
@@ -53,11 +53,11 @@
 4. From **workspace/monitoring-examples/precomputed_scores** open modelmonitor.ipynb and fill the following details in the first cell. 
      - **DKUBEUSERNAME** = {your dkube username}
      - **MODELMONITOR_NAME** = {your model monitor name}
-     - **PRECOMPUTED_DATA_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
+     - **PRECOMPUTED_DATA_SOURCE** = { one of your choice in ['local' or 'aws-s3' or 'sql'] }
      - The following will be derived from the environment automatically. Otherwise, please fill in 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
-       - If the data source is **aws_s3**, fill the below details also:
+       - If the data source is **aws-s3**, fill the below details also:
          - **ACCESS_KEY** = {your s3 access key}
          - **SECRET_KEY** = {your s3 secret key}
        - If the data source is **sql**, fill the below details also:
@@ -78,10 +78,10 @@
 2. Open the notebook and fill the details in the first cell.
    - **DKUBEUSERNAME** = {your dkube username}
    - **MODELMONITOR_NAME** = {your model monitor name}
-   - **PRECOMPUTED_DATA_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
+   - **PRECOMPUTED_DATA_SOURCE** = { one of your choice in ['local' or 'aws-s3' or 'sql'] }
    - **TOKEN** = {your dkube authentication token}
    - **DKUBE_URL** = {your dkube url}
-   - If the data source is **aws_s3**, fill the below details also:
+   - If the data source is **aws-s3**, fill the below details also:
      - **ACCESS_KEY** = {your s3 access key}
      - **SECRET_KEY** = {your s3 secret key}
    - If the data source is **sql**, fill the below details also:

@@ -46,7 +46,7 @@ def f1_m(y_true, y_pred):
 
 ## loading dataset
 train = pd.read_csv(train_path+'/data.csv')
-if data_source == 'local' or data_source == 'aws_s3':
+if data_source == 'local' or data_source == 'aws-s3':
     train = train[train["Fare"] < 100]
     transformer = transform_data.Transformer()
     train = transformer.preprocess(train)

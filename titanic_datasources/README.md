@@ -19,7 +19,7 @@
 
 
 ## Prerequisites
-- For Aws_S3 **(S3 bucket is required)**
+- For Aws-S3 **(S3 bucket is required)**
   - Create an AWS S3 bucket with the name mm-workflow. 
   - You need access and secret keys to access the bucket.
 - For SQL **(SQL database is required)**. 
@@ -45,7 +45,7 @@
 2. Create an IDE (JupyterLab)
    - Use Tensorflow framework with version 2.0.0
    - **If your data is in local**, move to step 3 directly.
-   - **If your data is in aws_s3:**
+   - **If your data is in aws-s3:**
      - Add the following environment variables with your secret values in configuration tab 
        - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
    - **If your data is in SQL:**DBHOSTNAME,
@@ -57,13 +57,13 @@
 3. Click Submit.
 4. From **workspace/monitoring-examples/titanic_datasources** open resources.ipynb and fill the following details in the first cell. 
      - **MODELMONITOR_NAME** = {your model monitor name}
-     - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
+     - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws-s3' or 'sql'] }
      - **INPUT_TRAIN_TYPE** = {'training'}
      - **DKUBEUSERNAME** = {your dkube username}
      - The following will be derived from the environment automatically. Otherwise, please fill in 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
-       - If the data source is **aws_s3**, fill the below details also:
+       - If the data source is **aws-s3**, fill the below details also:
          - **ACCESS_KEY** = {your s3 access key}
          - **SECRET_KEY** = {your s3 secret key}
        - If the data source is **sql**, fill the below details also:
@@ -83,12 +83,12 @@
 1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/titanic_datasources/resources.ipynb)
 2. Open the notebook and fill the details in the first cell.
    - **MODELMONITOR_NAME** = {your model monitor name}
-   - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws_s3' or 'sql'] }
+   - **DATASET_SOURCE** = { one of your choice in ['local' or 'aws-s3' or 'sql'] }
    - **INPUT_TRAIN_TYPE** = {'training'}
    - **DKUBEUSERNAME** = {your dkube username}
    - **TOKEN** = {your dkube authentication token}
    - **DKUBE_URL** = {your dkube url}
-   - If the data source is **aws_s3**, fill the below details also:
+   - If the data source is **aws-s3**, fill the below details also:
      - **ACCESS_KEY** = {your s3 access key}
      - **SECRET_KEY** = {your s3 secret key}
    - If the data source is **sql**, fill the below details also:

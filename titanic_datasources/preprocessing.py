@@ -55,7 +55,7 @@ if __name__ == "__main__":
             train_df.to_csv('/train-data/data.csv',index=False)
     
     ### AWS-S3 DATASOURCE ###
-    if data_source == "aws_s3":
+    if data_source == "aws-s3":
         if input_train_type == 'training':
             data = pd.read_csv(DATA_DIR+'/titanic.csv')
             data.to_csv('/train-data/data.csv',index=False)

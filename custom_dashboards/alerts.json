@@ -1,0 +1,12 @@
+[
+    {
+        "TabName": "Business Metrics",
+        "childrens": [
+            {
+                "urls": [
+                    "https://<DKube-UI-IP:32222>/dkube/grafana/d/IAnfxh_7z/alerts_history?orgId=1&var-mm_id=<MONITOR-ID>&kiosk=tv"
+                ]
+            }
+        ]
+    }
+]

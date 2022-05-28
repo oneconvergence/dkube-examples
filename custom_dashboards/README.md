@@ -15,5 +15,5 @@ The above example creates a single new tab. However, you could have 1 or more to
 A sample file with a 2 level hierarchy of tabs has been created using public URLs. [random_public_urls.json](random_public_urls.json) can be uploaded as such without any changes. 
 
 
-*Note*: If you are importing **tableau** dashboards, please include the substring *&:showVizHome=no&:embed=true*
+**Note**: If you are importing **tableau** dashboards, please include the substring *&:showVizHome=no&:embed=true*
 

@@ -1,18 +1,16 @@
 [
         {
-            "TabName": "Tab 1",
-            "childrens": [
+            "tabname": "Tab 1",
+            "children": [
                 {
-                    "type": "tab",
-                    "TabName": "Tab 11",
+                    "tabname": "Tab 11",
                     "urls": [
                         "https://www.aiworldgov.com/speaker-biographies",
                         "https://www.dkube.io"
                     ]
                 },
                 {
-                    "type": "tab",
-                    "TabName": "Tab 12",
+                    "tabname": "Tab 12",
                     "urls": [
                         "https://www.aiworldgov.com",
                         "https://www.dkube.io/solutions/dkube-in-action/model-inference.php"
@@ -21,8 +19,8 @@
             ]
         },
         {
-            "TabName": "Tab 2",
-            "childrens": [
+            "tabname": "Tab 2",
+            "children": [
                 {
                     "urls": [
                      	 "https://www.aiworldgov.com",

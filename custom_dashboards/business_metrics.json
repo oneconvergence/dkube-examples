@@ -1,17 +1,15 @@
 [
         {
-            "TabName": "Top Level Tab Name 1",
-            "childrens": [
+            "tabname": "Top Level Tab Name 1",
+            "children": [
                 {
-                    "type": "tab",
-                    "TabName": "Child Tab 1",
+                    "tabname": "Child Tab 1",
                     "urls": [
 			"<any url to render when Child Tab 1 selected under Top Level Tab Name 1>"
                     ]
                 },
                 {
-                    "type": "tab",
-                    "TabName": "Child Tab 2",
+                    "tabname": "Child Tab 2",
                     "urls": [
                         "<any url to render when Child Tab 2 selected under Top Level Tab Name 1>",
                         "<any url to render when Child Tab 2 selected under Top Level Tab Name 1>"
@@ -20,8 +18,8 @@
             ]
         },
         {
-            "TabName": "Top Level Tab Name 2",
-            "childrens": [
+            "tabname": "Top Level Tab Name 2",
+            "children": [
                 {
                     "urls": [
                      	"<any url to render when Top Level Tab Name 2 selected>",

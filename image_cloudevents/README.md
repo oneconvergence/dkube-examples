@@ -1,9 +1,9 @@
 # CHEST-XRAY IMAGE EXAMPLE
 
 - This example only supports predict dataset sources as **CloudEvents**. 
-- This example also supports deployment serving at a Full DKube cluster(serving cluster) and monitoring on seperate minimal DKube cluster(monitoring cluster).
-  - Serving cluster: Where deployment will be running.
-  - Monitoring cluster: Where model monitor will be created for the deployment.
+- This example also supports model deployment at a Full DKube cluster(serving cluster) and model monitoring on seperate minimal DKube cluster(monitoring cluster).
+  - Serving cluster: Where production deployment will be running.
+  - Monitoring cluster: Where model monitor will be running.
   - **Note**: Serving and monitoring cluster can be same in case of single Full Dkube setup.
 - The notebooks in this example can be run inside or outside Dkube.
 

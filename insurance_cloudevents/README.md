@@ -4,7 +4,7 @@
 - This example also supports model deployment at a Full DKube cluster(serving cluster) and model monitoring on seperate minimal DKube cluster(monitoring cluster).
   - Serving cluster: Where production deployment will be running.
   - Monitoring cluster: Where model monitor will be running.
-  - **Note**: Serving and monitoring cluster can be same in case of single Full Dkube setup.
+  - **Note**: Serving and monitoring cluster can be same but the setup has to be a single full Dkube setup.
 - The notebooks in this example can be run inside or outside Dkube.
 
 ## Example Flow

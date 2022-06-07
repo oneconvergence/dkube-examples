@@ -25,7 +25,7 @@
 
 ### Launch IDE (Inside Dkube)
 
-#### Note: Follow the instructions if you are running Notebook IDE inside DKube.
+#### Note: Follow the instructions if you are running Notebook IDE inside DKube. In case you are Notebook IDE outside DKube then clone the repo and checkout to monitoring branch and follow from step 4 of this section.
 
 1. Add Code. Create Code Repo in Dkube with the following information
     - Name: **monitoring-examples**
@@ -59,37 +59,6 @@
           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
 5. Run all the cells. This will create all the DKube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
-
-### Launch IDE (Outside Dkube)
-
-#### Note: Follow the instructions if you are running Notebook IDE outside DKube, for example in VSCode. This is the case with minimal DKube. 
-
-1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_cloudevents/resources.ipynb)
-2. Open the notebook and fill the details in the first cell.
-    - **SEPERATE_SERVING_MONITORING_CLUSTER** = Set it to `True` if monitoring suppose to be running on seperate monitoring cluster, otherwise leave it to `False`. 
-    - **SERVING_DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}
-    - **SERVING_DKUBE_USERNAME** = {your dkube username}
-    - **SERVING_DKUBE_TOKEN** = {your dkube authentication token}
-    - **SERVING_DKUBE_URL** = {your dkube url}
-    - if **SEPERATE_SERVING_MONITORING_CLUSTER** is `True` then also fill the below details, otherwise leave these value empty.
-      - **MONITORING_DKUBE_USERNAME** = {DKube username of monitoring cluster}
-      - **MONITORING_DKUBE_TOKEN** = {DKube authentication token of monitoring cluster}
-      - **MONITORING_DKUBE_URL** = {DKube URL of monitoring cluster}
-    - **MONITOR_NAME** = {model monitor name}
-    - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
-    - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
-      - MINIO_KEY and MINIO_SECRET_KEY can be obtained in one of the following ways.
-        - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
-          - `curl -X 'GET' \
-              'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
-              -H 'accept: application/json' \
-              -H 'Authorization: Bearer <TOKEN>'`
-        - If you have access to Kubernetes, you can get the secrets by running the following commands
-           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
-           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
-    - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
-         - **RUN_FREQUENCY** = {integer value. units are minutes}
-3. Run all the cells.
 
 ## Section 2: Insurance Model Training (Required to deploy model)
 

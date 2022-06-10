@@ -33,10 +33,9 @@
    - Use Tensorflow framework with version 2.0.0
 3. Click Submit.
 4. Open Jupyterlab and from **workspace/monitoring-examples/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
-    - **SERVING_DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}
+    - **SERVING_DKUBE_URL** = {DKube url of serving cluster}
     - **SERVING_DKUBE_USERNAME** = {DKube username of serving cluster}
     - **SERVING_DKUBE_TOKEN** = {DKube authentication token of serving cluster}
-    - **SERVING_DKUBE_URL** = {DKube url of serving cluster}
     - if there is a sperate monitoring cluster then also fill the below details, otherwise leave these value empty.
       - **MONITORING_DKUBE_USERNAME** = {DKube username of monitoring cluster}
       - **MONITORING_DKUBE_TOKEN** = {DKube authentication token of monitoring cluster}

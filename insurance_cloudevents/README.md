@@ -1,7 +1,10 @@
 # INSURANCE EXAMPLE
 
 - This example only supports predict dataset sources as **CloudEvents**. 
-
+- This example also supports model deployment at a Full DKube cluster(serving cluster) and model monitoring on seperate minimal DKube cluster(monitoring cluster).
+  - Serving cluster: Where production deployment will be running.
+  - Monitoring cluster: Where model monitor will be running.
+  - **Note**: Serving and monitoring cluster can be same but the setup has to be a single full Dkube setup.
 - The notebooks in this example can be run inside or outside Dkube.
 
 ## Example Flow
@@ -19,63 +22,39 @@
 
 ### Launch IDE (Inside Dkube)
 
-#### Note: Follow the instructions if you are running Notebook IDE inside DKube.
+#### Note: Follow the instructions if you are running Notebook IDE inside DKube. In case you are Notebook IDE outside DKube then clone the repo and checkout to monitoring branch and follow from step 4 of this section.
 
 1. Add Code. Create Code Repo in Dkube with the following information
-  - Name: monitoring-examples
-  - Source: Git
-  - URL: https://github.com/oneconvergence/dkube-examples.git
-  - Branch : **monitoring**
+    - Name: **monitoring-examples**
+    - Source: Git
+    - URL: https://github.com/oneconvergence/dkube-examples.git
+    - Branch : **monitoring**
 2. Create an IDE (JupyterLab)
    - Use Tensorflow framework with version 2.0.0
 3. Click Submit.
 4. Open Jupyterlab and from **workspace/monitoring-examples/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
-     - **DKUBE_IP** = {IP address of the DKube setup where the prediction deployment is running}
-     - **DKUBEUSERNAME** = {your dkube username}
-     - **MODELMONITOR_NAME** = {your model monitor name}
-     - **MINIO_KEY** = {MINIO access key}, **MINIO_SECRET_KEY** = {MINIO access secret key}
-       - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
-         - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
-           - `curl -X 'GET' \
-                'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
-                -H 'accept: application/json' \
-                -H 'Authorization: Bearer <TOKEN>'`
-         - If you have access to Kubernetes, you can get the secrets by running the following commands
-           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
-           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
-     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
-       - **TOKEN** = {your dkube authentication token}
-       - **DKUBE_URL** = {your dkube url}
-     - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
-         - **RUN_FREQUENCY** = {integer value. units are minutes}
-5. Run all the cells. This will create all the dkube resources required for this example automatically.
+    - **SERVING_DKUBE_URL** = {DKube url of serving cluster}
+    - **SERVING_DKUBE_USERNAME** = {DKube username of serving cluster}
+    - **SERVING_DKUBE_TOKEN** = {DKube authentication token of serving cluster}
+    - if there is a sperate monitoring cluster then also fill the below details, otherwise leave these value empty.
+      - **MONITORING_DKUBE_USERNAME** = {DKube username of monitoring cluster}
+      - **MONITORING_DKUBE_TOKEN** = {DKube authentication token of monitoring cluster}
+      - **MONITORING_DKUBE_URL** = {DKube URL of monitoring cluster}
+    - **MONITOR_NAME** = {model monitor name}
+    - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
+    - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
+      - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
+        - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
+          - `curl -X 'GET' \
+              'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
+              -H 'accept: application/json' \
+              -H 'Authorization: Bearer <TOKEN>'`
+        - If you have access to Kubernetes, you can get the secrets by running the following commands
+          - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+          - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
+    - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
+5. Run all the cells. This will create all the dkube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
 
-
-### Launch IDE (Outside Dkube)
-
-#### Note: Follow the instructions if you are running Notebook IDE outside DKube, for example in VSCode. This is the case with minimal DKube. 
-
-1. Download [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb)
-2. Open the notebook and fill the details in the first cell.
-    - **DKUBE_IP** = {IP address of the DKube where the prediction deployment is running}
-    - **DKUBEUSERNAME** = {your dkube username}
-    - **MODELMONITOR_NAME** = {your model monitor name}
-    - **TOKEN** = {your dkube authentication token}
-    - **DKUBE_URL** = {your dkube url}
-    - **MINIO_KEY** = {MINIO access key}, **MINIO_SECRET_KEY** = {MINIO access secret key}
-       - You can get the creds one of the following ways.
-         - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
-           - `curl -X 'GET' \
-                'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
-                -H 'accept: application/json' \
-                -H 'Authorization: Bearer <TOKEN>'`
-         - If you have access to Kubernetes, you can get the secrets by running the following commands
-           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
-           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
-
-3. Run all the cells.
-
-**Note:** In case the monitor is being created on minimal DKube fill the **DKUBEUSERNAME**, **TOKEN**, and **DKUBE_URL** for the minimal DKube. 
 
 ## Section 2: Insurance Model Training (Required to deploy model)
 
@@ -93,8 +72,7 @@
 ## Section 3: Modelmonitoring
 DKube provides Python SDK for creating a modelmonitor programmatically. You could also choose to create a modelmonitor from the DKube UI. This example cuurently support creating monitor using SDK. 
 
-- **Create Modelmonitor using SDK**
-1. From **workspace/monitoring-examples/insurance_cloudevents** open [modelmonitor.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/modelmonitor.ipynb) and run all the cells. New model monitor will be created.
+1. From **workspace/monitoring-examples/insurance_cloudevents** open [modelmonitor.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/modelmonitor.ipynb) and run all the cells. New model monitor will be created. If monitoring cluster details are given, it will also add the serving cluster in the monitoring cluster, and import the deployment on monitoring cluster. 
 2. Predict and Groundtruth dataset data will be generated by Data Generation step and will be utilised by modelmonitor.
 
 ## Section 4: Data Generation
@@ -102,7 +80,7 @@ DKube provides Python SDK for creating a modelmonitor programmatically. You coul
 2. In 1st cell, Update Frequency according to what you set in Modelmonitor for Drift. For eg: for 5 minutes, specify it as `5m` and to specify the frequency in hours use `5h` for 5 hours interval.
 3. Then Run All Cells. It will start Pushing the data. It uses the data definitions specified in resources.ipynb file.
 
-**Note:** Livedata will be created on the MINIO under deployment id. In the case of minimal dkube, we will create on the remote minio where deployments are running.
+**Note:** Livedata will be created on the MINIO under deployment id. In the case of minimal DKube, we will create on the serving cluster minio where deployments are running.
 
 ## Section 5: SMTP Settings (Optional)
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.

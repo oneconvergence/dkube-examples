@@ -22,10 +22,10 @@ This example demonstrates the deployment of tensorflow model into sagemaker (out
        - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
          - **RUN_FREQUENCY** = {integer value. units are minutes}
    - Click on submit.
-   - From **workspace/monitoring-examples/insurance_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_sagemaker/resources.ipynb). This step will create the resources required.
+   - From **workspace/monitoring-examples/image_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/resources.ipynb). This step will create the resources required.
 
 ### Section 2: Deploy the model into sagemaker 
-Run all the cells of [sagemaker-insurance.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/sagemaker-image.ipynb). This step will deploy the model in sagemaker and create the endpoint.
+Run all the cells of [sagemaker-image.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/sagemaker-image.ipynb). This step will deploy the model in sagemaker and create the endpoint.
 ### Section 3. Data Generation
 Run all the cells of [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/data_generation.ipynb). This step will push the labelled datasets to S3 bucket. By default it pushes data for 60 minutes. For custom, configure minutes variable in the first cell of the notebook.
 ### Section 4. Model Monitoring

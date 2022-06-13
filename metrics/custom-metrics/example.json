@@ -1,0 +1,9 @@
+[{
+	"__comment_for Timestamp": "Time when metrics are computed",
+	"timestamp": 1651895701,
+	"__comment_for custom_metric": "Any valid name for business metric",
+	"custom_metric": 2,
+	"__comment_for standard_metrics": "these are optional",
+	"accuracy": 0.92,
+	"__comment_for json list": "only one dict of metrics is supported in 3.3"
+}]

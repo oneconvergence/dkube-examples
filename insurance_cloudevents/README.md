@@ -42,8 +42,8 @@
       - **MONITORING_DKUBE_URL** = {DKube URL of monitoring cluster}
     - **MONITOR_NAME** = {model monitor name}
     - Cloudevents are stored in DKube Minio bucket. Enter the following details from the **Serving DKube Cluster**
-      - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running}
-      - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running}
+      - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running. See below}
+      - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running. See below}
       - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
         - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
           - `curl -X 'GET' \

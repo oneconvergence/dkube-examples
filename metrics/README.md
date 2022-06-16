@@ -2,7 +2,7 @@ This folder contains examples for the following use cases
 
 - [custom-metrics](custom-metrics) this contains an example for a custom Performance Monitor exporting business metrics that are not directly supported by DKube.
 - [server](server) this containsan example for a custom deployment exporting health metrics
-- [mm_metrics.py](mm_metrics.py) an utility to query prometheus and calculate min/max/mean/std-deviation values for a metric. These are useful for deriving soft & hard thresholds
+- [mm_metrics.py](mm_metrics.py) an utility to query prometheus and calculate statistics such as min/max/mean/std-deviation values for a metric. These are useful for deriving soft & hard thresholds
 
 Computing metrics statistics
 ============================

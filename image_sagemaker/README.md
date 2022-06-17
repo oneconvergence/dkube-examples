@@ -23,6 +23,10 @@ This example demonstrates the deployment of tensorflow model into sagemaker (out
          - **RUN_FREQUENCY** = {integer value. units are minutes}
    - Click on submit.
    - From **workspace/monitoring-examples/image_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/resources.ipynb). This step will create the resources required.
+   - Once all the cells complete the run you will see the following resources will get created,
+     1. `chest-xray` dataset.
+     2. `image-mm-sgmkr-{ts}`(ts is notebook running timestamp) model.
+     3. `image-mm-sgmkr-{ts}-aws`(ts is notebook running timestamp) dataset.
 
 ### Section 2: Deploy the model into sagemaker 
 Run all the cells of [sagemaker-image.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/sagemaker-image.ipynb). This step will deploy the model in sagemaker and create the endpoint.

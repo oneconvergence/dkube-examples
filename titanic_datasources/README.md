@@ -75,6 +75,11 @@
      - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
          - **RUN_FREQUENCY** = {integer value. units are minutes}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
+6. Once all the cells complete the run you will see the following resources will get created,
+   1. `titanic-data` dataset.
+   2. `titanic-training-data` dataset.
+   3. `titanic-model` model.
+   4. `titanic-mm-{DATA_SOURCE}-predict` and `titanic-mm-{DATA_SOURCE}-groundtruth` datasets.
 
 ## Section 2: Titanic Model Training (Optional)
 

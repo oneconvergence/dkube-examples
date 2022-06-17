@@ -75,6 +75,11 @@
        - Modelmonitor run frequency in minutes. The same run interval is used for both Drift & Performance monitoring
          - **RUN_FREQUENCY** = {integer value. units are minutes}
 5. Run all the cells. This will create all the dkube resources required for this example automatically.
+6. Once all the cells complete the run you will see the following resources will get created,
+   1. `insurance-data` dataset.
+   2. `insurance-training-data` dataset.
+   3. `insurance-mm-d3` model.
+   4. `insurance-mm-d3-predict` and `insurance-mm-d3-groundtruth` datasets.
 
 ## Section 2: Insurance Model Training (Optional)
 

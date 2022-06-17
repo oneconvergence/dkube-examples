@@ -54,6 +54,11 @@
           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
 5. Run all the cells. This will create all the dkube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
+6. Once all the cells complete the run you will see the following resources will get created,
+   1. `insurance-data` dataset on both serving and monitoring cluster.
+   2. `insurance-training-data` dataset on serving cluster.
+   3. `insurance-mm-kf` model on serving cluster.
+   4. `insurance-mm-kf-s3` dataset on monitoring cluster.
 
 
 ## Section 2: Insurance Model Training (Required to deploy model)

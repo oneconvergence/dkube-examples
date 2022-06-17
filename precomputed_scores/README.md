@@ -30,7 +30,7 @@
 
 ### Launch IDE (Inside Dkube)
 
-#### Note: Follow the instructions if you are running Notebook IDE inside DKube.
+#### Note: Follow the instructions if you are running Notebook IDE inside DKube. In case you are Notebook IDE outside DKube then clone the repo and checkout to monitoring branch and follow from step 4 of this section.
 
 1. Add Code. Create Code Repo in Dkube with the following information
   - Name: monitoring-examples
@@ -69,30 +69,6 @@
        - Modelmonitor run frequency in minutes.
          - **RUN_FREQUENCY** = {integer value. units are minutes}
 5. Run all the cells. This will create all the dkube resources and model monitor required for this example.
-
-### Launch IDE (Outside Dkube)
-
-#### Note: Follow the instructions if you are running Notebook IDE outside DKube, for example in VSCode. This is the case with minimal DKube. 
-
-1. Download [modelmonitor.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/precomputed_scores/modelmonitor.ipynb)
-2. Open the notebook and fill the details in the first cell.
-   - **DKUBEUSERNAME** = {your dkube username}
-   - **MODELMONITOR_NAME** = {your model monitor name}
-   - **PRECOMPUTED_DATA_SOURCE** = { one of your choice in ['local' or 'aws-s3' or 'sql'] }
-   - **TOKEN** = {your dkube authentication token}
-   - **DKUBE_URL** = {your dkube url}
-   - If the data source is **aws-s3**, fill the below details also:
-     - **ACCESS_KEY** = {your s3 access key}
-     - **SECRET_KEY** = {your s3 secret key}
-   - If the data source is **sql**, fill the below details also:
-     - **DBHOSTNAME** = {sql server hostname}
-     - **DATABASENAME** = {sql database name} 
-     - **DBUSERNAME** = {your username}
-     - **DBPASSWORD** = {your password}
-     - **DB_PROVIDER** = {provider} (Two values are supported mysql and mssql, default value is mysql)
-   - Modelmonitor run frequency in minutes.
-     - **RUN_FREQUENCY** = {integer value. units are minutes}
-3. Run all the cells.
 
 ## Section 2: Data Generation
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/precomputed_scores/data_generation.ipynb) notebook for generating precomputed scores.

@@ -57,6 +57,10 @@
           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
 5. Run all the cells. This will create all the DKube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
+6. Once all the cells complete the run you will see the following resources will get created,
+   1. `chest-xray` dataset on both serving and monitoring cluster.
+   2. `image-mm-kf` model on serving cluster.
+   3. `image-mm-kf-s3` dataset on monitoring cluster.
 
 ## Section 2: Insurance Model Training (Required to deploy model)
 
@@ -67,9 +71,8 @@
      - **preprocessing**: the preprocessing stage generates the dataset (either training-data or retraining-data) depending on user choice.
      - **training**: the training stage takes the generated dataset as input, train a sgd model and outputs the model.
      - **serving**: The serving stage takes the generated model and serve it with a predict endpoint for inference.
-3. Verify that the pipeline has created the following resources
-     - Datasets: 'insurance-training-data' with version v2.
-     - Model: 'insurance-model' with version v2
+3. Verify that the pipeline has created the following resources.
+     - Model: `image-mm-kf` with version v2.
 
 ## Section 3: Modelmonitoring
 DKube provides Python SDK for creating a modelmonitor programmatically. You could also choose to create a modelmonitor from the DKube UI. This example cuurently support creating monitor using SDK. 

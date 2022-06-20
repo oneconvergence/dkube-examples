@@ -23,13 +23,22 @@ This example demonstrates the deployment of tensorflow model into sagemaker (out
          - **RUN_FREQUENCY** = {integer value. units are minutes}
    - Click on submit.
    - From **workspace/monitoring-examples/image_sagemaker/**,open and run all the cells of [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/resources.ipynb). This step will create the resources required.
+   - Once all the cells complete the run you will see the following resources will get created,
+     1. `chest-xray` dataset.
+     2. `image-mm-sgmkr-{ts}`(ts is notebook running timestamp) model.
+     3. `image-mm-sgmkr-{ts}-aws`(ts is notebook running timestamp) dataset.
 
 ### Section 2: Deploy the model into sagemaker 
 Run all the cells of [sagemaker-image.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/sagemaker-image.ipynb). This step will deploy the model in sagemaker and create the endpoint.
+
 ### Section 3. Data Generation
 Run all the cells of [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/data_generation.ipynb). This step will push the labelled datasets to S3 bucket. By default it pushes data for 60 minutes. For custom, configure minutes variable in the first cell of the notebook.
+
 ### Section 4. Model Monitoring
 Run all the cells of [modelmonitor.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/modelmonitor.ipynb).This will create the model monitor in Dkube.
+
+After the completion of the notebook, you will see the model monitor `image-mm-sgmkr-{ts}` in active state.
+
 ### Section 5: Cleanup
  After your experiment is complete.
 - Open sagemaker-image.ipynb (and set CLEANUP=True) in the last Cleanup cell and run.

@@ -51,6 +51,14 @@
 - Upload the test.csv (https://raw.githubusercontent.com/oneconvergence/dkube-examples/sklearn/titanic/test.csv) from repo
 - Click predict
 
+## Publish Model
+- Repos->Models->titanic: select a model version
+- Publish
+- Name: titanic-publish
+- Transformer: True
+- Transformer script: titanic/transformer.py
+- Submit
+
 ## Automate using pipelines
 Run this [pipeline](https://github.com/oneconvergence/dkube-examples/blob/sklearn/titanic/pipeline.ipynb) to automate training and serving using kubeflow pipelines.
 

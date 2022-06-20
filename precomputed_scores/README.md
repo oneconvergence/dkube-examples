@@ -69,6 +69,7 @@
        - Modelmonitor run frequency in minutes.
          - **RUN_FREQUENCY** = {integer value. units are minutes}
 5. Run all the cells. This will create all the dkube resources and model monitor required for this example.
+6. After the completion of the notebook, you will see the model monitor `precomputed-mm` in active state.
 
 ## Section 2: Data Generation
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/precomputed_scores/data_generation.ipynb) notebook for generating precomputed scores.

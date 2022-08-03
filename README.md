@@ -1,6 +1,5 @@
 # dkube-examples
-This example is a modified version of https://github.com/saurabh2mishra/mlflow-demo/tree/master/sklearn-demo
-- Modify conda.yaml to have correct version of protobuf
+Modified conda.yaml to have correct version of protobuf.
 
 ## Training
 1. Install Conda v4.9 or latest

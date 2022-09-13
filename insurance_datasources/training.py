@@ -52,6 +52,7 @@ if __name__ == "__main__":
     ########--- Logging metrics into Dkube via mlflow ---############
     mlflow.log_metric("MAE", mae)
     mlflow.log_metric("MSE", mse)
+    mlflow.log_metric("RMSE", rmse)
 
     # Exporting model
     filename = os.path.join(out_model_path, "model.joblib")

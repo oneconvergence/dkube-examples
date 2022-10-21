@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import os
 import time
 import random
@@ -30,20 +24,16 @@ import util
 
 # ### MACROS
 
-# In[ ]:
-
-
 # Define where the input data dir and model output dir are
 INPUT_DATA_DIR = "/mnt/data"
 OUTPUT_MODEL_DIR = "/mnt/model"
 NUM_EPOCHS = os.getenv("EPOCHS", 6)
-MLFLOW_EXPERIMENT_NAME = os.getenv("DKUBE_PROJECT_NAME")
-
+MLFLOW_EXPERIMENT_NAME = os.getenv("DKUBE_PROJECT_NAME", "default")
+DKUBE_INPUT_CODE = "chest-xray"
+DKUBE_INPUT_DATASET = "chest-xray"
+DKUBE_OUTPUT_MODEL = "chest-xray"
 
 # #### MLFLOW TRACKING INITIALIZATION
-
-# In[ ]:
-
 
 exp = mlflow.get_experiment_by_name(MLFLOW_EXPERIMENT_NAME)
 if not exp:
@@ -51,9 +41,6 @@ if not exp:
     mlflow.create_experiment(MLFLOW_EXPERIMENT_NAME)
 mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
 mlflow.tensorflow.autolog()
-
-
-# In[ ]:
 
 
 train_x, train_y = util.read_classification_data(INPUT_DATA_DIR)
@@ -80,13 +67,7 @@ model.compile(optimizer='rmsprop',
 
 # #### ML TRAINING
 
-# In[ ]:
-
-
 runid = dkubemlf.create_run(code="chext-xray", dataset="chest-xray",output="chest-xray")
-
-
-# In[ ]:
 
 
 with mlflow.start_run(run_id=runid) as run:
@@ -130,10 +111,3 @@ with mlflow.start_run(run_id=runid) as run:
     mlflow.log_metric("f1_score_PNEUMONIA", f1_score_1)
     
 print("Training Complete !")
-
-
-# In[ ]:
-
-
-
-

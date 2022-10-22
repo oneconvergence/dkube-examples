@@ -15,11 +15,8 @@ If it is external, then first add the cluster and click on Deployments in the le
    - Select dataset as `chest-xray` and version as v1 if your data source is aws_s3 or local.
 
 3. **Add Predict Data**:
-- If data source is **aws_s3 / local**
-     -  Select dataset `image-mm-kf-s3`.
-     -  Fill deployment ID in Prefix/Subpath
-     -  Select dataset content as **Cloudevents**.
-     -  Date suffix is yyyy/dd/mm/hh
+- Select dataset content as **Cloudevents**.
+     
 
 ### 3. Performance Monitoring
 1. Check Enable and provide frequency as 5 minutes.
@@ -27,6 +24,7 @@ If it is external, then first add the cluster and click on Deployments in the le
   -  Select dataset `image-mm-kf-s3`.
   -  Prefix/subpath: {deployment ID}/livedata
   -  Dataset Format : Tabular
+  -  Date suffix is yyyy/dd/mm/hh
   -  Fill Prediction column name as output
   -  Fill Groundtruth column name as "label".
   -  Fill timestamp column as "timestamp"

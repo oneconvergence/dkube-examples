@@ -48,7 +48,7 @@
         "hard": 500000000,
         "soft": 400000000,
         "type": "health"
-    }.
+    },
     "requests_rate": {
         "hard": 0.01,
         "soft": 0.006,

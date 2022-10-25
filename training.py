@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -21,6 +21,9 @@ import matplotlib.pyplot as plt
 import requests
 requests.packages.urllib3.disable_warnings()
 
+import warnings
+warnings.filterwarnings("ignore")
+
 import sys
 utildir = os.path.abspath('.')
 if utildir not in sys.path:
@@ -30,7 +33,7 @@ import util
 
 # ### MACROS
 
-# In[2]:
+# In[ ]:
 
 
 # Define where the input data dir and model output dir are
@@ -45,7 +48,7 @@ DKUBE_OUTPUT_MODEL = "chest-xray"
 
 # #### MLFLOW TRACKING INITIALIZATION
 
-# In[3]:
+# In[ ]:
 
 
 exp = mlflow.get_experiment_by_name(MLFLOW_EXPERIMENT_NAME)
@@ -53,10 +56,10 @@ if not exp:
     print("Creating experiment...")
     mlflow.create_experiment(MLFLOW_EXPERIMENT_NAME)
 mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
-mlflow.tensorflow.autolog()
+mlflow.tensorflow.autolog(silent=True)
 
 
-# In[4]:
+# In[ ]:
 
 
 train_x, train_y = util.read_classification_data(INPUT_DATA_DIR)
@@ -133,10 +136,4 @@ with mlflow.start_run(run_id=runid) as run:
     mlflow.log_metric("f1_score_PNEUMONIA", f1_score_1)
     
 print("Training Complete !")
-
-
-# In[ ]:
-
-
-
 

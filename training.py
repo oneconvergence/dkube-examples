@@ -137,5 +137,5 @@ with mlflow.start_run(run_id=runid) as run:
     mlflow.log_metric("recall_PNEUMONIA", recall_1)
     mlflow.log_metric("f1_score_PNEUMONIA", f1_score_1)
     
-print("Training Complete !")
+print("Training Complete - Demo!")
 

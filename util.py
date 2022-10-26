@@ -32,6 +32,8 @@ def read_classification_data(datadir):
     train_x = list()
     train_y = list()
     for dp, dn, filenames in os.walk(datadir):
+        if dp == datadir:
+            continue
         if len(filenames) > 0:
             current_class_data = read_data_from_dir(dp)
             train_x.extend(current_class_data)

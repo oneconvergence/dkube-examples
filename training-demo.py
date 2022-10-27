@@ -39,7 +39,7 @@ import util
 # Define where the input data dir and model output dir are
 INPUT_DATA_DIR = "./data"
 OUTPUT_MODEL_DIR = "/mnt/model"
-NUM_EPOCHS = os.getenv("EPOCHS", 40)
+NUM_EPOCHS = os.getenv("EPOCHS", "40")
 MLFLOW_EXPERIMENT_NAME = os.getenv("DKUBE_PROJECT_NAME", "default")
 DKUBE_INPUT_CODE = "chest-xray"
 DKUBE_INPUT_DATASET = "chest-xray"
@@ -113,7 +113,7 @@ runid = dkubemlf.create_run(code=DKUBE_INPUT_CODE, dataset=DKUBE_INPUT_DATASET,o
 
 
 with mlflow.start_run(run_id=runid) as run:
-    model.fit(x=resized_train_x, y=onehot,epochs=NUM_EPOCHS, verbose=True)
+    model.fit(x=resized_train_x, y=onehot,epochs=int(NUM_EPOCHS), verbose=True)
     if os.getenv("DKUBE_JOB_CLASS") != "notebook" :
         model.save(f"{OUTPUT_MODEL_DIR}/1")
 

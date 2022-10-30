@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -33,7 +33,7 @@ import util
 
 # ### MACROS
 
-# In[2]:
+# In[ ]:
 
 
 # Define where the input data dir and model output dir are
@@ -48,7 +48,7 @@ DKUBE_OUTPUT_MODEL = "chest-xray"
 
 # #### MLFLOW TRACKING INITIALIZATION
 
-# In[3]:
+# In[ ]:
 
 
 import warnings
@@ -61,7 +61,7 @@ mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
 mlflow.tensorflow.autolog(silent=True)
 
 
-# In[4]:
+# In[ ]:
 
 
 train_x, train_y = util.read_classification_data(INPUT_DATA_DIR)
@@ -88,13 +88,13 @@ model.compile(optimizer='rmsprop',
 
 # #### ML TRAINING
 
-# In[5]:
+# In[ ]:
 
 
 runid = dkubemlf.create_run(code=DKUBE_INPUT_CODE, dataset=DKUBE_INPUT_DATASET,output=DKUBE_OUTPUT_MODEL)
 
 
-# In[6]:
+# In[ ]:
 
 
 with mlflow.start_run(run_id=runid) as run:
@@ -137,5 +137,5 @@ with mlflow.start_run(run_id=runid) as run:
     mlflow.log_metric("recall_PNEUMONIA", recall_1)
     mlflow.log_metric("f1_score_PNEUMONIA", f1_score_1)
     
-print("Training Complete - Demo!")
+print("Training Complete !")
 

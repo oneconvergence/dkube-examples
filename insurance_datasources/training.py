@@ -1,11 +1,9 @@
 import numpy as np,os
 import joblib
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn import linear_model
 from sklearn import preprocessing as skpreprocessing
-from sklearn.linear_model import SGDRegressor   
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
 import mlflow
 import pandas as pd
 from sklearn import metrics
@@ -33,13 +31,13 @@ if __name__ == "__main__":
                                                     insurance_target,
                                                     test_size = 0.25,
                                                     random_state=1211)
-    #fit sgd model to the train set data
-    sgd = SGDRegressor()
-    sgd_model = sgd.fit(x_train, y_train)
+    #fit random forest regressor model to the train set data
+    rfr = RandomForestRegressor()
+    rfr_model = rfr.fit(x_train, y_train)
     
-    y_pred_train = sgd_model.predict(x_train)    # Predict on train data.
+    y_pred_train = rfr_model.predict(x_train)    # Predict on train data.
     y_pred_train[y_pred_train < 0] = y_pred_train.mean()
-    y_pred = sgd_model.predict(x_test)   # Predict on test data.
+    y_pred = rfr_model.predict(x_test)   # Predict on test data.
     y_pred[y_pred < 0] = y_pred.mean()
     
     #######--- Calculating metrics ---############
@@ -54,8 +52,8 @@ if __name__ == "__main__":
     ########--- Logging metrics into Dkube via mlflow ---############
     mlflow.log_metric("MAE", mae)
     mlflow.log_metric("MSE", mse)
+    mlflow.log_metric("RMSE", rmse)
 
     # Exporting model
     filename = os.path.join(out_model_path, "model.joblib")
-    joblib.dump(sgd_model, filename)
-
+    joblib.dump(rfr_model, filename)

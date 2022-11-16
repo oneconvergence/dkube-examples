@@ -14,3 +14,8 @@ Note that accuracy is better than in step 2.
 
 # Training
 Use the training.py with the Dkube training job.
+
+# Training with delta lake table in S3
+AWS credentials should be available in standard way either as env vars or ~/.aws/credentials
+Use the s3_training.py with DKube training job.
+It creates a delta lake table in S3, loads versions in it and performs training with the version of data in deltalake.

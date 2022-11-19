@@ -1,9 +1,0 @@
-env
-.DS_Store
-
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# IPython
-profile_default/
-ipython_config.py

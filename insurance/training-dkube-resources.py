@@ -33,7 +33,7 @@ warnings.filterwarnings("ignore")
 
 # ### HELPER FUNCTIONS
 
-# In[39]:
+# In[2]:
 
 
 # Define where the input data dir and model output dir are
@@ -113,7 +113,7 @@ def get_input_code() -> str:
 
 # ### MACROS
 
-# In[40]:
+# In[3]:
 
 
 
@@ -137,10 +137,7 @@ MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME', 'insurance')
 
 
 # Experiment with this parameter. 
-NUM_EPOCHS = os.getenv("EPOCHS", 10)
-
-# Define data
-INPUT_DATA_URL = os.getenv("DATASET_URL", "https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv")
+NUM_EPOCHS = os.getenv("EPOCHS", 100)
 
 print("DKUBE_INPUT_DATASET=",DKUBE_INPUT_DATASET, " INPUT_DATA_DIR=", INPUT_DATA_DIR)
 print("DKUBE_OUTPUT_MODEL=",DKUBE_OUTPUT_MODEL, " OUTPUT_MODEL_DIR=", OUTPUT_MODEL_DIR)
@@ -149,7 +146,7 @@ print("DKUBE_INPUT_CODE=", DKUBE_INPUT_CODE)
 
 # #### MLFLOW TRACKING INITIALIZATION
 
-# In[41]:
+# In[4]:
 
 
 import warnings
@@ -161,12 +158,12 @@ if not exp:
 mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
 
 
-# In[42]:
+# In[5]:
 
 
 
 
-data = pd.read_csv(INPUT_DATA_URL)
+data = pd.read_csv(INPUT_DATA_DIR+'/insurance.csv')
 insurance_input = data.drop(['charges','timestamp','unique_id'],axis=1)
 insurance_target = data['charges']
     
@@ -193,7 +190,7 @@ lm = SGDRegressor(loss='squared_error', max_iter=NUM_EPOCHS, n_iter_no_change=10
 
 # #### ML TRAINING
 
-# In[43]:
+# In[6]:
 
 
 runid = dkubemlf.create_run(name="insurance", code=DKUBE_INPUT_CODE, dataset=DKUBE_INPUT_DATASET,output=DKUBE_OUTPUT_MODEL)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -33,7 +33,7 @@ warnings.filterwarnings("ignore")
 
 # ### HELPER FUNCTIONS
 
-# In[2]:
+# In[ ]:
 
 
 # Define where the input data dir and model output dir are
@@ -113,7 +113,7 @@ def get_input_code() -> str:
 
 # ### MACROS
 
-# In[3]:
+# In[ ]:
 
 
 
@@ -128,7 +128,12 @@ if DKUBE_OUTPUT_MODEL is None:
 
 if DKUBE_OUTPUT_MODEL is None:
     raise Exception("Specify Model on Repos")
-        
+
+if os.getenv("DKUBE_JOB_CLASS", None) == 'notebook':
+    DKUBE_INPUT_CODE = get_input_code()
+    print("DKUBE_INPUT_CODE=", DKUBE_INPUT_CODE)
+else:
+    DKUBE_INPUT_CODE = None
 DKUBE_INPUT_CODE = get_input_code()
 
 # EPOCHS could be specified as Environment parameters at the time of creating JL or Run
@@ -146,7 +151,7 @@ print("DKUBE_INPUT_CODE=", DKUBE_INPUT_CODE)
 
 # #### MLFLOW TRACKING INITIALIZATION
 
-# In[4]:
+# In[ ]:
 
 
 import warnings
@@ -158,7 +163,7 @@ if not exp:
 mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
 
 
-# In[5]:
+# In[ ]:
 
 
 
@@ -190,7 +195,7 @@ lm = SGDRegressor(loss='squared_error', max_iter=NUM_EPOCHS, n_iter_no_change=10
 
 # #### ML TRAINING
 
-# In[6]:
+# In[ ]:
 
 
 runid = dkubemlf.create_run(name="insurance", code=DKUBE_INPUT_CODE, dataset=DKUBE_INPUT_DATASET,output=DKUBE_OUTPUT_MODEL)

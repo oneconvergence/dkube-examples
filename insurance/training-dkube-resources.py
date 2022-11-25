@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[16]:
+# In[1]:
 
 
 import os
@@ -31,14 +31,110 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
+# ### HELPER FUNCTIONS
+
+# In[39]:
+
+
+# Define where the input data dir and model output dir are
+# Todo: provide SDK functions 
+from typing import Union
+import json
+
+def get_input_dataset() -> Union[str,str]:
+    with open("/etc/dkube/config.json") as fd:
+        config = json.load(fd)
+    
+        inputs = config.get('inputs', [])
+        if inputs == list():
+            return None, None
+    
+        # Get dataset information
+        for obj in inputs:
+            datasets = obj.get('dataset', [])
+            if datasets == list():
+                continue
+            dataset = datasets[0]
+    
+            return dataset['name'], dataset['location']
+    return None, None
+
+def get_input_model() -> Union[str,str]:
+    with open("/etc/dkube/config.json") as fd:
+        config = json.load(fd)
+    
+        inputs = config.get('inputs', [])
+        if inputs == list():
+            return None, None
+    
+        # Get model information
+        for obj in inputs:
+            models = obj.get('model', [])
+            if models == list():
+                continue
+            model = models[0]
+    
+            return model['name'], model['location']
+
+    return None, None
+
+
+def get_output_model() -> Union[str,str]:
+    with open("/etc/dkube/config.json") as fd:
+        config = json.load(fd)
+    
+        outputs = config.get('outputs', [])
+        if outputs == list():
+            return None, None
+         # Get model information
+        for obj in outputs:
+            models = obj.get('model', [])
+            if models == list():
+                continue
+            model = models[0]
+    
+            return model['name'], model['location']   
+
+    return None, None
+
+def get_input_code() -> str:
+    try:
+        path = os.path.realpath(__file__)
+    except:
+        path = os.getcwd()
+    # Get the suffix after workspace
+    try:
+        path = path.rsplit('workspace/', 1)[1]
+        # Return the first path
+        return path.split('/')[0]
+    except:
+        return None
+
+
 # ### MACROS
 
-# In[17]:
+# In[40]:
 
 
+
+
+DKUBE_INPUT_DATASET, INPUT_DATA_DIR = get_input_dataset()
+if DKUBE_INPUT_DATASET == None:
+    raise Exception("Specify Dataset on Repos")
+
+DKUBE_OUTPUT_MODEL, OUTPUT_MODEL_DIR = get_output_model()
+if DKUBE_OUTPUT_MODEL is None:
+    DKUBE_OUTPUT_MODEL, OUTPUT_MODEL_DIR = get_input_model()
+
+if DKUBE_OUTPUT_MODEL is None:
+    raise Exception("Specify Model on Repos")
+        
+DKUBE_INPUT_CODE = get_input_code()
+
+# EPOCHS could be specified as Environment parameters at the time of creating JL or Run
+NUM_EPOCHS = os.getenv("EPOCHS", 2000)
 MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME', 'insurance')
 
-# EPOCHS, DATASET_URL could be specified as Environment parameters at the time of creating JL or Run
 
 # Experiment with this parameter. 
 NUM_EPOCHS = os.getenv("EPOCHS", 10)
@@ -46,19 +142,14 @@ NUM_EPOCHS = os.getenv("EPOCHS", 10)
 # Define data
 INPUT_DATA_URL = os.getenv("DATASET_URL", "https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv")
 
-
-# Keep track of models.
-OUTPUT_MODEL_DIR = os.getcwd()+"/model"
-
-
-## create OUTPUT_MODEL_DIR
-if not os.path.exists(OUTPUT_MODEL_DIR):
-    os.makedirs(OUTPUT_MODEL_DIR)
+print("DKUBE_INPUT_DATASET=",DKUBE_INPUT_DATASET, " INPUT_DATA_DIR=", INPUT_DATA_DIR)
+print("DKUBE_OUTPUT_MODEL=",DKUBE_OUTPUT_MODEL, " OUTPUT_MODEL_DIR=", OUTPUT_MODEL_DIR)
+print("DKUBE_INPUT_CODE=", DKUBE_INPUT_CODE)
 
 
 # #### MLFLOW TRACKING INITIALIZATION
 
-# In[18]:
+# In[41]:
 
 
 import warnings
@@ -70,7 +161,8 @@ if not exp:
 mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
 
 
-# In[19]:
+# In[42]:
+
 
 
 
@@ -101,10 +193,12 @@ lm = SGDRegressor(loss='squared_error', max_iter=NUM_EPOCHS, n_iter_no_change=10
 
 # #### ML TRAINING
 
-# In[20]:
+# In[43]:
 
 
-with mlflow.start_run(run_name="insurance") as run:
+runid = dkubemlf.create_run(name="insurance", code=DKUBE_INPUT_CODE, dataset=DKUBE_INPUT_DATASET,output=DKUBE_OUTPUT_MODEL)
+
+with mlflow.start_run(run_id = runid) as run:
     
     model = lm.fit(x_train, y_train)
     

@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
-
-# In[4]:
 import os
 import configparser
 import pandas as pd
@@ -39,9 +32,6 @@ dt.load_version(version)
 print(dt.version())
 
 
-# In[6]:
-
-
 df_clean = dt.to_pandas()
 from sklearn.preprocessing import LabelEncoder
 label = LabelEncoder()
@@ -66,16 +56,10 @@ df_clean['last_pymnt_amnt']= label.fit_transform(df_clean['last_pymnt_amnt'])
 df_clean.head()
 
 
-# In[7]:
-
-
 x = df_clean.drop(['loan_status'], axis=1)
 y = df_clean['loan_status']
 
 x.head()
-
-
-# In[8]:
 
 
 from sklearn.preprocessing import OneHotEncoder
@@ -88,9 +72,6 @@ coltrans = ColumnTransformer(
     [('one_hot_encoder', OneHotEncoder(categories='auto'), [0,1,2,3,4,5,6,7,8])],        
     remainder = 'passthrough'                               
 )
-
-
-# In[10]:
 
 
 from sklearn.model_selection import train_test_split
@@ -155,9 +136,14 @@ plt.ylabel('True Positive Rate')
 plt.xlabel('False Positive Rate')
 plt.show()
 
+import joblib
+joblib.dump(model, '/mnt/model/model.joblib')
 
-# In[ ]:
-
-
-
-
+loaded_model = joblib.load("/mnt/model/model.joblib")
+print(round(loaded_model.score(xts, yts) * 100, 2), '%')
+sampled = np.resize(xts.tolist(), (2,17))
+import json
+with open("testdata.json", "w+") as f:
+    f.write(json.dumps(sampled.tolist()))
+pred = loaded_model.predict(sampled)
+print(pred)

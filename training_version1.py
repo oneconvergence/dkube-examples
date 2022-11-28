@@ -2,9 +2,26 @@ import os
 import configparser
 import pandas as pd
 from deltalake import DeltaTable
-import mlflow.sklearn
+import sklearn.metrics as metrics
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_score, roc_curve
 
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.metrics import classification_report
+import matplotlib.pyplot as plt
+
+import joblib
+import numpy as np 
+import mlflow.sklearn
 import urllib3
+import json
+import time
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def training():
@@ -34,11 +51,16 @@ def training():
             dt = DeltaTable(f's3://{prefix}', storage_options=storage_options)
 
     dt.load_version(version)
-    print(dt.version())
+    print("Loaded verion => ", dt.version())
 
     df_clean = dt.to_pandas()
-    from sklearn.preprocessing import LabelEncoder
     label = LabelEncoder()
+
+    print("Features =>", list(df_clean.columns))
+
+    print("\n")
+    print(df_clean.head())
+    print("\n")
 
     df_clean['term'] = label.fit_transform(df_clean['term'])
     df_clean['grade'] = label.fit_transform(df_clean['grade'])
@@ -49,9 +71,6 @@ def training():
     x = df_clean.drop(['loan_status'], axis=1)
     y = df_clean['loan_status']
 
-    from sklearn.preprocessing import OneHotEncoder
-    from sklearn.compose import ColumnTransformer
-    import numpy as np 
 
     coltrans = ColumnTransformer(
         [('one_hot_encoder', OneHotEncoder(categories='auto'), [0,3,5])],      # 0,3,5 refers to the column indexes that need to be transformed      
@@ -60,7 +79,6 @@ def training():
 
     x = np.array(coltrans.fit_transform(x))
 
-    from sklearn.model_selection import train_test_split
     xtr, xts, ytr, yts = train_test_split(
         x,
         y,
@@ -73,9 +91,6 @@ def training():
 
     xtr_2 = xtr
     ytr_2 = ytr
-
-    from sklearn.ensemble import RandomForestClassifier
-    import time
 
     start = time.time()
 
@@ -92,13 +107,9 @@ def training():
 
         y_pred = model.predict(xts)
 
-        from sklearn.metrics import confusion_matrix
-        import matplotlib.pyplot as plt
-
 
         cm = confusion_matrix(yts, y_pred)
 
-        from sklearn.metrics import ConfusionMatrixDisplay
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                        display_labels=model.classes_)
         disp.plot()
@@ -106,14 +117,11 @@ def training():
         plt.savefig('cm.png')
 
         pd.crosstab(yts, y_pred, rownames=['Actual'], colnames=['Predicted'], margins=True)
-        from sklearn.metrics import classification_report
 
         target_names = ['Bad Loan', 'Good Loan']
         class_report = classification_report(yts, model.predict(xts), target_names=target_names)
         print(class_report)
 
-        import sklearn.metrics as metrics
-        from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_score, roc_curve
 
         # calculate the fpr and tpr for all thresholds of the classification
         probs = model.predict_proba(xts)
@@ -166,18 +174,15 @@ def training():
         mlflow.log_artifact('cm.png', "confusion-matrix")
         mlflow.log_artifact('roc.png', "roc-auc-plots")
 
-
-    import joblib
     joblib.dump(model, '/mnt/model/model.joblib')
 
     loaded_model = joblib.load("/mnt/model/model.joblib")
     print(round(loaded_model.score(xts, yts) * 100, 2), '%')
     sampled = np.resize(xts.tolist(), (2,17))
-    import json
-    with open("testdata.json", "w+") as f:
+    with open("testdata_v1.json", "w+") as f:
         f.write(json.dumps(sampled.tolist()))
     pred = loaded_model.predict(sampled)
-    print(pred)
+    print("joblib loaded model prediction =>",pred)
 
 if __name__ == '__main__':
     training()

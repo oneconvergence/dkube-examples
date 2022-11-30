@@ -81,7 +81,7 @@ mlflow.log_metric("MAE", mae)
 mlflow.log_metric("MSE", mse)
 mlflow.log_metric("RMSE", rmse)
 
-print(f"loss={mae}")
+print(f"mean_absolute_error={mae}")
 
 # Exporting model
 filename = os.path.join(OUTPUT_MODEL_DIR, "model.joblib")

@@ -1,0 +1,29 @@
+parallelTrialCount: 2
+maxTrialCount: 4
+maxFailedTrialCount: 4
+objective:
+  type: minimize
+  goal: 7000.0
+  objectiveMetricName: loss
+algorithm:
+  algorithmName: random
+parameters:
+  - name: --n_estimators
+    parameterType: int
+    feasibleSpace:
+      min: "100"
+      max: "200"
+  - name: --max_depth
+    parameterType: int
+    feasibleSpace:
+      min: "1"
+      max: "10"
+  - name: --max_features
+    parameterType: int
+    feasibleSpace:
+      min: "1"
+      max: "6"
+spec:
+  metricsCollectorSpec:
+    collector:
+      kind: stdOutCollector

@@ -13,8 +13,8 @@
 ## Run training job
  - Runs->+Training Run.
  - Code: insurance
- - Framework: sklearn
- - Version: 1.1.1
+ - Framework: ~~sklearn~~ tensorflow
+ - Version: ~~1.1.1~~ 2.0
  - Start-up script: python insurance/train-hyp.py
  - Repos->Outputs->Model: select insurance and enter mountpath as /model
  - Submit

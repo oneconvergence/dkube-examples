@@ -1,9 +1,6 @@
 parallelTrialCount: 2
 maxTrialCount: 4
 maxFailedTrialCount: 4
-metricsCollectorSpec:
-    collector:
-      kind: StdOut
 objective:
   type: minimize
   goal: 7000.0

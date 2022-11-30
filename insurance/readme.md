@@ -6,11 +6,9 @@
 - Git URL: https://github.com/riteshkarvaloc/dkube-examples.git
 - Branch: training
 
-
 ## Create a model
 - Name: insurance
 - Keep default for others
-
 
 ## Run training job
  - Runs->+Training Run.

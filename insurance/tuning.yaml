@@ -23,7 +23,6 @@ parameters:
     feasibleSpace:
       min: "1"
       max: "6"
-spec:
-  metricsCollectorSpec:
-    collector:
-      kind: stdOutCollector
+metricsCollectorSpec:
+  collector:
+    kind: StdOut

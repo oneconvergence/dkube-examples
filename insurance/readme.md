@@ -1,22 +1,21 @@
 # Insurance cost prediction EXAMPLE 
 
-## Create code repo
-- Name: insurance
-- Project source: Git
-- Git URL: https://github.com/riteshkarvaloc/dkube-examples.git
-- Branch: training
+## Create Project if doesn't exist
+ - Name: insurance
 
-## Create a model
-- Name: insurance
-- Keep default for others
+## Create code repo
+ - Name: insurance
+ - Project source: Git
+ - Git URL: https://github.com/riteshkarvaloc/dkube-examples.git
+ - Branch: training
 
 ## Run training job
+ - Selct Project insuracne
  - Runs->+Training Run.
  - Code: insurance
  - Framework: ~~sklearn~~ tensorflow
  - Version: ~~1.1.1~~ 2.0
- - Start-up script: python insurance/train-hyp.py
- - Repos->Outputs->Model: select insurance and enter mountpath as /model
+ - Start-up script: python insurance/training.py
  - Submit
 
 ## Katib based Hyperparameter Tuning

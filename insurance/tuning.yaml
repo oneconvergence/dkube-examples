@@ -1,9 +1,9 @@
-parallelTrialCount: 2
-maxTrialCount: 4
-maxFailedTrialCount: 4
+parallelTrialCount: 4
+maxTrialCount: 8
+maxFailedTrialCount: 6
 objective:
   type: minimize
-  goal: 7000.0
+  goal: 6400.0
   objectiveMetricName: mean_absolute_error
 algorithm:
   algorithmName: random

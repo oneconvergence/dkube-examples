@@ -41,7 +41,7 @@ MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME', 'insurance')
 # EPOCHS, DATASET_URL could be specified as Environment parameters at the time of creating JL or Run
 
 # Experiment with this parameter. 
-NUM_EPOCHS = os.getenv("EPOCHS", 10)
+NUM_EPOCHS = int(os.getenv("EPOCHS", 10))
 
 # Define data
 INPUT_DATA_URL = os.getenv("DATASET_URL", "https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv")

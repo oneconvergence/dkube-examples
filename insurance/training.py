@@ -19,7 +19,7 @@ requests.packages.urllib3.disable_warnings()
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=10,
                         help='The number of epochs for training')
-parser.add_argument('--learning_rate', type=float, default=None,
+parser.add_argument('--learning_rate', type=float, default=0.01,
                         help="learning rate for optimizer")
 args = parser.parse_args()
 

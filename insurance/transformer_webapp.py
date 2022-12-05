@@ -33,8 +33,6 @@ class Transformer(kfserving.KFModel):
         self.predictor_host = predictor_host
 
     def preprocess(self, inputs: Dict) -> Dict:
-        # inputs is a json file, inside that data, using the data value form a image
-        # write into jpeg file
         del inputs["instances"]
         logging.info("prep =======> %s", str(type(inputs)))
         try:

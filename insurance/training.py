@@ -19,7 +19,7 @@ requests.packages.urllib3.disable_warnings()
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=10,
                         help='The number of epochs for training')
-parser.add_argument('--learning_rate', type=int, default=None,
+parser.add_argument('--learning_rate', type=float, default=None,
                         help="learning rate for optimizer")
 args = parser.parse_args()
 
@@ -94,7 +94,6 @@ model.compile(loss='mean_absolute_error',
 # mlflow metric logging
 class loggingCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
-        accuracy_metric = "loss"
         mlflow.log_metric("train_loss", logs["loss"], step=epoch)
         mlflow.log_metric("val_loss", logs["val_loss"], step=epoch)
         # output accuracy metric for katib to collect from stdout
@@ -103,16 +102,16 @@ class loggingCallback(keras.callbacks.Callback):
 
 with mlflow.start_run(run_name="insurance") as run:
     
-    model.fit(x_train, y_train, epochs = NUM_EPOCHS, validation_split=0.1,
-             callbacks=[loggingCallback()])
+    model.fit(x_train, y_train, epochs = NUM_EPOCHS, verbose=0,
+                validation_split=0.1, callbacks=[loggingCallback()])
     
     # Exporting model
     model.save(filepath=os.path.join(OUTPUT_MODEL_DIR, '1'))
     
     # Two ways to save model - log_artifacts() or log_model()
-    #mlflow.log_artifacts(OUTPUT_MODEL_DIR, artifact_path="saved_model")
+    mlflow.log_artifacts(OUTPUT_MODEL_DIR) ## For tf-serving
     signature = infer_signature(x_test, model.predict(x_test))
-    mlflow.keras.log_model(model, "insurance_model", signature=signature)
+    mlflow.keras.log_model(keras_model=model, artifact_path=None, signature=signature)
         
     # Record parameters
     mlflow.log_params({"dataset": "https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv",

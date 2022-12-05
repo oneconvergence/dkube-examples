@@ -50,7 +50,7 @@ class Transformer(kfserving.KFModel):
 
     def postprocess(self, predictions: List) -> List:
         logging.info("prep =======> %s", str(type(predictions)))
-        preds = predictions["predictions"]
+        preds = predictions["outputs"]
         return {"result": preds}
 
 if __name__ == "__main__":

@@ -27,12 +27,12 @@
  - Click on run and go to model lineage.
  - Click on the model in outputs.
  - Click on deploy
- - Give a name and use serving image `ocdr/tensorflowserver:2.0.0`.
- - Choose deployment type `Test` and deploying using `CPU`.
+ - Give a name and use serving image `ocdr/tensorflowserver:2.0.0`
+ - Choose deployment type `Test` and deploying using `CPU`
  - Select transformer
- - Use transformer image `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`.
- - Select transformer code `insurance`.
- - transformer script `insurance/transformer.py`.
+ - Use transformer image `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
+ - Select transformer code `insurance`
+ - transformer script `insurance/transformer.py`
  - Submit. 
 
 

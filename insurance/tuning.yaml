@@ -3,23 +3,18 @@ maxTrialCount: 8
 maxFailedTrialCount: 6
 objective:
   type: minimize
-  goal: 6400.0
-  objectiveMetricName: mean_absolute_error
+  goal: 6000.0
+  objectiveMetricName: loss
 algorithm:
   algorithmName: random
 parameters:
-  - name: --n_estimators
+  - name: --epochs
     parameterType: int
     feasibleSpace:
-      min: "100"
-      max: "200"
-  - name: --max_depth
-    parameterType: int
+      min: "10"
+      max: "20"
+  - name: --learning_rate
+    parameterType: float
     feasibleSpace:
-      min: "1"
-      max: "10"
-  - name: --max_features
-    parameterType: int
-    feasibleSpace:
-      min: "1"
-      max: "6"
+      min: "0.001"
+      max: "0.01"

@@ -94,12 +94,24 @@
 
 ## Compare Models
  Training Jobs create output Models that can be used to predict output based on new input data.  Each model contains within it the metrics that determine how well the Model is likely to perform.  This section explains how to compare several Model metrics.
+ 
+ - Wait until both Runs from the previous step have completed
+ - Navigate to the "Models" menu on the left
+ - Expand the Model \<your-model-repo\> (chosen during Model Repo creation)
+ - Select the 2 most recent Model versions (they should be the Models with the highest version numbers)
+ - Select "Compare" button
+ - Select the "Y-axis" to the left of the graph to "train_loss" 
+ - The graph will compare the 2 Training Runs
 
 ## Katib-Based Hyperparameter Tuning
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
+ - Download the hyperparameter tuning file from 
+ - Select one of the Runs created in the previous section and select "Clone" button
+ - 
+ 
 1. Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
-  - For hyperparameter tuning upload the https://github.com/riteshkarvaloc/dkube-examples/blob/training/insurance/tuning.yaml under upload tuning definition. 
+  - For hyperparameter tuning upload the (https://github.com/oneconvergence/dkube-examples/tree/training/insurance/tuning.yaml) under upload tuning definition. 
   - Submit the run.
 
 ## Deployment:

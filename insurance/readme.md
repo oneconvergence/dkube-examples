@@ -4,46 +4,46 @@
 ## Create Project if it Doesn't Exist
  Jobs execute within a Project.  This section explains how to create a Project.
  
- - Navigate to the Project menu on the far left side of the screen
- - Select "+ Create Project"
- - Name: \<your-project-name\>
+ - Navigate to the "Project" menu on the far left side of the screen
+ - Select "+ Create Project" <br/><br/>
+ - Name: \<your-project-name\> (your choice of name) <br/><br/>
  - Leave the other fields in their default options 
  - Submit your Project with the "Add Model" button at the bottom of the screen
 
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
- - Navigate to the Code menu on the left
+ - Navigate to the "Code" menu on the left
  - Choose the Project that you created in the previous step at the top of the screen
    - You only need to do this once.  It will remain the default until changed.
- - Select "+ Code"
- - Name: \<your-code-repo\>
+ - Select "+ Code" <br/><br/>
+ - Name: \<your-code-repo\> (your choice of name)
  - Code Source: Git
  - URL: https://github.com/riteshkarvaloc/dkube-examples.git
- - Branch: training
+ - Branch: training <br/><br/>
  - Leave the other fields in their default options 
  - Submit your Code repo with the "Add Code" button at the bottom of the screen
 
 ## Create Model Repo
  An output Model is created as as result of the Training job.  This section explains how to create a Model repo for the output.
  
- - Navigate to the Model menu on the left
- - Select "+ Model"
- - Name: \<your-model-repo\>
+ - Navigate to the "Model" menu on the left
+ - Select "+ Model" <br/><br/>
+ - Name: \<your-model-repo\> (your choice of name) <br/><br/>
  - Leave the other fields in their default options 
  - Submit your Model repo with the "Add Model" button at the bottom of the screen
 
 ## Create a JupyterLab IDE
  The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
- - Navigate to the IDE menu on the left
- - Select Project \<your-project-name\>
- - Select "+ JupyterLab"
+ - Navigate to the "IDE" menu on the left
+ - Select Project \<your-project-name\> (chosen in previous step)
+ - Select "+ JupyterLab" <br/><br/>
  - Within "Basic" tab
-   - Name: \<your-IDE-name\>
-   - Code \<your-code-name\>
+   - Name: \<your-IDE-name\> (your choice of name)
+   - Code \<your-code-repo\> (chosen in previous step)
    - Framework: tensorflow
-   - Version: 2.0.0
+   - Version: 2.0.0 <br/><br/>
  - Leave the other fields in their default options 
  - Submit your Code repo with the "Submit" button at the bottom of the screen
 
@@ -53,22 +53,30 @@
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
  - Navigate to /workspace/\<your-code-repo\>/insurance
- - Open training.ipynb
+ - Open training.ipynb <br/><br/>
  - Select "Run All Cells" from the top JupyterLab menu
    - This will execute the file with the current set of inputs
    - The "loss" will be shown at the bottom of the file
  - Change the default NUM_EPOCHS within the MACROS section to "15"
 
-## Run training job
- - Selct Project insuracne
- - Runs->+Training Run.
- - Code: insurance
- - Framework: tensorflow
- - Framework Version: 2.0
- - Start-up script: python insurance/training.py
- - Submit
+## Run Training Job
+ A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
+ 
+ - Navigate to the "Runs" menu on the left
+ - Select Project \<your-project-name\> (chosen in previous step)
+ - Select "+ Run", then "Training" <br/><br/>
+ - Within "Basic" tab
+   - Name: \<your-run-name\> (your choice of name)
+   - Code: \<your-code-repo\> (chosen in previous step)
+   - Framework: tensorflow
+   - Framework Version: 2.0.0
+   - Start-up command: python insurance/training.py <br/><br/>
+ - Leave the other fields in their default options 
+ - Submit your Code repo with the "Submit" button at the bottom of the screen
 
-## Katib based Hyperparameter Tuning
+## Katib-Based Hyperparameter Tuning
+ Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
+ 
 1. Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
   - For hyperparameter tuning upload the https://github.com/riteshkarvaloc/dkube-examples/blob/training/insurance/tuning.yaml under upload tuning definition. 
   - Submit the run.

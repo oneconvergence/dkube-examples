@@ -1,24 +1,58 @@
-# Insurance cost prediction EXAMPLE 
+# Insurance Cost Prediction Example
+ This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for running training and using the example.  More details for the platform are available at https://www.dkube.io/guide/guide3_x/Getting_Started.html
 
-## Create Project if doesn't exist
- - Name: insurance
+## Create Project if it Doesn't Exist
+ Jobs execute within a Project.  This section explains how to create a Project.
+ 
+ - Navigate to the Project menu on the far left side of the screen
+ - Select "+ Create Project"
+ - Name: \<your-project-name\>
+ - Leave the other fields in their default options 
+ - Submit your Project with the "Add Model" button at the bottom of the screen
 
-## Create code repo
- - Name: insurance
- - Project source: Git
- - Git URL: https://github.com/riteshkarvaloc/dkube-examples.git
+## Create Code Repo
+ A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
+ 
+ - Navigate to the Code menu on the left
+ - Choose the Project that you created in the previous step at the top of the screen
+   - You only need to do this once.  It will remain the default until changed.
+ - Select "+ Code"
+ - Name: \<your-code-name\>
+ - Code Source: Git
+ - URL: https://github.com/riteshkarvaloc/dkube-examples.git
  - Branch: training
+ - Leave the other fields in their default options 
+ - Submit your Code repo with the "Add Code" button at the bottom of the screen
 
-## Create model repo
- - Name: insuracne
- - Submit
+## Create Model Repo
+ An output Model is created as as result of the Training job.  This section explains how to create a Model repo for the output.
+ 
+ - Navigate to the Model menu on the left
+ - Select "+ Model"
+ - Name: \<your-model-repo\>
+ - Leave the other fields in their default options 
+ - Submit your Model repo with the "Add Model" button at the bottom of the screen
+
+## Experiment with JupyterLab
+ The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE and experiment with it.
+ 
+ - Navigate to the IDE menu on the left
+ - Select Project \<your-project-name\>
+ - Select "+ JupyterLab"
+ - Within "Basic" tab
+   - Name: \<your-IDE\>
+   - Code \<your-code-name\>
+   - Framework: tensorflow
+   - Version: 2.0.0
+ - Leave the other fields in their default options 
+ - Submit your Code repo with the "Submit" button at the bottom of the screen
 
 ## Run training job
  - Selct Project insuracne
  - Runs->+Training Run.
  - Code: insurance
  - Framework: tensorflow
- - Version: 2.0
+ - Framework Version: 2.0
  - Start-up script: python insurance/training.py
  - Submit
 

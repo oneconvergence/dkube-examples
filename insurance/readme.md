@@ -6,6 +6,7 @@
  - Create and run Training Jobs and commpare their output metrics
  - Submit and review a Katib-based Hyperparameter optimization job
  - Deploy a Model for inference serving
+ - Create a Kubeflow Pipeline
 
 ## Create Project if it Doesn't Exist
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -147,7 +148,7 @@
  - Deployment can be viewed from the "Deployment" menu on the left of the screen
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
-## Kubeflow Pipeline
+## Create Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create a pipeline.
  
  - A pipeline is created from a JupyterLab IDE

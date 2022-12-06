@@ -9,6 +9,10 @@
  - Git URL: https://github.com/riteshkarvaloc/dkube-examples.git
  - Branch: training
 
+## Create model repo
+ - Name: insuracne
+ - Submit
+
 ## Run training job
  - Selct Project insuracne
  - Runs->+Training Run.
@@ -35,6 +39,11 @@
  - transformer script `insurance/transformer.py`
  - Submit. 
 
+## Pipeline
+ - Once the code repo is added, create an IDE and launch
+ - From `workspace/insurance/insurance` open `pipeline.ipynb`
+ - Verify the inputs in 4th cell
+ - Run all the cells
 
 ## Inference webapp
   - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.

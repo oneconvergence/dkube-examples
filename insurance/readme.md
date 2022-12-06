@@ -41,7 +41,7 @@
 
 ## Pipeline
  - Once the code repo is added, create an IDE and launch
- - From `workspace/insurance/insurance` open `pipeline.ipynb`
+ - From `workspace/insurance/insurance` open `insurance_pipeline.ipynb`
  - Verify the inputs in 4th cell
  - Run all the cells
 

@@ -103,16 +103,21 @@
  - Select the "Y-axis" to the left of the graph to "train_loss" 
  - The graph will compare the 2 Training Runs
 
-## Katib-Based Hyperparameter Tuning
+## Submit & Review Katib-Based Hyperparameter Tuning Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Download the hyperparameter tuning file from 
+ - Download the hyperparameter tuning file insurance-tuning.yaml from xxxx
  - Select one of the Runs created in the previous section and select "Clone" button
- - 
- 
-1. Create a Run same as explained above, except that now a tuning file also needs to be uploaded in the configuration tab.
-  - For hyperparameter tuning upload the (https://github.com/oneconvergence/dkube-examples/tree/training/insurance/tuning.yaml) under upload tuning definition. 
-  - Submit the run.
+ - Fill in the following fields in the "Configuration" tab as follows:
+   - Select "Upload" button from the "Upload Tuning Definition" section
+   - Choose the tuning file that was downloaded previously
+   - Leave the other fields in their default selection 
+   - Submit your Run <br><br>
+ - Wait for the Katib Run to complete
+ - Select the Katib icon on the far right of the Run line
+   - The Katib Run submits many trial runs with different hyperparameters
+   - The graph shows each trial run with the output loss and the input hyperparamters for that trial
+   - Scoll down to see which combination was the best, based upon the tuning file
 
 ## Deployment:
  - Click on run and go to model lineage.

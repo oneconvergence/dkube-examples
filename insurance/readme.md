@@ -44,11 +44,11 @@
  - Select "+ JupyterLab"
  - Fill in the required fields in the "Basic" tab as follows:
    - Name: \<your-IDE-name\> (your choice of name)
-   - Code \<your-code-repo\> (chosen in previous step)
+   - Code \<your-code-repo\> (chosen during Code Repo creation)
    - Framework: tensorflow
    - Version: 2.0.0
    - Leave the other fields in their default selection 
- - Submit your Code repo with the "Submit" button at the bottom of the screen
+ - Submit your IDE with the "Submit" button at the bottom of the screen
 
 ## Experiment with the JupyterLab IDE
  This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
@@ -66,24 +66,34 @@
    - The new "loss" will be shown
  - Make as many changes as you want to see the impact
 
-## Run Training Job
+## Run Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
  - Navigate to the "Runs" menu on the left
- - Select Project \<your-project-name\> (chosen in previous step)
+ - Select Project \<your-project-name\> (chosen during Project creation)
  - Select "+ Run", then "Training"
  - Fill in the following fields in the "Basic" tab as follows:
    - Name: \<your-run-name\> (your choice of name)
-   - Code: \<your-code-repo\> (chosen in previous step)
+   - Code: \<your-code-repo\> (chosen during Code Repo creation)
    - Framework: tensorflow
    - Framework Version: 2.0.0
    - Start-up command: python insurance/training.py
-   - Leave the other fields in their default selection
+   - Leave the other fields in their default selection <br><br>
+ - Fill in the following fields in the "Repos" tab as follows:
+   - Output -> Models: \<your-model-repo\> (chosen during Model Repo creation) <br><br>
  - Fill in the following fields in the "Configuration" tab as follows:
    - Select the "+" for "Environment variables"
    - Enter variable name "EPOCHS" (must be upper case) and value 20
-   - Leave the other fields in their default options 
- - Submit your Code repo with the "Submit" button at the bottom of the screen
+   - Leave the other fields in their default selection 
+ - Submit your Run with the "Submit" button at the bottom of the screen <br><br>
+ - Create another Run with a different hyperparameter as follows:
+   - Select the Run that was created and select "Clone" button
+   - Change the "EPOCHS" value in the "Configuration" tab to 15
+   - Leave the other fields in their default selection
+   - Submit your Run
+
+## Compare Models
+ Training Jobs create output Models that can be used to predict output based on new input data.  Each model contains within it the metrics that determine how well the Model is likely to perform.  This section explains how to compare several Model metrics.
 
 ## Katib-Based Hyperparameter Tuning
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.

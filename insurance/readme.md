@@ -17,7 +17,7 @@
  - Choose the Project that you created in the previous step at the top of the screen
    - You only need to do this once.  It will remain the default until changed.
  - Select "+ Code"
- - Name: \<your-code-name\>
+ - Name: \<your-code-repo\>
  - Code Source: Git
  - URL: https://github.com/riteshkarvaloc/dkube-examples.git
  - Branch: training
@@ -33,19 +33,31 @@
  - Leave the other fields in their default options 
  - Submit your Model repo with the "Add Model" button at the bottom of the screen
 
-## Experiment with JupyterLab
- The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE and experiment with it.
+## Create a JupyterLab IDE
+ The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
  - Navigate to the IDE menu on the left
  - Select Project \<your-project-name\>
  - Select "+ JupyterLab"
  - Within "Basic" tab
-   - Name: \<your-IDE\>
+   - Name: \<your-IDE-name\>
    - Code \<your-code-name\>
    - Framework: tensorflow
    - Version: 2.0.0
  - Leave the other fields in their default options 
  - Submit your Code repo with the "Submit" button at the bottom of the screen
+
+## Experiment with the JupyterLab IDE
+ This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
+ 
+ - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
+   - This will create a JupyterLab tab
+ - Navigate to /workspace/\<your-code-repo\>/insurance
+ - Open training.ipynb
+ - Select "Run All Cells" from the top JupyterLab menu
+   - This will execute the file with the current set of inputs
+   - The "loss" will be shown at the bottom of the file
+ - Change the default NUM_EPOCHS within the MACROS section to "15"
 
 ## Run training job
  - Selct Project insuracne

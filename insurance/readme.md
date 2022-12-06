@@ -42,7 +42,7 @@
    - Leave the other fields in their current selection 
  - Submit your Model repo with the "Add Model" button at the bottom of the screen
 
-## Create a JupyterLab IDE
+## Create JupyterLab IDE
  The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
  - Navigate to the "IDE" menu on the left
@@ -56,7 +56,7 @@
    - Leave the other fields in their current selection 
  - Submit your IDE with the "Submit" button at the bottom of the screen
 
-## Experiment with the JupyterLab IDE
+## Experiment with JupyterLab IDE
  This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
  
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
@@ -125,7 +125,7 @@
    - The graph shows each trial run with the output loss and the input hyperparamters for that trial
    - Scoll down to see which combination was the best, based upon the tuning file
 
-## Deploy a Model for Inference Serving
+## Deploy Model for Inference Serving
  After the Models have been analyzed and the best one is identified, it is deployed to a production server for inference of live data.  This section explains how to deploy a Model.
  
  - Navigate to the "Models" menu on the left
@@ -140,22 +140,36 @@
    - Deploy using: "CPU" radial button
    - Select "Transformer" checkbox
    - Transformer Image: ocdr/dkube-datascience-tf-cpu:v2.0.0-16
-   - Transfomer code: \<your-user-name\>:\<your-code-repo\>
+   - Transfomer code: \<your-code-repo\>
    - Transformer Script: insurance/transformer.py
    - Leave the other fields in their current selection 
  - Submit Deployment using the "Submit" button at the bottom of the screen <br><br>
  - Deployment can be viewed from the "Deployment" menu on the left of the screen
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
-## Pipeline
- - Once the code repo is added, create an IDE and launch
- - From `workspace/insurance/insurance` open `insurance_pipeline.ipynb`
- - Verify the inputs in 4th cell
- - Run all the cells
+## Kubeflow Pipeline
+ The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create a pipeline.
+ 
+ - A pipeline is created from a JupyterLab IDE
+ - Launch or select the JupyterLab IDE \<your-IDE-name\> (created in the IDE section)
+ - Navigate to folder "workspace/\<your-code-repo\>/insurance"
+ - Open file "insurance_pipeline.ipynb"
+ - Review the 4th cell and ensure that the inputs are as follows:
+   - image = "ocdr/dkube-datascience-tf-cpu:v2.0.0-16"
+   - serving_image = "ocdr/tensorflowserver:2.0.0"
+   - training_program = "training"
+   - model = 'insurance'
+   - training_script = "python insurance/training.py"
+   - transformer_code='insurance/transformer.py'
+   - framework = "tensorflow"
+   - f_version = "2.0.0"
+   - output_mount_point = "/opt/dkube/out"
+ - Select "Run All Cells" from the top JupyterLab menu
 
-## Inference webapp
+<!--- ## Inference webapp
   - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.
   - Run command
   - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
   - Open http://localhost:8501/ in your browser,
   - Fill serving URL, auth token and other details and click predict.
+-->

@@ -1,5 +1,11 @@
 # Insurance Cost Prediction Example
- This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for running training and using the example.  More details for the platform are available at https://www.dkube.io/guide/guide3_x/Getting_Started.html
+ This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for running training and using the example.  More details for the platform are available at https://www.dkube.io/guide/guide3_x/Getting_Started.html .  This example contains the following capabilities:
+ 
+ - Create the Repos required for training
+ - Create and experiment with a JupyterLab IDE
+ - Create and run Training Jobs and commpare their output metrics
+ - Submit and review a Katib-based Hyperparameter optimization job
+ - Deploy a Model for inference serving
 
 ## Create Project if it Doesn't Exist
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -8,7 +14,7 @@
  - Select "+ Create Project"
  - Fill in the required fields as follows:
    - Name: \<your-project-name\> (your choice of name)
-   - Leave the other fields in their default selection 
+   - Leave the other fields in their current selection 
  - Submit your Project with the "Submit" button at the bottom of the screen
 
 ## Create Code Repo
@@ -21,9 +27,9 @@
  - Fill in the required fields as follows:
    - Name: \<your-code-repo\> (your choice of name)
    - Code Source: Git
-   - URL: https://github.com/riteshkarvaloc/dkube-examples.git
+   - URL: https://github.com/oneconvergence/dkube-examples.git
    - Branch: training
-   - Leave the other fields in their default selection 
+   - Leave the other fields in their current selection 
  - Submit your Code repo with the "Add Code" button at the bottom of the screen
 
 ## Create Model Repo
@@ -33,7 +39,7 @@
  - Select "+ Model"
  - Fill in the required fields as follows:
    - Name: \<your-model-repo\> (your choice of name)
-   - Leave the other fields in their default selection 
+   - Leave the other fields in their current selection 
  - Submit your Model repo with the "Add Model" button at the bottom of the screen
 
 ## Create a JupyterLab IDE
@@ -47,7 +53,7 @@
    - Code \<your-code-repo\> (chosen during Code Repo creation)
    - Framework: tensorflow
    - Version: 2.0.0
-   - Leave the other fields in their default selection 
+   - Leave the other fields in their current selection 
  - Submit your IDE with the "Submit" button at the bottom of the screen
 
 ## Experiment with the JupyterLab IDE
@@ -72,24 +78,24 @@
  - Navigate to the "Runs" menu on the left
  - Select Project \<your-project-name\> (chosen during Project creation)
  - Select "+ Run", then "Training"
- - Fill in the following fields in the "Basic" tab as follows:
+ - Fill in the required fields in the "Basic" tab as follows:
    - Name: \<your-run-name\> (your choice of name)
    - Code: \<your-code-repo\> (chosen during Code Repo creation)
    - Framework: tensorflow
    - Framework Version: 2.0.0
    - Start-up command: python insurance/training.py
-   - Leave the other fields in their default selection <br><br>
- - Fill in the following fields in the "Repos" tab as follows:
+   - Leave the other fields in their current selection <br><br>
+ - Fill in the required fields in the "Repos" tab as follows:
    - Output -> Models: \<your-model-repo\> (chosen during Model Repo creation) <br><br>
- - Fill in the following fields in the "Configuration" tab as follows:
+ - Fill in the required fields in the "Configuration" tab as follows:
    - Select the "+" for "Environment variables"
    - Enter variable name "EPOCHS" (must be upper case) and value 20
-   - Leave the other fields in their default selection 
+   - Leave the other fields in their current selection 
  - Submit your Run with the "Submit" button at the bottom of the screen <br><br>
  - Create another Run with a different hyperparameter as follows:
    - Select the Run that was created and select "Clone" button
    - Change the "EPOCHS" value in the "Configuration" tab to 15
-   - Leave the other fields in their default selection
+   - Leave the other fields in their current selection
    - Submit your Run
 
 ## Compare Models
@@ -103,15 +109,15 @@
  - Select the "Y-axis" to the left of the graph to "train_loss" 
  - The graph will compare the 2 Training Runs
 
-## Submit & Review Katib-Based Hyperparameter Tuning Job
+## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Download the hyperparameter tuning file insurance-tuning.yaml from xxxx
+ - Download the hyperparameter optimization file insurance-tuning.yaml from xxxx
  - Select one of the Runs created in the previous section and select "Clone" button
- - Fill in the following fields in the "Configuration" tab as follows:
+ - Fill in the required fields in the "Configuration" tab as follows:
    - Select "Upload" button from the "Upload Tuning Definition" section
    - Choose the tuning file that was downloaded previously
-   - Leave the other fields in their default selection 
+   - Leave the other fields in their current selection 
    - Submit your Run <br><br>
  - Wait for the Katib Run to complete
  - Select the Katib icon on the far right of the Run line
@@ -119,17 +125,27 @@
    - The graph shows each trial run with the output loss and the input hyperparamters for that trial
    - Scoll down to see which combination was the best, based upon the tuning file
 
-## Deployment:
- - Click on run and go to model lineage.
- - Click on the model in outputs.
- - Click on deploy
- - Give a name and use serving image `ocdr/tensorflowserver:2.0.0`
- - Choose deployment type `Test` and deploying using `CPU`
- - Select transformer
- - Use transformer image `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
- - Select transformer code `insurance`
- - transformer script `insurance/transformer.py`
- - Submit. 
+## Deploy a Model for Inference Serving
+ After the Models have been analyzed and the best one is identified, it is deployed to a production server for inference of live data.  This section explains how to deploy a Model.
+ 
+ - Navigate to the "Models" menu on the left
+ - Select Project \<your-project-name\> (chosen during Project creation)
+ - Select the Model \<your-model-repo\> (chosen during Model Repo creation)
+ - Choose a Model version
+ - Select the "Deploy" icon on the right hand side of the version chosen
+ - Fill in the required fields as follows:
+   - Name: \<your-deploy-name\> (your choice of name)
+   - Serving Image: ocdr/tensorflowserver:2.0.0
+   - Deployment: "Test" radial button
+   - Deploy using: "CPU" radial button
+   - Select "Transformer" checkbox
+   - Transformer Image: ocdr/dkube-datascience-tf-cpu:v2.0.0-16
+   - Transfomer code: \<your-user-name\>:\<your-code-repo\>
+   - Transformer Script: insurance/transformer.py
+   - Leave the other fields in their current selection 
+ - Submit Deployment using the "Submit" button at the bottom of the screen <br><br>
+ - Deployment can be viewed from the "Deployment" menu on the left of the screen
+   - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
 ## Pipeline
  - Once the code repo is added, create an IDE and launch

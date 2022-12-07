@@ -1,12 +1,12 @@
 # MODEL MONITORING INSURANCE CLOUDEVENTS EXAMPLE (UI)
 
-
 ## 1. Create Model Monitor
 1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
 If it is external, then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
-2. First run the `resources.ipynb` to create the required resources.
-3. click on Add Monitor in the actions tab.
-4. In Basics Tab, select the Model type as Regression and give the timezone as UTC.
+2. Run the `resources.ipynb` to create the required resources.
+3. Copy the deployment-id from deployment details page and keep it with you.
+4. click on Add Monitor in the actions tab.
+5. In Basics Tab, select the Model type as Regression, Input data type Tabular and timezone as UTC.
 
 ### 2. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as auto.
@@ -15,11 +15,7 @@ If it is external, then first add the cluster and click on Deployments in the le
    - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
 
 3. **Add Predict Data**:
-- If data source is **aws_s3 / local**
-     -  Select dataset `insurance-mm-kf-s3`.
-     -  Fill deployment ID in Prefix/Subpath
-     -  Select dataset content as **Cloudevents**.
-     -  Date suffix is yyyy/dd/mm/hh
+ -  Select dataset content as **Cloudevents**.
 
 ### 3. Performance Monitoring
 1. Check Enable and provide frequency as 5 minutes.
@@ -46,7 +42,7 @@ If it is external, then first add the cluster and click on Deployments in the le
 Add Feature Drift Alerts
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
  - Suggest to configure a separate alert for each individual feature.
- - Use a threshold between 0 to 1. generally advised 0.05 to 0.1 for all categorical or all continuous columns columns,  0.05 to 0.01 for mixed categorical and continuous columns columns.
+ - Use a threshold between 0 to 1. generally advised 0.1 to 0.3 for all categorical or all continuous columns columns,  0.1 to 0.3 for mixed categorical and continuous columns columns.
  - It fires an alert when calculated drift goes under the configured threshold
 
 Add Performance Decay Alerts
@@ -62,3 +58,8 @@ Add Performance Decay Alerts
 Click on Start for the specific monitor on Modelmonitor dashboard.
    - Modelmonitor can only be started in 'ready' state.
    - It can be stopped anytime. Previous data will not be erased.
+
+### 8. Data Generation
+ - Go to the IDE and open `workspace/insurance/insurance/monitoring/data_generation.ipynb`
+ - Provide the details manually in the second cell. 
+ - Run all cells.

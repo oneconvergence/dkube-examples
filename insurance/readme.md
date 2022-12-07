@@ -171,10 +171,9 @@
    - output_mount_point = "/opt/dkube/out"
  - Select "Run All Cells" from the top JupyterLab menu
 
-<!--- ## Inference webapp
-  - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.
+## Inference webapp (Execute the following steps in your local machine)
+  - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance-tf**.
   - Run command
   - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
   - Open http://localhost:8501/ in your browser,
   - Fill serving URL, auth token and other details and click predict.
--->

@@ -1,5 +1,5 @@
 # Insurance Cost Prediction Example
- This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for using the example.  More details for the platform are available at https://www.dkube.io/guide/guide3_x/Getting_Started.html <br><br>
+ This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for using the example.  More details for the platform are available at [DKube User Guide](https://www.dkube.io/guide/guide3_x/Getting_Started.html). <br><br>
  This example contains the following capabilities:
  
  - Create the Repos required for training
@@ -117,7 +117,7 @@
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Download the hyperparameter optimization file https://oneconvergence.com/guide2/downloads/insurance-tuning.yaml
+ - Download the hyperparameter optimization file [Insurance Katib Tuning File](https://oneconvergence.com/guide2/downloads/insurance-tuning.yaml)
  - Select one of the Runs created in the previous section and select "Clone" button
  - Fill in the required fields in the "Configuration" tab as follows:
    - Select "Upload" button from the "Upload Tuning Definition" section

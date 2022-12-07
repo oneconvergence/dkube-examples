@@ -49,8 +49,7 @@ class Transformer(kfserving.KFModel):
     def postprocess(self, predictions: List) -> List:
         logging.info("prep =======> %s", str(type(predictions)))
         preds = predictions["outputs"]
-        res = f'Your insurance charges would be: ${round(preds[0],2)}'
-        return {"result": res}
+        return {"result": preds}
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)

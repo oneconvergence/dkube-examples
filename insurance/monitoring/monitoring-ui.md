@@ -61,5 +61,5 @@ Click on Start for the specific monitor on Modelmonitor dashboard.
 
 ### 8. Data Generation
  - Go to the IDE and open `workspace/insurance/insurance/monitoring/data_generation.ipynb`
- - Provide the details manually in the second cell. 
+ - Provide the INFERENCE_URL manually in the second cell. 
  - Run all cells.

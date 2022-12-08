@@ -171,9 +171,16 @@
    - output_mount_point = "/opt/dkube/out"
  - Select "Run All Cells" from the top JupyterLab menu
 
-## Inference webapp (Execute the following steps in your local machine)
-  - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance-tf**.
-  - Run command
-  - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
-  - Open http://localhost:8501/ in your browser,
-  - Fill serving URL, auth token and other details and click predict.
+## Inference WebApp
+ A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence have written a web-based inference application for this example.  It is meant to show how this particular example could be used.
+ 
+ - The WebApp needs to be installed on the server running DKube.  It is then available to any user that wants to try it out.
+ - In order to install the WebApp, the following command is run once by the system administrator:
+   - sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf <br> <br>
+ - In order to use the WebApp, the following url accesses the application from your browser:
+   - http://\<url of the DKube instance>\:8501
+ - Fill in the required fields a follows:
+   - DKube serving url: URL of the server running DKube
+   - DKube user auth token: Authorization token, available from the Developer Settings menu
+   - Select the characteristics of the individual
+   - Select "Predict"

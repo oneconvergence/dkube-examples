@@ -152,6 +152,21 @@
  - Deployment can be viewed from the "Deployments" menu on the left of the screen
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
+## Create Generic Kubeflow Pipeline
+ The workflow can be automated through a Kubeflow Pipelines.  This section explains how to create an example Kubeflow Pipeline.  Note that this is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+ 
+ - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
+ - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
+ - Run all the cells in the file "ControlStructures.ipynb"
+ - This will create and run a Kubeflow Pipeline <br><br>
+ - Navigate to the "Pipelines" menu on the left
+ - Select the "Runs" tab on the top
+ - The PIpeline run at the top of the list will be the one that was just created
+ - Select the "View Pipeline" field
+   - That will show the full Pipeline graph
+ - Select the back arrow at the top left and select the Pipeline name
+   - That will show the Pipeline as it is executed
+
 ## Create Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create a pipeline.
  

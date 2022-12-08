@@ -117,11 +117,11 @@
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Download the hyperparameter optimization file [Insurance Katib Tuning File](https://oneconvergence.com/guide2/downloads/insurance-tuning.yaml)
+ - Create an optimization file by copying the file "/workspace/your-code-repo/insurance/tuning.yaml" to a file on your local system
  - Select one of the Runs created in the previous section and select "Clone" button
  - Fill in the required fields in the "Configuration" tab as follows:
    - Select "Upload" button from the "Upload Tuning Definition" section
-   - Choose the tuning file that was downloaded previously
+   - Choose the tuning file that was created previously
    - Leave the other fields at their current selection 
    - Submit your Run <br><br>
  - Wait for the Katib Run to complete
@@ -157,7 +157,7 @@
  
  - A pipeline is created from a JupyterLab IDE
  - Launch or select the JupyterLab IDE \<your-IDE-name\> (created in the IDE section)
- - Navigate to folder "workspace/\<your-code-repo\>/insurance"
+ - Navigate to folder "/workspace/\<your-code-repo\>/insurance"
  - Open file "insurance_pipeline.ipynb"
  - Review the 4th cell and ensure that the inputs are as follows:
    - image = "ocdr/dkube-datascience-tf-cpu:v2.0.0-16"

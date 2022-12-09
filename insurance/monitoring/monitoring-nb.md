@@ -1,4 +1,4 @@
-# Create Insurance Prediction Example Automatically
+# Create Monitor for Insurance Prediction Example Automatically
 
  This section explains how to use a JupyterLab .ipynb file to create a Monitor for the insurance prediction example.
 

@@ -1,4 +1,6 @@
-# INSURANCE EXAMPLE
+# Create Insurance Prediction Example Automatically
+
+ This section explains how to use a JupyterLab .ipynb file to create a Monitor for the insurance prediction example.
 
 - This example only supports predict dataset sources as **CloudEvents**. 
 - This example also supports model deployment at a Full DKube cluster(serving cluster) and model monitoring on seperate minimal DKube cluster(monitoring cluster).

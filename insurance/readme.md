@@ -171,29 +171,21 @@
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
+ - Navigate to the folder "/workspace/\<your-code-repo\>/insurance"
+ - Open the file "insurance-pipeline.ipynb"
  - Fill in the required fields in the 4th cell as follows:
    - training_program = \<your-code-repo\> (chosen during Code Repo creation}
    - model = \<your-model-repo\> (chosen during Model Repo creation)
    - Leave the other fields in their current selection
-
-
-
- - A pipeline is created from a JupyterLab IDE
- - Launch or select the JupyterLab IDE \<your-IDE-name\> (created in the IDE section)
- - Navigate to folder "/workspace/\<your-code-repo\>/insurance"
- - Open file "insurance_pipeline.ipynb"
- - Review the 4th cell and ensure that the inputs are as follows:
-   - image = "ocdr/dkube-datascience-tf-cpu:v2.0.0-16"
-   - serving_image = "ocdr/tensorflowserver:2.0.0"
-   - training_program = "training"
-   - model = 'insurance'
-   - training_script = "python insurance/training.py"
-   - transformer_code='insurance/transformer.py'
-   - framework = "tensorflow"
-   - f_version = "2.0.0"
-   - output_mount_point = "/opt/dkube/out"
- - Select "Run All Cells" from the top JupyterLab menu
+  - Select "Run All Cells" from the top JupyterLab menu
+  - This will create and run a Kubeflow Pipeline for the example <br> <br>
+  - Navigate to the "Pipelines" menu on the left
+ - Select the "Runs" tab on the top
+ - The PIpeline run at the top of the list will be the one that was just created
+ - Select the "View Pipeline" field
+   - That will show the full Pipeline graph
+ - Select the back arrow at the top left and select the Pipeline name
+   - That will show the Pipeline as it is executed
 
 ## Inference WebApp
  A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence has written a web-based inference application for this example.  It is meant to show how this particular example could be used.

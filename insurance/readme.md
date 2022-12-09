@@ -40,7 +40,7 @@
  - Submit your Code repo with the "Add Code" button at the bottom of the screen
 
 ## Create Model Repo
- An output Model is created as as result of the Training job.  This section explains how to create a Model repo for the output.
+ An output Model is created as a result of the Training job.  This section explains how to create a Model repo for the output.
  
  - Navigate to the "Models" menu on the left
  - Select "+ Model"

@@ -3,10 +3,11 @@
 ## 1. Create Model Monitor
 1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
 If it is external, then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
-2. Run the `resources.ipynb` to create the required resources.
-3. Copy the deployment-id from deployment details page and keep it with you.
-4. click on Add Monitor in the actions tab.
-5. In Basics Tab, select the Model type as Regression, Input data type Tabular and timezone as UTC.
+2. Make Sure the Deployment is in running state. 
+3. Run the `resources.ipynb` to create the required resources.
+4. Copy the deployment-id from deployment details page and keep it with you.
+5. click on Add Monitor in the actions tab.
+6. In Basics Tab, select the Model type as Regression, Input data type Tabular and timezone as UTC.
 
 ### 2. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as auto.

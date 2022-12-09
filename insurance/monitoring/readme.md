@@ -5,4 +5,4 @@
  - Using the DKube UI
 
 ## Create Monitor Using JupyterLab
- This approach will automatically create and start the Monitor through an .ipynb file.  This allows an easy way to get the Monitor ready, and allows you to then start to use the Monitor without needing to understand the steps involved.  The instructions for this are contained in the file [Create Monitor Automatically]{monitoring-nb.md).
+ This approach will automatically create and start the Monitor through an .ipynb file.  This allows an easy way to get the Monitor ready, and allows you to then start to use the Monitor without needing to understand the steps involved.  The instructions for this are contained in the file [aaa]{monitoring-nb.md)

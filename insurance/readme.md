@@ -153,7 +153,7 @@
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
 ## Create Generic Kubeflow Pipeline
- The workflow can be automated through a Kubeflow Pipelines.  This section explains how to create an example Kubeflow Pipeline.  Note that this is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+ The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.  Note that this is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
@@ -168,8 +168,17 @@
    - That will show the Pipeline as it is executed
 
 ## Create Kubeflow Pipeline
- The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create a pipeline.
+ A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
  
+ - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
+ - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
+ - Fill in the required fields in the 4th cell as follows:
+   - training_program = \<your-code-repo\> (chosen during Code Repo creation}
+   - model = \<your-model-repo\> (chosen during Model Repo creation)
+   - Leave the other fields in their current selection
+
+
+
  - A pipeline is created from a JupyterLab IDE
  - Launch or select the JupyterLab IDE \<your-IDE-name\> (created in the IDE section)
  - Navigate to folder "/workspace/\<your-code-repo\>/insurance"
@@ -187,7 +196,7 @@
  - Select "Run All Cells" from the top JupyterLab menu
 
 ## Inference WebApp
- A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence have written a web-based inference application for this example.  It is meant to show how this particular example could be used.
+ A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence has written a web-based inference application for this example.  It is meant to show how this particular example could be used.
  
  - The WebApp needs to be installed on the server running DKube.  It is then available to any user that wants to try it out.
  - It can be installed either using Docker or Python-3

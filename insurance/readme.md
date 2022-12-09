@@ -1,5 +1,5 @@
 # Insurance Cost Prediction Example
- This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for using the example.  More details for the platform are available at https://www.dkube.io/guide/guide3_x/Getting_Started.html <br><br>
+ This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for using the example.  More details for the platform are available at [DKube User Guide](https://www.dkube.io/guide/guide3_x/Getting_Started.html). <br><br>
  This example contains the following capabilities:
  
  - Create the Repos required for training
@@ -117,11 +117,11 @@
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Download the hyperparameter optimization file insurance-tuning.yaml from xxxx
+ - Create an optimization file by copying the file "/workspace/your-code-repo/insurance/tuning.yaml" to a file on your local system
  - Select one of the Runs created in the previous section and select "Clone" button
  - Fill in the required fields in the "Configuration" tab as follows:
    - Select "Upload" button from the "Upload Tuning Definition" section
-   - Choose the tuning file that was downloaded previously
+   - Choose the tuning file that was created previously
    - Leave the other fields at their current selection 
    - Submit your Run <br><br>
  - Wait for the Katib Run to complete
@@ -152,12 +152,27 @@
  - Deployment can be viewed from the "Deployments" menu on the left of the screen
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
+## Create Generic Kubeflow Pipeline
+ The workflow can be automated through a Kubeflow Pipelines.  This section explains how to create an example Kubeflow Pipeline.  Note that this is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+ 
+ - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
+ - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
+ - Run all the cells in the file "ControlStructures.ipynb"
+ - This will create and run a Kubeflow Pipeline <br><br>
+ - Navigate to the "Pipelines" menu on the left
+ - Select the "Runs" tab on the top
+ - The PIpeline run at the top of the list will be the one that was just created
+ - Select the "View Pipeline" field
+   - That will show the full Pipeline graph
+ - Select the back arrow at the top left and select the Pipeline name
+   - That will show the Pipeline as it is executed
+
 ## Create Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create a pipeline.
  
  - A pipeline is created from a JupyterLab IDE
  - Launch or select the JupyterLab IDE \<your-IDE-name\> (created in the IDE section)
- - Navigate to folder "workspace/\<your-code-repo\>/insurance"
+ - Navigate to folder "/workspace/\<your-code-repo\>/insurance"
  - Open file "insurance_pipeline.ipynb"
  - Review the 4th cell and ensure that the inputs are as follows:
    - image = "ocdr/dkube-datascience-tf-cpu:v2.0.0-16"
@@ -171,7 +186,21 @@
    - output_mount_point = "/opt/dkube/out"
  - Select "Run All Cells" from the top JupyterLab menu
 
-## Inference webapp (Execute the following steps in your local machine)
+## Inference WebApp
+ A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence have written a web-based inference application for this example.  It is meant to show how this particular example could be used.
+ 
+ - The WebApp needs to be installed on the server running DKube.  It is then available to any user that wants to try it out.
+ - In order to install the WebApp, the following command is run once by the system administrator:
+   - sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf <br> <br>
+ - In order to use the WebApp, the following url accesses the application from your browser:
+   - http://\<url of the DKube instance>\:8501
+ - Fill in the required fields a follows:
+   - DKube serving url: URL of the server running DKube
+   - DKube user auth token: Authorization token, available from the Developer Settings menu
+   - Select the characteristics of the individual
+   - Select "Predict"
+
+<!--- ## Inference webapp (Execute the following steps in your local machine)
 We can run the webapp either in docker or in python-3,
 1. Docker
   - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.
@@ -185,3 +214,4 @@ We can run the webapp either in docker or in python-3,
 
 Open http://localhost:8501/ in your browser,
 Fill serving URL, auth token and other details and click predict.
+-->

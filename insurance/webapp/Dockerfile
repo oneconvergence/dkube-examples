@@ -1,7 +1,7 @@
 FROM python:3
 EXPOSE 8501
 
-RUN pip install streamlit
+RUN pip install streamlit watchdog
 
 COPY . /
 

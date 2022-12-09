@@ -172,8 +172,16 @@
  - Select "Run All Cells" from the top JupyterLab menu
 
 ## Inference webapp (Execute the following steps in your local machine)
-  - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance-tf**.
+We can run the webapp either in docker or in python-3,
+1. Docker
+  - Go to webapp directory, and build a docker image with given **Dockerfile** or pull **ocdr/streamlit-webapp:insurance**.
   - Run command
-  - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
-  - Open http://localhost:8501/ in your browser,
-  - Fill serving URL, auth token and other details and click predict.
+  - > docker run -p 8501:8501 ocdr/streamlit-webapp:insurance
+2. Python-3
+  - Create a virtual environment `python3 -m venv ~/webapp`
+  - activate environment `source ~/webapp/bin/activate`
+  - Run `pip install --upgrade pip`
+  - Run `pip install streamlit watchdog`
+
+Open http://localhost:8501/ in your browser,
+Fill serving URL, auth token and other details and click predict.

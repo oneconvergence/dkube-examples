@@ -205,6 +205,7 @@
    - http://\<url of the DKube instance>\:8501
  - Fill in the required fields a follows:
    - DKube serving url: URL of the server running DKube
+     - This is the endpoint url from a running deployment, available from the "Deployments" menu under the "Endpoint" column
    - DKube user auth token: Authorization token, available from the Developer Settings menu
    - Select the characteristics of the individual
    - Select "Predict"

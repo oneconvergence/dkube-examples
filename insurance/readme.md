@@ -8,6 +8,8 @@
  - Submit and review a Katib-based Hyperparameter optimization job
  - Deploy a Model for inference serving
  - Create a Kubeflow Pipeline
+ - Create and start a Model Monitor for a deployment
+   - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
 ## Create Project
  Jobs execute within a Project.  This section explains how to create a Project.

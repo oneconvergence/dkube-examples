@@ -73,7 +73,7 @@
  - Select "Run All Cells" from the top JupyterLab menu
    - This will execute the file with the current set of inputs
    - The "loss" will be shown at the bottom of the file
- - Change the default NUM_EPOCHS within the MACROS section to "15"
+ - Change the default NUM_EPOCHS or LEARNING_RATE in Cell 2"
  - Select "Run All Cells" again
    - This will execute the code again with the new parameter
    - The new "loss" will be shown
@@ -156,7 +156,8 @@
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
 
 ## Create Generic Kubeflow Pipeline
- The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.  Note that this is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+ The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
+> **_Note:_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"

@@ -1,6 +1,6 @@
 # Insurance Cost Prediction Example
  This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for using the example.  More details for the platform are available at [DKube User Guide](https://www.dkube.io/guide/guide3_x/Getting_Started.html) <br><br>
- This example contains the following capabilities:
+ This example contains the following capabilities:  
  
  - Create the Repos required for training
  - Create and experiment with a JupyterLab IDE

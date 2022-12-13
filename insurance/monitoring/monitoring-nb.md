@@ -18,9 +18,9 @@
 
 ## Section 1: Create DKube Resources
 
-### Create Code Repo
+### Create Code & Model Repos
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code repo name that you previously created.  If you need to create a new Code repo, follow the instructions at [Create Code Repo](../readme.md#create-project)
+ > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code repo name that you previously created.  If you need to create a new Code repo, follow the instructions at [Create Code Repo](../insurance#create-project) & [Create Model Repo](../insurance#create-model-repo)
  - Navigate to the "Code" menu on the left
  - Choose the Project that you created in the previous step at the top of the screen
    - You only need to do this once.  It will remain the default until changed.

@@ -34,7 +34,7 @@
 
  - Navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
  - Open "resources.ipynb"
- - Fill in the external IP address in the field "SERVING_DKUBE_URL" in the form "https://\<IP Address\>:32222/
+ - Fill in the external IP address in the field "SERVING_DKUBE_URL" in the form "https://\<IP Address\>:32222/"
  - Leave the other fields in their current selection
  
 4. Open Jupyterlab and from **workspace/insurance/insurance/monitoring** open **resources.ipynb** and fill the following details in the first cell.

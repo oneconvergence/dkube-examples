@@ -25,8 +25,7 @@
 ## Create & Launch JupyterLab IDE
 
  > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
- - [Create JupyterLab IDE](../readme.md#create-jupyterlab-ide)
-
+ - [Create JupyterLab IDE](../readme.md#create-jupyterlab-ide) <br><br>
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
 
@@ -34,32 +33,11 @@
 
  - Navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
  - Open "resources.ipynb"
- - Fill in the external IP address in the field "SERVING_DKUBE_URL" in the form "https://\<IP Address\>:32222/"
- - Leave the other fields in their current selection
+ - In the first cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
+   - Leave the other fields in their current selection
+ - From the top menu item "Run", Select "Run All Cells"
+ - This will create the DKube resources required for this example to run automatically.
  
-4. Open Jupyterlab and from **workspace/insurance/insurance/monitoring** open **resources.ipynb** and fill the following details in the first cell.
-    - **SERVING_DKUBE_URL** = {DKube url of serving cluster}
-    - **SERVING_DKUBE_USERNAME** = {DKube username of serving cluster}
-    - **SERVING_DKUBE_TOKEN** = {DKube authentication token of serving cluster}
-    - if there is a sperate monitoring cluster then also fill the below details, otherwise leave these value empty.
-      - **MONITORING_DKUBE_USERNAME** = {DKube username of monitoring cluster}
-      - **MONITORING_DKUBE_TOKEN** = {DKube authentication token of monitoring cluster}
-      - **MONITORING_DKUBE_URL** = {DKube URL of monitoring cluster}
-    - **MONITOR_NAME** = {model monitor name}
-    - Cloudevents are stored in DKube Minio bucket. Enter the following details from the **Serving DKube Cluster**
-      - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running. See below}
-      - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running. See below}
-      - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
-        - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
-          - `curl -X 'GET' \
-              'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
-              -H 'accept: application/json' \
-              -H 'Authorization: Bearer <TOKEN>'`
-        - If you have access to Kubernetes, you can get the secrets by running the following commands
-          - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
-          - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
-    - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
-5. Run all the cells. This will create all the dkube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
 6. Once all the cells complete the run you will see the following resources will get created,
    1. `insurance-data` dataset on both serving and monitoring cluster.
    2. `insurance-mm-kf-s3` dataset on monitoring cluster.

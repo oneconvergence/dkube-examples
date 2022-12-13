@@ -36,7 +36,7 @@
 
  - Navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
  - Open "resources.ipynb"
- - In the first cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
+ - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
    - Leave the other fields in their current selection
  - From the top menu item "Run", Select "Run All Cells"
  - This will create the DKube resources required for this example to run automatically, including the required Dataset
@@ -71,7 +71,13 @@
 
 ## Generate Monitor Data
 
- In order for the Monitor to operate, predictions and groundtruth datasets must be generated.
+ In order for the Monitor to operate, predictions and groundtruth datasets must be generated. 
+ 
+ - Open "data_generation.ipynb"
+   - This will create the predictions with the Deployment endpoint and generate the groundtruth Datasets for this example
+
+<!--- Need to get clarification of the instructions below
+--->
 
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/data_generation.ipynb) notebook for making predictions with the deployemnt endpoint and generate groundtruth datasets.
 2. In 1st cell, Update Frequency according to what you set in Modelmonitor for Drift. For eg: for 5 minutes, specify it as `5m` and to specify the frequency in hours use `5h` for 5 hours interval.
@@ -79,11 +85,18 @@
 
 **Note:** Livedata will be created on the MINIO under deployment id. In the case of minimal DKube, we will create on the serving cluster minio where deployments are running.
 
+<!--- Not sure if we need to do this
+
 ## Section 5: SMTP Settings (Optional)
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.
+--->
 
-## Section 6: Cleanup
-1. After your experiment is complete, 
-   - Open **modelmonitor.ipynb** and set CLEANUP=True in last Cleanup cell and run.
-   - Open **resources.ipynb** and set CLEANUP=True in last Cleanup cell and run.
+## Cleanup
+ After the experiment is complete, the following cleanup should be performed:
+ 
+ - Within "modelmonitor.ipynb", set the variable "CLEANUP = True" in the last cell
+   - Run the "Cleanup" cell
+ - Within "resources.ipynb", set the variable "CLEANUP = True" in the last cell
+   - Run the "Cleanup" cell
+
 

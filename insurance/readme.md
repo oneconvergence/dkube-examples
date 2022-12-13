@@ -154,6 +154,7 @@
  - Submit Deployment using the "Submit" button at the bottom of the screen <br><br>
  - Deployment can be viewed from the "Deployments" menu on the left of the screen
    - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
+ > **_Note:_** Deployments are not filtered by Project
 
 ## Create Generic Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.

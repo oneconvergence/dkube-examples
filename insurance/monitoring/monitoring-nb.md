@@ -92,7 +92,7 @@ Configure your SMTP server settings on Operator screen. This is optional. If SMT
 --->
 
 ## Cleanup
- After the experiment is complete, the following cleanup should be performed:
+ After the experiment is complete, the following cleanup should be performed in order to stop the Monitor:
  
  - Within "modelmonitor.ipynb", set the variable "CLEANUP = True" in the last cell
    - Run the "Cleanup" cell

@@ -20,19 +20,10 @@
 
 ### Create Code & Model Repos
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code repo, follow the instructions at [Create Code Repo](../readme.md#create-project) & [Create Model Repo](../readme.md#create-model-repo)
- - Navigate to the "Code" menu on the left
- - Choose the Project that you created in the previous step at the top of the screen
-   - You only need to do this once.  It will remain the default until changed.
- - Select "+ Code"
- - Fill in the required fields as follows:
-   - Name: \<your-code-repo\> (your choice of name)
-   - Code Source: Git
-   - URL: https://github.com/oneconvergence/dkube-examples.git
-   - Branch: training
-   - Leave the other fields at their current selection 
- - Submit your Code repo with the "Add Code" button at the bottom of the screen
- - 
+ > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code repo, follow the instructions at
+ - [Create Code Repo](../readme.md#create-project)
+ - [Create Model Repo](../readme.md#create-model-repo)
+
 ### Create & Launch JupyterLab IDE
 
  > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.

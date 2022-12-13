@@ -20,7 +20,7 @@
 
 ### Create Code Repo
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code repo name that you previously created.
+ > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code repo name that you previously created.  If you need to create a new Code repo, follow the instructions at [Create Code Repo](../readme.md#create-project)
  - Navigate to the "Code" menu on the left
  - Choose the Project that you created in the previous step at the top of the screen
    - You only need to do this once.  It will remain the default until changed.

@@ -63,6 +63,7 @@
 
  - From the JupyterLab tab, navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
  - Open "modelmonitor.iypnb"
+ - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
  - Run all of the cells
  - This will create a new Model Monitor and put it into the "Active" state
 
@@ -75,6 +76,7 @@
  
  - Open "data_generation.ipynb"
    - This will create the predictions with the Deployment endpoint and generate the groundtruth Datasets for this example
+ - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
 
 <!--- Need to get clarification of the instructions below
 --->

@@ -73,7 +73,7 @@
  - Select "Run All Cells" from the top JupyterLab menu
    - This will execute the file with the current set of inputs
    - The "loss" will be shown at the bottom of the file
- - Change the default NUM_EPOCHS or LEARNING_RATE in Cell 2"
+ - Change the default NUM_EPOCHS or LEARNING_RATE in the 2nd cell labeled "MACROS"
  - Select "Run All Cells" again
    - This will execute the code again with the new parameter
    - The new "loss" will be shown

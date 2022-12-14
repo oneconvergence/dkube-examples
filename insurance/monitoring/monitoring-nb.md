@@ -40,20 +40,17 @@
    - Ensure that there is a final "/" in the url field
    - Leave the other fields in their current selection
  - From the top menu item "Run", Select "Run All Cells"
- - This will create the DKube resources required for this example to run automatically, including the required Dataset
-
-<!---  Getting info on the name of the dataset for a combined serving/monitoring cluster
-6. Once all the cells complete the run you will see the following resources will get created,
-   1. `insurance-data` dataset on both serving and monitoring cluster.
-   2. `insurance-mm-kf-s3` dataset on monitoring cluster.
---->
+ - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>
+ - The following Datasets will be created
+   - "insurance-data", with a pub_url source
+   - A Dataset that includes the username and ends in "-s3", with an "s3 | remote" source
 
 ## Train & Deploy Insurance Model
  
  In order to Monitor a Model in this example, it needs to be trained and deployed.
  > **_Note:_** This section requires DKube Runs, Kubeflow Pipelines, and KServe.  It requires a full DKube installation.
 
- > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use that deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
+ > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
  - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
 
  - The Pipeline will create a new Deployment.  It should be at the top of the Deployment list.

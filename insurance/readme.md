@@ -203,7 +203,7 @@
  - It can be installed either using Docker or Python-3
  - Run with Docker:
    - In order to install the WebApp, the following command is run once by the system administrator:
-     - > sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf <br> <br>
+     - > sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
   <!---
  - Run with Python-3: run the following commands in the given sequence:
    - > python3 -m venv ~/webapp

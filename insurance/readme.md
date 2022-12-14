@@ -134,7 +134,7 @@
    - Scoll down to see which combination was the best, based upon the tuning file
 
 ## Deploy Model for Inference Serving
- After the Models have been analyzed and the best one is identified, it is deployed to a production server for inference of live data.  This section explains how to deploy a Model.
+ After the Models have been analyzed and the best one is identified, it is deployed to a server for inference of live data.  This section explains how to deploy a Model.
  
  - Navigate to the "Models" menu on the left
  - Ensure that Project \<your-project-name\> is selected (chosen when creating Project)

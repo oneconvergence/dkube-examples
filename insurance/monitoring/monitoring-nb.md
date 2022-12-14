@@ -90,6 +90,15 @@
 Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.
 --->
 
+## View the Monitor
+
+ After the data has been generated for a few data points, it can be viewed within DKube.
+ 
+ - Navigate to the "Deployments" menu on the left
+ - Select the "Monitors" tab on the top
+ - Your new Monitor will be at the top of the list
+ - The details of how to view and understand the Monitor are described at [DKube Monitor User Guide](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html)
+
 ## Cleanup
  After the experiment is complete, the following cleanup should be performed in order to delete the Datasets and stop the Monitor:
  

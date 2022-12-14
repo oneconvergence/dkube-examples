@@ -97,7 +97,7 @@ Configure your SMTP server settings on Operator screen. This is optional. If SMT
  - Navigate to the "Deployments" menu on the left
  - Select the "Monitors" tab on the top
  - Your new Monitor will be at the top of the list
- - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](Guide(https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
+ - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
 
 ## Cleanup
  After the experiment is complete, the following cleanup should be performed in order to delete the Datasets and stop the Monitor:

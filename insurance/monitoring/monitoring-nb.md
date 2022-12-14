@@ -37,6 +37,7 @@
  - Navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
  - Open "resources.ipynb"
  - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
+   - Ensure that there is a final "/" in the url field
    - Leave the other fields in their current selection
  - From the top menu item "Run", Select "Run All Cells"
  - This will create the DKube resources required for this example to run automatically, including the required Dataset

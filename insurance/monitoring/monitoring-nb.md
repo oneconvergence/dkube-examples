@@ -76,8 +76,10 @@
    - This will create the predictions with the Deployment endpoint and generate the groundtruth Datasets for this example
    - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
    - In the 1st cell, specify the number of Dataset samples to run before stopping the data generation.  You can leave it at the default, or modify it.  The larger the number of samples, the more data will be generated for the Monitor graphs.
+<!---
    - The 3rd cell controls how often the script will run.  The default is 5 min.  If you want to change the frequency, change the variable to another number.
      - An example would be **FREQUENCY = "2m"** to run the script every 2 minutes
+--->
    - Leave the other fields at their current selection
    - Run All Cells
    - The script will start to push the data

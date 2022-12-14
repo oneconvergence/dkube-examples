@@ -1,5 +1,11 @@
 # Create Monitor for Insurance Prediction Example Through UI
 
+ This section explains how to create a Monitor for the insurance prediction example using the DKube UI.
+
+ - This example uses the DKube built-in MinIO server and uses prediction datasets as "CloudEvents"
+ - This example assumes that the serving cluster and the model monitoring cluster are the same
+
+<!--- We are only describing a local deployment here, similar to the automatic generation
 ## 1. Create Model Monitor
 1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
 If it is external, then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
@@ -8,6 +14,7 @@ If it is external, then first add the cluster and click on Deployments in the le
 4. Copy the deployment-id from deployment details page and keep it with you.
 5. click on Add Monitor in the actions tab.
 6. In Basics Tab, select the Model type as Regression, Input data type Tabular and timezone as UTC.
+--->
 
 ### 2. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as auto.

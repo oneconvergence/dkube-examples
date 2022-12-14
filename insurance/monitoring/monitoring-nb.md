@@ -7,15 +7,15 @@
 
 ## Example Flow
  - Create the DKube resources
- - Train a model for Insurance example using Tensorflow and deploy the model for inference
- - Create a Modelmonitor
-   - There is a mandatory requirement to deploy a model for this example
- - Generate data for analysis by Modelmonitor
+ - Train a model for the Insurance example using TensorFlow and deploy the model for inference
+ - Create a Model Monitor
+   - Although a deployed Model is not required for a Monitor within DKube, this example uses a deployed model
+ - Generate data for analysis by the Monitor
    - Predict data: Inference inputs/outputs
-   - Label data:  Dataset with Groundtruth values for the inferences made above.
- - Cleanup resources after the example is complete
+   - Label data:  Dataset with Groundtruth values for the inferences made above
+ - Cleanup the resources after the example is complete
 
- > **_Note:_** The labels are generated in the example for purposes of illustration.  In an actually Production environment, the label data would be generated manually by experts in the domain.
+ > **_Note:_** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
 
 ## Set up Resources
 

@@ -167,9 +167,9 @@
  - Select the "Runs" tab on the top
  - The PIpeline run at the top of the list will be the one that was just created
  - Select the "View Pipeline" field
-   - That will show the full Pipeline graph
+   - This will show the full Pipeline graph
  - Select the back arrow at the top left and select the Pipeline name
-   - That will show the Pipeline as it is executed
+   - This will show the Pipeline as it is executed
 
 ## Create Kubeflow Pipeline
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.

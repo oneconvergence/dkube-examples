@@ -70,14 +70,13 @@
 
 ## Generate Monitor Data
 
- In order for the Monitor to operate, predictions and groundtruth datasets must be generated. 
+ In order for the Monitor to operate, predictions and groundtruth Datasets must be generated. 
  
  - Open "data_generation.ipynb"
    - This will create the predictions with the Deployment endpoint and generate the groundtruth Datasets for this example
- - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
-
-<!--- Need to get clarification of the instructions below
---->
+   - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
+   - In the 1st cell, specify the number of Dataset samples to run before stopping the data generation.  You can leave it at the default, or modify it.  The larger the number of samples, the more data will be generated for the Monitor graphs.
+   - 
 
 1. Open [data_generation.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/data_generation.ipynb) notebook for making predictions with the deployemnt endpoint and generate groundtruth datasets.
 2. In 1st cell, Update Frequency according to what you set in Modelmonitor for Drift. For eg: for 5 minutes, specify it as `5m` and to specify the frequency in hours use `5h` for 5 hours interval.

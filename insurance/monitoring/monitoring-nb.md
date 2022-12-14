@@ -53,7 +53,7 @@
  > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
  - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
 
- - The Pipeline will create a new Deployment.  It should be at the top of the Deployment list.
+ - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
 
 ## Create Monitor Automatically
 

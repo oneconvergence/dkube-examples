@@ -1,4 +1,4 @@
-# MODEL MONITORING INSURANCE CLOUDEVENTS EXAMPLE (UI)
+# Create Monitor for Insurance Prediction Example Through UI
 
 ## 1. Create Model Monitor
 1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 

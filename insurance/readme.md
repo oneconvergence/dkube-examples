@@ -187,9 +187,14 @@
  - Select the "Runs" tab on the top
  - The PIpeline run at the top of the list will be the one that was just created
  - Select the "View Pipeline" field
-   - That will show the full Pipeline graph
+   - This will show the full Pipeline graph
  - Select the back arrow at the top left and select the Pipeline name
-   - That will show the Pipeline as it is executed
+   - This will show the Pipeline as it is executed
+   - Select the "dkube-training" graph box to see the Run details
+   - Select the "dkube-serving" graph box to see the Deployment details <br><br>
+ - Navigate to the "Models" menu on the left
+   - Expand the Model with the name \<your-model-repo\> through the "\>" to the left of the name
+   - You will see that the top Model has been deployed
 
 ## Inference WebApp
  A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence has written a web-based inference application for this example.  It is meant to show how this particular example could be used.

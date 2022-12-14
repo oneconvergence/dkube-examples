@@ -204,12 +204,14 @@
  - Run with Docker:
    - In order to install the WebApp, the following command is run once by the system administrator:
      - > sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf <br> <br>
+  <!---
  - Run with Python-3: run the following commands in the given sequence:
    - > python3 -m venv ~/webapp
    - > source ~/webapp/bin/activate
    - > pip install --upgrade pip
    - > pip install streamlit watchdog
    - > streamlit run insurance/webapp/webapp.py
+ --->
  - In order to use the WebApp, the following url accesses the application from your browser:
    - http://\<url of the DKube instance>\:8501
  - Fill in the required fields a follows:

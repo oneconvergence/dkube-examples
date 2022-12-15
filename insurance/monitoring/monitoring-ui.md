@@ -40,7 +40,7 @@
    - Ensure that there is a final "/" in the url field
    - Leave the other fields in their current selection
  - From the top menu item "Run", Select "Run All Cells"
- - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>
+ - This will create the DKube resources required for this example to run the Monitor, including the required Datasets <br><br>
  - The following Datasets will be created
    - "insurance-data", with a pub_url source
    - A Dataset that includes the username and ends in "-s3", with an "s3 | remote" source

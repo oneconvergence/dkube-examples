@@ -68,7 +68,7 @@
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the "Drift" tab as follows:
    - Select "Enable" box
-   - Dataset: insurnace-data]
+   - Dataset: `insurance-data`
    - Dataset Version: v1
 
 ### 2. Drift Monitoring

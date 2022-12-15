@@ -20,7 +20,7 @@
  - Navigate to the "Project" menu on the far left side of the screen
  - Select "+ Create Project" on the right of the screen
  - Fill in the required fields as follows:
-   - Name: \<your-project-name\> **(your choice of name)**
+   - Name: `<your-project-name>` **(your choice of name)**
    - Leave the other fields at their current selection 
  - Submit your Project with the "Submit" button at the bottom of the screen
 
@@ -32,10 +32,10 @@
    - You only need to do this once.  It will remain the default until changed.
  - Select "+ Code"
  - Fill in the required fields as follows:
-   - Name: \<your-code-repo\> **(your choice of name)**
-   - Code Source: Git
-   - URL: https://github.com/oneconvergence/dkube-examples.git
-   - Branch: training
+   - Name: `<your-code-repo>` **(your choice of name)**
+   - Code Source: `Git`
+   - URL: `https://github.com/oneconvergence/dkube-examples.git`
+   - Branch: `training`
    - Leave the other fields at their current selection 
  - Submit your Code repo with the "Add Code" button at the bottom of the screen
 
@@ -45,7 +45,7 @@
  - Navigate to the "Models" menu on the left
  - Select "+ Model"
  - Fill in the required fields as follows:
-   - Name: \<your-model-repo\> **(your choice of name)**
+   - Name: `<your-model-repo>` **(your choice of name)**
    - Leave the other fields at their current selection 
  - Submit your Model repo with the "Add Model" button at the bottom of the screen
 
@@ -56,10 +56,10 @@
  - Ensure that Project \<your-project-name\> is selected **(chosen when creating Project)**
  - Select "+ JupyterLab"
  - Fill in the required fields in the "Basic" tab as follows:
-   - Name: \<your-IDE-name\> **(your choice of name)**
-   - Code \<your-code-repo\> **(chosen during Code Repo creation)**
-   - Framework: tensorflow
-   - Version: 2.0.0
+   - Name: `<your-IDE-name>` **(your choice of name)**
+   - Code: `<your-code-repo>` **(chosen during Code Repo creation)**
+   - Framework: `tensorflow`
+   - Version: `2.0.0`
    - Leave the other fields at their current selection 
  - Submit your IDE with the "Submit" button at the bottom of the screen
 
@@ -86,14 +86,14 @@
  - Ensure that Project \<your-project-name\> is selected **(chosen when creating Project)**
  - Select "+ Run", then "Training"
  - Fill in the required fields in the "Basic" tab as follows:
-   - Name: \<your-run-name\> **(your choice of name)**
-   - Code: \<your-code-repo\> **(chosen during Code Repo creation)**
-   - Framework: tensorflow
-   - Framework Version: 2.0.0
-   - Start-up command: python insurance/training.py
+   - Name: `<your-run-name>` **(your choice of name)**
+   - Code: `<your-code-repo>` **(chosen during Code Repo creation)**
+   - Framework: `tensorflow`
+   - Framework Version: `2.0.0`
+   - Start-up command: `python insurance/training.py`
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the "Repos" tab as follows:
-   - Output -> Models: \<your-model-repo\> **(chosen during Model Repo creation)** <br><br>
+   - Output -> Models: `<your-model-repo>` **(chosen during Model Repo creation)** <br><br>
  - Fill in the required fields in the "Configuration" tab as follows:
    - Select the "+" for "Environment variables"
    - Enter variable name "EPOCHS" (must be upper case) and value 20
@@ -142,13 +142,13 @@
  - Choose a Model version
  - Select the "Deploy" icon on the right hand side of the version chosen
  - Fill in the required fields as follows:
-   - Name: \<your-deploy-name\> **(your choice of name)**
-   - Serving Image: ocdr/tensorflowserver:2.0.0
-   - Deployment: "Test" radial button
-   - Deploy using: "CPU" radial button
-   - Select "Transformer" checkbox
-   - Transformer Image: ocdr/dkube-datascience-tf-cpu:v2.0.0-16
-   - Transformer Script: insurance/transformer.py
+   - Name: `<your-deploy-name>` **(your choice of name)**
+   - Serving Image: `ocdr/tensorflowserver:2.0.0`
+   - Deployment: `Test` radial button
+   - Deploy using: `CPU` radial button
+   - Select `Transformer` checkbox
+   - Transformer Image: `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
+   - Transformer Script: `insurance/transformer.py`
    - Leave the other fields at their current selection 
  - Submit Deployment using the "Submit" button at the bottom of the screen <br><br>
  - Deployment can be viewed from the "Deployments" menu on the left of the screen

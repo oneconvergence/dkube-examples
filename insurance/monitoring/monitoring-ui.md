@@ -55,17 +55,21 @@
 
  - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
 
-
-<!--- We are only describing a local deployment here, similar to the automatic generation
-## 1. Create Model Monitor
-1. Deployment in Dkube can be external or local, if it is local then move to step2 directly. 
-If it is external, then first add the cluster and click on Deployments in the left tab and import a deployment by filling the details.
-2. Make Sure the Deployment is in running state. 
-3. Run the `resources.ipynb` to create the required resources.
-4. Copy the deployment-id from deployment details page and keep it with you.
-5. click on Add Monitor in the actions tab.
-6. In Basics Tab, select the Model type as Regression, Input data type Tabular and timezone as UTC.
---->
+## Create Monitor
+ 
+ This section describes how to create a Monitor manually from a Deployed Model.
+ 
+ - Navigate to "Deployments" menu on the left
+ - Identify the Deployed Model that will be Monitored.  It will be the Model at the top of the list.
+ - At the far right of that Model line, select "Add Monitor"
+ - Fill in the required fields in the "Basic" tab as follows:
+   - Model Type: Regression
+   - Input Data Type: Tabular
+   - Leave the other fields at their current selection <br><br>
+ - Fill in the required fields in the "Drift" tab as follows:
+   - Select "Enable" box
+   - Dataset: insurnace-data]
+   - Dataset Version: v1
 
 ### 2. Drift Monitoring
 1. Check Enable and provide frequency as 5 minutes and algorithm as auto.

@@ -63,19 +63,18 @@
  - Identify the Deployed Model that will be Monitored.  It will be the Model at the top of the list.
  - At the far right of that Model line, select "Add Monitor"
  - Fill in the required fields in the "Basic" tab as follows:
-   - Model Type: Regression
-   - Input Data Type: Tabular
+   - Model Type: `Regression`
+   - Input Data Type: `Tabular`
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the "Drift" tab as follows:
-   - Select "Enable" box
-   - Dataset: `insurance-data`
-   - Dataset Version: v1
-
-### 2. Drift Monitoring
-1. Check Enable and provide frequency as 5 minutes and algorithm as auto.
-2. **Add Train Data** :
-   - Select dataset as `insurance-data` and version as v1 if your data source is aws_s3 or local.
-   - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
+   - Select `Enable` box
+   - Algorithm: `Auto`
+   - Within "Train Data" section use the following fields:
+     - Dataset: `insurance-data`
+     - Dataset Version: `v1`
+     - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
+   - Within the "Predict Data" section use the following fields:
+     - 
 
 3. **Add Predict Data**:
  -  Select dataset content as **Cloudevents**.

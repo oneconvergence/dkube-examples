@@ -74,7 +74,7 @@
      - Dataset Version: `v1`
      - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
    - Within the "Predict Data" section use the following fields:
-     - 
+
 
 3. **Add Predict Data**:
  -  Select dataset content as **Cloudevents**.

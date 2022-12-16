@@ -98,7 +98,7 @@
    - Prediction Column Name: `charges`
    - Groundtruth Column Name: `GT_target`
    - Timestamp Column Name: `timestamp`
- - Leave the other fields at their current selection
+   - Leave the other fields at their current selection
  - Select the "Submit" button
 
 ### 4. Update Schema

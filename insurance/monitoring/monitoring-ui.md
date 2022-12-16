@@ -42,10 +42,12 @@
  - From the top menu item "Run", Select "Run All Cells"
  - This will create the DKube resources required for this example to run the Monitor, including the required Datasets <br><br>
  - The following Datasets will be created:
-   - "insurance-data", with a pub_url source
+   - "insurance-data"
+     - This will have a pub_url source
      - This is the original training Dataset
    - *\<your-performance-dataset\>*
-     - This Dataset includes the username and ends in "-s3", with an "s3 | remote" source
+     - This Dataset includes the username and ends in "-s3"
+     - This will have an "s3 | remote" source
      - This is the Dataset used for the Performance Monitoring <br><br>
    > **_Note:_** Make note of the Dataset name *\<your-performance-dataset\>* for Performance Monitoring.  It will be used during the Monitor creation section.
 

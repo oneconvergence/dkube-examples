@@ -59,7 +59,14 @@
  > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
  - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
 
- - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
+### Review the Deployment & Identify the Deployment ID
+
+ The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
+ 
+ > **_Note:_** The Deployment ID will be required during the Monitor Creation section.  The ID is available using the following steps:
+
+ - Select the Deployment Name
+ - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".  This will be used as *\<your-deployment-id\>* during the Monitor Creation section.
 
 ## Create Monitor
  
@@ -85,24 +92,14 @@
  - Fill in the required field in the "Performance" tab as follows:
    - Select `Enable` box
    - Select `Labelled Data` box
-   - Dataset: `\<your-performance-dataset\>`
-   - Prefix/Subpath: `xx`
+   - Dataset: `\<your-performance-dataset\>` **(From Resource Creation step)**
+   - Prefix/Subpath: `*\<your-deployment-id\>*/livedata`
    - Dataset Content: `Tabular`
-   - Prediction Column Name: `"charges"`
-   - Groundtruth Column Name: `"GT_target"`
-   - Timestamp Column Name: `"timestamp"`
-
-### 3. Performance Monitoring
-1. Check Enable and provide frequency as 5 minutes.
-2. In Compute Metrics select Labelled dataset
-  -  Select dataset `insurance-mm-kf-s3`.
-  -  Prefix/subpath: {deployment ID}/livedata
-  -  Dataset Format : Tabular
-  -  Fill Prediction column name as “charges”
-  -  Fill Groundtruth column name as "GT_target".
-  -  Fill timestamp column as "timestamp"
-
-3. Click on Submit.
+   - Prediction Column Name: `charges`
+   - Groundtruth Column Name: `GT_target`
+   - Timestamp Column Name: `timestamp`
+ - Leave the other fields at their current selection
+ - Select the "Submit" button
 
 ### 4. Update Schema
 1. Edit the model monitor

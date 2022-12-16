@@ -16,7 +16,7 @@ If it is external, then first add the cluster and click on Deployments in the le
    - Upload transformer script from [link](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
 
 3. **Add Predict Data**:
- -  Select dataset content as **Cloudevents**.
+ -  Select dataset content as **CloudEventLogs**.
 
 ### 3. Performance Monitoring
 1. Check Enable and provide frequency as 5 minutes.

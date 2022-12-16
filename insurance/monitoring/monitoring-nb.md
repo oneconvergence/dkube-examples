@@ -34,15 +34,15 @@
 
 ### Execute File to Create Resources
 
- - Navigate to "/workspace/*\<your-code-repo\>*/insurance/monitoring"
- - Open "resources.ipynb"
- - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
-   - Ensure that there is a final "/" in the url field
+ - Navigate to <code>/workspace/*\<your-code-repo\>*/insurance/monitoring</code>
+ - Open `resources.ipynb`
+ - In the 1st cell, Fill in the external IP address for the field `SERVING_DKUBE_URL` in the form "https://\<External IP Address\>:32222/"
+   - Ensure that there is a final `/` in the url field
    - Leave the other fields in their current selection
- - From the top menu item "Run", Select "Run All Cells"
+ - From the top menu item `Run`, Select `Run All Cells`
  - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>
  - The following Datasets will be created
-   - "insurance-data", with a pub_url source
+   - `insurance-data`, with a pub_url source
    - A Dataset that includes the username and ends in "-s3", with an "s3 | remote" source
 
 ## Train & Deploy Insurance Model
@@ -59,20 +59,20 @@
 
  In this example, the Monitor is created programmatically through the DKube SDK. 
 
- - From the JupyterLab tab, navigate to "/workspace/*\<your-code-repo\>*/insurance/monitoring"
- - Open "modelmonitor.iypnb"
+ - From the JupyterLab tab, navigate to <code>/workspace/*\<your-code-repo\>*/insurance/monitoring</code>
+ - Open `modelmonitor.iypnb`
  - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
  - Run all of the cells
- - This will create a new Model Monitor and put it into the "Active" state <br><br>
- - Navigate to the "Deployments" menu on the left
- - Select the "Monitors" tab at the top
+ - This will create a new Model Monitor and put it into the `Active` state <br><br>
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab at the top
  - You will see the new Monitor at the top of the list
 
 ## Generate Monitor Data
 
  In order for the Monitor to operate, predictions and groundtruth Datasets must be generated. 
  
- - Open "data_generation.ipynb"
+ - Open `data_generation.ipynb`
    - This will create the predictions with the Deployment endpoint and generate the groundtruth Datasets for this example
    - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
    - In the 1st cell, specify the number of Dataset samples to run before stopping the data generation.  You can leave it at the default, or modify it.  The larger the number of samples, the more data will be generated for the Monitor graphs.
@@ -81,7 +81,7 @@
      - An example would be **FREQUENCY = "2m"** to run the script every 2 minutes
 --->
    - Leave the other fields at their current selection
-   - Run All Cells
+   - `Run All Cells`
    - The script will start to push the data
 
 <!--- Not sure if we need to do this
@@ -94,17 +94,17 @@ Configure your SMTP server settings on Operator screen. This is optional. If SMT
 
  After the data has been generated for a few data points, it can be viewed within DKube.
  
- - Navigate to the "Deployments" menu on the left
- - Select the "Monitors" tab on the top
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab on the top
  - Your new Monitor will be at the top of the list
  - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
 
 ## Cleanup
  After the experiment is complete, the following cleanup should be performed in order to delete the Datasets and stop the Monitor:
  
- - Within "modelmonitor.ipynb", set the variable "CLEANUP = True" in the last cell
+ - Within `modelmonitor.ipynb`, set the variable "CLEANUP = True" in the last cell
    - Run the "Cleanup" cell
- - Within "resources.ipynb", set the variable "CLEANUP = True" in the last cell
+ - Within `resources.ipynb`, set the variable "CLEANUP = True" in the last cell
    - Run the "Cleanup" cell
 
 

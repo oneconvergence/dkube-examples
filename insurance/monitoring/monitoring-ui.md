@@ -100,6 +100,7 @@
    - Timestamp Column Name: `timestamp`
    - Leave the other fields at their current selection
  - Select the "Submit" button
+   - Choose "Close" from the popup
 
 ### 4. Update Schema
 1. Edit the model monitor

@@ -34,7 +34,7 @@
 
 ### Execute File to Create Resources
 
- - Navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
+ - Navigate to "/workspace/*\<your-code-repo\>*/insurance/monitoring"
  - Open "resources.ipynb"
  - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
    - Ensure that there is a final "/" in the url field
@@ -74,10 +74,17 @@
      - Dataset Version: `v1`
      - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
    - Within the "Predict Data" section use the following fields:
-
-
-3. **Add Predict Data**:
- -  Select dataset content as **Cloudevents**.
+     - Dataset Content: `CloudEventLogs`
+   - Leave the other fields at their current selection <br><br>
+ - Fill in the required field in the "Performance" tab as follows:
+   - Select `Enable` box
+   - Select `Labelled Data` box
+   - Dataset: `xx`
+   - Prefix/Subpath: `xx`
+   - Dataset Content: `Tabular`
+   - Prediction Column Name: `"charges"`
+   - Groundtruth Column Name: `"GT_target"`
+   - Timestamp Column Name: `"timestamp"`
 
 ### 3. Performance Monitoring
 1. Check Enable and provide frequency as 5 minutes.

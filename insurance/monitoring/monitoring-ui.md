@@ -92,8 +92,8 @@
  - Fill in the required field in the "Performance" tab as follows:
    - Select `Enable` box
    - Select `Labelled Data` box
-   - Dataset: `\<your-performance-dataset\>` **(From Resource Creation step)**
-   - Prefix/Subpath: `*\<your-deployment-id\>*/livedata`
+   - Dataset: `<your-performance-dataset>` **(From Resource Creation step)**
+   - Prefix/Subpath: `*<your-deployment-id>*/livedata`
    - Dataset Content: `Tabular`
    - Prediction Column Name: `charges`
    - Groundtruth Column Name: `GT_target`

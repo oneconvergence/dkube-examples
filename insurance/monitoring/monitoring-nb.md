@@ -34,7 +34,7 @@
 
 ### Execute File to Create Resources
 
- - Navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
+ - Navigate to "/workspace/*\<your-code-repo\>*/insurance/monitoring"
  - Open "resources.ipynb"
  - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
    - Ensure that there is a final "/" in the url field
@@ -59,7 +59,7 @@
 
  In this example, the Monitor is created programmatically through the DKube SDK. 
 
- - From the JupyterLab tab, navigate to "/workspace/\<your-code-repo\>/insurance/monitoring"
+ - From the JupyterLab tab, navigate to "/workspace/*\<your-code-repo\>*/insurance/monitoring"
  - Open "modelmonitor.iypnb"
  - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
  - Run all of the cells

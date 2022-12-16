@@ -41,9 +41,13 @@
    - Leave the other fields in their current selection
  - From the top menu item "Run", Select "Run All Cells"
  - This will create the DKube resources required for this example to run the Monitor, including the required Datasets <br><br>
- - The following Datasets will be created
+ - The following Datasets will be created:
    - "insurance-data", with a pub_url source
-   - A Dataset that includes the username and ends in "-s3", with an "s3 | remote" source
+     - This is the original training Dataset
+   - *\<your-performance-dataset\>*
+     - This Dataset includes the username and ends in "-s3", with an "s3 | remote" source
+     - This is the Dataset used for the Performance Monitoring <br><br>
+   > **_Note:_** Make note of the Dataset name *\<your-performance-dataset\>* for Performance Monitoring.  It will be used during the Monitor creation section.
 
 ## Train & Deploy Insurance Model
  
@@ -79,7 +83,7 @@
  - Fill in the required field in the "Performance" tab as follows:
    - Select `Enable` box
    - Select `Labelled Data` box
-   - Dataset: `xx`
+   - Dataset: `\<your-performance-dataset\>`
    - Prefix/Subpath: `xx`
    - Dataset Content: `Tabular`
    - Prediction Column Name: `"charges"`

@@ -15,12 +15,12 @@
  Jobs execute within a Project.  This section explains how to create a Project.
  
  - This step is only necessary if the Project does not already exist, or if the default Project is not used
-   - If the Project exists, use that name when \<your-project-name\> is referenced
+   - If the Project exists, use that name when *\<your-project-name\>* is referenced
    - If the default Project is going to be used, then ignore further Project-related actions below
  - Navigate to the "Project" menu on the far left side of the screen
  - Select "+ Create Project" on the right of the screen
  - Fill in the required fields as follows:
-   - Name: `<your-project-name>` **(your choice of name)**
+   - Name: *`<your-project-name>`* **(your choice of name)**
    - Leave the other fields at their current selection 
  - Submit your Project with the "Submit" button at the bottom of the screen
 
@@ -32,7 +32,7 @@
    - You only need to do this once.  It will remain the default until changed.
  - Select "+ Code"
  - Fill in the required fields as follows:
-   - Name: `<your-code-repo>` **(your choice of name)**
+   - Name: *`<your-code-repo>`* **(your choice of name)**
    - Code Source: `Git`
    - URL: `https://github.com/oneconvergence/dkube-examples.git`
    - Branch: `training`
@@ -45,7 +45,7 @@
  - Navigate to the "Models" menu on the left
  - Select "+ Model"
  - Fill in the required fields as follows:
-   - Name: `<your-model-repo>` **(your choice of name)**
+   - Name: *`<your-model-repo>`* **(your choice of name)**
    - Leave the other fields at their current selection 
  - Submit your Model repo with the "Add Model" button at the bottom of the screen
 
@@ -53,11 +53,11 @@
  The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
  - Navigate to the "IDEs" menu on the left
- - Ensure that Project \<your-project-name\> is selected **(chosen when creating Project)**
+ - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
  - Select "+ JupyterLab"
  - Fill in the required fields in the "Basic" tab as follows:
-   - Name: `<your-IDE-name>` **(your choice of name)**
-   - Code: `<your-code-repo>` **(chosen during Code Repo creation)**
+   - Name: *`<your-IDE-name>`* **(your choice of name)**
+   - Code: *`<your-code-repo>`* **(chosen during Code Repo creation)**
    - Framework: `tensorflow`
    - Version: `2.0.0`
    - Leave the other fields at their current selection 
@@ -68,7 +68,7 @@
  
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
- - Navigate to /workspace/\<your-code-repo\>/insurance
+ - Navigate to /workspace/*\<your-code-repo\>*/insurance
  - Open training.ipynb
  - Select "Run All Cells" from the top JupyterLab menu
    - This will execute the file with the current set of inputs
@@ -83,17 +83,17 @@
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
  - Navigate to the "Runs" menu on the left
- - Ensure that Project \<your-project-name\> is selected **(chosen when creating Project)**
+ - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
  - Select "+ Run", then "Training"
  - Fill in the required fields in the "Basic" tab as follows:
-   - Name: `<your-run-name>` **(your choice of name)**
-   - Code: `<your-code-repo>` **(chosen during Code Repo creation)**
+   - Name: *`<your-run-name>`* **(your choice of name)**
+   - Code: *`<your-code-repo>`* **(chosen during Code Repo creation)**
    - Framework: `tensorflow`
    - Framework Version: `2.0.0`
    - Start-up command: `python insurance/training.py`
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the "Repos" tab as follows:
-   - Output -> Models: `<your-model-repo>` **(chosen during Model Repo creation)** <br><br>
+   - Output -> Models: *`<your-model-repo>`* **(chosen during Model Repo creation)** <br><br>
  - Fill in the required fields in the "Configuration" tab as follows:
    - Select the "+" for "Environment variables"
    - Enter variable name "EPOCHS" (must be upper case) and value 20
@@ -110,7 +110,7 @@
  
  - Wait until both Runs from the previous step have completed
  - Navigate to the "Models" menu on the left
- - Expand the Model \<your-model-repo\> **(chosen during Model Repo creation)**
+ - Expand the Model *\<your-model-repo\>* **(chosen during Model Repo creation)**
  - Select the 2 most recent Model versions (they should be the Models with the highest version numbers)
  - Select "Compare" button
  - Select the "Y-axis" to the left of the graph to "train_loss" 
@@ -137,12 +137,12 @@
  After the Models have been analyzed and the best one is identified, it is deployed to a server for inference of live data.  This section explains how to deploy a Model.
  
  - Navigate to the "Models" menu on the left
- - Ensure that Project \<your-project-name\> is selected **(chosen when creating Project)**
- - Select the Model \<your-model-repo\> **(chosen during Model Repo creation)**
+ - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
+ - Select the Model *\<your-model-repo\>* **(chosen during Model Repo creation)**
  - Choose a Model version
  - Select the "Deploy" icon on the right hand side of the version chosen
  - Fill in the required fields as follows:
-   - Name: `<your-deploy-name>` **(your choice of name)**
+   - Name: *`<your-deploy-name>`* **(your choice of name)**
    - Serving Image: `ocdr/tensorflowserver:2.0.0`
    - Deployment: `Test` radial button
    - Deploy using: `CPU` radial button
@@ -152,7 +152,7 @@
    - Leave the other fields at their current selection 
  - Submit Deployment using the "Submit" button at the bottom of the screen <br><br>
  - Deployment can be viewed from the "Deployments" menu on the left of the screen
-   - Details of the deployment can be viewed by selecting \<your-deploy-name\> **(chosen during submission)**
+   - Details of the deployment can be viewed by selecting *\<your-deploy-name\>* **(chosen during submission)**
  > **_Note:_** Deployments are not filtered by Project
 
 ## Create Generic Kubeflow Pipeline
@@ -160,7 +160,7 @@
 > **_Note:_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
+ - Navigate to the folder "/workspace/\*<your-code-repo\>*/pipeline"
  - Run all the cells in the file "ControlStructures.ipynb"
  - This will create and run a Kubeflow Pipeline <br><br>
  - Navigate to the "Pipelines" menu on the left
@@ -175,11 +175,11 @@
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder "/workspace/\<your-code-repo\>/insurance"
+ - Navigate to the folder "/workspace/*\<your-code-repo\>*/insurance"
  - Open the file "insurance-pipeline.ipynb"
  - Fill in the required fields in the 4th cell as follows:
-   - training_program = \<your-code-repo\> **(chosen during Code Repo creation)**
-   - model = \<your-model-repo\> **(chosen during Model Repo creation)**
+   - training_program = *\<your-code-repo\>* **(chosen during Code Repo creation)**
+   - model = *\<your-model-repo\>* **(chosen during Model Repo creation)**
    - Leave the other fields in their current selection
   - Select "Run All Cells" from the top JupyterLab menu
   - This will create and run a Kubeflow Pipeline for the example <br> <br>
@@ -193,7 +193,7 @@
    - Select the "dkube-training" graph box to see the Run details
    - Select the "dkube-serving" graph box to see the Deployment details <br><br>
  - Navigate to the "Models" menu on the left
-   - Expand the Model with the name \<your-model-repo\> through the "\>" to the left of the name
+   - Expand the Model with the name *\<your-model-repo\>* through the "\>" icon to the left of the name
    - You will see that the top Model has been deployed
 
 ## Inference WebApp

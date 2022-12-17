@@ -4,6 +4,11 @@
         "hard": 0.55,
         "soft":0.42
     },
+    "prediction":{
+        "type": "drift",
+        "hard": 0.2,
+        "soft":0.34
+    },
     "accuracy": {
         "type": "performance",
         "hard": 0.7,

@@ -1,8 +1,8 @@
 {
     "image":{
         "type": "drift",
-        "hard": 0.1,
-        "soft":0.15
+        "hard": 0.55,
+        "soft":0.42
     },
     "accuracy": {
         "type": "performance",

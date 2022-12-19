@@ -66,7 +66,8 @@
  > **_Note:_** The Deployment ID will be required during the Monitor Creation section.  The ID is available using the following steps:
 
  - Select the Deployment Name
- - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".  This will be used as *\<your-deployment-id\>* during the Monitor Creation section.
+ - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".
+   - This will be used as **\<your-deployment-id\>** during the Monitor Creation section
 
 ## Create Monitor
  
@@ -107,7 +108,7 @@
    - Select `Enable` box
    - Select `Labelled Data` box
    - Dataset: *`<your-performance-dataset>`* **(from Resource Creation step)**
-   - Prefix/Subpath: *`<your-deployment-id>/livedata`* **(from Model Deployment section)**
+   - Prefix/Subpath: <code>**\<your-deployment-id\>**/livedata</code> **(from Model Deployment section)**
    - Dataset Content: `Tabular`
    - Prediction Column Name: `charges`
    - Groundtruth Column Name: `GT_target`

@@ -11,8 +11,8 @@
     },
     "mse": {
         "type": "performance",
-        "soft": 750000000,
-        "hard": 650000000
+        "soft": 650000000,
+        "hard": 750000000
     },
     "r2_score": {
         "type": "performance",

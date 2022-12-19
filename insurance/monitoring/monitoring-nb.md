@@ -58,6 +58,8 @@
 ## Create Monitor Automatically
 
  In this example, the Monitor is created programmatically through the DKube SDK. 
+ 
+ > **_Note:_** The script in this section will fail if there is already a Monitor with the automatically-generated name.  This can happen if the script is run more than once.  Delete the Monitor name before you run this script a 2nd time.
 
  - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `modelmonitor.iypnb`

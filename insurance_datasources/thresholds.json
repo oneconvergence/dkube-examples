@@ -1,28 +1,28 @@
 {
     "mae": {
         "type": "performance",
-        "soft": 8500,
-        "hard": 10000
+        "soft": 18000,
+        "hard": 23000
     },
     "mape": {
         "type": "performance",
-        "soft": 0.3,
-        "hard": 0.5
+        "soft": 3,
+        "hard": 4
     },
     "mse": {
         "type": "performance",
-        "soft": 9500000,
-        "hard": 10000000
+        "soft": 650000000,
+        "hard": 750000000
     },
     "r2_score": {
         "type": "performance",
         "soft": 0.8063,
-        "hard": 0.2
+        "hard": -40
     },
     "rmse": {
         "type": "performance",
-        "soft": 8500,
-        "hard": 10000
+        "soft": 24000,
+        "hard": 26000
     },
     "requests_rate": {
 	"type": "health",
@@ -56,22 +56,37 @@
     },
     "age": {
 	"type": "drift",
-	"soft": 0.7,
-	"hard": 0.1
-    },
-    "sex": {
-	"type": "drift",
-	"soft": 0.3,
-	"hard": 0.1
+	"soft": 0.1,
+	"hard": 0.2
     },
     "bmi": {
 	"type": "drift",
-	"soft": 0.5,
-	"hard": 0.1
+	"soft": 0.1,
+	"hard": 0.19
+    },
+    "sex": {
+	"type": "drift",
+	"soft": 0.1,
+	"hard": 0.18
     },
     "smoker": {
 	"type": "drift",
-	"soft": 0.5,
-	"hard": 0.1
+	"soft": 0.1,
+	"hard": 0.15
+    },
+    "children": {
+	"type": "drift",
+	"soft": 0.1,
+	"hard": 0.18
+    },
+    "region": {
+	"type": "drift",
+	"soft": 0.1,
+	"hard": 0.15
+    },
+    "charges": {
+	"type": "drift",
+	"soft": 0.34,
+	"hard": 0.36
     }
 }

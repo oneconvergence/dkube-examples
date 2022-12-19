@@ -1,6 +1,6 @@
 # Insurance Cost Prediction Example
  This example trains a model to predict the cost of insurance based on a set of input characteristics for an individual.  This description provides a step-by-step recipe for using the example.  More details for the platform are available at [DKube User Guide](https://www.dkube.io/guide/guide3_x/Getting_Started.html) <br><br>
- This example contains the following capabilities:
+ This example contains the following capabilities:  
  
  - Create the Repos required for training
  - Create and experiment with a JupyterLab IDE
@@ -15,66 +15,66 @@
  Jobs execute within a Project.  This section explains how to create a Project.
  
  - This step is only necessary if the Project does not already exist, or if the default Project is not used
-   - If the Project exists, use that name when \<your-project-name\> is referenced
+   - If the Project exists, use that name when *\<your-project-name\>* is referenced
    - If the default Project is going to be used, then ignore further Project-related actions below
- - Navigate to the "Project" menu on the far left side of the screen
- - Select "+ Create Project" on the right of the screen
+ - Navigate to the `Projects` menu on the far left side of the screen
+ - Select `+ Create Project` on the right of the screen
  - Fill in the required fields as follows:
-   - Name: \<your-project-name\> (your choice of name)
+   - Name: *`<your-project-name>`* **(your choice of name)**
    - Leave the other fields at their current selection 
- - Submit your Project with the "Submit" button at the bottom of the screen
+ - Submit your Project with the `Submit` button at the bottom of the screen
 
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
- - Navigate to the "Code" menu on the left
+ - Navigate to the `Code` menu on the left
  - Choose the Project that you created in the previous step at the top of the screen
    - You only need to do this once.  It will remain the default until changed.
- - Select "+ Code"
+ - Select `+ Code`
  - Fill in the required fields as follows:
-   - Name: \<your-code-repo\> (your choice of name)
-   - Code Source: Git
-   - URL: https://github.com/oneconvergence/dkube-examples.git
-   - Branch: training
+   - Name: *`<your-code-repo>`* **(your choice of name)**
+   - Code Source: `Git`
+   - URL: `https://github.com/oneconvergence/dkube-examples.git`
+   - Branch: `training`
    - Leave the other fields at their current selection 
- - Submit your Code repo with the "Add Code" button at the bottom of the screen
+ - Submit your Code repo with the `Add Code` button at the bottom of the screen
 
 ## Create Model Repo
  An output Model is created as a result of the Training job.  This section explains how to create a Model repo for the output.
  
- - Navigate to the "Models" menu on the left
- - Select "+ Model"
+ - Navigate to the `Models` menu on the left
+ - Select `+ Model`
  - Fill in the required fields as follows:
-   - Name: \<your-model-repo\> (your choice of name)
+   - Name: *`<your-model-repo>`* **(your choice of name)**
    - Leave the other fields at their current selection 
- - Submit your Model repo with the "Add Model" button at the bottom of the screen
+ - Submit your Model repo with the `Add Model` button at the bottom of the screen
 
 ## Create JupyterLab IDE
  The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
- - Navigate to the "IDEs" menu on the left
- - Ensure that Project \<your-project-name\> is selected (chosen when creating Project)
- - Select "+ JupyterLab"
+ - Navigate to the `IDEs` menu on the left
+ - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
+ - Select `+ JupyterLab`
  - Fill in the required fields in the "Basic" tab as follows:
-   - Name: \<your-IDE-name\> (your choice of name)
-   - Code \<your-code-repo\> (chosen during Code Repo creation)
-   - Framework: tensorflow
-   - Version: 2.0.0
+   - Name: *`<your-IDE-name>`* **(your choice of name)**
+   - Code: *`<your-code-repo>`* **(chosen during Code Repo creation)**
+   - Framework: `tensorflow`
+   - Version: `2.0.0`
    - Leave the other fields at their current selection 
- - Submit your IDE with the "Submit" button at the bottom of the screen
+ - Submit your IDE with the `Submit` button at the bottom of the screen
 
 ## Experiment with JupyterLab IDE
  This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
  
- - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
+ - Once the IDE is in the `Running` state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
- - Navigate to /workspace/\<your-code-repo\>/insurance
- - Open training.ipynb
- - Select "Run All Cells" from the top JupyterLab menu
+ - Navigate to <code>/workspace/*\<your-code-repo\>*/insurance</code>
+ - Open `training.ipynb`
+ - Select `Run All Cells` from the top JupyterLab menu
    - This will execute the file with the current set of inputs
    - The "loss" will be shown at the bottom of the file
- - Change the default NUM_EPOCHS within the MACROS section to "15"
- - Select "Run All Cells" again
+ - Change the default NUM_EPOCHS or LEARNING_RATE in the 2nd cell labeled "MACROS"
+ - Select `Run All Cells` again
    - This will execute the code again with the new parameter
    - The new "loss" will be shown
  - Make as many changes as you want to see the impact
@@ -82,26 +82,26 @@
 ## Run Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
- - Navigate to the "Runs" menu on the left
- - Ensure that Project \<your-project-name\> is selected (chosen when creating Project)
- - Select "+ Run", then "Training"
- - Fill in the required fields in the "Basic" tab as follows:
-   - Name: \<your-run-name\> (your choice of name)
-   - Code: \<your-code-repo\> (chosen during Code Repo creation)
-   - Framework: tensorflow
-   - Framework Version: 2.0.0
-   - Start-up command: python insurance/training.py
+ - Navigate to the `Runs` menu on the left
+ - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
+ - Select `+ Run`, then `Training`
+ - Fill in the required fields in the `Basic` tab as follows:
+   - Name: *`<your-run-name>`* **(your choice of name)**
+   - Code: *`<your-code-repo>`* **(chosen during Code Repo creation)**
+   - Framework: `tensorflow`
+   - Framework Version: `2.0.0`
+   - Start-up command: `python insurance/training.py`
    - Leave the other fields at their current selection <br><br>
- - Fill in the required fields in the "Repos" tab as follows:
-   - Output -> Models: \<your-model-repo\> (chosen during Model Repo creation) <br><br>
- - Fill in the required fields in the "Configuration" tab as follows:
-   - Select the "+" for "Environment variables"
+ - Fill in the required fields in the `Repos` tab as follows:
+   - Output -> Models: *`<your-model-repo>`* **(chosen during Model Repo creation)** <br><br>
+ - Fill in the required fields in the `Configuration` tab as follows:
+   - Select the `+` for `Environment variables`
    - Enter variable name "EPOCHS" (must be upper case) and value 20
    - Leave the other fields at their current selection 
- - Submit your Run with the "Submit" button at the bottom of the screen <br><br>
+ - Submit your Run with the `Submit` button at the bottom of the screen <br><br>
  - Create another Run with a different hyperparameter as follows:
-   - Select the Run that was created and select "Clone" button
-   - Change the "EPOCHS" value in the "Configuration" tab to 15
+   - Select the Run that was created and select `Clone` button
+   - Change the "EPOCHS" value in the `Configuration` tab to 15
    - Leave the other fields at their current selection
    - Submit your Run
 
@@ -109,21 +109,21 @@
  Training Jobs create output Models that can be used to predict output based on new input data.  Each model contains within it the metrics that determine how well the Model is likely to perform.  This section explains how to compare several Model metrics.
  
  - Wait until both Runs from the previous step have completed
- - Navigate to the "Models" menu on the left
- - Expand the Model \<your-model-repo\> (chosen during Model Repo creation)
+ - Navigate to the `Models` menu on the left
+ - Expand the Model *\<your-model-repo\>* **(chosen during Model Repo creation)**
  - Select the 2 most recent Model versions (they should be the Models with the highest version numbers)
- - Select "Compare" button
- - Select the "Y-axis" to the left of the graph to "train_loss" 
+ - Select `Compare` button
+ - Select the `Y-axis` to the left of the graph to `train_loss`
  - The graph will compare the 2 Training Runs
 
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Create an optimization file by downloading the file "/workspace/your-code-repo/insurance/tuning.yaml" to your local system
-   - This can be accomplished by selecting the file within Github, selecting "Raw", and using your browser "Save As..." capability
- - Select one of the Runs created in the previous section and select "Clone" button
- - Fill in the required fields in the "Configuration" tab as follows:
-   - Select "Upload" button from the "Upload Tuning Definition" section
+ - Create an optimization file by downloading the file <code>/workspace/*\<your-code-repo\>*/insurance/tuning.yaml</code> to your local system
+   - This can be accomplished by selecting the file within Github, selecting `Raw`, and using your browser `Save As...` capability
+ - Select one of the Runs created in the previous section and select `Clone` button
+ - Fill in the required fields in the `Configuration` tab as follows:
+   - Select `Upload` button from the `Upload Tuning Definition` section
    - Choose the tuning file that was created previously
    - Leave the other fields at their current selection 
    - Submit your Run <br><br>
@@ -134,76 +134,82 @@
    - Scoll down to see which combination was the best, based upon the tuning file
 
 ## Deploy Model for Inference Serving
- After the Models have been analyzed and the best one is identified, it is deployed to a production server for inference of live data.  This section explains how to deploy a Model.
+ After the Models have been analyzed and the best one is identified, it is deployed to a server for inference of live data.  This section explains how to deploy a Model.
  
- - Navigate to the "Models" menu on the left
- - Ensure that Project \<your-project-name\> is selected (chosen when creating Project)
- - Select the Model \<your-model-repo\> (chosen during Model Repo creation)
+ - Navigate to the `Models` menu on the left
+ - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
+ - Select the Model *\<your-model-repo\>* **(chosen during Model Repo creation)**
  - Choose a Model version
- - Select the "Deploy" icon on the right hand side of the version chosen
+ - Select the `Deploy` icon on the right hand side of the version chosen
  - Fill in the required fields as follows:
-   - Name: \<your-deploy-name\> (your choice of name)
-   - Serving Image: ocdr/tensorflowserver:2.0.0
-   - Deployment: "Test" radial button
-   - Deploy using: "CPU" radial button
-   - Select "Transformer" checkbox
-   - Transformer Image: ocdr/dkube-datascience-tf-cpu:v2.0.0-16
-   - Transfomer code: \<your-code-repo\>
-   - Transformer Script: insurance/transformer.py
+   - Name: *`<your-deploy-name>`* **(your choice of name)**
+   - Serving Image: `ocdr/tensorflowserver:2.0.0`
+   - Deployment: `Test` radial button
+   - Deploy using: `CPU` radial button
+   - Select `Transformer` checkbox
+   - Transformer Image: `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
+   - Transformer Script: `insurance/transformer.py`
    - Leave the other fields at their current selection 
- - Submit Deployment using the "Submit" button at the bottom of the screen <br><br>
- - Deployment can be viewed from the "Deployments" menu on the left of the screen
-   - Details of the deployment can be viewed by selecting \<your-deploy-name\> (chosen during submission)
+ - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>
+ - Deployment can be viewed from the `Deployments` menu on the left of the screen
+   - Details of the deployment can be viewed by selecting *\<your-deploy-name\>* **(chosen during submission)**
+ > **_Note:_** Deployments are not filtered by Project
 
 ## Create Generic Kubeflow Pipeline
- The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.  Note that this is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+ The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
+> **_Note:_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder "/workspace/\<your-code-repo\>/pipeline"
- - Run all the cells in the file "ControlStructures.ipynb"
+ - Navigate to the folder <code>/workspace/*\<your-code-repo\>*/pipeline</code>
+ - Run all the cells in the file `ControlStructures.ipynb`
  - This will create and run a Kubeflow Pipeline <br><br>
- - Navigate to the "Pipelines" menu on the left
- - Select the "Runs" tab on the top
- - The PIpeline run at the top of the list will be the one that was just created
- - Select the "View Pipeline" field
-   - That will show the full Pipeline graph
+ - Navigate to the `Pipelines` menu on the left
+ - Select the `Runs` tab on the top
+ - The Pipeline run at the top of the list will be the one that was just created
+ - Select the `View Pipeline` field
+   - This will show the full Pipeline graph
  - Select the back arrow at the top left and select the Pipeline name
-   - That will show the Pipeline as it is executed
+   - This will show the Pipeline as it is executed
 
 ## Create Kubeflow Pipeline
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder "/workspace/\<your-code-repo\>/insurance"
- - Open the file "insurance-pipeline.ipynb"
+ - Navigate to the folder <code>/workspace/*\<your-code-repo\>*/insurance</code>
+ - Open the file `insurance-pipeline.ipynb`
  - Fill in the required fields in the 4th cell as follows:
-   - training_program = \<your-code-repo\> (chosen during Code Repo creation}
-   - model = \<your-model-repo\> (chosen during Model Repo creation)
+   - training_program = *\<your-code-repo\>* **(chosen during Code Repo creation)**
+   - model = *\<your-model-repo\>* **(chosen during Model Repo creation)**
    - Leave the other fields in their current selection
-  - Select "Run All Cells" from the top JupyterLab menu
+  - Select `Run All Cells` from the top JupyterLab menu
   - This will create and run a Kubeflow Pipeline for the example <br> <br>
-  - Navigate to the "Pipelines" menu on the left
- - Select the "Runs" tab on the top
- - The PIpeline run at the top of the list will be the one that was just created
- - Select the "View Pipeline" field
-   - That will show the full Pipeline graph
+  - Navigate to the `Pipelines` menu on the left
+ - Select the `Runs` tab on the top
+ - The Pipeline run at the top of the list will be the one that was just created
+ - Select the `View Pipeline` field
+   - This will show the full Pipeline graph
  - Select the back arrow at the top left and select the Pipeline name
-   - That will show the Pipeline as it is executed
+   - This will show the Pipeline as it is executed
+   - Select the `dkube-training` graph box to see the Run details
+   - Select the `dkube-serving` graph box to see the Deployment details <br><br>
+ - Navigate to the `Models` menu on the left
+   - Expand the Model with the name *\<your-model-repo\>* through the `>` icon to the left of the name
+   - You will see that the top Model has been deployed
 
 ## Inference WebApp
  A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence has written a web-based inference application for this example.  It is meant to show how this particular example could be used.
  
  - The WebApp needs to be installed on the server running DKube.  It is then available to any user that wants to try it out.
- - It can be installed either using Docker or Python-3
- - Run with Docker:
-   - In order to install the WebApp, the following command is run once by the system administrator:
-     - > sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf <br> <br>
+ - In order to install the WebApp, the following command is run once by the system administrator:
+   - > sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
+  <!---  Commented out for now.  This can be added back in once we get it working with Python.
  - Run with Python-3: run the following commands in the given sequence:
    - > python3 -m venv ~/webapp
    - > source ~/webapp/bin/activate
    - > pip install --upgrade pip
    - > pip install streamlit watchdog
    - > streamlit run insurance/webapp/webapp.py
+ --->
  - In order to use the WebApp, the following url accesses the application from your browser:
    - http://\<url of the DKube instance>\:8501
  - Fill in the required fields a follows:

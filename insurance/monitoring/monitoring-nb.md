@@ -65,7 +65,8 @@
  - Open `modelmonitor.iypnb`
  - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
  - Run all of the cells
- - This will create a new Model Monitor and put it into the `Active` state <br><br>
+ - This will create a new Model Monitor and put it into the `Active` state
+   - The Monitor name will be the same as the Deployment name <br><br>
  - Navigate to the `Deployments` menu on the left
  - Select the `Monitors` tab at the top
  - You will see the new Monitor at the top of the list

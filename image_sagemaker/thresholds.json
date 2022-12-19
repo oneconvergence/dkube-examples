@@ -6,8 +6,8 @@
     },
     "prediction":{
         "type": "drift",
-        "hard": 0.2,
-        "soft":0.34
+        "hard": 0.34,
+        "soft":0.2
     },
     "accuracy": {
         "type": "performance",

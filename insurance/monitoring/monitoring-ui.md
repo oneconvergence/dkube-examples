@@ -74,7 +74,7 @@
  
  > **_Note:_** There are several fields which will be required during the Monitor creation process that are available from previous sections.  They need to be available prior to starting the Monitor creation process.
  
-### Available Fields
+### Required Fields
  
  The following fields are required as part of the `Performance` tab in the Monitor creation process:
  

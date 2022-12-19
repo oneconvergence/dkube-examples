@@ -81,7 +81,8 @@
  - The name of the `Dataset` in the dropdown field comes from the `Resource.ipynb` script.  It is described in that section.
  - The name of the `Deployment ID` in the `Prefix/Subpath` field can be obtained as follows:
    - Navigate to the `Deployments` menu on the left
-   -
+   - Select the Deployment name
+   - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".
  
 ### Monitor Creation Steps
  

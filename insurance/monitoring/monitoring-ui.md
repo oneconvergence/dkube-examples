@@ -72,6 +72,19 @@
  
  This section describes how to create a Monitor manually from a Deployed Model.
  
+ > **_Note:_** There are several fields which will be required during the Monitor creation process that are available from previous sections.  They need to be available prior to starting the Monitor creation process.
+ 
+### Available Fields
+ 
+ The following fields are required as part of the `Performance` tab in the Monitor creation process:
+ 
+ - The name of the `Dataset` in the dropdown field comes from the `Resource.ipynb` script.  It is described in that section.
+ - The name of the `Deployment ID` in the `Prefix/Subpath` field can be obtained as follows:
+   - Navigate to the `Deployments` menu on the left
+   -
+ 
+### Monitor Creation Steps
+ 
  - Navigate to `Deployments` menu on the left
  - Identify the Deployed Model that will be Monitored.  It will be the Model at the top of the list.
  - At the far right of that Model line, select `Add Monitor` icon

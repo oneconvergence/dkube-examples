@@ -34,18 +34,18 @@
 
 ### Execute File to Create Resources
 
- - Navigate to "/workspace/*\<your-code-repo\>*/insurance/monitoring"
- - Open "resources.ipynb"
- - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form "https://\<External IP Address\>:32222/"
+ - Navigate to <code>/workspace/*\<your-code-repo\>*/insurance/monitoring</code>
+ - Open `resources.ipynb`
+ - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form `https://<External IP Address>:32222/`
    - Ensure that there is a final "/" in the url field
    - Leave the other fields in their current selection
- - From the top menu item "Run", Select "Run All Cells"
+ - From the top menu item `Run`, Select `Run All Cells`
  - This will create the DKube resources required for this example to run the Monitor, including the required Datasets <br><br>
  - The following Datasets will be created:
-   - "insurance-data"
+   - `insurance-data`
      - This will have a pub_url source
      - This is the original training Dataset
-   - *\<your-performance-dataset\>*
+   - `<your-performance-dataset>`
      - This Dataset includes the username and ends in "-s3"
      - This will have an "s3 | remote" source
      - This is the Dataset used for the Performance Monitoring <br><br>
@@ -72,24 +72,24 @@
  
  This section describes how to create a Monitor manually from a Deployed Model.
  
- - Navigate to "Deployments" menu on the left
+ - Navigate to `Deployments` menu on the left
  - Identify the Deployed Model that will be Monitored.  It will be the Model at the top of the list.
- - At the far right of that Model line, select "Add Monitor"
- - Fill in the required fields in the "Basic" tab as follows:
+ - At the far right of that Model line, select `Add Monitor` icon
+ - Fill in the required fields in the `Basic` tab as follows:
    - Model Type: `Regression`
    - Input Data Type: `Tabular`
    - Leave the other fields at their current selection <br><br>
- - Fill in the required fields in the "Drift" tab as follows:
+ - Fill in the required fields in the `Drift` tab as follows:
    - Select `Enable` box
    - Algorithm: `Auto`
    - Within "Train Data" section use the following fields:
      - Dataset: `insurance-data`
      - Dataset Version: `v1`
      - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
-   - Within the "Predict Data" section use the following fields:
+   - Within the `Predict Data` section use the following fields:
      - Dataset Content: `CloudEventLogs`
    - Leave the other fields at their current selection <br><br>
- - Fill in the required field in the "Performance" tab as follows:
+ - Fill in the required field in the `Performance` tab as follows:
    - Select `Enable` box
    - Select `Labelled Data` box
    - Dataset: *`<your-performance-dataset>`* **(from Resource Creation step)**

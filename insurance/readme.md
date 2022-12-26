@@ -11,7 +11,7 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
-## Create Project
+## Create Project(Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
  
  - This step is only necessary if the Project does not already exist, or if the default Project is not used

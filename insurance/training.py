@@ -26,7 +26,7 @@ args = parser.parse_args()
 # ### MACROS
 
 
-MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME', 'insurance')
+MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME')
 
 # EPOCHS, DATASET_URL could be specified as Environment parameters at the time of creating JL or Run
 
@@ -50,14 +50,12 @@ os.makedirs(OUTPUT_MODEL_DIR, exist_ok=True)
 # #### MLFLOW TRACKING INITIALIZATION
 
 
-import warnings
-warnings.filterwarnings('ignore')
-exp = mlflow.get_experiment_by_name(MLFLOW_EXPERIMENT_NAME)
-if not exp:
-    print("Creating experiment...")
-    mlflow.create_experiment(MLFLOW_EXPERIMENT_NAME)
-mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
-
+if MLFLOW_EXPERIMENT_NAME:
+    exp = mlflow.get_experiment_by_name(MLFLOW_EXPERIMENT_NAME)
+    if not exp:
+        print("Creating experiment...")
+        mlflow.create_experiment(MLFLOW_EXPERIMENT_NAME)
+    mlflow.set_experiment(experiment_name=MLFLOW_EXPERIMENT_NAME)
 
 
 

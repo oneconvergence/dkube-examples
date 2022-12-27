@@ -201,7 +201,7 @@
  
  - The WebApp needs to be installed on the server running DKube.  It is then available to any user that wants to try it out.
  - In order to install the WebApp, the following command is run once by the system administrator:
-   - > sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf
+   - `sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf`
   <!---  Commented out for now.  This can be added back in once we get it working with Python.
  - Run with Python-3: run the following commands in the given sequence:
    - > python3 -m venv ~/webapp
@@ -211,10 +211,10 @@
    - > streamlit run insurance/webapp/webapp.py
  --->
  - In order to use the WebApp, the following url accesses the application from your browser:
-   - http://\<url of the DKube instance>\:8501
+ - <code>http://**\<url of the DKube instance\>**:8501</code>
  - Fill in the required fields a follows:
-   - DKube serving url: URL of the server running DKube
+   - DKube serving url: `URL of the server running DKube`
      - This is the endpoint url from a running deployment, available from the "Deployments" menu under the "Endpoint" column
-   - DKube user auth token: Authorization token, available from the Developer Settings menu
+   - DKube user auth token: `Authorization token`, available from the Developer Settings menu
    - Select the characteristics of the individual
-   - Select "Predict"
+   - Select `Predict`

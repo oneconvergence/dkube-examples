@@ -193,7 +193,7 @@
    - Select the `dkube-training` graph box to see the Run details
    - Select the `dkube-serving` graph box to see the Deployment details <br><br>
  - Navigate to the `Models` menu on the left
-   - Expand the Model with the name *\<your-model-repo\>* through the `>` icon to the left of the name
+   - Select the `Model` name *\<your-model-repo\>*
    - You will see that the top Model has been deployed
 
 ## Inference WebApp

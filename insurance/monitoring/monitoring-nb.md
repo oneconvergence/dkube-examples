@@ -19,6 +19,8 @@
 
 ## Set up Resources
 
+ You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
+
 ### Create Code & Model Repos
 
  > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code and/or Model repo, follow the instructions at:
@@ -34,7 +36,7 @@
 
 ### Execute File to Create Resources
 
- - Navigate to <code>/workspace/*\<your-code-repo\>*/insurance/monitoring</code>
+ - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `resources.ipynb`
  - In the 1st cell, Fill in the external IP address for the field `SERVING_DKUBE_URL` in the form "https://\<External IP Address\>:32222/"
    - Ensure that there is a final `/` in the url field
@@ -58,12 +60,15 @@
 ## Create Monitor Automatically
 
  In this example, the Monitor is created programmatically through the DKube SDK. 
+ 
+ > **_Note:_** The script in this section will fail if there is already a Monitor with the automatically-generated name.  This can happen if the script is run more than once.  Delete the Monitor name before you run this script a 2nd time.
 
- - From the JupyterLab tab, navigate to <code>/workspace/*\<your-code-repo\>*/insurance/monitoring</code>
+ - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `modelmonitor.iypnb`
  - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
  - Run all of the cells
- - This will create a new Model Monitor and put it into the `Active` state <br><br>
+ - This will create a new Model Monitor and put it into the `Active` state
+   - The Monitor name will be the same as the Deployment name <br><br>
  - Navigate to the `Deployments` menu on the left
  - Select the `Monitors` tab at the top
  - You will see the new Monitor at the top of the list

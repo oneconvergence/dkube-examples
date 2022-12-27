@@ -68,7 +68,7 @@
  
  - Once the IDE is in the `Running` state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
- - Navigate to <code>/workspace/*\<your-code-repo\>*/insurance</code>
+ - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance</code>
  - Open `training.ipynb`
  - Select `Run All Cells` from the top JupyterLab menu
    - This will execute the file with the current set of inputs
@@ -160,7 +160,7 @@
 > **_Note:_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder <code>/workspace/*\<your-code-repo\>*/pipeline</code>
+ - Navigate to folder <code>/workspace/**\<your-code-repo\>**/pipeline</code>
  - Run all the cells in the file `ControlStructures.ipynb`
  - This will create and run a Kubeflow Pipeline <br><br>
  - Navigate to the `Pipelines` menu on the left
@@ -175,7 +175,7 @@
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
- - Navigate to the folder <code>/workspace/*\<your-code-repo\>*/insurance</code>
+ - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance</code>
  - Open the file `insurance-pipeline.ipynb`
  - Fill in the required fields in the 4th cell as follows:
    - training_program = *\<your-code-repo\>* **(chosen during Code Repo creation)**

@@ -28,8 +28,8 @@
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
  - Navigate to the `Code` menu on the left
- - Choose the Project that you created in the previous step at the top of the screen
-   - You only need to do this once.  It will remain the default until changed.
+ - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen
+   - You only need to do this once.  It will remain the default until changed. <br><br>
  - Select `+ Code`
  - Fill in the required fields as follows:
    - **Name:** *`<your-code-repo>`* **(your choice of name)**
@@ -53,7 +53,6 @@
  The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
  - Navigate to the `IDEs` menu on the left
- - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
  - Select `+ JupyterLab`
  - Fill in the required fields in the "Basic" tab as follows:
    - **Name:** *`<your-IDE-name>`* **(your choice of name)**
@@ -83,7 +82,6 @@
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
  - Navigate to the `Runs` menu on the left
- - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
  - Select `+ Run`, then `Training`
  - Fill in the required fields in the `Basic` tab as follows:
    - **Name:** *`<your-run-name>`* **(your choice of name)**
@@ -138,7 +136,6 @@
  After the Models have been analyzed and the best one is identified, it is deployed to a server for inference of live data.  This section explains how to deploy a Model.
  
  - Navigate to the `Models` menu on the left
- - Ensure that Project *\<your-project-name\>* is selected **(chosen when creating Project)**
  - Select the Model *\<your-model-repo\>* **(chosen during Model Repo creation)**
  - Choose a Model version
  - Select the `Deploy` icon on the right hand side of the version chosen

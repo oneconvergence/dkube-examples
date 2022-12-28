@@ -120,7 +120,7 @@
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- - Create an optimization file by downloading the file <code>/workspace/*\<your-code-repo\>*/insurance/tuning.yaml</code> to your local system
+ - Create an optimization file by downloading the file <code>/workspace/**\<your-code-repo\>**/insurance/tuning.yaml</code> to your local system
    - This can be accomplished by selecting the file within Github, selecting `Raw`, and using your browser `Save As...` capability
  - Select one of the Runs created in the previous section and select `Clone` button
  - Fill in the required fields in the `Configuration` tab as follows:

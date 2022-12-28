@@ -11,6 +11,8 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
+ > **_Note:_** In the example, use only lower-case characters in the names that you create
+
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
  
@@ -27,6 +29,8 @@
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
+  > **_Note:_** In the example, use only lower-case characters in the names that you create
+
  - Navigate to the `Code` menu on the left
  - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen
    - You only need to do this once.  It will remain the default until changed. <br><br>

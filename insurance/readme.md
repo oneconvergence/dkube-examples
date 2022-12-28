@@ -121,7 +121,7 @@
  - Select one of the Runs created in the previous section and select `Clone` button
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select `Upload` button from the `Upload Tuning Definition` section
-   - Upload Tuning file from [Tuning File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/tuning.yaml)
+   - Upload [Tuning File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/tuning.yaml)
    - Leave the other fields at their current selection 
    - Submit your Run <br><br>
  - Wait for the Katib Run to complete

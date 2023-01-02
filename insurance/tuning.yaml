@@ -1,9 +1,9 @@
 parallelTrialCount: 4
 maxTrialCount: 4
-maxFailedTrialCount: 6
+maxFailedTrialCount: 2
 objective:
   type: minimize
-  goal: 6000.0
+  goal: 4000.0
   objectiveMetricName: loss
 algorithm:
   algorithmName: random

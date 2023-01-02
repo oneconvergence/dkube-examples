@@ -1,0 +1,129 @@
+{
+    "scores": {
+        "data": {
+            "age": {
+                "drift": 0.30652630534627
+            },
+            "sex": {
+                "drift": 0.6924090670587681
+            },
+            "bmi": {
+                "drift": 0.9511935337168649
+            },
+            "children": {
+                "drift": 0.7302461558257698
+            },
+            "smoker": {
+                "drift": 0.049822467111580115
+            },
+            "region": {
+                "drift": 1.0063226252299273e-08
+            },
+            "charges": {
+                "drift": 0.6832781572947217
+            }
+        },
+        "meta": {
+            "num_samples": 15
+        }
+    },
+    "baseline": {
+        "age": {
+            "class": "continuous",
+            "numerical": true,
+            "description": {
+                "count": 15.0,
+                "mean": 38.13333333333333,
+                "std": 12.838928897618183,
+                "min": 18.0,
+                "25%": 32.5,
+                "50%": 37.0,
+                "75%": 44.5,
+                "max": 61.0
+            }
+        },
+        "sex": {
+            "class": "categorical",
+            "bins": {
+                "0": 11,
+                "1": 4
+            },
+            "description": {
+                "count": 15,
+                "unique": 2,
+                "top": 0,
+                "freq": 11
+            }
+        },
+        "bmi": {
+            "class": "continuous",
+            "numerical": true,
+            "description": {
+                "count": 15.0,
+                "mean": 27.29866666666667,
+                "std": 4.609404000312322,
+                "min": 19.19,
+                "25%": 24.9375,
+                "50%": 27.36,
+                "75%": 29.9225,
+                "max": 37.525
+            }
+        },
+        "children": {
+            "class": "categorical",
+            "bins": {
+                "0": 9,
+                "1": 5,
+                "3": 1
+            },
+            "description": {
+                "count": 15,
+                "unique": 3,
+                "top": 0,
+                "freq": 9
+            }
+        },
+        "smoker": {
+            "class": "categorical",
+            "bins": {
+                "0": 10,
+                "1": 5
+            },
+            "description": {
+                "count": 15,
+                "unique": 2,
+                "top": 0,
+                "freq": 10
+            }
+        },
+        "region": {
+            "class": "categorical",
+            "bins": {
+                "1": 5,
+                "3": 4,
+                "2": 3,
+                "0": 3
+            },
+            "description": {
+                "count": 15,
+                "unique": 4,
+                "top": 1,
+                "freq": 5
+            }
+        },
+        "charges": {
+            "class": "continuous",
+            "numerical": true,
+            "description": {
+                "count": 15.0,
+                "mean": 11793.324989766666,
+                "std": 12233.213419206315,
+                "min": 1755.8411545,
+                "25%": 2400.2883100000004,
+                "50%": 6113.23105,
+                "75%": 19252.2810388,
+                "max": 37677.6906248
+            }
+        }
+    }
+}

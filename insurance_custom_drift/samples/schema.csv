@@ -1,0 +1,10 @@
+class,label,type,selected
+continuous,age,input_feature,False
+categorical,sex,input_feature,False
+continuous,bmi,input_feature,False
+categorical,children,input_feature,False
+categorical,smoker,input_feature,False
+categorical,region,input_feature,False
+continuous,charges,row_id,False
+categorical,timestamp,timestamp,False
+categorical,unique_id,row_id,False

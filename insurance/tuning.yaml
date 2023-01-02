@@ -1,5 +1,5 @@
 parallelTrialCount: 4
-maxTrialCount: 8
+maxTrialCount: 4
 maxFailedTrialCount: 6
 objective:
   type: minimize

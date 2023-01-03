@@ -11,7 +11,7 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
- > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position other than the first character, but no other special characters should be used.
+ > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
 
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.

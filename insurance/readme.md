@@ -52,7 +52,9 @@
    - **Name:** *`<your-dataset-repo>`* **(your choice of name)**
    - **Dataset Source:** `Other`
    - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
- 
+   - Leave the other fields at their current selection
+ - Submit your Code repo with the `Add Dataset` button at the bottom of the screen
+
 ## Create Model Repo
  An output Model is created as a result of the Training job.  This section explains how to create a Model repo for the output.
  

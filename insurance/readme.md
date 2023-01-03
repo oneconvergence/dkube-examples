@@ -11,7 +11,7 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
- > **_Note:_** In the example, use only lower-case characters in the names that you create
+ > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position other than the first character, but no other special characters should be used.
 
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -43,6 +43,16 @@
    - Leave the other fields at their current selection 
  - Submit your Code repo with the `Add Code` button at the bottom of the screen
 
+## Create Data Repo
+ Datasets are used to represent the expected input for model prediction.  The Dataset in this example resides in an S3 bucket.  This section explains how to create a Dataset repo.
+ 
+ - Navigate to the `Datasets` menu on the left
+ - Select `+ Dataset`
+ - Fill in the required fields as follows:
+   - **Name:** *`<your-dataset-repo>`* **(your choice of name)
+   - **Dataset Source:** `Other`
+   - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
+ 
 ## Create Model Repo
  An output Model is created as a result of the Training job.  This section explains how to create a Model repo for the output.
  

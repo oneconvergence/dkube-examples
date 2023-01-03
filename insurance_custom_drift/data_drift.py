@@ -3,9 +3,8 @@ import os, json
 import pandas as pd
 from scipy.stats import ks_2samp
 from dkube.sdk import *
+from dkube.sdk import CUSTOM_METRICS_FILE
 from dkube.sdk.utils.monitoring import get_configuration, baseline_from_schema
-
-METRIC_FILE = "/tmp/metric.json"
 
 class CustomDrift:
     def __init__(self):
@@ -39,8 +38,8 @@ class CustomDrift:
 
     def save_drift_scores(self, scores, predict_baseline):
         drift_metrics = {"scores":scores, "baseline":predict_baseline}
-        with open(METRIC_FILE, 'w') as fp:
-            json.dump(drift_metrics, fp, indent=4)
+        with open(CUSTOM_METRICS_FILE, 'w') as fp:
+            json.dump(drift_metrics, fp, indent=4, default=str)
 
 if __name__ == "__main__":
     mm_config = get_configuration()
@@ -53,3 +52,8 @@ if __name__ == "__main__":
     scores = custom_drift.calculate_drift(predict_df.values)
     predict_data_baseline = baseline_from_schema(predict_df, schema_df)
     custom_drift.save_drift_scores(scores, predict_data_baseline)
+    ## validating file dump
+    print("scores and baseline saved in CUSTOM_METRICS_FILE i.e /tmp/metrics.json")
+    with open(CUSTOM_METRICS_FILE) as f:
+        data = json.load(f)
+    print(data)

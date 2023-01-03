@@ -29,7 +29,7 @@
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
-  > **_Note:_** In the example, use only lower-case characters in the names that you create
+  > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
 
  - Navigate to the `Code` menu on the left
  - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen

@@ -49,7 +49,7 @@
  - Navigate to the `Datasets` menu on the left
  - Select `+ Dataset`
  - Fill in the required fields as follows:
-   - **Name:** *`<your-dataset-repo>`* **(your choice of name)
+   - **Name:** *`<your-dataset-repo>`* **(your choice of name)**
    - **Dataset Source:** `Other`
    - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
  

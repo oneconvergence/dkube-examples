@@ -43,7 +43,7 @@
    - Leave the other fields at their current selection 
  - Submit your Code repo with the `Add Code` button at the bottom of the screen
 
-## Create Data Repo
+## Create Dataset Repo
  Datasets are used to represent the expected input for model prediction.  The Dataset in this example resides in an S3 bucket.  This section explains how to create a Dataset repo.
  
  - Navigate to the `Datasets` menu on the left

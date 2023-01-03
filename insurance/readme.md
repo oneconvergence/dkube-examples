@@ -94,7 +94,7 @@
    - The new "loss" will be shown
  - Make as many changes as you want to see the impact
 
-## Run Training Jobs
+## Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
  - Navigate to the `Runs` menu on the left

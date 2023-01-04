@@ -11,7 +11,7 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
- > **_Note:_** In the example, use only lower-case characters in the names that you create
+ > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
 
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -29,7 +29,7 @@
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
-  > **_Note:_** In the example, use only lower-case characters in the names that you create
+  > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
 
  - Navigate to the `Code` menu on the left
  - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen
@@ -42,6 +42,18 @@
    - **Branch:** `training`
    - Leave the other fields at their current selection 
  - Submit your Code repo with the `Add Code` button at the bottom of the screen
+
+## Create Dataset Repo
+ Datasets are used to represent the expected input for model prediction.  The Dataset in this example resides in an S3 bucket.  This section explains how to create a Dataset repo.
+ 
+ - Navigate to the `Datasets` menu on the left
+ - Select `+ Dataset`
+ - Fill in the required fields as follows:
+   - **Name:** *`<your-dataset-repo>`* **(your choice of name)**
+   - **Dataset Source:** `Other`
+   - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
+   - Leave the other fields at their current selection
+ - Submit your Dataset repo with the `Add Dataset` button at the bottom of the screen
 
 ## Create Model Repo
  An output Model is created as a result of the Training job.  This section explains how to create a Model repo for the output.
@@ -82,7 +94,7 @@
    - The new "loss" will be shown
  - Make as many changes as you want to see the impact
 
-## Run Training Jobs
+## Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
  - Navigate to the `Runs` menu on the left
@@ -97,6 +109,8 @@
  - Fill in the required fields in the `Repos` tab as follows:
    - **Output** -> **Models:** *`<your-model-repo>`* **(chosen during Model Repo creation)**
  > **_Note:_** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example.
+<br/>Model mount path is left blank because the training code will log the model using mlflow log model method. And the model is required to add to know which model repo mlflow will log this model otherwise mlflow will log the model to the default model repo. 
+
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select the `+` for `Environment variables`
    - Enter variable name "EPOCHS" **(must be upper case)** and value 20

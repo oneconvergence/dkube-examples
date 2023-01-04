@@ -36,7 +36,7 @@
 
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `resources.ipynb`
- - In the 1st cell, Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form <code>https://**\<External IP Address\>**:32222/</code>
+ - In case of running the example other than the serving setup, In the 1st cell, set RUNNING_IN_SAME to False and Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form <code>https://**\<External IP Address\>**:32222/</code>
    - Ensure that there is a final "/" in the url field
    - Leave the other fields in their current selection
  - From the top menu item `Run`, Select `Run All Cells`

@@ -110,8 +110,8 @@
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the `Repos` tab as follows:
    - **Output** -> **Models:** *`<your-model-repo>`* **(chosen during Model Repo creation)**
- > **_Note:_** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example.
-<br/>Model mount path is left blank because the training code will log the model using mlflow log model method. And the model is required to add to know which model repo mlflow will log this model otherwise mlflow will log the model to the default model repo. 
+ > **_Note:_** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example. <br><br>
+ Leave the `Mount Path` field blank, since this example does not use that feature.  It uses the MLFlow log model method.
 
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select the `+` for `Environment variables`

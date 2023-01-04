@@ -158,10 +158,13 @@
  - Fill in the required fields as follows:
    - **Name:** *`<your-deploy-name>`* **(your choice of name)**
    - **Serving Image:** `ocdr/tensorflowserver:2.0.0`
+   - **Serving Port:** `8080`
+   - **Serving url prefix:** `/v1/models/{MODEL_NAME}`
    - **Deployment:** `Test` radial button
    - **Deploy using:** `CPU` radial button
    - Select `Transformer` checkbox
    - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
+   - **Transformer Code:** Select *\<your-code-repo\>* **(chosen during Code repo creation)**
    - **Transformer Script:** `insurance/transformer.py`
    - Leave the other fields at their current selection 
  - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>

@@ -149,7 +149,7 @@
    - **Deployment:** `Test` radial button
    - **Deploy using:** `CPU` radial button
    - Select `Transformer` checkbox
-   - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
+   - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-17`
    - **Transformer Script:** `insurance/transformer.py`
    - Leave the other fields at their current selection 
  - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>

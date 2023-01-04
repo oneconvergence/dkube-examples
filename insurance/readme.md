@@ -97,6 +97,8 @@
 ## Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
+ > **_Note:_** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
+ 
  - Navigate to the `Runs` menu on the left
  - Select `+ Run`, then `Training`
  - Fill in the required fields in the `Basic` tab as follows:

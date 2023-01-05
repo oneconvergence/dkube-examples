@@ -33,8 +33,6 @@ class Transformer(kfserving.KFModel):
         self.predictor_host = predictor_host
 
     def preprocess(self, inputs: Dict) -> Dict:
-        # inputs is a json file, inside that data, using the data value form a image
-        # write into jpeg file
         del inputs["instances"]
         logging.info("prep =======> %s", str(type(inputs)))
         try:
@@ -45,16 +43,15 @@ class Transformer(kfserving.KFModel):
         with open(filename, "w") as f:
             f.write(data)
         data = pd.read_csv(filename)
-        payload = {"instances": data.values.tolist(), "token": inputs["token"]}
+        payload = {"inputs": data.values.tolist(), "token": inputs["token"]}
         return payload
 
     def postprocess(self, predictions: List) -> List:
         logging.info("prep =======> %s", str(type(predictions)))
-        preds = predictions["predictions"]
+        preds = predictions["outputs"]
         return {"result": preds}
 
 if __name__ == "__main__":
     transformer = Transformer(args.model_name, predictor_host=args.predictor_host)
     kfserver = kfserving.KFServer()
     kfserver.start(models=[transformer])
-

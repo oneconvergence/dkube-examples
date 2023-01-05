@@ -1,0 +1,109 @@
+{
+    "age": {
+        "class": "continuous",
+        "numerical": true,
+        "description": {
+            "count": 1338.0,
+            "mean": 39.20702541106129,
+            "std": 14.049960379216154,
+            "min": 18.0,
+            "25%": 27.0,
+            "50%": 39.0,
+            "75%": 51.0,
+            "max": 64.0
+        },
+        "is_null": false
+    },
+    "sex": {
+        "class": "categorical",
+        "bins": {
+            "1": 676,
+            "0": 662
+        },
+        "description": {
+            "count": 1338,
+            "unique": 2,
+            "top": 1,
+            "freq": 676
+        },
+        "is_null": false
+    },
+    "bmi": {
+        "class": "continuous",
+        "numerical": true,
+        "description": {
+            "count": 1338.0,
+            "mean": 30.66339686098655,
+            "std": 6.098186911679014,
+            "min": 15.96,
+            "25%": 26.29625,
+            "50%": 30.4,
+            "75%": 34.69375,
+            "max": 53.13
+        },
+        "is_null": false
+    },
+    "children": {
+        "class": "categorical",
+        "bins": {
+            "0": 574,
+            "1": 324,
+            "2": 240,
+            "3": 157,
+            "4": 25,
+            "5": 18
+        },
+        "description": {
+            "count": 1338,
+            "unique": 6,
+            "top": 0,
+            "freq": 574
+        },
+        "is_null": false
+    },
+    "smoker": {
+        "class": "categorical",
+        "bins": {
+            "0": 1064,
+            "1": 274
+        },
+        "description": {
+            "count": 1338,
+            "unique": 2,
+            "top": 0,
+            "freq": 1064
+        },
+        "is_null": false
+    },
+    "region": {
+        "class": "categorical",
+        "bins": {
+            "2": 364,
+            "3": 325,
+            "1": 325,
+            "0": 324
+        },
+        "description": {
+            "count": 1338,
+            "unique": 4,
+            "top": 2,
+            "freq": 364
+        },
+        "is_null": false
+    },
+    "charges": {
+        "class": "continuous",
+        "numerical": true,
+        "description": {
+            "count": 1338.0,
+            "mean": 13270.422265141257,
+            "std": 12110.011236694001,
+            "min": 1121.8739,
+            "25%": 4740.28715,
+            "50%": 9382.033,
+            "75%": 16639.912515,
+            "max": 63770.42801
+        },
+        "is_null": false
+    }
+}

@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 
+## In fit user can use custom method to save train data representation 
+## which can be used during drift detection.
+
 if __name__ == "__main__":
     mm_home = os.getenv('MM_HOME')
     filepath = os.path.join(mm_home, "processed.csv")

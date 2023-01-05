@@ -27,7 +27,7 @@
             "num_samples": 15
         }
     },
-    "baseline": {
+    "distributions": {
         "age": {
             "class": "continuous",
             "numerical": true,

@@ -4,7 +4,7 @@ RUN pip3 install pip -U
 
 RUN pip3 install setuptools wheel packaging scikit-learn
 
-RUN pip3 install git+https://github.com/oneconvergence/dkube.git@monitoring-utils
+RUN pip3 install git+https://github.com/oneconvergence/dkube.git@3.7
 
 ADD . .
 

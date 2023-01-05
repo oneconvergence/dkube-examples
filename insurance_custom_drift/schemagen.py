@@ -1,10 +1,11 @@
 from dkube.sdk.utils.monitoring import get_configuration, \
-    infer_tabular_schema, baseline_from_schema
+    infer_tabular_schema, compute_distributions_from_schema
 import pandas as pd
 from dkube.sdk import *
 import os
 from sklearn import preprocessing
 import json
+
 
 def load_traindata(mm_config):
     train_data_location = mm_config.get("datasources", {}).get("train", {}).get("location")
@@ -44,14 +45,14 @@ if __name__ == "__main__":
     # Initializing the dkube_api handler and posting the schema
     api = DkubeApi(token=os.getenv("DKUBE_USER_ACCESS_TOKEN"))
 
-    cluster_id = mm_config["envs"].get("CLUSTER_ID", "")
-
+    # Publishing schema to model monitor
     api.modelmonitor_update_schema_from_df(mm_config["envs"]["MM_UUID"],
-                                            schema, cluster_id)
+                                            schema)
 
-    # generating and publishing baseline
-    baseline = baseline_from_schema(data_df, schema)
+    # generating baseline distribution
+    baseline = compute_distributions_from_schema(data_df, schema)
 
+    # publishing baseline
     api.publish_baseline(baseline, mm_config)
 
     # saving preprocessed train data for fit

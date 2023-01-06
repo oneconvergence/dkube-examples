@@ -11,7 +11,7 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
- > **_Note_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
+ > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
 
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -29,7 +29,7 @@
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
-  > **_Note_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
+  > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
 
  - Navigate to the `Code` menu on the left
  - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen
@@ -97,7 +97,7 @@
 ## Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
- > **_Note_** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
+ > **_Note:_** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
  
  - Navigate to the `Runs` menu on the left
  - Select `+ Run`, then `Training`
@@ -110,7 +110,7 @@
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the `Repos` tab as follows:
    - **Output** -> **Models:** *`<your-model-repo>`* **(chosen during Model Repo creation)**
- > **_Note_** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example. <br><br>
+ > **_Note:_** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example. <br><br>
  Leave the `Mount Path` field blank, since this example does not use that feature.  It uses the MLFlow log model method.
 
  - Fill in the required fields in the `Configuration` tab as follows:
@@ -138,7 +138,7 @@
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
- > **_Note_** If your OS does not allow you to directly upload the `Tuning File` url specified below, you can select the tuning file by clicking on it.  That will bring up the text in the file.  You can then right-click your mouse and choose `Save as...` to create a tuning file on your local machine.  You can then use that local file to upload the tuning definition.
+ > **_Note:_** If your OS does not allow you to directly upload the `Tuning File` url specified below, you can select the tuning file by clicking on it.  That will bring up the text in the file.  You can then right-click your mouse and choose `Save as...` to create a tuning file on your local machine.  You can then use that local file to upload the tuning definition.
  
  - Select one of the Runs created in the previous section and select `Clone` button
  - Fill in the required fields in the `Configuration` tab as follows:
@@ -174,11 +174,11 @@
  - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>
  - Deployment can be viewed from the `Deployments` menu on the left of the screen
    - Details of the deployment can be viewed by selecting *\<your-deploy-name\>* **(chosen during submission)**
- > **_Note_** Deployments are not filtered by Project
+ > **_Note:_** Deployments are not filtered by Project
 
 ## Create Generic Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
-> **_Note_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+> **_Note:_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/pipeline</code>

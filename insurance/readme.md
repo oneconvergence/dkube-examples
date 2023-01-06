@@ -11,7 +11,7 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
- > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
+ > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first and last characters, but no other special characters should be used.
 
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -29,7 +29,7 @@
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
-  > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
+  > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first or last characters, but no other special characters should be used.
 
  - Navigate to the `Code` menu on the left
  - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen
@@ -97,7 +97,7 @@
 ## Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
- > **Note** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
+ > **Warning** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
  
  - Navigate to the `Runs` menu on the left
  - Select `+ Run`, then `Training`
@@ -180,6 +180,7 @@
 
 ## Create Generic Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
+ 
 > **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"

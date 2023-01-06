@@ -111,8 +111,9 @@
  - Fill in the required fields in the `Repos` tab as follows:
    - **Output** -> **Models:** *`<your-model-repo>`* **(chosen during Model Repo creation)**
  
- > **Note** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example. <br><br>
- Leave the `Mount Path` field blank, since this example does not use that feature.  It uses the MLFlow log model method.
+ > **Warning** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example.
+ 
+ > **Note** Leave the `Mount Path` field blank, since this example does not use that feature.  It uses the MLFlow log model method.
 
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select the `+` for `Environment variables`

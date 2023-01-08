@@ -146,6 +146,9 @@
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select `Upload` button from the `Upload Tuning Definition` section
    - Upload [Tuning File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/tuning.yaml)
+     - Right-click on the link above to copy the url address
+     - Paste the url address into the dialog box
+     > **Note** if the dialog box does not allow you to paste in an address, use the alternate approach as described earlier in this section
    - Leave the other fields at their current selection 
    - Submit your Run <br><br>
  - Wait for the Katib Run to complete

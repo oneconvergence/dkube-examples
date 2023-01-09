@@ -212,11 +212,12 @@
 
 ## Inference WebApp
  A model that is running on a production server takes live datda and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence has written a web-based inference application for this example.  It is meant to show how this particular example could be used.
- 
+
+<!--- 
  - The WebApp needs to be installed on the server running DKube.  It is then available to any user that wants to try it out.
  - In order to install the WebApp, the following command is run once by the system administrator:
    - `sudo docker run -p 8501:8501 ocdr/streamlit-webapp:insurance-tf`
-  <!---  Commented out for now.  This can be added back in once we get it working with Python.
+ Commented out for now.  This can be added back in once we get it working with Python.
  - Run with Python-3: run the following commands in the given sequence:
    - > python3 -m venv ~/webapp
    - > source ~/webapp/bin/activate
@@ -225,7 +226,7 @@
    - > streamlit run insurance/webapp/webapp.py
  --->
  - In order to use the WebApp, the following url accesses the application from your browser:
- - <code>http://**\<url of the DKube instance\>**:8501</code>
+ - <code>http://**\<url of the DKube instance\>**:31333</code>
  - Fill in the required fields a follows:
    - DKube serving url: `URL of the server running DKube`
      - This is the endpoint url from a running deployment, available from the "Deployments" menu under the "Endpoint" column

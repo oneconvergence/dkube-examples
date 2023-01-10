@@ -54,11 +54,11 @@
  
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `resources.ipynb` <br><br>
- - If the serving and monitoring cluster are the same, the script will get all of the fields automatically.
+ - If the serving and monitoring cluster **are the same**, the script will get all of the fields automatically.
    - Ensure that the variable `RUNNING_IN_SAME` in the 1st cell is set to `True`
    - Leave the other fields in their current selection
    - Skip to the section "Run the Script"
- - If the serving cluster is different from the monitoring cluster, the serving cluster needs to be identified
+ - If the serving cluster is **different from** the monitoring cluster, the serving cluster needs to be identified
    - In the 1st cell, set `RUNNING_IN_SAME = False`
    - Complete the field `SERVING_DKUBE_URL` with the external IP address for the **serving** cluster in the form:
      - <code>https://**\<External IP Address\>**:32222/</code>

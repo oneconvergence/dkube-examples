@@ -13,6 +13,8 @@
 
  > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first and last characters, but no other special characters should be used.
 
+> **Note** You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
+
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
  

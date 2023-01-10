@@ -15,7 +15,7 @@
    - Label data:  Dataset with Groundtruth values for the inferences made above
  - Cleanup the resources after the example is complete
 
- > **_Note:_** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
+ > **Note** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
 
 ## Set up Resources
 

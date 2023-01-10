@@ -93,7 +93,7 @@
  - The name of the `Deployment ID` in the `Prefix/Subpath` field can be obtained as follows:
    - Navigate to the `Deployments` menu on the left
    - Select the Deployment name
-   - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".
+   - The Deployment ID will is at the top of the screen.  It is of the form `dkube-insurance-pl-xxxxxx`.
  
 ### Monitor Creation Steps
  
@@ -152,20 +152,24 @@
 
 ## Add Alerts
  
- Alerts are set to notify the user if a feature is not wihin the tolerance specified.  This section describes how to add alerts.
+ Alerts are set to notify the user if a feature is not wihin the tolerance specified.  This section describes how to add alerts.  The Alerts screen will show up based on the previous selection.
+ 
+ > **Note** The data generation script that will be run later in this example will create data that provides drift on the selected features
  
  > **Note** It is recommended that a separate alert be created for an individual feature for clarity
  
- - The Alerts screen will show up based on the previous selection
+ ### Add Feature Drift Alert
+  This will add an Alert for input Feature Drift.  The following threshold guidelines are recommended:
+  - Use a threshold between 0 and 1
+  - Choose a threshold between 0.1 and 0.3
+ 
  - Select the `+ Add Alert` button at the top right
  - Fill in the following fields as follows:
-   - 
- 
-Add Feature Drift Alerts
- - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
- - Suggest to configure a separate alert for each individual feature.
- - Use a threshold between 0 to 1. generally advised 0.1 to 0.3 for all categorical or all continuous columns columns,  0.1 to 0.3 for mixed categorical and continuous columns columns.
- - It fires an alert when calculated drift goes under the configured threshold
+   - **Alert Name:** *`<alert-name-1>`*  **(your choice of name)**
+   - **Alert Type:** `Data Drift`
+   - **Configure based on:** `Threshold`
+   - **Select Feature:** `age`
+   - Choose a Threshold of `0.2`
 
 Add Performance Decay Alerts
   - Create an alert and choose Performance Decay from dropdown.

@@ -103,30 +103,30 @@
  - Identify the Deployed Model that will be Monitored.  It will be the Model at the top of the list.
  - At the far right of that Model line, select `Add Monitor` icon
  - Fill in the required fields in the `Basic` tab as follows:
-   - Model Type: `Regression`
-   - Input Data Type: `Tabular`
+   - **Model Type:** `Regression`
+   - **Input Data Type:** `Tabular`
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the `Drift` tab as follows:
    - Select `Enable` box
-   - Algorithm: `Auto`
+   - **Algorithm:** `Auto`
    - Within "Train Data" section use the following fields:
-     - Dataset: `insurance-data`
-     - Dataset Version: `v1`
+     - **Dataset:** `insurance-data`
+     - **Dataset Version:** `v1`
      - Select the `Advanced` button
        - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
    - Within the `Predict Data` section use the following fields:
-     - Dataset Content: `CloudEventLogs`
+     - **Dataset Content:** `CloudEventLogs`
    - Leave the other fields at their current selection <br><br>
  - Fill in the required field in the `Performance` tab as follows:
    - Select `Enable` box
    - Select `Labelled Data` box
-   - Dataset: *`<your-performance-dataset>`* **(from Resource Creation step)**
-   - Prefix/Subpath: <code>**\<your-deployment-id\>**/livedata</code> **(from Model Deployment section)**
-   - Groundtruth Column Name: `GT_target`
-   - Prediction Column Name: `charges`
-   - Timestamp Column Name: `timestamp`
+   - **Dataset:** *`<your-performance-dataset>`* **(from Resource Creation step)**
+   - **Prefix/Subpath:** <code>**\<your-deployment-id\>**/livedata</code> **(from Model Deployment section)**
+   - **Groundtruth Column Name:** `GT_target`
+   - **Prediction Column Name:** `charges`
+   - **Timestamp Column Name:** `timestamp`
    - Select the `Advanced` box
-     - Dataset Content: `Tabular`
+     - **Dataset Content:** `Tabular`
    - Leave the other fields at their current selection
  - Select the `Submit` button
    - Choose `Close` from the popup

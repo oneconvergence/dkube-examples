@@ -145,12 +145,22 @@
    - `charges` should be changed to `prediction output` through the `column/feature type` dropdown menu
    - `unique_id` should be selected as `RowID` and selected on the left box
    - `timestamp` should be selected as `Timestamp` and selected on the left box
-   - Select as many of the input features such as `age`, `sex`, `bmi`, etc as you want
+   - Select the input features such as `age`, `sex`, `bmi`, and `region`
  - Select the `Save` button on the top right
  - Confirm that you want to save the changes
  - Choose `Go to Alerts` on the next popup
 
-### Add Alerts
+## Add Alerts
+ 
+ Alerts are set to notify the user if a feature is not wihin the tolerance specified.  This section describes how to add alerts.
+ 
+ > **Note** It is recommended that a separate alert be created for an individual feature for clarity
+ 
+ - The Alerts screen will show up based on the previous selection
+ - Select the `+ Add Alert` button at the top right
+ - Fill in the following fields as follows:
+   - 
+ 
 Add Feature Drift Alerts
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
  - Suggest to configure a separate alert for each individual feature.

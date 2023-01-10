@@ -99,12 +99,6 @@
  - `Run All Cells`
  - The script will start to push the data
 
-<!--- Not sure if we need to do this
-
-## Section 5: SMTP Settings (Optional)
-Configure your SMTP server settings on Operator screen. This is optional. If SMTP server is not configured, no email alerts will be generated.
---->
-
 ## View the Monitor
 
  After the data has been generated for a few data points, it can be viewed within DKube.
@@ -113,6 +107,7 @@ Configure your SMTP server settings on Operator screen. This is optional. If SMT
  - Select the `Monitors` tab on the top
  - Your new Monitor will be at the top of the list
  - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
+ > **Note** The graph may not show any data until the 2nd data generation push due to the timing of the monitoring
 
 ## Cleanup
  After the experiment is complete, the following cleanup should be performed in order to delete the Datasets and stop the Monitor:

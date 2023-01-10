@@ -52,7 +52,7 @@
 
  This example uses a script to create the monitor resources necessary for the monitor creation.  This section explains how to run the script.
  
- - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
+ - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `resources.ipynb` <br><br>
    > **Warning** Ensure that the last cell at the bottom of the file has `CLEANUP = False`  This may have been set to `True` from a previous execution.
  - If the serving and monitoring cluster **are the same**, the script will get all of the fields automatically.
@@ -92,6 +92,7 @@
 
  In order for the Monitor to operate, predictions and groundtruth Datasets must be generated. 
  
+ - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `data_generation.ipynb`
  - In the 1st cell, specify the number of Dataset samples to run before stopping the data generation.  You can leave it at the default, or modify it.  The larger the number of samples, the more data will be generated for the Monitor graphs.
    - Leave the other fields at their current selection

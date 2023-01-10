@@ -84,7 +84,7 @@
  This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
  
  - Once the IDE is in the `Running` state, select the JupyterLab icon on the far right of the IDE line
-   - This will create a JupyterLab tab
+   - This will open a JupyterLab tab
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance</code>
  - Open `training.ipynb`
  - Select `Run All Cells` from the top JupyterLab menu

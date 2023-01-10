@@ -36,6 +36,18 @@
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
    - This will open a JupyterLab tab
 
+## Train & Deploy Insurance Model
+ 
+ In order to Monitor a Model in this example, it needs to be trained and deployed.  This section explains how to accomplish this.
+ > **_Note:_** This section requires a full DKube installation
+
+ > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
+ - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
+
+ - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
+ 
+ > **Warning** Do not proceed until the Pipeline has completed and deployed the model
+ > 
 ### Execute File to Create Resources
 
  This example uses a script to create the monitor resources necessary for the monitor creation.  This section explains how to run the script.
@@ -59,15 +71,7 @@
    - `insurance-data`, with a pub_url source
    - A Dataset that includes the username and ends in "-s3", with an "s3 | remote" source
 
-## Train & Deploy Insurance Model
- 
- In order to Monitor a Model in this example, it needs to be trained and deployed.
- > **_Note:_** This section requires DKube Runs, Kubeflow Pipelines, and KServe.  It requires a full DKube installation.
 
- > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
- - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
-
- - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
 
 ## Create Monitor Automatically
 

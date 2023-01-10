@@ -159,23 +159,38 @@
  > **Note** It is recommended that a separate alert be created for an individual feature for clarity
  
  ### Add Feature Drift Alert
-  This will add an Alert for input Feature Drift.  The following threshold guidelines are recommended:
-  - Use a threshold between 0 and 1
-  - Choose a threshold between 0.1 and 0.3
  
+  This will add an Alert for input Feature Drift.  The following threshold guidelines are recommended:
+  - The thresholds must be between 0 and 1
+  - Choose a threshold between 0.1 and 0.3 <Br><br>
  - Select the `+ Add Alert` button at the top right
  - Fill in the following fields as follows:
-   - **Alert Name:** *`<alert-name-1>`*  **(your choice of name)**
+   - **Alert Name:** `age_alert`
    - **Alert Type:** `Data Drift`
    - **Configure based on:** `Threshold`
    - **Select Feature:** `age`
-   - Choose a Threshold of `0.2`
+   - **Operator:** `<`  **(less than)**
+   - **Threshold:** `0.2`
+ - Leave the other fields in their current selection
+ - Select `Submit` button on the bottom right
+ - This will show that the Alert has been set
 
-Add Performance Decay Alerts
-  - Create an alert and choose Performance Decay from dropdown.
-  - Select `mse` metric from down.
-  - Provide 2000 as threshold value.
+### Add Performance Decay Alerts
 
+ This will add an Alert for Performance decay.
+                       
+ - Select the `+ Add Alert` button
+ - Fill in the following fields as follows:
+   - **Alert Name:** `mae_alert`
+   - **Alert Type:** `Performance Decay`
+   - **Configure based on:** `Threshold`
+   - **Select Feature:** `age`
+   - **Operator:** `>`  **(greater than)**
+   - **Threshold:** `2000`
+ - Leave the other fields in their current selection
+ - Select `Submit` button on the bottom right
+ - This will show that the Alert has been set
+ 
 ### 6. Upload threshold file, 
 - From model monitor actions, click on Upload thresholds. 
 - Download the threshold file [thresholds.json](https://github.com/oneconvergence/dkube-examples/blob/monitoring/insurance_cloudevents/thresholds.json) and upload.

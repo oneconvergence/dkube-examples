@@ -20,12 +20,16 @@
 > **Note** You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
 
 ### Create Code & Model Repos
+ 
+ A deployed Model is used for this example, and the first step in this process is to create Code & Model repos.  This section explains how to accomplish this.
 
  > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code and/or Model repo, follow the instructions at:
  - [Create Code Repo](../readme.md#create-project)
  - [Create Model Repo](../readme.md#create-model-repo)
 
 ### Create & Launch JupyterLab IDE
+
+ The Monitor setup is executed from a JupyterLab notebook.  This section explains how to create and launch the JupyterLab notebook.
 
  > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
  - [Create JupyterLab IDE](../readme.md#create-jupyterlab-ide) <br><br>
@@ -34,11 +38,21 @@
 
 ### Execute File to Create Resources
 
+ This example uses a script to create the monitor resources necessary for the monitor creation.  This section explains how to run the script.
+ 
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
- - Open `resources.ipynb`
- - In case of running the example other than the serving setup, In the 1st cell, set RUNNING_IN_SAME to False and Fill in the external IP address for the field `SERVING_DKUBE_URL` in the form "https://\<External IP Address\>:32222/"
+ - Open `resources.ipynb` <br><br>
+ - If the serving and monitoring cluster are the same, the script will get all of the fields automatically.
+   - Ensure that the variable `RUNNING_IN_SAME` in the 1st cell is set to `True`
+   - Leave the other fields in their current selection
+   - Skip to the section "Run the Script"
+ - If the serving cluster is different from the monitoring cluster, the serving cluster needs to be identified
+   - In the 1st cell, set `RUNNING_IN_SAME = False`
+   - Complete the field `SERVING_DKUBE_URL` with the external IP address for the **serving** cluster in the form:
+     - <code>https://**\<External IP Address\>**:32222/</code>
    - Ensure that there is a final `/` in the url field
    - Leave the other fields in their current selection
+ #### Run the Script
  - From the top menu item `Run`, select `Run All Cells`
  - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>
  - The following Datasets will be created

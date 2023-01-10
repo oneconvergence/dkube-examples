@@ -75,12 +75,12 @@
 
  In this example, the Monitor is created programmatically through the DKube SDK. 
  
- > **_Note:_** The script in this section will fail if there is already a Monitor with the automatically-generated name.  This can happen if the script is run more than once.  Delete the Monitor name before you run this script a 2nd time.
+ > **Warning** The script in this section will fail if there is already a Monitor with the automatically-generated name.  This can happen if the script is run more than once.  Delete the Monitor name before you run this script a 2nd time.
 
  - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
- - Open `modelmonitor.iypnb`
- - **Ensure that the last cell at the bottom of the file has "CLEANUP = False".**  This may have been set to "True" from a previous execution.
- - Run all of the cells
+ - Open `modelmonitor.iypnb` <br><br>
+   > **Warning** Ensure that the last cell at the bottom of the file has `CLEANUP = False`  This may have been set to `True` from a previous execution.
+  - Run all of the cells
  - This will create a new Model Monitor and put it into the `Active` state
    - The Monitor name will be the same as the Deployment name <br><br>
  - Navigate to the `Deployments` menu on the left

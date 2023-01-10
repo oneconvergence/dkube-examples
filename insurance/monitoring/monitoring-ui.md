@@ -15,7 +15,7 @@
    - Label data:  Dataset with Groundtruth values for the inferences made above
  - Cleanup the resources after the example is complete
 
- > **_Note:_** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
+ > **Note** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
 
 ## Set up Resources
 
@@ -32,6 +32,14 @@
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
 
+## Train & Deploy Insurance Model
+ 
+ In order to Monitor a Model in this example, it needs to be trained and deployed.
+ > **_Note:_** This section requires DKube Runs, Kubeflow Pipelines, and KServe.  It requires a full DKube installation.
+
+ > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
+ - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
+ 
 ### Execute File to Create Resources
 
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
@@ -51,13 +59,6 @@
      - This is the Dataset used for the Performance Monitoring <br><br>
    > **_Note:_** Make note of the Dataset name *\<your-performance-dataset\>* for Performance Monitoring.  It will be used during the Monitor creation section.
 
-## Train & Deploy Insurance Model
- 
- In order to Monitor a Model in this example, it needs to be trained and deployed.
- > **_Note:_** This section requires DKube Runs, Kubeflow Pipelines, and KServe.  It requires a full DKube installation.
-
- > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
- - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
 
 ### Review the Deployment & Identify the Deployment ID
 

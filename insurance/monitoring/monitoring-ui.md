@@ -97,7 +97,9 @@
  
 ### Monitor Creation Steps
  
- - Navigate to `Deployments` menu on the left
+ The Monitor is created from a Deployment in this example.  This section explains how to go through the process of entering the pertinent information into the fields for initial Monitor creation.  Follow-on section descibe how to complete the Monitor input.
+ 
+ - Navigate to the `Deployments` menu on the left
  - Identify the Deployed Model that will be Monitored.  It will be the Model at the top of the list.
  - At the far right of that Model line, select `Add Monitor` icon
  - Fill in the required fields in the `Basic` tab as follows:
@@ -126,19 +128,29 @@
    - Select the `Advanced` box
      - Dataset Content: `Tabular`
    - Leave the other fields at their current selection
- - Select the "Submit" button
-   - Choose "Close" from the popup
+ - Select the `Submit` button
+   - Choose `Close` from the popup
+ 
+## Update Schema
+ 
+ After the Monitor is initially created, you must configure the Schema to fully enable the Monitor.  The Schema characterizes the input and output features of the Model.  This section explains how to accomplish that.
+ 
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab on the top
+ - The newly created Monitor will show up on the list
+   - The Monitor will be in the `pending` status.  If it is not yet at that status, wait until it is.
+ - Select the `Update Schema` icon on the right of the Monitor line
+   - The Schema window will appear
+ - Change the following fields:
+   - `charges` should be changed to `prediction output` through the `column/feature type` dropdown menu
+   - `unique_id` should be selected as `RowID` and selected on the left box
+   - `timestamp` should be selected as `Timestamp` and selected on the left box
+   - Select as many of the input features such as `age`, `sex`, `bmi`, etc as you want
+ - Select the `Save` button on the top right
+ - Confirm that you want to save the changes
+ - Choose `Go to Alerts` on the next popup
 
-### 4. Update Schema
-1. Edit the model monitor
-2. Go to schema and change
-  - charges as prediction output.
-  - unique_id as RowID
-  - Timestamp as timestamp
-3. Select all or interested Input features.
-4. Click Next and save.
-
-### 5. Alerts
+### Add Alerts
 Add Feature Drift Alerts
  - The datageneration script will be generating drift on the following features - age, sex, bmi, region.
  - Suggest to configure a separate alert for each individual feature.

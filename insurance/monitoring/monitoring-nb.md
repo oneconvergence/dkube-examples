@@ -17,22 +17,20 @@
 
  > **Note** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
 
-## Set up Resources
-
- You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
+> **Note** You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
 
 ### Create Code & Model Repos
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code and/or Model repo, follow the instructions at:
+ > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code and/or Model repo, follow the instructions at:
  - [Create Code Repo](../readme.md#create-project)
  - [Create Model Repo](../readme.md#create-model-repo)
 
 ### Create & Launch JupyterLab IDE
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
+ > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
  - [Create JupyterLab IDE](../readme.md#create-jupyterlab-ide) <br><br>
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
-   - This will create a JupyterLab tab
+   - This will open a JupyterLab tab
 
 ### Execute File to Create Resources
 

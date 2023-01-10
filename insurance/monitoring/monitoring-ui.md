@@ -36,7 +36,7 @@
  > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
  - [Create JupyterLab IDE](../readme.md#create-jupyterlab-ide) <br><br>
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
-   - This will create a JupyterLab tab
+   - This will open a JupyterLab tab
 
 ## Train & Deploy Insurance Model
 
@@ -73,7 +73,7 @@
 
  The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
  
- > **_Note:_** The Deployment ID will be required during the Monitor Creation section.  The ID is available using the following steps:
+ > **Note** The Deployment ID will be required during the Monitor Creation section.  The ID is available using the following steps:
 
  - Select the Deployment Name
  - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".
@@ -83,7 +83,7 @@
  
  This section describes how to create a Monitor manually from a Deployed Model.
  
- > **_Note:_** There are several fields which will be required during the Monitor creation process that are available from previous sections.  They need to be available prior to starting the Monitor creation process.
+ > **Note** There are several fields which will be required during the Monitor creation process that are available from previous sections.  They need to be available prior to starting the Monitor creation process.
  
 ### Required Fields
  
@@ -110,7 +110,8 @@
    - Within "Train Data" section use the following fields:
      - Dataset: `insurance-data`
      - Dataset Version: `v1`
-     - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
+     - Select the `Advanced` button
+       - Upload Transformer Script file from [Transformer Script File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/mm-transformer.py)
    - Within the `Predict Data` section use the following fields:
      - Dataset Content: `CloudEventLogs`
    - Leave the other fields at their current selection <br><br>
@@ -119,10 +120,11 @@
    - Select `Labelled Data` box
    - Dataset: *`<your-performance-dataset>`* **(from Resource Creation step)**
    - Prefix/Subpath: <code>**\<your-deployment-id\>**/livedata</code> **(from Model Deployment section)**
-   - Dataset Content: `Tabular`
-   - Prediction Column Name: `charges`
    - Groundtruth Column Name: `GT_target`
+   - Prediction Column Name: `charges`
    - Timestamp Column Name: `timestamp`
+   - Select the `Advanced` box
+     - Dataset Content: `Tabular`
    - Leave the other fields at their current selection
  - Select the "Submit" button
    - Choose "Close" from the popup

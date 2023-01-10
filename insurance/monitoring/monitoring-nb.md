@@ -61,9 +61,12 @@
    - Skip to the section "Run the Script"
  - If the serving cluster is **different from** the monitoring cluster, the serving cluster needs to be identified
    - In the 1st cell, set `RUNNING_IN_SAME = False`
-   - Complete the field `SERVING_DKUBE_URL` with the external IP address for the **serving** cluster in the form:
-     - <code>https://**\<External IP Address\>**:32222/</code>
-   - Ensure that there is a final `/` in the url field
+   - Complete the following fields in the 1st cell
+     - `SERVING_DKUBE_URL` = External IP address for the **serving** cluster in the form:
+       - "<code>https://**\<External IP Address\>**:32222/</code>"
+       - Ensure that there is a final `/` in the url field
+     - `SERVING_DKUBE_USERNAME` = "Login username on serving cluster"
+     - `SERVING_DKUBE_TOKEN` = "Access token from the serving cluster"
    - Leave the other fields in their current selection
  #### Run the Script
  - From the top menu item `Run`, select `Run All Cells`

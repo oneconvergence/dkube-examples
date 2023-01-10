@@ -114,6 +114,7 @@
  
  - Within `modelmonitor.ipynb`, set the variable `CLEANUP = True` in the last cell
    - Run the "Cleanup" cell
+   - Do not execute the next step until this step has completed
  - Within `resources.ipynb`, set the variable `CLEANUP = True` in the last cell
    - Run the "Cleanup" cell
 

@@ -17,35 +17,45 @@
 
  > **Note** The labels are generated in the example for purposes of illustration.  In an actual Production environment, the label data would be generated manually by experts in the domain.
 
+ > **Note** You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
+
 ## Set up Resources
 
 ### Create Code & Model Repos
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code and/or Model repo, follow the instructions at:
+ A deployed Model is used for this example, and the first step in this process is to create Code & Model repos.  This section explains how to accomplish this.
+
+ > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the Code & Model repo names that you previously created.  If you need to create a new Code and/or Model repo, follow the instructions at:
  - [Create Code Repo](../readme.md#create-project)
  - [Create Model Repo](../readme.md#create-model-repo)
 
 ### Create & Launch JupyterLab IDE
 
- > **_Note:_** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
+ The Monitor setup is executed from a JupyterLab notebook.  This section explains how to create and launch the JupyterLab notebook.
+
+ > **Note** This step may have been completed in an earlier section of this example.  If so, skip the steps here and use the JupyterLab IDE that you previously created.  If you need to create a new IDE, follow the instructions at:
  - [Create JupyterLab IDE](../readme.md#create-jupyterlab-ide) <br><br>
  - Once the IDE is in the "Running" state, select the JupyterLab icon on the far right of the IDE line
    - This will create a JupyterLab tab
 
 ## Train & Deploy Insurance Model
- 
- In order to Monitor a Model in this example, it needs to be trained and deployed.
- > **_Note:_** This section requires DKube Runs, Kubeflow Pipelines, and KServe.  It requires a full DKube installation.
 
- > **_Note:_** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
+  In order to Monitor a Model in this example, it needs to be trained and deployed.  This section explains how to accomplish this.
+
+ > **Note** This section requires a full DKube installation
+
+ > **Note** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
  - [Train and Deploy Model](../readme.md#create-kubeflow-pipeline)
+
+  - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
+ 
+ > **Warning** Do not proceed until the Pipeline Run has completed and deployed the Model
  
 ### Execute File to Create Resources
 
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
- - Open `resources.ipynb`
- - In case of running the example other than the serving setup, In the 1st cell, set RUNNING_IN_SAME to False and Fill in the external IP address for the field "SERVING_DKUBE_URL" in the form <code>https://**\<External IP Address\>**:32222/</code>
-   - Ensure that there is a final "/" in the url field
+ - Open `resources.ipynb` <br><br>
+    > **Warning** Ensure that the last cell at the bottom of the file has `CLEANUP = False`  This may have been set to `True` from a previous execution.
    - Leave the other fields in their current selection
  - From the top menu item `Run`, Select `Run All Cells`
  - This will create the DKube resources required for this example to run the Monitor, including the required Datasets <br><br>
@@ -57,8 +67,7 @@
      - This Dataset includes the username and ends in "-s3"
      - This will have an "s3 | remote" source
      - This is the Dataset used for the Performance Monitoring <br><br>
-   > **_Note:_** Make note of the Dataset name *\<your-performance-dataset\>* for Performance Monitoring.  It will be used during the Monitor creation section.
-
+   > **Note** Make note of the Dataset name *\<your-performance-dataset\>* for Performance Monitoring.  It will be used during the Monitor creation section.
 
 ### Review the Deployment & Identify the Deployment ID
 

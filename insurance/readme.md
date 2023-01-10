@@ -11,7 +11,9 @@
  - Create and start a Model Monitor for a deployment
    - The instructions for the monitoring section of this example are available in the "/monitoring" folder
 
- > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
+ > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first and last characters, but no other special characters should be used.
+
+> **Note** You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
 
 ## Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
@@ -29,7 +31,7 @@
 ## Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
-  > **_Note:_** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first character, but no other special characters should be used.
+  > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first or last characters, but no other special characters should be used.
 
  - Navigate to the `Code` menu on the left
  - If an optional Project is being used, choose the Project that you created in the previous step at the top of the screen
@@ -82,7 +84,7 @@
  This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
  
  - Once the IDE is in the `Running` state, select the JupyterLab icon on the far right of the IDE line
-   - This will create a JupyterLab tab
+   - This will open a JupyterLab tab
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance</code>
  - Open `training.ipynb`
  - Select `Run All Cells` from the top JupyterLab menu
@@ -97,6 +99,8 @@
 ## Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
+ > **Warning** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
+ 
  - Navigate to the `Runs` menu on the left
  - Select `+ Run`, then `Training`
  - Fill in the required fields in the `Basic` tab as follows:
@@ -108,8 +112,10 @@
    - Leave the other fields at their current selection <br><br>
  - Fill in the required fields in the `Repos` tab as follows:
    - **Output** -> **Models:** *`<your-model-repo>`* **(chosen during Model Repo creation)**
- > **_Note:_** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example.
-<br/>Model mount path is left blank because the training code will log the model using mlflow log model method. And the model is required to add to know which model repo mlflow will log this model otherwise mlflow will log the model to the default model repo. 
+ 
+ > **Warning** The Model Repo needs to be in the `Output` section of the tab.  There is also a Model in the `Input` section, but this is for transfer learning, and should be left blank for this example.
+ 
+ > **Note** Leave the `Mount Path` field blank, since this example does not use that feature.  It uses the MLFlow log model method.
 
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select the `+` for `Environment variables`
@@ -136,10 +142,15 @@
 ## Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
+ > **Note** If your OS does not allow you to directly upload the `Tuning File` url specified below, you can select the tuning file by clicking on it.  That will bring up the text in the file.  You can then right-click your mouse and choose `Save as...` to create a tuning file on your local machine.  You can then use that local file to upload the tuning definition.
+ 
  - Select one of the Runs created in the previous section and select `Clone` button
  - Fill in the required fields in the `Configuration` tab as follows:
    - Select `Upload` button from the `Upload Tuning Definition` section
    - Upload [Tuning File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/tuning.yaml)
+     - Right-click on the link above to copy the url address
+     - Paste the url address into the dialog box
+     > **Note** if the dialog box does not allow you to paste in an address, use the alternate approach as described earlier in this section
    - Leave the other fields at their current selection 
    - Submit your Run <br><br>
  - Wait for the Katib Run to complete
@@ -158,20 +169,25 @@
  - Fill in the required fields as follows:
    - **Name:** *`<your-deploy-name>`* **(your choice of name)**
    - **Serving Image:** `ocdr/tensorflowserver:2.0.0`
+   - **Serving Port:** `8080`
+   - **Serving url prefix:** `/v1/models/{MODEL_NAME}`
    - **Deployment:** `Test` radial button
    - **Deploy using:** `CPU` radial button
    - Select `Transformer` checkbox
    - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-16`
+   - **Transformer Code:** Select *\<your-code-repo\>* **(chosen during Code repo creation)**
    - **Transformer Script:** `insurance/transformer.py`
    - Leave the other fields at their current selection 
  - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>
  - Deployment can be viewed from the `Deployments` menu on the left of the screen
    - Details of the deployment can be viewed by selecting *\<your-deploy-name\>* **(chosen during submission)**
- > **_Note:_** Deployments are not filtered by Project
+ 
+ > **Note** Deployments are not filtered by Project
 
 ## Create Generic Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
-> **_Note:_** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+ 
+> **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/pipeline</code>

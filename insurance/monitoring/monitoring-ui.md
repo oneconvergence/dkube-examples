@@ -199,7 +199,7 @@
  - Select the `Monitors` tab from the top
  - Select the `Upload Thresholds` icon on the far right of the Monitor line
  - Select the `Upload` button and use the Threshold file by right-clicking the link below, saving the address, and using that address in the popup window
-   - [thresholds.json](https://raw.githubusercontent.com/oneconvergence/dkube-examples/blob/monitoring/insurance_cloudevents/thresholds.json)
+   - [thresholds.json](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/thresholds.json)
  
   > **Note** If you cannot directly paste in the link address, select the link by right-clicking it, select `Raw` on the right of the screen, save the file by right-clicking the screen and using `Save As...` to save the file.  Then use your new file to upload.
 

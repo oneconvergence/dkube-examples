@@ -193,9 +193,9 @@
  
 ### Upload Threshold File
  
- It is possible to set a range of alert threshold through a file that can be uploaded to DKube.  This section explains how to upload a threshold file.
+ It is possible to set a range of alert thresholds through a configuration file uploaded to DKube.  This section explains how to upload a threshold file.
  
- - Navigate to the `Deployments` menu on the right
+ - Navigate to the `Deployments` menu on the left
  - Select the `Monitors` tab from the top
  - Select the `Upload Thresholds` icon on the far right of the Monitor line
  - Select the `Upload` button and use the Threshold file by right-clicking the link below, saving the address, and using that address in the popup window
@@ -203,10 +203,24 @@
  
   > **Note** If you cannot directly paste in the link address, select the link by right-clicking it, select `Raw` on the right of the screen, save the file by right-clicking the screen and using `Save As...` to save the file.  Then use your new file to upload.
 
-### 7. Start Monitor.
-Click on Start for the specific monitor on Modelmonitor dashboard.
-   - Modelmonitor can only be started in 'ready' state.
-   - It can be stopped anytime. Previous data will not be erased.
+## Start Monitor
+ 
+ After the Monitor has been set up, it is in the `Ready` state.  This means that the configuration has been complete, and the inputs are valid.  In order for the Monitor to operate, it needs to be running.  This section explains how to start the Monitor.
+ 
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab from the top
+ - The Monitor status will be `Ready`
+   - If the Monitor is not in the `Ready` status, do not proceed.  It means that something is incomplete or in error.
+ - Select the Monitor with the checkbox on the left
+ - Select the `Start` button from the top
+ - Confirm the start
+ - Wait for the status to change to `active` before proceeding
+ 
+ > **Note** The  Monitor can be stopped at any time by selecting it and using the `Stop` button on the top.  Previous data will not be erased when the Monitor is stopped.
+
+## Generate Data
+ 
+ A Monitor in the `acd
 
 ### 8. Data Generation
  - Go to the IDE and open `workspace/insurance/insurance/monitoring/data_generation.ipynb`

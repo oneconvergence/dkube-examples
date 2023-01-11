@@ -218,10 +218,23 @@
  
  > **Note** The  Monitor can be stopped at any time by selecting it and using the `Stop` button on the top.  Previous data will not be erased when the Monitor is stopped.
 
-## Generate Data
- 
- A Monitor in the `acd
+## Generate Monitor Data
 
-### 8. Data Generation
- - Go to the IDE and open `workspace/insurance/insurance/monitoring/data_generation.ipynb`
- - Run all cells.
+ In order for the Monitor to operate, predictions and groundtruth Datasets must be generated. 
+ 
+ - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
+ - Open `data_generation.ipynb`
+ - In the 1st cell, specify the number of Dataset samples to run before stopping the data generation.  You can leave it at the default, or modify it.  The larger the number of samples, the more data will be generated for the Monitor graphs.
+   - Leave the other fields at their current selection
+ - `Run All Cells`
+ - The script will start to push the data
+
+## View the Monitor
+
+ After the data has been generated for a few data points, it can be viewed within DKube.
+ 
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab on the top
+ - Your new Monitor will be at the top of the list
+ - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
+ > **Note** The graph may not show any data until the 2nd data generation push due to the timing of the monitoring

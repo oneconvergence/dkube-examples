@@ -191,9 +191,15 @@
  - Select `Submit` button on the bottom right
  - This will show that the Alert has been set
  
-### 6. Upload threshold file, 
-- From model monitor actions, click on Upload thresholds. 
-- Download the threshold file [thresholds.json](https://github.com/oneconvergence/dkube-examples/blob/monitoring/insurance_cloudevents/thresholds.json) and upload.
+### Upload Threshold File
+ 
+ It is possible to set a range of alert threshold through a file that can be uploaded to DKube.  This section explains how to upload a threshold file.
+ 
+ - Navigate to the `Deployments` menu on the right
+ - Select the `Monitors` tab from the top
+ - Select the `Upload Thresholds` icon on the far right of the Monitor line
+ - Select the `Upload` button and use the Threshold file by right-clicking the link below, saving the address, and using that address in the popup window
+   - [thresholds.json](https://github.com/oneconvergence/dkube-examples/blob/monitoring/insurance_cloudevents/thresholds.json) and upload.
 
 ### 7. Start Monitor.
 Click on Start for the specific monitor on Modelmonitor dashboard.

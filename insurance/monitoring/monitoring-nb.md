@@ -73,7 +73,7 @@
  - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>
  - The following Datasets will be created
    - `insurance-data`, with a pub_url source
-   - A Dataset that includes the username and ends in "-s3", with an "s3 | remote" source
+   - A Dataset that includes the deployment name with "-s3" at the end, with an "s3 | remote" source
 
 ## Create Monitor Automatically
 

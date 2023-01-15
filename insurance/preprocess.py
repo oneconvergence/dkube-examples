@@ -17,7 +17,7 @@ SERVING_DKUBE_TOKEN = os.getenv("DKUBE_USER_ACCESS_TOKEN")
 SERVING_DKUBE_USERNAME = os.getenv("DKUBE_USER_LOGIN_NAME")
 
 dapi = DkubeApi(URL=SERVING_DKUBE_URL,token=SERVING_DKUBE_TOKEN)
-pre_api = DkubePreprocessing(SERVING_DKUBE_USERNAME, name="pre-run")
+pre_api = DkubePreprocessing(SERVING_DKUBE_USERNAME)
 dataset_info = DkubeDataset("larryc1200", name="ins-lc-dataset")
 
 #DATASET_URL could be specified as Environment parameters at the time of creating JL or Run

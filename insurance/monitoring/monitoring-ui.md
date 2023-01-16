@@ -191,15 +191,50 @@
  - Select `Submit` button on the bottom right
  - This will show that the Alert has been set
  
-### 6. Upload threshold file, 
-- From model monitor actions, click on Upload thresholds. 
-- Download the threshold file [thresholds.json](https://github.com/oneconvergence/dkube-examples/blob/monitoring/insurance_cloudevents/thresholds.json) and upload.
+### Upload Threshold File
+ 
+ It is possible to set a range of alert thresholds through a configuration file uploaded to DKube.  This section explains how to upload a threshold file.
+ 
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab from the top
+ - Select the `Upload Thresholds` icon on the far right of the Monitor line
+ - Select the `Upload` button and use the Threshold file by right-clicking the link below, saving the address, and using that address in the popup window
+   - [thresholds.json](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/thresholds.json)
+ 
+  > **Note** If you cannot directly paste in the link address, select the link by right-clicking it, select `Raw` on the right of the screen, save the file by right-clicking the screen and using `Save As...` to save the file.  Then use your new file to upload.
 
-### 7. Start Monitor.
-Click on Start for the specific monitor on Modelmonitor dashboard.
-   - Modelmonitor can only be started in 'ready' state.
-   - It can be stopped anytime. Previous data will not be erased.
+## Start Monitor
+ 
+ After the Monitor has been set up, it is in the `Ready` state.  This means that the configuration has been complete, and the inputs are valid.  In order for the Monitor to operate, it needs to be running.  This section explains how to start the Monitor.
+ 
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab from the top
+ - The Monitor status will be `Ready`
+   - If the Monitor is not in the `Ready` status, do not proceed.  It means that something is incomplete or in error.
+ - Select the Monitor with the checkbox on the left
+ - Select the `Start` button from the top
+ - Confirm the start
+ - Wait for the status to change to `active` before proceeding
+ 
+ > **Note** The  Monitor can be stopped at any time by selecting it and using the `Stop` button on the top.  Previous data will not be erased when the Monitor is stopped.
 
-### 8. Data Generation
- - Go to the IDE and open `workspace/insurance/insurance/monitoring/data_generation.ipynb`
- - Run all cells.
+## Generate Monitor Data
+
+ In order for the Monitor to operate, predictions and groundtruth Datasets must be generated. 
+ 
+ - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
+ - Open `data_generation.ipynb`
+ - In the 1st cell, specify the number of Dataset samples to run before stopping the data generation.  You can leave it at the default, or modify it.  The larger the number of samples, the more data will be generated for the Monitor graphs.
+   - Leave the other fields at their current selection
+ - `Run All Cells`
+ - The script will start to push the data
+
+## View the Monitor
+
+ After the data has been generated for a few data points, it can be viewed within DKube.
+ 
+ - Navigate to the `Deployments` menu on the left
+ - Select the `Monitors` tab on the top
+ - Your new Monitor will be at the top of the list
+ - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
+ > **Note** The graph may not show any data until the 2nd data generation push due to the timing of the monitoring

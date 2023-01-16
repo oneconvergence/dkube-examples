@@ -38,5 +38,5 @@ DATASET_MOUNT_PATH = "/dataset/"
 ## Create the new dataset with the filtered data
 # dapi.create_dataset(dataset_info)
 
-pre_api.add_output_dataset(name=DATASET_REPO_NAME, mountpath=DATASET_MOUNT_PATH)
+# pre_api.add_output_dataset(name=DATASET_REPO_NAME, mountpath=DATASET_MOUNT_PATH)
 insurance_filtered.to_csv(DATASET_MOUNT_PATH + "test.csv")

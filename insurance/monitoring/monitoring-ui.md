@@ -202,6 +202,8 @@
    - [thresholds.json](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/monitoring/thresholds.json)
  
   > **Note** If you cannot directly paste in the link address, select the link by right-clicking it, select `Raw` on the right of the screen, save the file by right-clicking the screen and using `Save As...` to save the file.  Then use your new file to upload.
+ 
+ > **Note** The Thresholds File does not set any alerts. It is only used for the visual indications (green, yellow, red) on the UI. One can set alerts later either based on these thresholds or completely new thresholds.
 
 ## Start Monitor
  

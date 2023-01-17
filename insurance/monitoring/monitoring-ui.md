@@ -169,8 +169,8 @@
    - **Alert Type:** `Data Drift`
    - **Configure based on:** `Threshold`
    - **Select Feature:** `age`
-   - **Operator:** `<`  **(less than)**
-   - **Threshold:** `0.2`
+   - **Operator:** `>`  **(greater than)**
+   - **Threshold:** `0.02`
  - Leave the other fields in their current selection
  - Select `Submit` button on the bottom right
  - This will show that the Alert has been set
@@ -184,7 +184,7 @@
    - **Alert Name:** `mae_alert`
    - **Alert Type:** `Performance Decay`
    - **Configure based on:** `Threshold`
-   - **Select Feature:** `age`
+   - **Select Metric:** `mae`
    - **Operator:** `>`  **(greater than)**
    - **Threshold:** `2000`
  - Leave the other fields in their current selection

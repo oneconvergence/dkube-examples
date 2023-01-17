@@ -1,4 +1,4 @@
-## Compile file manually
+## Download pipeline to Jupyterlab
 
 a. Start any of the jupyterlab notebook from the IDE tab.
 b. Once running, click the jupyterlab icon to launch jupyterlab
@@ -10,22 +10,15 @@ d. Open pipeline.ipynb and run cells to generate the tar file and create run.
 e. Download the tar file by right-clicking on it(optional).
 f. Upload the tar file into the DKube pipeline UI(optional).
 
-
-# Publish model.
-1. Publish Model 
-   -  From repo go to model and it's version, and click on the Published model.
-   -  Give name. 
+# Deploy model.(Optional)
+-  Go to Model Catalog and from model version click deploy model.
+-  Give name. 
+-  Serving image: default 
+-  Deployment type: Test
+-  Select transformer
    -  Transformer script: `clinical_reg/transformer.py`
-   -  Submit.
-
-
-# Deploy model.
-1. Deploy Model 
-   -  Go to Model Catalog and from model version click deploy model.
-   -  Give name. 
-   -  Serving image: default 
-   -  Deploy using: CPU and Submit. 
-   -  Deployed Model will be available in Model Serving.
+-  Deploy using: CPU and Submit. 
+-  Deployed Model will be available in Model Serving.
 
 ## Test Inference.
 

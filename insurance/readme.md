@@ -171,7 +171,7 @@
    - **Serving Image:** `ocdr/tensorflowserver:2.0.0`
    - **Serving Port:** `8080`
    - **Serving url prefix:** `/v1/models/{MODEL_NAME}`
-   - **Deployment:** `Test` radial button
+   - **Deployment:** `Production` radial button
    - **Deploy using:** `CPU` radial button
    - Select `Transformer` checkbox
    - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-17`

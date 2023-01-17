@@ -1,14 +1,13 @@
 ## Download pipeline to Jupyterlab
-
-a. Start any of the jupyterlab notebook from the IDE tab.
-b. Once running, click the jupyterlab icon to launch jupyterlab
-c. Open terminal in Jupyterlab and run
+1. Start any of the jupyterlab notebook from the IDE tab.
+2. Once running, click the jupyterlab icon to launch jupyterlab
+3. Open terminal in Jupyterlab and run
    ```
    > wget https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/clinical_reg/pipeline.ipynb
    ```
-d. Open pipeline.ipynb and run cells to generate the tar file and create run.
-e. Download the tar file by right-clicking on it(optional).
-f. Upload the tar file into the DKube pipeline UI(optional).
+4. Open pipeline.ipynb and run cells to generate the tar file and create run.
+5. Download the tar file by right-clicking on it(optional).
+6. Upload the tar file into the DKube pipeline UI(optional).
 
 # Deploy model.(Optional)
 -  Go to Model Catalog and from model version click deploy model.
@@ -60,7 +59,7 @@ i3. Submit
    - Give a name 
    - Code: regression 
    - Framework : Tensorflow
-   - Framework version : 1.14
+   - Framework version : 2.0.0
    - Startup command: python workflow.py 
    - Datasets: 
         - i.   clinical Mount point: /opt/dkube/input/clinical 

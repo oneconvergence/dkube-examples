@@ -15,15 +15,15 @@ print(user)
 api = DkubeApi(token=authToken)
 try:
     res = api.get_code(user, 'regression')
-    print("Datum already exists")
+    print("Code repo already exists")
 except:
     code = DkubeCode(user, name='regression')
-    code.update_git_details('https://github.com/oneconvergence/dkubeio-examples/tree/master/tf/clinical_reg')
+    code.update_git_details('https://github.com/oneconvergence/dkube-examples/tree/tensorflow/clinical_reg')
     api.create_code(code)
 
 try:
     res = api.get_dataset(user, 'clinical')
-    print("Datum already exists")
+    print("Dataset already exists")
 except:
     dataset = DkubeDataset(user, name='clinical')
     dataset.update_dataset_source(source='git')
@@ -32,7 +32,7 @@ except:
 
 try:
     res = api.get_dataset(user, 'images')
-    print("Datum already exists")
+    print("Dataset already exists")
 except:
     dataset = DkubeDataset(user, name='images')
     dataset.update_dataset_source(source='git')
@@ -41,7 +41,7 @@ except:
     
 try:
     res = api.get_dataset(user, 'rna')
-    print("Datum already exists")
+    print("Dataset already exists")
 except:
     dataset = DkubeDataset(user, name='rna')
     dataset.update_dataset_source(source='git')
@@ -56,7 +56,7 @@ dvs_datasets = ['clinical-preprocessed', 'clinical-train', 'clinical-test', 'cli
 for each_dataset in dvs_datasets:
     try:
         res = api.get_dataset(user, name=each_dataset)
-        print("Datum already exists")
+        print("Dataset already exists")
     except:
         dataset = DkubeDataset(user, name=each_dataset)
         dataset.update_dataset_source(source='dvs')
@@ -64,7 +64,7 @@ for each_dataset in dvs_datasets:
  
 try:
     res = api.get_model(user, 'regression-model')
-    print("Datum already exists")
+    print("Model already exists")
 except:
     model = DkubeModel(user, name='regression-model')
     model.update_model_source(source='dvs')

@@ -1,0 +1,2 @@
+vital_status,bcr_patient_barcode,age_at_initial_pathologic_diagnosis,bcr_patient_canonical_status,days_to_birth,ethnicity,gender,histological_type,history_of_neoadjuvant_treatment,initial_pathologic_diagnosis_method,karnofsky_performance_score,performance_status_scale_timing,person_neoplasm_cancer_status,postoperative_rx_tx,prior_glioma,tissue_source_site,days_to_death
+1,tcga-02-0010,1,1,2,1,1,3,2,1,0.8,2,1,3,1,16,0.27750579747487764

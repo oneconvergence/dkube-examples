@@ -80,6 +80,8 @@
  In this example, the Monitor is created programmatically through the DKube SDK. 
  
  > **Warning** The script in this section will fail if there is already a Monitor with the automatically-generated name.  This can happen if the script is run more than once.  Delete the Monitor name before you run this script a 2nd time.
+ 
+ > **Note** The automatic script expects that a **Production** Deployment is being used.  This happens automatically if using the results of the Pipeline execution as described in this example.  If another Deployment is used, ensure that it has been deployed for Production.
 
  - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `modelmonitor.iypnb` <br><br>

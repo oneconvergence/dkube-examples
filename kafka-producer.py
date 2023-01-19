@@ -1,3 +1,6 @@
+#pip install kafka-python
+#This producer sends kafka messages over an internal kafka broker deployed in dkube-kafka namespace
+#This sends the test data which works with version2 of the deltalake model
 from kafka import KafkaProducer
 import json
 

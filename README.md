@@ -147,7 +147,7 @@ github url - https://github.com/oneconvergence/dkube-examples/tree/deltalake
 
 
 ## Test Inference
-Webapp will be available @ <dkubeserving-clusterip>:31333
+Webapp will be available @ dkubeserving-clusterip:31333
 	
 Input the below values,
 	

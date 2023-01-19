@@ -147,3 +147,11 @@ github url - https://github.com/oneconvergence/dkube-examples/tree/deltalake
 
 
 ## Test Inference
+Webapp will be available @ <dkubeserving-clusterip>:31333
+Input the below values,
+	Kafka broker endpoint : dkube-kafka-cp-kafka-headless.dkube-kafka:9092
+	Kafka topic : <username>
+	Select Version : version2
+	Number of times to send : 1
+	
+Click "Predict" button

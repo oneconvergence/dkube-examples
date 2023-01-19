@@ -129,7 +129,7 @@ github url - https://github.com/oneconvergence/dkube-examples/tree/deltalake
 - Copy the value in Image field
 
 
-## Training on Cluster 2
+## Serving on Cluster 2
 
 	Create +Deployment
 

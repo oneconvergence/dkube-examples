@@ -184,6 +184,8 @@
    
    - **Serving Image:** Paste the Image built in the previous step
 
+   > **Note** After you paste in the image name, click anywhere else on the screen rather than using the "Enter" key.  If you use the "Enter" key it will pick up the wrong image.
+
    - **Deployment:** `Production`
 
    - **Deploy Using:** `CPU`
@@ -192,7 +194,7 @@
 
    - **Brokers:** `dkube-kafka-cp-kafka.dkube-kafka:9092`
 
-   - **Topics:** `<username>`
+   - **Topics:** `<your login username>`
 
    - **Consumer Group:** `training`
 

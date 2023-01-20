@@ -84,6 +84,6 @@ if __name__ == "__main__":
             
         # Record parameters
         mlflow.log_params({"dataset": "https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv",
-                        "code": "https://github.com/oneconvergence/dkube-examples/tree/monitoring-v3/",
+                        "code": "https://github.com/oneconvergence/dkube-examples/tree/monitoring/",
                         "model": "Deep Neural Network"})
     print("Training Complete !")

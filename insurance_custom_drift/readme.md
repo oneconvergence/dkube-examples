@@ -3,7 +3,7 @@
 ## Build Custom image
 1. Clone the repo:
     - URL: https://github.com/oneconvergence/dkube-examples.git
-2. Checkout `monitoring-v3` branch and change directory to `insurance_custom_drift`
+2. Checkout `monitoring` branch and change directory to `insurance_custom_drift`
 3. Build the image using the following command:
     > docker build . -t {image-name:tag} -f Dockerfile
     - use image name and tag of you choice. 

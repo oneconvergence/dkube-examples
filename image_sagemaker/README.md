@@ -9,7 +9,7 @@ This example demonstrates the deployment of tensorflow model into sagemaker (out
   -  Name: monitoring-examples
   -  Source: Git
   -  URL: https://github.com/oneconvergence/dkube-examples.git
-  -  Branch : monitoring-v3
+  -  Branch : monitoring
 - Create an IDE (JupyterLab)
    - In case you are running a Jupyterlab IDE already, you can fill the secret values in [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_sagemaker/resources.ipynb) and skip the IDE creation.
    - Use Tensorflow framework with version 2.0.0

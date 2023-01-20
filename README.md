@@ -1,34 +1,78 @@
+## Loan Data Accuracy Example
+
+This example uses Delta Lake to source 2 versions of data that is then used to determine which version is more accurate at determining whether a loan should be provided.  Kafka is used to provide input to the deployed model.
+
+This example uses one cluster (**Cluster 1**) to train the models, and a different cluster (**Cluster 2**) to serve the model that does the best job.
+
 ## Training on Cluster 1
-#### Create code resource
-name : deltalake
 
-github url - https://github.com/oneconvergence/dkube-examples/tree/deltalake
+Cluster 1 is used to train the models and compare their accuracy.
 
-#### Create Dataset resource
-	name : deltalake
+### Create Code Resource
 
-	Versioning : None
+Select `Code` repo from left menu
 
-	Dataset Source : Deltalake
+Select `+ Code` button and fill in the following fields:
 
-	Table Source : s3
+ - **Name:** `deltalake` (**You can choose a different name for this and other resources, in which case you would use that name throughout this example**)
+ 
+ - **Code Source:** `Git`
 
-	Table Path : dkube-deltalake/loans.delta
+ - **URL:** `https://github.com/oneconvergence/dkube-examples/tree/deltalake`
 
-#### Create Model resource
-	name : deltalake
+ - Leave the other fields at their current value and `Submit`
 
-#### Create a Jupyterlab IDE
-	Framework : sklearn
+### Create Dataset Resource
 
-	Framework version : 0.23.2
+Select `Datasets` from the left menu
 
-	Image : ocdr/d3-datascience-sklearn-multiuser:v0.23.2-16
+Select `+ Dataset` button and fill in the following fields:
 
-#### ML Training inside notebook
-	Goto workspace/deltalake
+ - **Name:** `deltalake`
 
-###### Train with version 1 of data
+ = **Versioning:** `None`  (**This is not the default**)
+ 
+ - **Dataset Source:** `Deltalake`
+
+ - **Table Source:** `S3`
+
+ - **Table Path:** `dkube-deltalake/loans.delta`
+
+ - Leave the other fields at their current value and `Submit`
+
+### Create Model Resource
+
+Select `Models` from the left menu
+
+Select `+ Model` button and fill in the following fields:
+
+ - **Name:** `deltalake`
+
+ - Leave the other fields at their current value and `Submit`	
+
+### Create a Jupyterlab IDE
+
+Select `IDEs` from the left menu
+
+Select `+ JupyterLab` button and fill in the following fields:
+
+ - **Name:**` deltalake`
+
+ - **Framework:** `sklearn`
+
+ - **Framework version:** `0.23.2`  (**This will fill in automatically with the choice of Framework**)
+
+ - **Image:** `ocdr/d3-datascience-sklearn-multiuser:v0.23.2-16`  (**This will fill in automatically with the choice of Framework**)
+
+ - Leave the other fields at their current value and `Submit`
+
+### ML Training inside notebook
+
+Launch JupyterLab from the icon at the far right after the IDE is running (this may take several minutes)
+
+Navigate to `workspace/deltalake`  (**If you chose a different name than "deltalake" use that name instead**)
+
+#### Train with version 1 of data
 	Open "training_version1.ipynb"
 
 	Click Run : Run All Cells

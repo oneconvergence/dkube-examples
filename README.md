@@ -156,19 +156,21 @@
 
 ## Build the Model Image & Save in External Repository
 
-- Select `Run` > `Lineage` > `Output Models` 
+- Select `Run` that had the best accuracy
 
-- Select the model version
+- Select `Lineage` tab, then select `Outputs` >  `Models` 
 
-- Select `Build Image`
+  - Select the Model link
+
+- Select `Images` tab, then `Build Image` button
 
   - Defaults are auto filled
 
 - Select `Submit` button
 
-- Wait for the image build to be successful
+- Wait for the `Image Name` to show up on the screen
 
-- Select `Model` > `Details` > `Images` > `Image Name`
+- Select `Image Name`
 
 - Copy the value in `Image` field to your copy buffer (**There is an icon to do that**)
 

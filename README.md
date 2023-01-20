@@ -94,7 +94,7 @@
 
      - **Version:** `1`
 
-     > **Note** It will default to Version2, so you must change it
+     > **Note** It will default to Version 2, so you must change it
 
      - **Mountpath:** `/mnt/deltalake`
 
@@ -132,7 +132,7 @@
 
      - **Version:** `2`
 
-     > **Note** If you use `Clone` to create the 2nd Run, make sure that you change the startup command to Version 2
+     > **Note** If you use `Clone` to create the 2nd Run, make sure that you change the version to Version 2
 
      - **Mountpath:** `/mnt/deltalake`
 

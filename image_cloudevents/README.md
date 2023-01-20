@@ -31,7 +31,7 @@
     - Name: **monitoring-examples**
     - Source: Git
     - URL: https://github.com/oneconvergence/dkube-examples.git
-    - Branch : **monitoring-v3**
+    - Branch : **monitoring**
 2. Create an IDE (JupyterLab)
     - Use Tensorflow framework with version 2.0.0
 3. Click Submit.

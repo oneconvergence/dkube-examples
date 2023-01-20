@@ -92,7 +92,7 @@
 
      - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-     - **Version:** 1  (**It will default to version 2, so you must change it**)
+     - **Version:** `1` (**It will default to version 2, so you must change it**)
 
      - **Mountpath:** `/mnt/deltalake`
 
@@ -128,7 +128,9 @@
 
      - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-     - **Version:** 2  (**If you use `Clone` to create the 2nd Run, make sure that you change this**)
+     - **Version:** `2`
+
+     > **Note** If you use `Clone` to create the 2nd Run, make sure that you change the startup command to Version 2
 
      - **Mountpath:** `/mnt/deltalake`
 

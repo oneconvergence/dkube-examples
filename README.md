@@ -78,7 +78,7 @@
 
  - `Basic` Tab
  
-   - **Name:** `deltalake`
+   - **Name:** `deltalake-run1`
 
    - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
 
@@ -114,7 +114,7 @@
 
  - `Basic` Tab
  
-   - **Name:** `deltalake`
+   - **Name:** `deltalake-run2`
 
    - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
 

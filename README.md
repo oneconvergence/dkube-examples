@@ -1,12 +1,14 @@
-## Loan Data Accuracy Example
+# Loan Data Accuracy Example
 
  This example uses Delta Lake to source 2 versions of data that is then used to determine which version is more accurate at determining whether a loan should be provided.  	A WebApp has been created that uses Kafka to provide input to the deployed model.
 
  This example uses one cluster (**Cluster 1**) to train the models, and a different cluster (**Cluster 2**) to serve the model that does the best job.
 
-## Training on Cluster 1
+# Training on Cluster 1
 
  Cluster 1 is used to train the models and compare their accuracy.
+
+## 1. Create Resources on Training Cluster
 
 ### Create Code Resource
 
@@ -44,6 +46,8 @@
 
  - Leave the other fields at their current value and `Submit`	
 
+## 2. JupyterLab Experiments
+
 ### Create a Jupyterlab IDE
 
  - Select `IDEs` from the left menu, then select `+ JupyterLab` button
@@ -71,6 +75,8 @@
  - Open `training_version2.ipynb`
 
  - Select `Run` > `Run All Cells`
+
+## 3. Training Runs
 
 ### ML Training with Version 1 of Data as Standalone Run
 
@@ -146,7 +152,7 @@
  
  - Leave the other fields at their current value and `Submit`
 
-## Compare the Runs for Accuracy
+### Compare the Runs for Accuracy
 
 - Wait for Runs to `complete`
 
@@ -154,7 +160,9 @@
 
 - Choose the run with best accuracy and proceed to deploy the model as explained in the next section
 
-## Build the Model Image & Save in External Repository
+## 4. Build Image for Serving
+
+### Build the Model Image & Save in External Repository
 
 - Select `Run` that had the best accuracy
 
@@ -174,7 +182,7 @@
 
 - Copy the value in `Image` field to your copy buffer (**There is an icon to do that**)
 
-## Serving on Cluster 2
+# Serving on Cluster 2
 
  Move from **Cluster 1** to **Cluster 2** in order to complete the deployment.
  
@@ -202,7 +210,7 @@
 
  - Wait for "Deployment" to get to `Running` state
 
-## Test Inference
+# Test Inference
 
  - WebApp will be available @ dkubeserving-clusterip:31333
 

@@ -82,13 +82,13 @@
 
  - Open `training_version2.ipynb`
 
- - Click `Run` -> `Run All Cells`
+ - Click `Run` > `Run All Cells`
 
-#### ML Training with Version 1 of Data as Standalone Run
+### ML Training with Version 1 of Data as Standalone Run
 
  - Select `Runs` from left menu
 
- - Select `+ Run` -> `Training Run` & fill in the following fields:
+ - Select `+ Run` > `Training Run` & fill in the following fields:
 
    - `Basic` Tab
  
@@ -120,69 +120,77 @@
  
  - Leave the other fields at their current value and `Submit`
 
-#### ML Training with version2 of data as standalone run
+### ML Training with Version 2 of Data as Standalone Run
 
-	Click +Run
+ - Select `Runs` from left menu
 
-	Select Code : Deltalake
+ - Select `+ Run` > `Training Run` & fill in the following fields:
 
-	Framework : sklearn
+   - `Basic` Tab
+ 
+     - **Name:** `deltalake`
 
-	Framework version : 0.23.2
+     - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
 
-	Image : ocdr/d3-datascience-sklearn:v0.23.2-16
+     - **Framework:** `sklearn`  (**The correct version and image will be filled in**)
 
-	Startup command : python training_version2.py
+     - **Startup Command:** `python training_version2.py`
 
-	Repos > Inputs > Datasets
+     > **Note** If you use `Clone` to create the 2nd Run, make sure that you change the startup command to Version 2
 
-		Click +Dataset
+   - `Repos` Tab
 
-		Choose "deltalake"
+     - **Inputs** `+ Dataset`
 
-		Version "2"
+       - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-		Mountpath "/mnt/deltalake"
+       - **Version:** 2  (**If you use `Clone` to create the 2nd Run, make sure that you change this**)
 
-	Repos > Outputs > Models
+       - **Mountpath:** `/mnt/deltalake`
 
-		Click +Model
+     - **Outputs** `+ Model`
 
-		Choose "deltalake"
+       - Choose `deltalake`  (**Or the name that you chose for your Model**)
 
-		Mountpath "/mnt/model"
+       - **Mountpath:** `/mnt/model`
 
-	Trigger submit
+    > **Note** There is a `Model` section in the Inputs.  Make sure that you enter the Model in the **Output** section only
+ 
+ - Leave the other fields at their current value and `Submit` - Select `Runs` from left menu
 
+### Compare the Runs for Accuracy
 
-- After the runs are complete.
+- Wait for Runs to `complete`
 
-- Click two runs and compare.
+- Select the 2 runs and `Compare`
 
-- Choose the run with best accuracy and proceed with below steps to deploy the model.
+- Choose the run with best accuracy and proceed with below steps to deploy the model
 
-- Click Run > Lineage > Output Models 
+- Click `Run` > `Lineage` > `Output Models` 
 
 - Click the model version
 
-- Click Build Image
+- Click `Build Image`
 
-- Defaults are auto filled
+  - Defaults are auto filled
 
-- Click Submit button
+- Click `Submit` button
 
 - Wait for the image build to be successful
 
-- Click Model > Details > Images > Image Name
+- Click `Model` > `Details` > `Images` > `Image Name`
 
-- Copy the value in Image field
-
+- Copy the value in `Image` field
 
 ## Serving on Cluster 2
 
-	Create +Deployment
+ Move from **Cluster 1** to **Cluster 2** in order to complete the deployment.
+ 
+ - Select `Deployments` from left menu
+ 
+ - Select `+ Deployment` button and fill in the fields as follows:
 
-	Paste the Image built in above setup
+   - Paste the Image built in above setup
 
 	Click "EventSource" and choose "Kafka" and enter below values
 

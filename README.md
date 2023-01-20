@@ -1,119 +1,124 @@
 ## Loan Data Accuracy Example
 
-This example uses Delta Lake to source 2 versions of data that is then used to determine which version is more accurate at determining whether a loan should be provided.  Kafka is used to provide input to the deployed model.
+ This example uses Delta Lake to source 2 versions of data that is then used to determine which version is more accurate at determining whether a loan should be provided.  Kafka is used to provide input to the deployed model.
 
-This example uses one cluster (**Cluster 1**) to train the models, and a different cluster (**Cluster 2**) to serve the model that does the best job.
+ This example uses one cluster (**Cluster 1**) to train the models, and a different cluster (**Cluster 2**) to serve the model that does the best job.
 
 ## Training on Cluster 1
 
-Cluster 1 is used to train the models and compare their accuracy.
+ Cluster 1 is used to train the models and compare their accuracy.
 
 ### Create Code Resource
 
-Select `Code` repo from left menu
+ - Select `Code` repo from left menu
 
-Select `+ Code` button and fill in the following fields:
+ - Select `+ Code` button and fill in the following fields:
 
- - **Name:** `deltalake` (**You can choose a different name for this and other resources, in which case you would use that name throughout this example**)
+   - **Name:** `deltalake` (**You can choose a different name for this and other resources**)
  
- - **Code Source:** `Git`
+   - **Code Source:** `Git`
 
- - **URL:** `https://github.com/oneconvergence/dkube-examples/tree/deltalake`
+   - **URL:** `https://github.com/oneconvergence/dkube-examples/tree/deltalake`
 
  - Leave the other fields at their current value and `Submit`
 
 ### Create Dataset Resource
 
-Select `Datasets` from the left menu
+ - Select `Datasets` from the left menu
 
-Select `+ Dataset` button and fill in the following fields:
+ - Select `+ Dataset` button and fill in the following fields:
 
- - **Name:** `deltalake`
+   - **Name:** `deltalake`
 
- = **Versioning:** `None`  (**This is not the default**)
+   - **Versioning:** `None`  (**This is not the default**)
  
- - **Dataset Source:** `Deltalake`
+   - **Dataset Source:** `Deltalake`
 
- - **Table Source:** `S3`
+   - **Table Source:** `S3`
 
- - **Table Path:** `dkube-deltalake/loans.delta`
+   - **Table Path:** `dkube-deltalake/loans.delta`
 
  - Leave the other fields at their current value and `Submit`
 
 ### Create Model Resource
 
-Select `Models` from the left menu
+ - Select `Models` from the left menu
 
-Select `+ Model` button and fill in the following fields:
+ - Select `+ Model` button and fill in the following fields:
 
- - **Name:** `deltalake`
+   - **Name:** `deltalake`
 
  - Leave the other fields at their current value and `Submit`	
 
 ### Create a Jupyterlab IDE
 
-Select `IDEs` from the left menu
+ - Select `IDEs` from the left menu
 
-Select `+ JupyterLab` button and fill in the following fields:
+ - Select `+ JupyterLab` button and fill in the following fields:
 
- - **Name:**` deltalake`
+   - **Name:**` deltalake`
 
- - **Framework:** `sklearn`
+   - **Framework:** `sklearn`
 
- - **Framework version:** `0.23.2`  (**This will fill in automatically with the choice of Framework**)
+   - **Framework version:** `0.23.2`  (**This will fill in automatically with the choice of Framework**)
 
- - **Image:** `ocdr/d3-datascience-sklearn-multiuser:v0.23.2-16`  (**This will fill in automatically with the choice of Framework**)
+   - **Image:** `ocdr/d3-datascience-sklearn-multiuser:v0.23.2-16`  (**This will fill in automatically with the choice of Framework**)
 
  - Leave the other fields at their current value and `Submit`
 
 ### ML Training inside notebook
 
-Launch JupyterLab from the icon at the far right after the IDE is running (this may take several minutes)
+ - Launch JupyterLab from the icon at the far right after the IDE is running (this may take several minutes)
 
-Navigate to `workspace/deltalake`  (**If you chose a different name than "deltalake" use that name instead**)
+ - Navigate to `workspace/deltalake`  (**If you chose a different name than "deltalake" use that name instead**)
 
-#### Train with version 1 of data
-	Open "training_version1.ipynb"
+#### Train with Version 1 of Data
 
-	Click Run : Run All Cells
+ - Open `training_version1.ipynb`
 
-###### Train with version 2 of data
-	Open "training_version2.ipynb"
+ - Click `Run` -> `Run All Cells`
 
-	Click Run : Run All Cells
+#### Train with Version 2 of Data
 
-#### ML Training with version1 of data as standalone run
-	Click +Run
+ - Open `training_version2.ipynb`
 
-	Select Code : Deltalake
+ - Click `Run` -> `Run All Cells`
 
-	Framework : sklearn
+#### ML Training with Version 1 of Data as Standalone Run
 
-	Framework version : 0.23.2
+ - Select `Runs` from left menu
 
-	Image : ocdr/d3-datascience-sklearn:v0.23.2-16
+ - Select `+ Run` -> `Training Run` & fill in the following fields:
 
-	Startup command : python training_version1.py
+   - `Basic` Tab
+ 
+     - **Name:** `deltalake`
 
-	Repos > Inputs > Datasets
+     - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
 
-		Click +Dataset
+     - **Framework:** `sklearn`  (**The correct version and image will be filled in**)
 
-		Choose "deltalake"
+     - **Startup Command:** `python training_version1.py`
 
-		Version "1"
+   - `Repos` Tab
 
-		Mountpath "/mnt/deltalake"
+     - **Inputs** `+ Dataset`
 
-	Repos > Outputs > Models
+       - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-		Click +Model
+       - **Version:** 1  (**It will default to version 2, so you must change it**)
 
-		Choose "deltalake"
+       - **Mountpath:** `/mnt/deltalake`
 
-		Mountpath "/mnt/model"
+     - **Outputs ** `+ Model`
 
-	Click submit
+       - Choose `deltalake`  (**Or the name that you chose for your Model**)
+
+       - **Mountpath:** `/mnt/model`
+
+    > **Note** There is a `Model` section in the Inputs.  Make sure that you enter the Model in the **Output** section only
+ 
+ - Leave the other fields at their current value and `Submit`
 
 #### ML Training with version2 of data as standalone run
 

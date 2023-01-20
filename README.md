@@ -92,7 +92,9 @@
 
      - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-     - **Version:** `1` (**It will default to version 2, so you must change it**)
+     - **Version:** `1`
+
+     > **Note** It will default to Version2, so you must change it
 
      - **Mountpath:** `/mnt/deltalake`
 

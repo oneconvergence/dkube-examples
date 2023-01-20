@@ -70,7 +70,7 @@
 
  - Launch JupyterLab from the icon at the far right after the IDE is running (this may take several minutes)
 
- - Navigate to `workspace/deltalake`  (**If you chose a different name than "deltalake" use that name instead**)
+ - Navigate to `workspace/deltalake`  (**If you chose a different name than "deltalake" for your code use that name instead**)
 
 #### Train with Version 1 of Data
 
@@ -110,7 +110,7 @@
 
        - **Mountpath:** `/mnt/deltalake`
 
-     - **Outputs ** `+ Model`
+     - **Outputs** `+ Model`
 
        - Choose `deltalake`  (**Or the name that you chose for your Model**)
 
@@ -156,15 +156,17 @@
 
     > **Note** There is a `Model` section in the Inputs.  Make sure that you enter the Model in the **Output** section only
  
- - Leave the other fields at their current value and `Submit` - Select `Runs` from left menu
+ - Leave the other fields at their current value and `Submit`
 
-### Compare the Runs for Accuracy
+## Compare the Runs for Accuracy
 
 - Wait for Runs to `complete`
 
 - Select the 2 runs and `Compare`
 
 - Choose the run with best accuracy and proceed with below steps to deploy the model
+
+## Build the Model Image & Save in External Repository
 
 - Click `Run` > `Lineage` > `Output Models` 
 
@@ -190,30 +192,38 @@
  
  - Select `+ Deployment` button and fill in the fields as follows:
 
-   - Paste the Image built in above setup
+   - **Name:** deltalake
+   
+   - **Serving Image:** Paste the Image built in above setup
 
-	Click "EventSource" and choose "Kafka" and enter below values
+   - **Deployment:** `Production`
 
-		Brokers : dkube-kafka-cp-kafka.dkube-kafka:9092
+   - **Deploy Using:** `CPU`
 
-		Topics : <username>
+   - **Event Source:** `Kafka`
 
-		Consumer group : training
+   - **Brokers:** `dkube-kafka-cp-kafka.dkube-kafka:9092`
 
-	Wait for "Deployment" to get to "Running" state
+   - **Topics:** `<username>`
 
+   - **Consumer Group:** `training`
+
+ - Leave the other fields at their current value and `Submit`
+
+ - Wait for "Deployment" to get to `Running` state
 
 ## Test Inference
-Webapp will be available @ dkubeserving-clusterip:31333
+
+ - Webapp will be available @ dkubeserving-clusterip:31333
 	
-Input the below values,
+ - Input the below values,
 	
-	Kafka broker endpoint : dkube-kafka-cp-kafka-headless.dkube-kafka:9092
+   - **Kafka broker endpoint:** `dkube-kafka-cp-kafka-headless.dkube-kafka:9092`
 	
-	Kafka topic : <username>
+   - **Kafka topic:** `<username>`
 	
-	Select Version : version2
+   - **Select Version:** `version2`
 	
-	Number of times to send : 1
+   - **Number of times to send:** `1`
 	
-Click "Predict" button
+ - Click `Predict` button

@@ -1,6 +1,6 @@
 ## Loan Data Accuracy Example
 
- This example uses Delta Lake to source 2 versions of data that is then used to determine which version is more accurate at determining whether a loan should be provided.  Kafka is used to provide input to the deployed model.
+ This example uses Delta Lake to source 2 versions of data that is then used to determine which version is more accurate at determining whether a loan should be provided.  	A WebApp has been created that uses Kafka to provide input to the deployed model.
 
  This example uses one cluster (**Cluster 1**) to train the models, and a different cluster (**Cluster 2**) to serve the model that does the best job.
 
@@ -10,9 +10,7 @@
 
 ### Create Code Resource
 
- - Select `Code` repo from left menu
-
- - Select `+ Code` button and fill in the following fields:
+ - Select `Code` repo from left menu, then select `+ Code` button
 
    - **Name:** `deltalake` (**You can choose a different name for this and other resources**)
  
@@ -24,13 +22,11 @@
 
 ### Create Dataset Resource
 
- - Select `Datasets` from the left menu
-
- - Select `+ Dataset` button and fill in the following fields:
+ - Select `Datasets` from the left menu, then select `+ Dataset` button
 
    - **Name:** `deltalake`
 
-   - **Versioning:** `None`  (**This is not the default**)
+   - **Versioning:** `None`  (**Note: This is not the default**)
  
    - **Dataset Source:** `Deltalake`
 
@@ -42,9 +38,7 @@
 
 ### Create Model Resource
 
- - Select `Models` from the left menu
-
- - Select `+ Model` button and fill in the following fields:
+ - Select `Models` from the left menu, then select `+ Model` button
 
    - **Name:** `deltalake`
 
@@ -52,17 +46,11 @@
 
 ### Create a Jupyterlab IDE
 
- - Select `IDEs` from the left menu
-
- - Select `+ JupyterLab` button and fill in the following fields:
+ - Select `IDEs` from the left menu, then select `+ JupyterLab` button
 
    - **Name:**` deltalake`
 
-   - **Framework:** `sklearn`
-
-   - **Framework version:** `0.23.2`  (**This will fill in automatically with the choice of Framework**)
-
-   - **Image:** `ocdr/d3-datascience-sklearn-multiuser:v0.23.2-16`  (**This will fill in automatically with the choice of Framework**)
+   - **Framework:** `sklearn`  (**The Version & Image will fill in automatically with the Framework**)
 
  - Leave the other fields at their current value and `Submit`
 
@@ -76,83 +64,79 @@
 
  - Open `training_version1.ipynb`
 
- - Click `Run` -> `Run All Cells`
+ - Select `Run` -> `Run All Cells`
 
 #### Train with Version 2 of Data
 
  - Open `training_version2.ipynb`
 
- - Click `Run` > `Run All Cells`
+ - Select `Run` > `Run All Cells`
 
 ### ML Training with Version 1 of Data as Standalone Run
 
- - Select `Runs` from left menu
+ - Select `Runs` from left menu, then select `+ Run` > `Training Run`
 
- - Select `+ Run` > `Training Run` & fill in the following fields:
-
-   - `Basic` Tab
+ - `Basic` Tab
  
-     - **Name:** `deltalake`
+   - **Name:** `deltalake`
 
-     - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
+   - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
 
-     - **Framework:** `sklearn`  (**The correct version and image will be filled in**)
+   - **Framework:** `sklearn`  (**The correct version and image will be filled in**)
 
-     - **Startup Command:** `python training_version1.py`
+   - **Startup Command:** `python training_version1.py`
 
-   - `Repos` Tab
+ - `Repos` Tab
 
-     - **Inputs** `+ Dataset`
+   - **Inputs:** Choose `+ Dataset`
 
-       - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
+     - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-       - **Version:** 1  (**It will default to version 2, so you must change it**)
+     - **Version:** 1  (**It will default to version 2, so you must change it**)
 
-       - **Mountpath:** `/mnt/deltalake`
+     - **Mountpath:** `/mnt/deltalake`
 
-     - **Outputs** `+ Model`
+   - **Outputs:** Choose `+ Model`
 
-       - Choose `deltalake`  (**Or the name that you chose for your Model**)
+     - Choose `deltalake`  (**Or the name that you chose for your Model**)
 
-       - **Mountpath:** `/mnt/model`
+     - **Mountpath:** `/mnt/model`
 
-    > **Note** There is a `Model` section in the Inputs.  Make sure that you enter the Model in the **Output** section only
+ > **Note** There is a `Model` section in the Inputs.  Make sure that you enter the Model in the **Output** section only
  
  - Leave the other fields at their current value and `Submit`
 
 ### ML Training with Version 2 of Data as Standalone Run
 
- - Select `Runs` from left menu
+ - Select `Runs` from left menu, then select `+ Run` > `Training Run`
 
- - Select `+ Run` > `Training Run` & fill in the following fields:
-
-   - `Basic` Tab
+ - `Basic` Tab
  
-     - **Name:** `deltalake`
+   - **Name:** `deltalake`
 
-     - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
+   - **Code:** `deltalake`  (**If you chose a different name for your code, use it here instead**)
 
-     - **Framework:** `sklearn`  (**The correct version and image will be filled in**)
+   - **Framework:** `sklearn`  (**The correct version and image will be filled in**)
 
-     - **Startup Command:** `python training_version2.py`
+   - **Startup Command:** `python training_version2.py`
 
-     > **Note** If you use `Clone` to create the 2nd Run, make sure that you change the startup command to Version 2
+   > **Note** If you use `Clone` to create the 2nd Run, make sure that you change the startup command to Version 2
 
-   - `Repos` Tab
+ - `Repos` Tab
 
-     - **Inputs** `+ Dataset`
+   - **Inputs:** Choose `+ Dataset`
 
-       - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
+     - Choose `deltalake`  (**Or the name that you chose for your Dataset**)
 
-       - **Version:** 2  (**If you use `Clone` to create the 2nd Run, make sure that you change this**)
+     - **Version:** 2  (**If you use `Clone` to create the 2nd Run, make sure that you change this**)
 
-       - **Mountpath:** `/mnt/deltalake`
+     - **Mountpath:** `/mnt/deltalake`
 
-     - **Outputs** `+ Model`
+   - **Outputs:** Choose `+ Model`
 
-       - Choose `deltalake`  (**Or the name that you chose for your Model**)
+     - Choose `deltalake`  (**Or the name that you chose for your Model**)
 
-       - **Mountpath:** `/mnt/model`
+     - **Mountpath:** `/mnt/model`
 
     > **Note** There is a `Model` section in the Inputs.  Make sure that you enter the Model in the **Output** section only
  
@@ -164,37 +148,35 @@
 
 - Select the 2 runs and `Compare`
 
-- Choose the run with best accuracy and proceed with below steps to deploy the model
+- Choose the run with best accuracy and proceed to deploy the model as explained in the next section
 
 ## Build the Model Image & Save in External Repository
 
-- Click `Run` > `Lineage` > `Output Models` 
+- Select `Run` > `Lineage` > `Output Models` 
 
-- Click the model version
+- Select the model version
 
-- Click `Build Image`
+- Select `Build Image`
 
   - Defaults are auto filled
 
-- Click `Submit` button
+- Select `Submit` button
 
 - Wait for the image build to be successful
 
-- Click `Model` > `Details` > `Images` > `Image Name`
+- Select `Model` > `Details` > `Images` > `Image Name`
 
-- Copy the value in `Image` field
+- Copy the value in `Image` field to your copy buffer (**There is an icon to do that**)
 
 ## Serving on Cluster 2
 
  Move from **Cluster 1** to **Cluster 2** in order to complete the deployment.
  
- - Select `Deployments` from left menu
- 
- - Select `+ Deployment` button and fill in the fields as follows:
+ - Select `Deployments` from left menu, then select `+ Deployment` button
 
    - **Name:** deltalake
    
-   - **Serving Image:** Paste the Image built in above setup
+   - **Serving Image:** Paste the Image built in the previous step
 
    - **Deployment:** `Production`
 
@@ -214,9 +196,9 @@
 
 ## Test Inference
 
- - Webapp will be available @ dkubeserving-clusterip:31333
+ - WebApp will be available @ dkubeserving-clusterip:31333
 	
- - Input the below values,
+ - Input the following values
 	
    - **Kafka broker endpoint:** `dkube-kafka-cp-kafka-headless.dkube-kafka:9092`
 	
@@ -226,4 +208,4 @@
 	
    - **Number of times to send:** `1`
 	
- - Click `Predict` button
+ - Select `Predict` button

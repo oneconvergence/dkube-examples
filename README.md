@@ -205,6 +205,8 @@
 ## Test Inference
 
  - WebApp will be available @ dkubeserving-clusterip:31333
+
+   - Ex: http://<IP Address>:31333
 	
  - Input the following values
 	

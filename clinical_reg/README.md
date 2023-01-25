@@ -3,7 +3,7 @@
 2. Once running, click the jupyterlab icon to launch jupyterlab
 3. Open terminal in Jupyterlab and run
    ```
-   > wget https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/clinical_reg/pipeline.ipynb
+   > wget https://raw.githubusercontent.com/oneconvergence/dkube-examples/tensorflow/clinical_reg/pipeline_withslurm.ipynb
    ```
 4. Open pipeline.ipynb and run cells to generate the tar file and create run.
 5. Download the tar file by right-clicking on it(optional).

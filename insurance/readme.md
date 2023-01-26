@@ -15,7 +15,11 @@
 
 > **Note** You can choose the names for your resources in most cases.  It is recommended that you choose names that are unique to your workflow even if you are organizing them by Project.  This will ensure that there is a system-wide organization for the names, and that you can easily filter based on your own work.  A sensible approach might be to have it be something like **\<example-name\>-\<your-initials\>-\<resource-type\>**.  But this is simply a recommendation.  The specific names will be up to you.
 
-## Create Project (Optional)
+## 1. Resource Setup
+
+ In order to use the scripts to create runs, models, pipelines, etc some setup needs to be done.  This section explains the setup that is necessary for any of the example sections.
+
+### Create Project (Optional)
  Jobs execute within a Project.  This section explains how to create a Project.
  
  - This step is only necessary if the Project does not already exist, or if the default Project is not used
@@ -28,7 +32,7 @@
    - Leave the other fields at their current selection 
  - Submit your Project with the `Submit` button at the bottom of the screen
 
-## Create Code Repo
+### Create Code Repo
  A Model is created by running the Training Code on a Dataset.  This section explains how to create a Code repo.  The Dataset is contained within the execution code.
  
   > **Note** In the example, use only lower-case characters in the names that you create. Hyphens are acceptable in any position **other than** the first or last characters, but no other special characters should be used.
@@ -45,7 +49,7 @@
    - Leave the other fields at their current selection 
  - Submit your Code repo with the `Add Code` button at the bottom of the screen
 
-## Create Dataset Repo
+### Create Dataset Repo
  Datasets are used to represent the expected input for model prediction.  The Dataset in this example resides in an S3 bucket.  This section explains how to create a Dataset repo.
  
  - Navigate to the `Datasets` menu on the left
@@ -57,7 +61,7 @@
    - Leave the other fields at their current selection
  - Submit your Dataset repo with the `Add Dataset` button at the bottom of the screen
 
-## Create Model Repo
+### Create Model Repo
  An output Model is created as a result of the Training job.  This section explains how to create a Model repo for the output.
  
  - Navigate to the `Models` menu on the left
@@ -67,7 +71,7 @@
    - Leave the other fields at their current selection 
  - Submit your Model repo with the `Add Model` button at the bottom of the screen
 
-## Create JupyterLab IDE
+### Create JupyterLab IDE
  The first step in the workflow is to experiment with your code, using different datasets and hyperparameters to determine trends.  This section explains how to create a JupyterLab IDE.
  
  - Navigate to the `IDEs` menu on the left
@@ -80,7 +84,9 @@
    - Leave the other fields at their current selection 
  - Submit your IDE with the `Submit` button at the bottom of the screen
 
-## Experiment with JupyterLab IDE
+ > **Note** After the above setup is complete, the other sections can be completed in any order
+
+## 2. Experiment with JupyterLab IDE
  This section explains how to use the JupyterLab IDE to experiment with your Code and hyperparameters.
  
  - Once the IDE is in the `Running` state, select the JupyterLab icon on the far right of the IDE line
@@ -96,7 +102,7 @@
    - The new "loss" will be shown
  - Make as many changes as you want to see the impact
 
-## Execute Batch Training Jobs
+## 3. Execute Batch Training Jobs
  A Training Job teaches the Model to provide predictions based on the inputs.  This section explains how to create and submit a Training Job.
  
  > **Warning** Do **not** use the `Clone` function from the IDE to create your Run.  That will create a Model with the wrong name.  Follow the instructions below to create your Run.
@@ -128,7 +134,7 @@
    - Leave the other fields at their current selection
    - Submit your Run
 
-## Compare Models
+### Compare Models
  Training Jobs create output Models that can be used to predict output based on new input data.  Each model contains within it the metrics that determine how well the Model is likely to perform.  This section explains how to compare several Model metrics.
  
  - Wait until both Runs from the previous step have completed
@@ -139,7 +145,7 @@
  - Select the `Y-axis` to the left of the graph to `train_loss`
  - The graph will compare the 2 Training Runs
 
-## Submit & Review Katib-Based Hyperparameter Optimization Job
+### Submit & Review Katib-Based Hyperparameter Optimization Job
  Katib is used to test a number of different hyperparameters automatically, and choose the best combination based on an output goal.  This section explains how to create and submit a Training Job using Katib.
  
  > **Note** If your OS does not allow you to directly upload the `Tuning File` url specified below, you can select the tuning file by clicking on it.  That will bring up the text in the file.  You can then right-click your mouse and choose `Save as...` to create a tuning file on your local machine.  You can then use that local file to upload the tuning definition.
@@ -159,7 +165,7 @@
    - The graph shows each trial run with the output loss and the input hyperparamters for that trial
    - Scoll down to see which combination was the best, based upon the tuning file
 
-## Deploy Model for Inference Serving
+### Deploy Model for Inference Serving
  After the Models have been analyzed and the best one is identified, it is deployed to a server for inference of live data.  This section explains how to deploy a Model.
  
  - Navigate to the `Models` menu on the left
@@ -171,7 +177,7 @@
    - **Serving Image:** `ocdr/tensorflowserver:2.0.0`
    - **Serving Port:** `8080`
    - **Serving url prefix:** `/v1/models/{MODEL_NAME}`
-   - **Deployment:** `Test` radial button
+   - **Deployment:** `Production` radial button
    - **Deploy using:** `CPU` radial button
    - Select `Transformer` checkbox
    - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-17`
@@ -184,7 +190,7 @@
  
  > **Note** Deployments are not filtered by Project
 
-## Create Generic Kubeflow Pipeline
+## 4. Create Generic Kubeflow Pipeline
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
  
 > **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
@@ -201,8 +207,10 @@
  - Select the back arrow at the top left and select the Pipeline name
    - This will show the Pipeline as it is executed
 
-## Create Kubeflow Pipeline
+## 5. Create Kubeflow Pipeline
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
+
+ > **Note** The follow-on monitor example uses the output of the pipeline execution.  Complete this section before moving on to the monitor example.
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance</code>
@@ -226,7 +234,7 @@
    - Select the `Model` name *\<your-model-repo\>*
    - You will see that the top Model has been deployed
 
-## Inference WebApp
+## 6. Inference WebApp
  A model that is running on a production server takes live data and provides an output prediction based on the model training.  A custom application is written to interpret how the model interacts with the live data.  One Convergence has written a web-based inference application for this example.  It is meant to show how this particular example could be used.
 
  - The WebApp needs to be installed on your local machine

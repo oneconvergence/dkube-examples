@@ -56,17 +56,24 @@
  - Open `resources.ipynb` <br><br>
    > **Warning** Ensure that the last cell at the bottom of the file has `CLEANUP = False`  This may have been set to `True` from a previous execution.
  - If the serving and monitoring cluster **are the same**, the script will get all of the fields automatically.
-   - Ensure that the variable `RUNNING_IN_SAME` in the 1st cell is set to `True`
+   - Ensure that the variable `SERVING_CLUSTER_EXECUTION` in the 1st cell is set to `True`
    - Leave the other fields in their current selection
    - Skip to the section "Run the Script"
  - If the serving cluster is **different from** the monitoring cluster, the serving cluster needs to be identified
-   - In the 1st cell, set `RUNNING_IN_SAME = False`
+   - In the 3rd cell, identified as `User Definitions, set `SERVING_CLUSTER_EXECUTION = False`
    - Complete the following fields in the 1st cell
      - `SERVING_DKUBE_URL` = External IP address for the **serving** cluster in the form:
        - "<code>https://**\<External IP Address\>**:32222/</code>"
        - Ensure that there is a final `/` in the url field
-     - `SERVING_DKUBE_USERNAME` = "Login username on serving cluster"
-     - `SERVING_DKUBE_TOKEN` = "Access token from the serving cluster"
+     - `MONITORING_DKUBE_URL` = "URL of the Monitoring cluster"
+     - `MONITORING_DKUBE_USERNAME` = "Username on the Monitoring cluster"
+     - `MONITORING_DKUBE_TOKEN` = "Access token for the Monitoring cluster, available from the `Developer Settings` menu at the top right of the screen <br><br>
+     - If the Monitoring cluster already has a link to the Serving cluster from the DKube Clusters Operator screen:
+       - Get the name of the DKube cluster link and provide that name to the variable `SERVING_DKUBE_CLUSTER_NAME`
+     - If the Monitoring cluster link has **not** been created by the Operator on the Monitoring cluster:
+       - Leave the variable `SERVING_DKUBE_CLUSTER_NAME = ""`
+       - In that case, the link will be created on the Monitoring cluster
+       - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work.  If not, the script fill fail.
    - Leave the other fields in their current selection
  #### Run the Script
  - From the top menu item `Run`, select `Run All Cells`
@@ -80,6 +87,8 @@
  In this example, the Monitor is created programmatically through the DKube SDK. 
  
  > **Warning** The script in this section will fail if there is already a Monitor with the automatically-generated name.  This can happen if the script is run more than once.  Delete the Monitor name before you run this script a 2nd time.
+ 
+ > **Note** The automatic script expects that a **Production** Deployment is being used.  This happens automatically if using the results of the Pipeline execution as described in this example.  If another Deployment is used, ensure that it has been deployed for Production.
 
  - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `modelmonitor.iypnb` <br><br>

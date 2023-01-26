@@ -45,6 +45,8 @@
 ### Set up CI/CD file for Training
 
  The CI/CD is triggered by a GitHub commit to the repo with a Webhook.  The commit will look for a file called `.dkube-ci.yml` at the top level of the folder within the branch.  That file will provide the details of what actions are required.
+ 
+ > **Note** Ensure that you are in the `training` branch
 
   - In this example, the `.dkube-ci.yml` file is set up to build and run a Training Run for the insurance example.  The resources for this Run were created in the previous section.
   - The YML file references a file in the `Jobs` folder called `train.yaml`
@@ -58,6 +60,8 @@
 ### Create GitHub Webhook
 
  The CI/CD actions are triggered from a GitHub Webhook.  This section explains how to set up your Webhook.
+ 
+ > **Note** Ensure that you are in the `training` branch
 
  - Start at the top repo level of your forked repo
  - Select `Settings` tab on the top & `Webhooks` from the left menu
@@ -72,6 +76,8 @@
 ### Edit and Commit File in Repo
 
  Once the Webhook is created and active, it will trigger when a commit is made to the GitHub repo.  This section provides a simple change to initiate the trigger.
+
+ > **Note** Ensure that you are in the `training` branch
 
  - Navigate to the `insurance` folder
  - Select the file `training.py`

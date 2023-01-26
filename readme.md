@@ -27,21 +27,19 @@
  - Create Code repo with the following fields:
    - **Name:** `<your-repo-name>`
    - **Code Source:** `Git`
-   - **URL:** `<your forked repo>` <br><br>
-
+   - **URL:** `<your-forked-repo>` <br><br>
    > **Note** You can get the name of the repo by selecting the green `Code` button on the right of your GitHub repo screen, and copying the HTTPS url to your copy buffer
-
    - **Branch:** `training`
-- `Add Code`
-
+- `Add Code` <br><br>
 - Create Dataset repo with the following fields:
   - **Name:** `<your-repo-name>`
   - **Dataset Source:** `Other`
   - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
-- `Add Dataset`
-
+- `Add Dataset` <br> <br>
 - Create Model repo with the following fields:
   - **Name:** <your-repo-name>`
 - `Add Model`
+
+
 
 

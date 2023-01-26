@@ -1,0 +1,45 @@
+name: ins-lc
+user: larryc1200
+parameters:
+  class: training
+  training:
+    executor:
+      choice: dkube
+      buildfromproject: false
+      dkube:
+        framework:
+          choice: tensorflow
+          details:
+            version: 2.0.0
+            image: 'ocdr/dkube-datascience-tf-cpu:v2.0.0-17'
+    datums:
+      workspace:
+        data:
+          name: ''
+          version: ''
+        script: python insurance/training.py
+      datasets:
+        - name: ''
+          mountpath: 
+      outputs:
+        - name: 'larryc1200:ins-lc'
+          mountpath: 
+    featuresets: {}
+    tags: []
+    hyperparams:
+      customkv:
+        - key: EPOCHS
+          value: '1'
+      file:
+        name: ''
+        body: ''
+    nworkers: 0
+    ngpus: 0
+    gpus_override: false
+    rdma: false
+    hptuning:
+      name: ''
+      body: ''
+  run:
+    template: ''
+    group: default

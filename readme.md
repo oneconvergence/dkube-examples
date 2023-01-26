@@ -39,12 +39,12 @@
   - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
 - `Add Dataset` <br> <br>
 - Create Model repo with the following fields:
-  - **Name:** <your-repo-name>`
+  - **Name:** `<your-repo-name>`
 - `Add Model`
 
 ### Set up CI/CD file for Training
 
- The CI/CD is triggered by a GitHub commit to the repo with a Webhook.  The commit will look for a file called `.dkube-ci.yml` at the top leve of the folder within the branch.  That file will provide the details of what actions are required.
+ The CI/CD is triggered by a GitHub commit to the repo with a Webhook.  The commit will look for a file called `.dkube-ci.yml` at the top level of the folder within the branch.  That file will provide the details of what actions are required.
 
   - In this example, the `.dkube-ci.yml` file is set up to build and run a Training Run for the insurance example.  The resources for this Run were created in the previous section.
   - The YML file references a file in the `Jobs` folder called `train.yaml`
@@ -66,6 +66,7 @@
    - **Payload URL:** The url will be provided based on your system
    - **Content Type:** `application/json`
    - Select `Just the push event`
+   - Ensure that the `Active` checkbox is checked
  - `Add Webhook`
 
 ### Edit and Commit File in Repo
@@ -85,7 +86,7 @@
   - Choose the `Builds` tab on the top
   - Your build will be either in progress or complete.  It will have a `create at` time of a minute or less.
   - Select the build name to see the progress and status
-  - Wait for the buld to complete
+  - Wait for the build to complete
 
 ### View the Run and Models Created
 
@@ -97,5 +98,5 @@
  - Expand the Model with `<your-repo-name>`
  - You will see a new version of the Model has been created
 
- > **Note** After the CI/CD has run, it it *important** that you go back and **uncheck** the `Active` button in your Webhook.  Otherwise, every commit will trigger that CI/CD workflow.
+ > **Note** After the CI/CD has run, it it **important** that you go back and **uncheck** the `Active` button in your Webhook.  Otherwise, every commit will trigger that CI/CD workflow.
 

@@ -19,7 +19,7 @@ parameters:
           version: ''
         script: python insurance/training.py
       datasets:
-        - name: ''
+        - name: 'larryc1200:ins-lc'
           mountpath: 
       outputs:
         - name: 'larryc1200:ins-lc'

@@ -24,6 +24,8 @@
 
  The CI/CD example uses resources within your forked repo.  This section assumes that you have enough familiarity with DKube to create repos.  Use the same names for your Code, Dataset, & Model repos.
 
+ > **Note** The recommended format for the repo names is `ins-<your-initials>-cicd`.  This will allow you to find your resources among others using the same system.
+
  - Create Code repo with the following fields:
    - **Name:** `<your-repo-name>`
    - **Code Source:** `Git`
@@ -64,6 +66,36 @@
    - **Payload URL:** The url will be provided based on your system
    - **Content Type:** `application/json`
    - Select `Just the push event`
-   - **Uncheck** the `Active` button for now
-- `Add Webhook`
+ - `Add Webhook`
+
+### Edit and Commit File in Repo
+
+ Once the Webhook is created and active, it will trigger when a commit is made to the GitHub repo.  This section provides a simple change to initiate the trigger.
+
+ - Navigate to the `insurance` folder
+ - Select the file `training.py`
+ - Edit the file and add some simple change, such as a comment
+ - `Commit Changes`
+ 
+ ### View CI/CD Workflow
+
+  The commit will trigger the CI/CD workflow.  You can follow the progress and status from the `Images` screen in Dkube, as explained here.
+
+  - Navigate to `Images` menu on the right of the DKube screen
+  - Choose the `Builds` tab on the top
+  - Your build will be either in progress or complete.  It will have a `create at` time of a minute or less.
+  - Select the build name to see the progress and status
+  - Wait for the buld to complete
+
+### View the Run and Models Created
+
+ After the CI/CD workflow has been completed, you can see the Training Run that was built and run, and the resulting Model.
+
+ - Navigate to `Runs` menu on the left
+ - Your Run will be near the top, and will either be in progress or complete
+ - After the Run is complete, navigate to `Models` menu on the left
+ - Expand the Model with `<your-repo-name>`
+ - You will see a new version of the Model has been created
+
+ > **Note** After the CI/CD has run, it it *important** that you go back and **uncheck** the `Active` button in your Webhook.  Otherwise, every commit will trigger that CI/CD workflow.
 

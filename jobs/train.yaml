@@ -15,7 +15,7 @@ parameters:
     datums:
       workspace:
         data:
-          name: ''
+          name: 'larryc1200:ins-lc'
           version: ''
         script: python insurance/training.py
       datasets:

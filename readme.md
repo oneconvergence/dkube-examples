@@ -14,7 +14,7 @@
 
 ## 2. CI/CD
 
- This repo includes the details on using the DKube CI/CD capability, using the insurance example for a Training Run.  More details are available in the repo (https://github.com/oneconvergence/dkube-cicd-example).  This includes branches for a variety of CI/CD workflows.  Follow these instructions to experiment with CI/CD.  
+ This repo includes the details on using the DKube CI/CD capability, using the insurance example for a Training Run.  More details are available in the repo https://github.com/oneconvergence/dkube-cicd-example.  This includes branches for a variety of CI/CD workflows.  Follow these instructions to experiment with CI/CD.  
  
 ### Fork the Repo
 

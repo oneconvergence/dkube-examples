@@ -40,6 +40,30 @@
   - **Name:** <your-repo-name>`
 - `Add Model`
 
+### Set up CI/CD file for Training
 
+ The CI/CD is triggered by a GitHub commit to the repo with a Webhook.  The commit will look for a file called `.dkube-ci.yml` at the top leve of the folder within the branch.  That file will provide the details of what actions are required.
 
+  - In this example, the `.dkube-ci.yml` file is set up to build and run a Training Run for the insurance example.  The resources for this Run were created in the previous section.
+  - The YML file references a file in the `Jobs` folder called `train.yaml`
+  - Navigate to the `/jobs/train.yaml` file and edit the following fields:
+    - **user:** `<your-DKube-login-name>  (2nd line)
+    - **datums:** > **workspace:** > **data:** > **name:** `<your-DKube-login-name>:<your-repo-name>`  (Line 18)
+    - ...**datasets:** > **name:** `<your-DKube-login-name>:<your-repo-name>`
+    - ...**output:** > **name:** `<your-DKube-login-name>:<your-repo-name>`
+  - `Commit Changes`
+
+### Create GitHub Webhook
+
+ The CI/CD actions are triggered from a GitHub Webhook.  This section explains how to set up your Webhook.
+
+ - Start at the top repo level of your forked repo
+ - Select `Settings` tab on the top & `Webhooks` from the left menu
+ - Select `Add webhook` from top right of the screen
+ - Fill in the following fields:
+   - **Payload URL:** The url will be provided based on your system
+   - **Content Type:** `application/json`
+   - Select `Just the push event`
+   - **Uncheck** the `Active` button for now
+- `Add Webhook`
 

@@ -47,10 +47,10 @@
   - In this example, the `.dkube-ci.yml` file is set up to build and run a Training Run for the insurance example.  The resources for this Run were created in the previous section.
   - The YML file references a file in the `Jobs` folder called `train.yaml`
   - Navigate to the `/jobs/train.yaml` file and edit the following fields:
-    - **user:** `<your-DKube-login-name>  (2nd line)
+    - **user:** `<your-DKube-login-name>`  (2nd line)
     - **datums:** > **workspace:** > **data:** > **name:** `<your-DKube-login-name>:<your-repo-name>`  (Line 18)
-    - ...**datasets:** > **name:** `<your-DKube-login-name>:<your-repo-name>`
-    - ...**output:** > **name:** `<your-DKube-login-name>:<your-repo-name>`
+      - ...**datasets:** > **name:** `<your-DKube-login-name>:<your-repo-name>`
+      - ...**output:** > **name:** `<your-DKube-login-name>:<your-repo-name>`
   - `Commit Changes`
 
 ### Create GitHub Webhook

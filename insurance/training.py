@@ -32,7 +32,6 @@ MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME')
 
 # Experiment with this parameter. 
 NUM_EPOCHS = int(os.getenv("EPOCHS", args.epochs))
-#
 LEARNING_RATE = args.learning_rate
 
 # Define data

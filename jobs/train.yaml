@@ -1,4 +1,4 @@
-name: ins-lc-cicd
+name: ins-cicd
 user: larryc
 parameters:
   class: training

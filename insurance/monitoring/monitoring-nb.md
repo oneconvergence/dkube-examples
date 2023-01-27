@@ -66,7 +66,7 @@
  
  - In the 3rd cell (`User Definitions`) change the variable name `MONITOR_NAME` to the name of the deployment.  The monitor name is always the same as the deployment name.
  - If the serving and monitoring clusters are the same, no other changes are required.  Skip ahead to `Run the Script`
- - If the monitoring cluster is not the same as the serving cluster, also make the changes in the next section
+ - If the monitoring cluster is **not** the same as the serving cluster, also make the changes in the next section
 
 #### Different Serving and Monitor Cluster
 

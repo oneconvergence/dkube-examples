@@ -70,10 +70,9 @@
 
 #### Different Serving and Monitor Cluster
 
- If the monitor cluster is different than the serving cluster, make the changes in this section.  Otherwise, skip ahead to `Run the Script`.
+ If the monitor cluster is different from the serving cluster, make the changes in this section.  Otherwise, skip ahead to `Run the Script`.
 
  - In the 3rd cell (`User Definitions`) change the variable `SERVING_CLUSTER_EXECUTION = False`
- - If the serving cluster is **different from** the monitoring cluster, the serving cluster needs to be identified
  - Complete the following fields
      - `SERVING_DKUBE_URL` = External IP address for the **serving** cluster in the form:
        - "<code>https://**\<External IP Address\>**:32222/</code>"
@@ -88,7 +87,7 @@
        - In that case, the link will be created on the Monitoring cluster
        - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work.  If not, the script fill fail.
    - Leave the other fields in their current selection
-   
+
  #### Run the Script
  - From the top menu item `Run`, select `Run All Cells`
  - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>

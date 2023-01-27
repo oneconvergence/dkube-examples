@@ -19,6 +19,8 @@
 ### Fork the Repo
 
  In order to experiment with the example, you must fork this repo so that you can change the files and add a Webhook.  The remaining steps are completed in your forked repo.
+ 
+> **Note** Ensure that you **uncheck** the "Copy the `tensorflow` branch only".  Otherwise, the `training` branch will not be forked.  This example uses the `training` branch.
 
 ### Create Resources within DKube
 

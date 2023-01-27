@@ -33,6 +33,7 @@ MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME')
 # Experiment with this parameter. 
 NUM_EPOCHS = int(os.getenv("EPOCHS", args.epochs))
 LEARNING_RATE = args.learning_rate
+##
 
 # Define data
 INPUT_DATA_URL = os.getenv("DATASET_URL", "https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv")

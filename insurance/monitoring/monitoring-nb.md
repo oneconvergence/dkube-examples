@@ -54,14 +54,26 @@
  
  - From the JupyterLab tab, navigate to folder <code>/workspace/**\<your-code-repo\>**/insurance/monitoring</code>
  - Open `resources.ipynb` <br><br>
-   > **Warning** Ensure that the last cell at the bottom of the file has `CLEANUP = False`  This may have been set to `True` from a previous execution.
- - If the serving and monitoring cluster **are the same**, the script will get all of the fields automatically.
-   - Ensure that the variable `SERVING_CLUSTER_EXECUTION` in the 1st cell is set to `True`
-   - Leave the other fields in their current selection
-   - Skip to the section "Run the Script"
- - If the serving cluster is **different from** the monitoring cluster, the serving cluster needs to be identified
-   - In the 3rd cell, identified as `User Definitions, set `SERVING_CLUSTER_EXECUTION = False`
-   - Complete the following fields in the 1st cell
+   > **Warning** Ensure that the last cell at the bottom of the file has `CLEANUP = False`  This may have been set to `True` from a previous execution. <br><br>
+ - The script is configured to execute automatically, with no changes required, if:
+   - The deployed model is the last deployment from the most recent pipeline run (as explained in the process above), and
+   - The serving and monitoring cluster are the same
+   - In this case, just `Run All Cells` from the top `Run` menu
+
+#### Changing the Deployment Name
+
+ If you want to use a different deployment than the default, make the changes in this section.  Otherwise, skip ahead to the next section.
+ 
+ - In the 3rd cell (`User Definitions`) change the variable name `MONITOR_NAME` to the name of the deployment.  The monitor name is always the same as the deployment name.
+ - If the serving and monitoring clusters are the same, no other changes are required.  Skip ahead to `Run the Script`
+ - If the monitoring cluster is **not** the same as the serving cluster, also make the changes in the next section
+
+#### Different Serving and Monitor Cluster
+
+ If the monitor cluster is different from the serving cluster, make the changes in this section.  Otherwise, skip ahead to `Run the Script`.
+
+ - In the 3rd cell (`User Definitions`) change the variable `SERVING_CLUSTER_EXECUTION = False`
+ - Complete the following fields
      - `SERVING_DKUBE_URL` = External IP address for the **serving** cluster in the form:
        - "<code>https://**\<External IP Address\>**:32222/</code>"
        - Ensure that there is a final `/` in the url field
@@ -75,6 +87,7 @@
        - In that case, the link will be created on the Monitoring cluster
        - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work.  If not, the script fill fail.
    - Leave the other fields in their current selection
+
  #### Run the Script
  - From the top menu item `Run`, select `Run All Cells`
  - This will create the DKube resources required for this example to run automatically, including the required Datasets <br><br>

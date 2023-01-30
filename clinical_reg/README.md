@@ -1,5 +1,9 @@
+## Create Project(optional)
+1. Go to project tab and create a project with name "clinical-reg"
+
 ## Download pipeline to Jupyterlab
 1. Start any of the jupyterlab notebook from the IDE tab.
+   1. If project was created then create the IDE under the same Project.
 2. Once running, click the jupyterlab icon to launch jupyterlab
 3. Open terminal in Jupyterlab and run
    ```

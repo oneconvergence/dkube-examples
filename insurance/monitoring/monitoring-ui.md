@@ -69,16 +69,8 @@
      - This is the Dataset used for the Performance Monitoring <br><br>
  - The `resources` script will provide information that is necessary when creating a Performance Decay monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Setting Up Performance Decay`.  They will be referenced in the Performance Decay section.
 
-### Review the Deployment & Identify the Deployment ID
-
- The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
+<img src="./Images/Resources_Image.png" width=100% height=100%>
  
- > **Note** The Deployment ID will be required during the Monitor Creation section.  The ID is available using the following steps:
-
- - Select the Deployment Name
- - The Deployment ID will is at the top of the screen.  It is of the form "dkube-insurance-pl-xxxxxx".
-   - This will be used as **\<your-deployment-id\>** during the Monitor Creation section
-
 ## Create Monitor
  
  This section describes how to create a Monitor manually from a Deployed Model.

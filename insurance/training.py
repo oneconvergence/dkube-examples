@@ -117,4 +117,3 @@ with mlflow.start_run(run_name="insurance") as run:
                        "model": "Deep Neural Network"})
     
 print("Training Complete !")
-  

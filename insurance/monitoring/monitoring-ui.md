@@ -67,7 +67,7 @@
      - This Dataset includes the username and ends in "-s3"
      - This will have an "s3 | remote" source
      - This is the Dataset used for the Performance Monitoring <br><br>
-   > **Note** Make note of the Dataset name *\<your-performance-dataset\>* for Performance Monitoring.  It will be used during the Monitor creation section.
+ - The `resources` script will provide information that is necessary when creating a Performance Decay monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Setting Up Performance Decay`.  They will be referenced in the Performance Decay section.
 
 ### Review the Deployment & Identify the Deployment ID
 
@@ -117,11 +117,17 @@
    - Within the `Predict Data` section use the following fields:
      - **Dataset Content:** `CloudEventLogs`
    - Leave the other fields at their current selection <br><br>
+
+   > **Note** The `Dataset` and `Prefix/Subpath` fields in the **Performance** setup below use information provided at the end of the `resource.ipynb` script.  They are referenced here based on their names after the script is complete.
+
  - Fill in the required field in the `Performance` tab as follows:
    - Select `Enable` box
    - Select `Labelled Data` box
-   - **Dataset:** *`<your-performance-dataset>`* **(from Resource Creation step)**
-   - **Prefix/Subpath:** <code>**\<your-deployment-id\>**/livedata</code> **(from Model Deployment section)**
+   - **Dataset:** `Live Dataset Name` from `resources.iypnb` execution
+   - **Prefix/Subpath:** <<code>Deployment ID</code> from <code>resources.ipynb</code> execution>**/livedata**
+
+   > **Note** Ensure that the `Prefix/Subpath` field is of the form `xxxx/livedata`
+
    - **Groundtruth Column Name:** `GT_target`
    - **Prediction Column Name:** `charges`
    - **Timestamp Column Name:** `timestamp`

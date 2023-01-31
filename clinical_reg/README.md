@@ -4,6 +4,8 @@
 ## Download pipeline to Jupyterlab
 1. Start any of the jupyterlab notebook from the IDE tab.
    1. If project was created then create the IDE under the same Project.
+   
+   **Note:** If project is not created then it will got created during the below ipynb run.
 2. Once running, click the jupyterlab icon to launch jupyterlab
 3. Open terminal in Jupyterlab and run
    ```

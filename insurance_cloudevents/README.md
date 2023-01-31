@@ -33,6 +33,7 @@
    - Use Tensorflow framework with version 2.0.0
 3. Click Submit.
 4. Open Jupyterlab and from **workspace/monitoring-examples/insurance_cloudevents** open [resources.ipynb](https://github.com/oneconvergence/dkube-examples/tree/monitoring/insurance_cloudevents/resources.ipynb) and fill the following details in the first cell.
+    - In case of running the example notebook other than the serving setup, In the 1st cell, set RUNNING_IN_SAME to False and Fill the below details,
     - **SERVING_DKUBE_URL** = {DKube url of serving cluster}
     - **SERVING_DKUBE_USERNAME** = {DKube username of serving cluster}
     - **SERVING_DKUBE_TOKEN** = {DKube authentication token of serving cluster}

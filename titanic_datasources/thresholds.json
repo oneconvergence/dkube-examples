@@ -1,4 +1,44 @@
 {
+    "Age":{
+        "type": "drift",
+        "hard": 0.27,
+        "soft":0.22
+    },
+    "Fare":{
+        "type": "drift",
+        "hard": 0.45,
+        "soft":0.42
+    },
+    "SibSp":{
+        "type": "drift",
+        "hard": 0.6,
+        "soft":0.5
+    },
+    "Parch":{
+        "type": "drift",
+        "hard": 0.7,
+        "soft":0.65
+    },
+    "Pclass":{
+        "type": "drift",
+        "hard": 0.2,
+        "soft":0.15
+    },
+    "Sex_female":{
+        "type": "drift",
+        "hard": 0.7,
+        "soft":0.65
+    },
+    "Sex_male":{
+        "type": "drift",
+        "hard": 0.15,
+        "soft":0.1
+    },
+    "Survived":{
+        "type": "drift",
+        "hard": 0.15,
+        "soft":0.10
+    },
     "accuracy": {
         "type": "performance",
         "hard": 0.81,

@@ -20,8 +20,11 @@
 
 ## Prerequisites
 - For Aws-S3 **(S3 bucket is required)**
-  - Create an AWS S3 bucket with the name mm-workflow. 
+  - Create an AWS S3 bucket. 
   - You need access and secret keys to access the bucket.
+- For MINIO **(S3 bucket is required)**
+  - Create an S3 bucket. 
+  - You need MINIO endpoint, access and secret keys to access the bucket.
 - For SQL **(SQL database is required)**. 
   - You need the following to access the SQL Database
     - username
@@ -63,9 +66,11 @@
      - The following will be derived from the environment automatically. Otherwise, please fill in 
        - **TOKEN** = {your dkube authentication token}
        - **DKUBE_URL** = {your dkube url}
-       - If the data source is **aws-s3**, fill the below details also:
+       - If the data source is **aws-s3** or **MINIO**, fill the below details also:
          - **ACCESS_KEY** = {your s3 access key}
          - **SECRET_KEY** = {your s3 secret key}
+         - **BUCKET** = {your S3 bucket name}
+         - IF MINIO then also provide the **ENDPOINT**.
        - If the data source is **sql**, fill the below details also:
          - **DBHOSTNAME** = {sql server hostname}
          - **DATABASENAME** = {sql database name} 

@@ -46,7 +46,7 @@
 
  - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
  
- > **Warning** Do not proceed until the Pipeline Run has completed and deployed the Model
+ > **Warning** Do not proceed until the Pipeline Run has completed and deployed a new version of the Model
  
 ### Execute File to Create Resources
 
@@ -87,6 +87,26 @@
        - In that case, the link will be created on the Monitoring cluster
        - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work.  If not, the script fill fail.
    - Leave the other fields in their current selection
+
+<!---
+This is the section from the original readme that has details on using the example in various other ways.  I am consolidating it here for enhancements.
+
+Open Jupyterlab and from **workspace/insurance/insurance/monitoring** open **resources.ipynb** and fill the following details in the first cell.
+
+    - Cloudevents are stored in DKube Minio bucket. Enter the following details from the **Serving DKube Cluster**
+      - **MINIO_KEY** = {MINIO access key of Dkube setup where the prediction deployment is running. See below}
+      - **MINIO_SECRET_KEY** = {MINIO access secret key of Dkube setup where the prediction deployment is running. See below}
+      - MINIO_KEY and MINIO_SECRET_KEY values will be filled automatically by the example with SDK call, these values can also be obtained by running the following commands on the DKube setup where the prediction deployment is running. Provide the creds manually if the user is neither PE nor Operator on the remote cluster.
+        - DKube API. Fill in DKUBE_IP and TOKEN in the following curl command
+          - `curl -X 'GET' \
+              'https://DKUBE_IP:32222/dkube/v2/controller/v2/deployments/logstore' \
+              -H 'accept: application/json' \
+              -H 'Authorization: Bearer <TOKEN>'`
+        - If you have access to Kubernetes, you can get the secrets by running the following commands
+          - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_ACCESS_KEY_ID}" | base64 -d`
+          - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
+    - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
+-->
 
  #### Run the Script
  - From the top menu item `Run`, select `Run All Cells`

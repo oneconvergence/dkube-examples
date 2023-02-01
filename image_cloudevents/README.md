@@ -3,10 +3,10 @@
  This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitor capability.
 
 - This example only supports predict dataset sources as **CloudEvents**. 
-- This example also supports model deployment with a Full DKube cluster(serving cluster) and model monitoring on either the same cluster or a seperate minimal DKube cluster(monitoring cluster).
+- This example also supports model deployment with a full DKube cluster(serving cluster) and model monitoring on either the same cluster or a seperate minimal DKube cluster(monitoring cluster).
   - Serving cluster: Where production deployment will be running
   - Monitoring cluster: Where model monitor will be running
-  - **Note**: The serving and monitoring cluster can be same, but in that case the setup has to be a single full Dkube setup
+  > **Note**: The serving and monitoring cluster can be same, but in that case the setup has to be a single full Dkube setup
 
 ## Example Flow
 
@@ -69,14 +69,14 @@
    - `MONITORING_DKUBE_TOKEN` = Authentication token from the monitoring cluster, from the `Developer Settings` menu
    - `MONITOR_DKUBE_URL `= DKube access URL from the monitoring cluster, eith the form
      - `https://<Access IP Address>:32222/`
-     > **Note** Ensure that there is a final `/` in the URL field <br><br>
+     > **Note** Ensure that there is a final `/` in the URL field
  - If the Monitoring cluster already has a link to the Serving cluster from the DKube Clusters Operator screen
-   - Get the name of the DKube cluster link and provide that name to the variable `SERVING_DKUBE_CLUSTER_NAME`
+   - Get the name of the DKube cluster link and provide that name to the variable `SERVING_DKUBE_CLUSTER_NAME` <br><br>
  - If the Monitoring cluster link has not been created by the Operator on the Monitoring cluster:
    - Leave the variable `SERVING_DKUBE_CLUSTER_NAME = ""`
-  - In that case, the link will be created on the Monitoring cluster
-  - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work. If not, the script fill fail.
- - Leave the other fields at their current value
+   - In that case, the link will be created on the Monitoring cluster
+   - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work. If not, the script fill fail.
+   - Leave the other fields at their current value
 
 ### Run the Script
 
@@ -145,7 +145,7 @@ This is from the original readme.  I am leaving it here for reference for enhanc
   - Open `data_generation.ipynb`
   - In the 1st cell, update the number of data generation cycles to complete
   - `Run All Cells`
-  - This will sart to push the data based on the definitions generated in the previous `resources.ipynb` file
+  - This will start to push the data based on the definitions generated in the previous `resources.ipynb` file
 
   > **Note** Live data will be created on the MinIO server under the deployment ID.
 

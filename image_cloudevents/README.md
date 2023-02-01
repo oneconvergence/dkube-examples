@@ -53,10 +53,12 @@
 
  - Once the IDE is running, launch JupyterLab from the icon on the far right
  - Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
- - Open `resources.ipynb` <br><br>
+ - Open `resources.ipynb`
+ > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
+
  - Edit the following variables:
    - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
-
+ 
 ### Serving and Monitoring on Same Cluster
 
  - If the serving and monitoring cluster are the same, no other fields needs to be changed, skip to `Run the Script`
@@ -132,6 +134,9 @@ This is from the original readme.  I am leaving it here for reference for enhanc
  In order to monitor the deployed model, a monitor is created and launched.  This workflow executes this programatically through the DKube SDK. This can also be done through the UI by following a different example flow in this repo.
 
  - Open `modelmonitor.ipynb`
+ 
+ > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
+ 
  - `Run all Cells`
  - This script will:
    - Add the right links and import the deployment if the monitoring is on a different cluster from the serving cluster
@@ -154,3 +159,5 @@ This is from the original readme.  I am leaving it here for reference for enhanc
  After you are done with the example, clean up the data by running the `Cleanup` cells in the `modelmonitor` and `resources` scripts
 
  - Set the `Cleanup` variable to `True` in the last cell for each script, select that cell, and `Run Selected Cells` (not all cells)
+
+ > **Warning** Ensure that you restore the `Cleanup` variable to `False` after completion, or the scripts will not work on the next execution

@@ -1,5 +1,5 @@
 name: ins-cicd
-user: larryc    # DKube login user name
+user: larryc1200    # DKube login user name
 parameters:
   class: training
   training:

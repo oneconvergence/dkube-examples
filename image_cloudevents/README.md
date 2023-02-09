@@ -85,7 +85,7 @@
 
 ### Run the Script
 
- - `Run` > `Run All Cells` from the top menu
+ - `Run` > `Run All Cells` from the top menu  
 
 <!---
 This is from the original readme.  I am leaving it here for reference for enhancements later

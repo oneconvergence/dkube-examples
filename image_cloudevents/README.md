@@ -29,7 +29,7 @@
  The only manually created resource requirement for this example is the Code repo.  The rest of the resources are created by the notebook script.
 
  - Select `Code` menu on the left, then `+ Code`, and fill in the following fields:
-   - **Name:** *`<your-code-repo>`*  **(Choose a name)**
+   - **Name:** `monitoring-examples`  **(Or choose your own name as `<your-code-repo>`)**
    - **Source:** `Git`
    - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
    - **Branch:** `monitoring`
@@ -56,7 +56,7 @@
  - Open `resources.ipynb`
  > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
 
- - Edit the following variables:
+ - If you called your code repo something other than `monitoring-examples`, edit the following variable:
    - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
  
 ### Serving and Monitoring on Same Cluster
@@ -67,10 +67,13 @@
 
  - If the monitoring cluster is separate from the serving cluster, you need to provide more information for cluster communication
    - `SERVING_CLUSTER_EXECUTION` = `False`
+   - `SERVING_DKUBE_URL` = DKube access URL for the serving cluster, with the form
+     - `https://<Serving Cluster Access IP Address>:32222/`
+     > **Note** Ensure that there is a final `/` in the URL field <br><br>
+   - `MONITOR_DKUBE_URL `= DKube access URL from the monitoring cluster, with the form
    - `MONITORING_DKUBE_USERNAME` = Username on the monitoring cluster
    - `MONITORING_DKUBE_TOKEN` = Authentication token from the monitoring cluster, from the `Developer Settings` menu
-   - `MONITOR_DKUBE_URL `= DKube access URL from the monitoring cluster, eith the form
-     - `https://<Access IP Address>:32222/`
+     - `https://<Monitor Cluster Access IP Address>:32222/`
      > **Note** Ensure that there is a final `/` in the URL field
  - If the Monitoring cluster already has a link to the Serving cluster from the DKube Clusters Operator screen
    - Get the name of the DKube cluster link and provide that name to the variable `SERVING_DKUBE_CLUSTER_NAME` <br><br>
@@ -126,7 +129,7 @@ This is from the original readme.  I am leaving it here for reference for enhanc
  - This creates and executes a pipeline in order to:
    - Preprocess the dataset and generate the training data or retraining data
    - Train with the generated dataset as an input, and create an output model
-   - Deploy the generated model on a predict endpoint <br><br>
+   - Deploy the generated model on a predict endpoint
  - The pipeline will create a new version of the Model `image-mm-kf`
  > **Note** Wait for the pipeline to complete before continuing
 

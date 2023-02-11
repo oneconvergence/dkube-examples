@@ -142,13 +142,15 @@ There are 4 basic setups screens to configure:
 - `Drift` sets up Data Drift configuration for inputs and outputs
 - `Performance` sets up Performance Decay configuration, which must include ground truth
 
+Follow the instructions in this section to setup the basic monitor
+
 - Navigate to the `Deployments` menu on the left
 - Select the `Add Monitor` icon on the far right of the deployment row
 - Fill in the following fields:
   - `Settings` tab
     - **Model Type:** `Classification`
     - **Input Data Type:** `Image`
-    - Leave the other fields at their current selection <br><br>
+  - Leave the other fields at their current selection <br><br>
   - `Drift` tab
     - Check `Enable`
     - **Algorithm:** `Auto`
@@ -165,7 +167,7 @@ There are 4 basic setups screens to configure:
       - **Dataset Content:** `CloudEventlogs`
       - **Dataset:** `image-mm-kf-s3`
       - **Prefix/Subpath:** <br><Br>
-      - Leave the other fields at their current selection <br><br>
+    - Leave the other fields at their current selection <br><br>
   - `Performance` tab
     - Check `Enable`
     - **Compute Metrics:** `Labelled Data`
@@ -174,7 +176,7 @@ There are 4 basic setups screens to configure:
     - **Groundtruth Column Name:** `label`
     - **Prediction Column Name:** `output`
     - **Timestamp Column Name:** `timestamp`
-    - Leave the other fields at their current selection
+  - Leave the other fields at their current selection
 - `Submit`
   - Choose `Close` from the popup
 
@@ -189,7 +191,20 @@ After the model monitor has been configured, the Schema needs to be completed to
 - Select the `Update Schema` icon on the right of the Monitor line
   - The Schema window will appear
 
+## Add Alert
+
+Alerts will provide a notification that there is a potential issue.
+
 ### 5. Alerts
+
+- From the `Deployments` > `Monitors` screen, select the `Add Alerts` icon from the `Actions` column on the right
+- Select `Add Alert` and fil in the following fields:
+  - **Alert Name:** `accuracy`
+  - **Alert Type:** `Performance Decay`
+  - **Configure Based On:** `Threshold`
+  - **Add Metric**
+    -`accuracy` | `<` | `0.85`
+
 Add Performance Decay Alerts
   - Create an alert and choose Performance Decay from dropdown.
   - Select `accuracy` metric from down.

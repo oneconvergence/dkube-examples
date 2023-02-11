@@ -1,6 +1,8 @@
-# Chest X-Ray Image Example
+# Chest X-Ray Image Monitor Example (Pipeline-Based Workflow)
 
  This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
+
+ This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, with the filename `README-ui.md`
 
 - This example only supports predict dataset sources as **CloudEvents**. 
 - This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (:`monitoring cluster`).
@@ -56,7 +58,7 @@
  - Open `resources.ipynb`
  > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
 
- - If you called your code repo something other than `monitoring-examples`, edit the following variable:
+ - If you called your code repo something other than `monitoring-examples`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
    - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
  
 ### Serving and Monitoring on Same Cluster
@@ -69,7 +71,7 @@
    - `SERVING_CLUSTER_EXECUTION` = `False`
    - `SERVING_DKUBE_URL` = DKube access URL for the serving cluster, with the form
      - `https://<Serving Cluster Access IP Address>:32222/`
-     > **Note** Ensure that there is a final `/` in the URL field <br><br>
+     > **Note** Ensure that there is a final `/` in the URL field
    - `MONITOR_DKUBE_URL `= DKube access URL from the monitoring cluster, with the form
    - `MONITORING_DKUBE_USERNAME` = Username on the monitoring cluster
    - `MONITORING_DKUBE_TOKEN` = Authentication token from the monitoring cluster, from the `Developer Settings` menu
@@ -85,7 +87,12 @@
 
 ### Run the Script
 
- - `Run` > `Run All Cells` from the top menu  
+ - `Run` > `Run All Cells` from the top menu <br><br>
+
+ - The following resources will be created:
+   - `chest-xray` Dataset on both the serving and monitoring cluster
+   - `image-mm-kf` Model on the serving cluster
+   - `image-mm-kf-s3` Dataset on the monitoring cluster
 
 <!---
 This is from the original readme.  I am leaving it here for reference for enhancements later
@@ -113,16 +120,11 @@ This is from the original readme.  I am leaving it here for reference for enhanc
           - `kubectl get secret -n dkube-infra cloudevents-minio-secret -o jsonpath="{.data.AWS_SECRET_ACCESS_KEY}" | base64 -d`
     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
 5. Run all the cells. This will create all the DKube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
--->
-
- - The following resources will be created:
-   - `chest-xray` Dataset on both the serving and monitoring cluster
-   - `image-mm-kf` Dataset on the serving cluster
-   - `image-mm-kf-s3` Dataset on the monitoring cluster
+--->
 
 ## 4. Train and Deploy the Model on Serving Cluster
 
- In order for monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
+ In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
 
  - Open `train.ipynb`
  - `Run All Cells`

@@ -191,11 +191,9 @@ After the model monitor has been configured, the Schema needs to be completed to
 - Select the `Update Schema` icon on the right of the Monitor line
   - The Schema window will appear
 
-## Add Alert
+## 8. Add Alert
 
 Alerts will provide a notification that there is a potential issue.
-
-### 5. Alerts
 
 - From the `Deployments` > `Monitors` screen, select the `Add Alerts` icon from the `Actions` column on the right
 - Select `Add Alert` and fil in the following fields:
@@ -203,14 +201,19 @@ Alerts will provide a notification that there is a potential issue.
   - **Alert Type:** `Performance Decay`
   - **Configure Based On:** `Threshold`
   - **Add Metric**
-    -`accuracy` | `<` | `0.85`
+    - `accuracy` | `<` | `0.85`
+- Leave the other fields at their current selection
+- `Submit`
 
-Add Performance Decay Alerts
-  - Create an alert and choose Performance Decay from dropdown.
-  - Select `accuracy` metric from down.
-  - Provide 0.85 as threshold value.
+## 9. Start Monitor
 
-### 6. Start Monitor.
-Click on Start for the specific monitor on Modelmonitor dashboard.
-   - Modelmonitor can only be started in 'ready' state.
-   - It can be stopped anytime. Previous data will not be erased.
+The Monitor needs to be in the `active` state to monitor.
+
+- Navigate to the `Deployments` > `Monitors` screen
+- Ensure that the Monitor is in the `ready` state
+  - If not, do not proceed, since something has not been properly configured
+- Select the Monitor with the checkbox to the left
+  - Select `Start` button <br><br>
+
+- The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
+

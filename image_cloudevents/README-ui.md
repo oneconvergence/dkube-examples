@@ -92,7 +92,6 @@ If the JupyterLab notebook has already been created, go directly to the `Section
 ### Run the Script
 
 - `Run` > `Run All Cells` from the top menu <br><br>
-
 - The following resources will be created:
   - `chest-xray` Dataset on both the serving and monitoring cluster
   - `image-mm-kf-s3` Dataset on the monitoring cluster
@@ -167,7 +166,7 @@ Follow the instructions in this section to setup the basic monitor
       - **Dataset Content:** `CloudEventlogs`
       - **Dataset:** `image-mm-kf-s3`
       - **Prefix/Subpath:** <br><Br>
-    - Leave the other fields at their current selection <br><br>
+  - Leave the other fields at their current selection <br><br>
   - `Performance` tab
     - Check `Enable`
     - **Compute Metrics:** `Labelled Data`

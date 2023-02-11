@@ -195,7 +195,8 @@ After the model monitor has been configured, the Schema needs to be completed to
 
 Alerts will provide a notification that there is a potential issue.
 
-- From the `Deployments` > `Monitors` screen, select the `Add Alerts` icon from the `Actions` column on the right
+- From the `Deployments` > `Monitors` screen
+- Select the `Add Alerts` icon from the `Actions` column on the right
 - Select `Add Alert` and fil in the following fields:
   - **Alert Name:** `accuracy`
   - **Alert Type:** `Performance Decay`
@@ -207,13 +208,12 @@ Alerts will provide a notification that there is a potential issue.
 
 ## 9. Start Monitor
 
-The Monitor needs to be in the `active` state to monitor.
+The Monitor needs to be in the `active` state to execute the monitoring function.
 
 - Navigate to the `Deployments` > `Monitors` screen
 - Ensure that the Monitor is in the `ready` state
   - If not, do not proceed, since something has not been properly configured
 - Select the Monitor with the checkbox to the left
   - Select `Start` button <br><br>
-
 - The details of how to view and understand the Monitor are described at [DKube Monitor Dashboard](https://dkube.io/monitor/monitor3_x/Monitor_Workflow.html#monitor-dashboard)
 

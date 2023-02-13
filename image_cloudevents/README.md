@@ -51,20 +51,7 @@ In order to run the script to set up the resources, train and deploy the model, 
 - Leave the rest of the fields at their current value
 - `Submit`
 
-## 3. Train and Deploy the Model on Serving Cluster
-
-In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
-
-- Open `train.ipynb`
-- `Run All Cells`
-- This creates and executes a pipeline in order to:
-  - Preprocess the dataset and generate the training data or retraining data
-  - Train with the generated dataset as an input, and create an output model
-  - Deploy the generated model on a predict endpoint
-- The pipeline will create a new version of the Model `image-mm-kf`
-> **Note** Wait for the pipeline to complete before continuing
-
-## 4. Create the Resources
+## 3. Create the Resources
 
 - Once the IDE is running, launch JupyterLab from the icon on the far right
 - Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
@@ -106,6 +93,19 @@ In order for the monitor example to operate, a model must be trained and deploye
   - `chest-xray` Dataset on both the serving and monitoring cluster
   - `image-mm-kf` Model on the serving cluster
   - `image-mm-kf-s3` Dataset on the monitoring cluster
+
+## 4. Train and Deploy the Model on Serving Cluster
+
+In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
+
+- Open `train.ipynb`
+- `Run All Cells`
+- This creates and executes a pipeline in order to:
+  - Preprocess the dataset and generate the training data or retraining data
+  - Train with the generated dataset as an input, and create an output model
+  - Deploy the generated model on a predict endpoint
+- The pipeline will create a new version of the Model `image-mm-kf`
+> **Note** Wait for the pipeline to complete before continuing
 
 ## 5. Create a Model Monitor
 

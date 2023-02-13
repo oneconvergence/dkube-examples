@@ -44,7 +44,7 @@ The DKube Code repo is required for the initial setup scripts to execute.
 
 In order to run the script to set up the resources, and to train and deploy the model, a JupyterLab IDE needs to be created.  The scripts will be run from within JupyterLab.  
 
-> **Note** If the JupyterLab notebook has already been created, go directly to the `Section 3` to train and deploy the model on the serving cluster.  Otherwise, follow the instructions in this section.
+> **Note** If the JupyterLab notebook has already been created, go directly to the `Section 3` to create the resources.  Otherwise, follow the instructions in this section.
 
 - Select `IDE` menu on the left, then `+ JupyterLab`, and fill in the following fields:
   - **Name:** *`<your-IDE-name>`*  **(Choose a name)**
@@ -55,22 +55,7 @@ In order to run the script to set up the resources, and to train and deploy the 
 - Leave the rest of the fields at their current value
 - `Submit`
 
-## 3. Train and Deploy the Model on Serving Cluster
-
-In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
-
-> **Note** If the deployed model has already been created, skip to `Section 4` to create the resources.  Otherwise, follow the instructions in this section.
-
-- Open `train.ipynb`
-- `Run All Cells`
-- This creates and executes a pipeline in order to:
-  - Preprocess the dataset and generate the training data or retraining data
-  - Train with the generated dataset as an input, and create an output model
-  - Deploy the generated model on a predict endpoint
-- The pipeline will create a new version of the Model `image-mm-kf`
-> **Note** Wait for the pipeline to complete before continuing
-
-## 4. Create the Resources
+## 3. Create the Resources
 
 - Once the IDE is running, launch JupyterLab from the icon on the far right
 - Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
@@ -82,7 +67,7 @@ In order for the monitor example to operate, a model must be trained and deploye
 
 ### Serving and Monitoring on Same Cluster
 
-- If the serving and monitoring cluster are the same, no other fields needs to be changed, skip to `Run the Script`
+- If the serving and monitoring cluster are the same, no other fields need to be changed, skip to `Run the Script`
 
 ### Serving and Monitoring on Different Clusters
 
@@ -112,7 +97,22 @@ In order for the monitor example to operate, a model must be trained and deploye
   - `image-mm-kf-s3` Dataset on the monitoring cluster
   - `image-mm-kf` Model on the serving cluster
 
-- The `resources` script will provide information that is necessary when configuration the monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Configuring the Monitor through the UI`.  They will be referenced in the Drift & Performance configuration sections.
+## 4. Train and Deploy the Model on Serving Cluster
+
+In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
+
+> **Note** If the deployed model has already been created, skip to `Section 5` to create the monitor.  Otherwise, follow the instructions in this section.
+
+- Open `train.ipynb`
+- `Run All Cells`
+- This creates and executes a pipeline in order to:
+  - Preprocess the dataset and generate the training data or retraining data
+  - Train with the generated dataset as an input, and create an output model
+  - Deploy the generated model on a predict endpoint
+- The pipeline will create a new version of the Model `image-mm-kf`
+> **Note** Wait for the pipeline to complete before continuing
+
+- The `train` script will provide information that is necessary when configuration the monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Configuring the Monitor through the UI`.  They will be referenced in the Drift & Performance configuration sections.
 
 <img src="./Images/Resources_Image.png" width=100% height=100%>
 

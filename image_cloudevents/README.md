@@ -1,11 +1,11 @@
 # Chest X-Ray Image Monitor Example (Pipeline-Based Workflow)
 
- This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
+This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
 
- This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, with the filename `README-ui.md`
+This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called [README-ui.md](README-ui.md)
 
 - This example only supports predict dataset sources as **CloudEvents**. 
-- This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (:`monitoring cluster`).
+- This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (`monitoring cluster`).
   - **Serving cluster:** Where the production deployment will be running
   - **Monitoring cluster:** Where the model monitor will be running
   > **Note**: The serving and monitoring clusters can be same, but in that case the setup has to be a single **full** DKube setup
@@ -28,71 +28,117 @@
 
 ## 1. Create DKube Code Repo
 
- The only manually created resource requirement for this example is the Code repo.  The rest of the resources are created by the notebook script.
+The only manually created resource requirement for this example is the Code repo.  The rest of the resources are created by the notebook script.
 
- - Select `Code` menu on the left, then `+ Code`, and fill in the following fields:
-   - **Name:** `monitoring-examples`  **(Or choose your own name as `<your-code-repo>`)**
-   - **Source:** `Git`
-   - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
-   - **Branch:** `monitoring`
- - Leave the rest of the fields at their current value
- - `Add Code`
+- Select `Code` menu on the left, then `+ Code`, and fill in the following fields:
+  - **Name:** `monitoring-examples`  **(Or choose your own name as `<your-code-repo>`)**
+  - **Source:** `Git`
+  - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
+  - **Branch:** `monitoring`
+- Leave the rest of the fields at their current value
+- `Add Code`
 
 ## 2. Create and Launch JupyterLab
 
- In order to run the script to set up the resources, train and deploy the model, and create the monitor, a JupyterLab IDE needs to be created.  The scripts will be run from within JupyterLab.
+In order to run the script to set up the resources, train and deploy the model, and create the monitor, a JupyterLab IDE needs to be created.  The scripts will be run from within JupyterLab.
 
- - Select `IDE` menu on the left, then `+ JupyterLab`, and fill in the following fields:
-   - **Name:** *`<your-IDE-name>`*  **(Choose a name)**
-   - **Code:** *`<your-code-repo>`*  **(Chosen during Code repo creation)**
-   - **Framework:** `tensorflow`
-   - **Framework Version:** `2.0.0`
-   - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-17`   **(This should be the default, but ensure that it is selected)**
- - Leave the rest of the fields at their current value
- - `Submit`
+- Select `IDE` menu on the left, then `+ JupyterLab`, and fill in the following fields:
+  - **Name:** *`<your-IDE-name>`*  **(Choose a name)**
+  - **Code:** *`<your-code-repo>`*  **(Chosen during Code repo creation)**
+  - **Framework:** `tensorflow`
+  - **Framework Version:** `2.0.0`
+  - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-17`   **(This should be the default, but ensure that it is selected)**
+- Leave the rest of the fields at their current value
+- `Submit`
 
- ## 3. Create the Resources
+## 3. Train and Deploy the Model on Serving Cluster
 
- - Once the IDE is running, launch JupyterLab from the icon on the far right
- - Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
- - Open `resources.ipynb`
- > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
+In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
 
- - If you called your code repo something other than `monitoring-examples`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
-   - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
+- Open `train.ipynb`
+- `Run All Cells`
+- This creates and executes a pipeline in order to:
+  - Preprocess the dataset and generate the training data or retraining data
+  - Train with the generated dataset as an input, and create an output model
+  - Deploy the generated model on a predict endpoint
+- The pipeline will create a new version of the Model `image-mm-kf`
+> **Note** Wait for the pipeline to complete before continuing
+
+## 4. Create the Resources
+
+- Once the IDE is running, launch JupyterLab from the icon on the far right
+- Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
+- Open `resources.ipynb`
+> **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
+
+- If you called your code repo something other than `monitoring-examples`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
+  - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
  
 ### Serving and Monitoring on Same Cluster
 
- - If the serving and monitoring cluster are the same, no other fields needs to be changed, skip to `Run the Script`
+- If the serving and monitoring cluster are the same, no other fields needs to be changed, skip to `Run the Script`
 
 ### Serving and Monitoring on Different Clusters
 
- - If the monitoring cluster is separate from the serving cluster, you need to provide more information for cluster communication
-   - `SERVING_CLUSTER_EXECUTION` = `False`
-   - `SERVING_DKUBE_URL` = DKube access URL for the serving cluster, with the form
-     - `https://<Serving Cluster Access IP Address>:32222/`
-     > **Note** Ensure that there is a final `/` in the URL field
-   - `MONITOR_DKUBE_URL `= DKube access URL from the monitoring cluster, with the form
-   - `MONITORING_DKUBE_USERNAME` = Username on the monitoring cluster
-   - `MONITORING_DKUBE_TOKEN` = Authentication token from the monitoring cluster, from the `Developer Settings` menu
-     - `https://<Monitor Cluster Access IP Address>:32222/`
-     > **Note** Ensure that there is a final `/` in the URL field
- - If the Monitoring cluster already has a link to the Serving cluster from the DKube Clusters Operator screen
-   - Get the name of the DKube cluster link and provide that name to the variable `SERVING_DKUBE_CLUSTER_NAME` <br><br>
- - If the Monitoring cluster link has not been created by the Operator on the Monitoring cluster:
-   - Leave the variable `SERVING_DKUBE_CLUSTER_NAME = ""`
-   - In that case, the link will be created on the Monitoring cluster
-   - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work. If not, the script fill fail.
-   - Leave the other fields at their current value
+- If the monitoring cluster is separate from the serving cluster, you need to provide more information for cluster communication
+  - `SERVING_CLUSTER_EXECUTION` = `False`
+  - `SERVING_DKUBE_URL` = DKube access URL for the serving cluster, with the form
+    - `https://<Serving Cluster Access IP Address>:32222/`
+    > **Note** Ensure that there is a final `/` in the URL field
+  - `MONITOR_DKUBE_URL `= DKube access URL from the monitoring cluster, with the form
+  - `MONITORING_DKUBE_USERNAME` = Username on the monitoring cluster
+  - `MONITORING_DKUBE_TOKEN` = Authentication token from the monitoring cluster, from the `Developer Settings` menu
+    - `https://<Monitor Cluster Access IP Address>:32222/`
+    > **Note** Ensure that there is a final `/` in the URL field
+- If the Monitoring cluster already has a link to the Serving cluster from the DKube Clusters Operator screen
+  - Get the name of the DKube cluster link and provide that name to the variable `SERVING_DKUBE_CLUSTER_NAME` <br><br>
+- If the Monitoring cluster link has not been created by the Operator on the Monitoring cluster:
+  - Leave the variable `SERVING_DKUBE_CLUSTER_NAME = ""`
+  - In that case, the link will be created on the Monitoring cluster
+  - The username identified in the `MONITORING_DKUBE_USERNAME` variable must have Operator privileges for this to work. If not, the script fill fail.
+  - Leave the other fields at their current value
 
 ### Run the Script
 
- - `Run` > `Run All Cells` from the top menu <br><br>
+- `Run` > `Run All Cells` from the top menu <br><br>
 
- - The following resources will be created:
-   - `chest-xray` Dataset on both the serving and monitoring cluster
-   - `image-mm-kf` Model on the serving cluster
-   - `image-mm-kf-s3` Dataset on the monitoring cluster
+- The following resources will be created:
+  - `chest-xray` Dataset on both the serving and monitoring cluster
+  - `image-mm-kf` Model on the serving cluster
+  - `image-mm-kf-s3` Dataset on the monitoring cluster
+
+## 5. Create a Model Monitor
+
+In order to monitor the deployed model, a monitor is created and launched.  This workflow executes this programatically through the DKube SDK. This can also be done through the UI by following a different example flow in this repo.
+
+- Open `modelmonitor.ipynb`
+ 
+> **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
+ 
+- `Run all Cells`
+- This script will:
+  - Add the right links and import the deployment if the monitoring is on a different cluster from the serving cluster
+  - Create a new model monitor
+- After the script has completed, the monitor `image-mm-kf` will be in the active state
+
+## 6. Generate Data
+
+Predict and Groundtruth datasets will be generated by this script, and will be used by the monitor to analyse the model execution.
+
+- Open `data_generation.ipynb`
+- In the 1st cell, update the number of data generation cycles to complete
+  - `Run All Cells`
+  - This will start to push the data based on the definitions generated in the previous `resources.ipynb` file
+
+> **Note** Live data will be created on the MinIO server under the deployment ID.
+
+## 7. Clean Up the Data when Complete
+
+After you are done with the example, clean up the data by running the `Cleanup` cells in the `modelmonitor` and `resources` scripts
+
+- Set the `Cleanup` variable to `True` in the last cell for each script, select that cell, and `Run Selected Cells` (not all cells)
+
+> **Warning** Ensure that you restore the `Cleanup` variable to `False` after completion, or the scripts will not work on the next execution
 
 <!---
 This is from the original readme.  I am leaving it here for reference for enhancements later
@@ -121,49 +167,3 @@ This is from the original readme.  I am leaving it here for reference for enhanc
     - The following will be derived from the environment automatically if the notebook is running inside same Dkube IDE. Otherwise in case if the notebook is running locally or in other Dkube Setup , then please fill in, 
 5. Run all the cells. This will create all the DKube resources required for this example automatically. In case of seperate serving and monitoring cluster, the required resources will be created on the respective cluster.
 --->
-
-## 4. Train and Deploy the Model on Serving Cluster
-
- In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
-
- - Open `train.ipynb`
- - `Run All Cells`
- - This creates and executes a pipeline in order to:
-   - Preprocess the dataset and generate the training data or retraining data
-   - Train with the generated dataset as an input, and create an output model
-   - Deploy the generated model on a predict endpoint
- - The pipeline will create a new version of the Model `image-mm-kf`
- > **Note** Wait for the pipeline to complete before continuing
-
-## 5. Create a Model Monitor
-
- In order to monitor the deployed model, a monitor is created and launched.  This workflow executes this programatically through the DKube SDK. This can also be done through the UI by following a different example flow in this repo.
-
- - Open `modelmonitor.ipynb`
- 
- > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
- 
- - `Run all Cells`
- - This script will:
-   - Add the right links and import the deployment if the monitoring is on a different cluster from the serving cluster
-   - Create a new model monitor
- - After the script has completed, the monitor `image-mm-kf` will be in the active state
-
-## 6. Generate Data
-
- Predict and Groundtruth datasets will be generated by this script, and will be used by the monitor to analyse the model execution.
-
-  - Open `data_generation.ipynb`
-  - In the 1st cell, update the number of data generation cycles to complete
-  - `Run All Cells`
-  - This will start to push the data based on the definitions generated in the previous `resources.ipynb` file
-
-  > **Note** Live data will be created on the MinIO server under the deployment ID.
-
-## 7. Clean Up the Data when Complete
-
- After you are done with the example, clean up the data by running the `Cleanup` cells in the `modelmonitor` and `resources` scripts
-
- - Set the `Cleanup` variable to `True` in the last cell for each script, select that cell, and `Run Selected Cells` (not all cells)
-
- > **Warning** Ensure that you restore the `Cleanup` variable to `False` after completion, or the scripts will not work on the next execution

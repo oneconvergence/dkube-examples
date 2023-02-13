@@ -2,10 +2,10 @@
 
 This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
 
-This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, with the filename `README.md`.
+This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called  [README.md](README.md)
 
 - This example only supports predict dataset sources as **CloudEvents**. 
-- This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (:`monitoring cluster`).
+- This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (`monitoring cluster`).
   - **Serving cluster:** Where the production deployment will be running
   - **Monitoring cluster:** Where the model monitor will be running
   > **Note**: The serving and monitoring clusters can be same, but in that case the setup has to be a single **full** DKube setup
@@ -30,7 +30,7 @@ This workflow uses a Kubeflow Pipeline to set up the resources and created the m
 
 The DKube Code repo is required for the initial setup scripts to execute.  
 
-If this was already done, skip this section and move on to `Section 2`.  Otherwise, follow the instructions in this section.
+> **Note** If this was already done, skip this section and move on to `Section 2`.  Otherwise, follow the instructions in this section.
 
 - Select `Code` menu on the left, then `+ Code`, and fill in the following fields:
   - **Name:** `monitoring-examples`  **(Or choose your own name as `<your-code-repo>`)**
@@ -44,7 +44,7 @@ If this was already done, skip this section and move on to `Section 2`.  Otherwi
 
 In order to run the script to set up the resources, and to train and deploy the model, a JupyterLab IDE needs to be created.  The scripts will be run from within JupyterLab.  
 
-If the JupyterLab notebook has already been created, go directly to the `Section 3` to create the resources.  Otherwise, follow the instructions in this section.
+> **Note** If the JupyterLab notebook has already been created, go directly to the `Section 3` to train and deploy the model on the serving cluster.  Otherwise, follow the instructions in this section.
 
 - Select `IDE` menu on the left, then `+ JupyterLab`, and fill in the following fields:
   - **Name:** *`<your-IDE-name>`*  **(Choose a name)**
@@ -55,7 +55,22 @@ If the JupyterLab notebook has already been created, go directly to the `Section
 - Leave the rest of the fields at their current value
 - `Submit`
 
-## 3. Create the Resources
+## 3. Train and Deploy the Model on Serving Cluster
+
+In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
+
+> **Note** If the deployed model has already been created, skip to `Section 4` to create the resources.  Otherwise, follow the instructions in this section.
+
+- Open `train.ipynb`
+- `Run All Cells`
+- This creates and executes a pipeline in order to:
+  - Preprocess the dataset and generate the training data or retraining data
+  - Train with the generated dataset as an input, and create an output model
+  - Deploy the generated model on a predict endpoint
+- The pipeline will create a new version of the Model `image-mm-kf`
+> **Note** Wait for the pipeline to complete before continuing
+
+## 4. Create the Resources
 
 - Once the IDE is running, launch JupyterLab from the icon on the far right
 - Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
@@ -97,24 +112,13 @@ If the JupyterLab notebook has already been created, go directly to the `Section
   - `image-mm-kf-s3` Dataset on the monitoring cluster
   - `image-mm-kf` Model on the serving cluster
 
-## 4. Train and Deploy the Model on Serving Cluster
+- The `resources` script will provide information that is necessary when configuration the monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Configuring the Monitor through the UI`.  They will be referenced in the Drift & Performance configuration sections.
 
-In order for the monitor example to operate, a model must be trained and deployed on the serving cluster.  A Kubeflow Pipeline executes this step.
-
-If the deployed model has already been created, skip to `Section 5` to create the monitor.  Otherwise, follow the instructions in this section.
-
-- Open `train.ipynb`
-- `Run All Cells`
-- This creates and executes a pipeline in order to:
-  - Preprocess the dataset and generate the training data or retraining data
-  - Train with the generated dataset as an input, and create an output model
-  - Deploy the generated model on a predict endpoint
-- The pipeline will create a new version of the Model `image-mm-kf`
-> **Note** Wait for the pipeline to complete before continuing
+<img src="./Images/Resources_Image.png" width=100% height=100%>
 
 ## 5. Import Serving Deployment if Monitoring on a Separate Cluster
 
-If the Monitor is on the Serving cluster, skip to `Section 6` and create the monitor.  Otherwise, follow this section to import the deployment.
+> **Note** If the Monitor is on the Serving cluster, skip to `Section 6` and create the monitor.  Otherwise, follow this section to import the deployment.
 
 If the Monitor is on a different cluster than the Served deployment, the deployment first needs to be imported to the Monitor cluster. In order for this to work, a `Cluster` link needs to be set up from the Monitor to the Serving cluster.  This is done by a user with Operator authorization.
 
@@ -122,7 +126,8 @@ If the Monitor is on a different cluster than the Served deployment, the deploym
 
 - Navigate to the `Deployments` menu on the left
 - Select `+ Import` and fill in the following fields:
-  - **Name:** `Exact name of the deployment on the Serving cluster`
+  - **Name:** `image-mm-kf`
+  > **Note** This is the name of the deployed model on the Serving cluster
   - **Cluster:** `Cluster name previously set up for the Serving cluster`
   - **Namespace:** `User name on the Serving cluster`
 - Leave the other fields at their current selection
@@ -132,14 +137,21 @@ If the Monitor is on a different cluster than the Served deployment, the deploym
 
 This section describes the process to create and activate a monitor.
 
-> **Note** These steps are performed **on the cluster where the monitor will run**, either the serving cluster (if the deployment and monitor are on the same cluster) or the monitor cluster (if the monitor is on a different cluster than the deployment)
+> **Note** These steps are performed **on the cluster where the monitor will run**, either:
+
+- Serving cluster (if the deployment and monitor are on the same cluster)
+- Monitor cluster (if the monitor is on a different cluster than the deployment)
 
 There are 4 basic setups screens to configure:
 
-- `Settings` provides overall information on the type of monitor, such as what type of model it is and the data type
-- `Health` monitors the deployment health, and is enabled by default with minimal configuration required
-- `Drift` sets up Data Drift configuration for inputs and outputs
-- `Performance` sets up Performance Decay configuration, which must include ground truth
+- `Settings`
+  - Provides overall comfiguration information on the type of monitor, such as what type of model it is and the data type
+- `Health`
+  - <onitors the deployment health, and is enabled by default with minimal configuration required
+- `Drift`
+  - Sets up Data Drift configuration for inputs and outputs
+- `Performance`
+  - Sets up Performance Decay configuration, which must include the ground truth
 
 Follow the instructions in this section to setup the basic monitor
 
@@ -163,15 +175,19 @@ Follow the instructions in this section to setup the basic monitor
       - **Dataset Version:** `v1`
       - **Images Saved As:** `Images in labelled folder`
     - **Predict Data**
-      - **Dataset Content:** `CloudEventlogs`
-      - **Dataset:** `image-mm-kf-s3`
-      - **Prefix/Subpath:** <br><Br>
+      - **Dataset Content:** `CloudEventlogs` <br><br>
+      - If the monitor is on the **same cluster** as the served model, there there is no more configuration for the `Drift` tab
+      - If the monitor is on a **different cluster** than the served model, there will be 2 more fields in this tab
+        - **Dataset:** `image-mm-kf-s3`
+        - **Prefix/Subpath:** `<Deployment ID of Served Model>
+        > **Note** The deployment ID of the served model is available from the `resources.ipynb` run as described at the end of `Section 4`
   - Leave the other fields at their current selection <br><br>
   - `Performance` tab
     - Check `Enable`
     - **Compute Metrics:** `Labelled Data`
     - **Dataset":** `image-mm-kf-s3`
-    - **Prefix/Subpath:** <code>\<your-deployment-ID\>/**livedata**</code>
+    - **Prefix/Subpath:** <code>\<Deployment ID of Served Model\>/**livedata**</code>
+    > **Note** The deployment ID of the served model is available from the `resources.ipynb` run as described at the end of `Section 4`
     - **Groundtruth Column Name:** `label`
     - **Prediction Column Name:** `output`
     - **Timestamp Column Name:** `timestamp`
@@ -187,15 +203,21 @@ After the model monitor has been configured, the Schema needs to be completed to
 - Select the `Monitors` tab on the top
 - The newly created Monitor will show up on the list
   - The Monitor will be in the `pending` status. If it is not yet at that status, wait until it is.
-- Select the `Update Schema` icon on the right of the Monitor line
+- Select the `Update Schema` icon from the `Actions` column on the right of the monitor row
   - The Schema window will appear
+- Select the `+ Add` button
+  - **Name:** `prediction`
+  - **Column/Feature Type:** `Prediction Output`
+  - **Value Type:** `Categorical`
+  - Select `Add`
+  - `Close`
 
 ## 8. Add Alert
 
 Alerts will provide a notification that there is a potential issue.
 
 - From the `Deployments` > `Monitors` screen
-- Select the `Add Alerts` icon from the `Actions` column on the right
+- Select the `Add Alerts` icon from the `Actions` column on the right of the monitor row
 - Select `Add Alert` and fil in the following fields:
   - **Alert Name:** `accuracy`
   - **Alert Type:** `Performance Decay`

@@ -15,14 +15,14 @@ parameters:
     datums:
       workspace:
         data:
-          name: 'username:ins-lc-cicd'    # <Dkube login name>:<Code repo name>
+          name: 'username:ins-cicd'    # <Dkube login name>:<Code repo name>
           version: ''
         script: python insurance/training.py
       datasets:
-        - name: 'username:ins-lc-cicd'    # <Dkube login name>:<Dataset repo name>
+        - name: 'username:ins-cicd'    # <Dkube login name>:<Dataset repo name>
           mountpath: 
       outputs:
-        - name: 'username:ins-lc-cicd'    # <DKube login name>:<Model repo name>
+        - name: 'username:ins-cicd'    # <DKube login name>:<Model repo name>
           mountpath: 
     featuresets: {}
     tags: []

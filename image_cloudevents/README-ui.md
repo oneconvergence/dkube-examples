@@ -112,7 +112,8 @@ In order for the monitor example to operate, a model must be trained and deploye
 - The pipeline will create a new version of the Model `image-mm-kf`
 > **Note** Wait for the pipeline to complete before continuing
 
-- The `train` script will provide information that is necessary when configuration the monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Configuring the Monitor through the UI`.  They will be referenced in the Drift & Performance configuration sections.
+- After the pipeline is complete, and the deployed model has been created on the serving cluster, select the 2nd from the last cell in the `train.ipynb` script and `Run Selected Cell` (not "Run All Cells")
+- This will provide information that is necessary when configuration the monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Configuring the Monitor through the UI`.  They will be referenced in the Drift & Performance configuration sections.
 
 <img src="./Images/Resources_Image.png" width=100% height=100%>
 
@@ -180,14 +181,14 @@ Follow the instructions in this section to setup the basic monitor
       - If the monitor is on a **different cluster** than the served model, there will be 2 more fields in this tab
         - **Dataset:** `image-mm-kf-s3`
         - **Prefix/Subpath:** `<Deployment ID of Served Model>
-        > **Note** The deployment ID of the served model is available from the `resources.ipynb` run as described at the end of `Section 4`
+        > **Note** The deployment ID of the served model is available from the `train.ipynb` run as described at the end of `Section 4`
   - Leave the other fields at their current selection <br><br>
   - `Performance` tab
     - Check `Enable`
     - **Compute Metrics:** `Labelled Data`
     - **Dataset":** `image-mm-kf-s3`
     - **Prefix/Subpath:** <code>\<Deployment ID of Served Model\>/**livedata**</code>
-    > **Note** The deployment ID of the served model is available from the `resources.ipynb` run as described at the end of `Section 4`
+    > **Note** The deployment ID of the served model is available from the `train.ipynb` run as described at the end of `Section 4`
     - **Groundtruth Column Name:** `label`
     - **Prediction Column Name:** `output`
     - **Timestamp Column Name:** `timestamp`

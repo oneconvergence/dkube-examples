@@ -232,7 +232,7 @@ Alerts will provide a notification that there is a potential issue.
 
 Thresholds provide the soft and hard limits that drive the status indications for the monitor.  You upload a threshold file that sets them up.
 
-- Get the thresholds file from https://github.com/larryc1200/dkube-examples/tree/monitoring/image_cloudevents/threshold.json
+- Get the thresholds file from https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_cloudevents/threshold.json
   - Select the `Raw` button
   - Right click and `Save as...` <br><br>
 - Navigate the `Deployments` > `Monitors` screen

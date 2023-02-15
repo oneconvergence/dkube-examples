@@ -217,7 +217,7 @@ After the model monitor has been configured, the Schema needs to be completed to
 
 Alerts will provide a notification that there is a potential issue.
 
-- From the `Deployments` > `Monitors` screen
+- Navigate the `Deployments` > `Monitors` screen
 - Select the `Add Alerts` icon from the `Actions` column on the right of the monitor row
 - Select `Add Alert` and fil in the following fields:
   - **Alert Name:** `accuracy`
@@ -228,7 +228,20 @@ Alerts will provide a notification that there is a potential issue.
 - Leave the other fields at their current selection
 - `Submit`
 
-## 9. Start Monitor
+## 9. Upload Thresholds
+
+Thresholds provide the soft and hard limits that drive the status indications for the monitor.  You upload a threshold file that sets them up.
+
+- Get the thresholds file from https://github.com/larryc1200/dkube-examples/tree/monitoring/image_cloudevents/threshold.json
+  - Select the `Raw` button
+  - Right click and `Save as...` <br><br>
+- Navigate the `Deployments` > `Monitors` screen
+- Select the `Upload Thresholds` icon from the `Actions` column on the right of the monitor row
+  - Select `Upload `
+  - `View` the file
+  - `Submit`
+
+## 10. Start Monitor
 
 The Monitor needs to be in the `active` state to execute the monitoring function.
 

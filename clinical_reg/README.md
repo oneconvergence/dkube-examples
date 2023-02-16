@@ -17,6 +17,7 @@ The Code Repo contains the program code and other associated files for developin
 - Navigate to `Code` menu on the left side of the screen
 - Select `+ Code`
   - **Name:** `regression`
+  > **Note** The Code repo name **must** be the one above, or the example will not run
   - **Code Source:** `Git`
   - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
   - **Branch:** `tensorflow`

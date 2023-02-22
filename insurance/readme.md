@@ -190,10 +190,10 @@
  
  > **Note** Deployments are not filtered by Project
 
-## 4. Create Generic Kubeflow Pipeline
+## 4. Create Generic Kubeflow Pipeline (Optional)
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
  
-> **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+> **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.  If you want to train and deploy the insurance model using Kubeflow Pipelines, go directly to [](#5-train--deploy-using-kubeflow-pipelines).
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/pipeline</code>
@@ -207,7 +207,7 @@
  - Select the back arrow at the top left and select the Pipeline name
    - This will show the Pipeline as it is executed
 
-## 5. Create Kubeflow Pipeline
+## 5. Train & Deploy Using Kubeflow Pipelines
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
 
  > **Note** The follow-on monitor example uses the output of the pipeline execution.  Complete this section before moving on to the monitor example.

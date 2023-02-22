@@ -2,7 +2,7 @@
 
  This example explains how to create, start, and test the monitoring capability of DKube using the insurance prediction example.  This workflow describes how to use a JupyterLab `.ipynb` file to create a Monitor for the insurance prediction example. This provides an easy way to get the Monitor ready, and allows you to then start to use the Monitor without needing to understand the steps involved.  
  
- The instructions for creating a monitor manually through the UI are contained in the file [Create Monitor Automatically](monitoring-ui.md).  This will provide more insight into the operation and fields of a monitor.  It is suggested that the monitor first be created automatically, then the UI-based approach can be completed for more details.
+ The instructions for creating a monitor manually through the UI are contained in the file [Create Monitor Manually](monitoring-ui.md).  This will provide more insight into the operation and fields of a monitor.  It is suggested that the monitor first be created automatically, then the UI-based approach can be completed for more details.
 
  - This example uses the DKube built-in MinIO server and uses prediction datasets as "CloudEvents"
  - The serving cluster can be the same as the monitoring cluster, or a separate monitoring cluster can be used, as described below
@@ -63,19 +63,19 @@
  - The script is configured to execute automatically, with no changes required, if:
    - The deployed model is the last deployment from the most recent pipeline run (as explained in the process above), and
    - The serving and monitoring cluster are the same
-   - In this case, skip to [](#run-the-script)
+   - In this case, skip to [Run the Script](#run-the-script)
 
 ### Changing the Deployment Name
 
  If you want to use a different deployment than the default, make the changes in this section.  Otherwise, skip ahead to the next section.
  
  - In the 3rd cell (`User Definitions`) change the variable name `MONITOR_NAME` to the name of the deployment.  The monitor name is always the same as the deployment name.
- - If the serving and monitoring clusters are the same, no other changes are required.  Skip ahead to [](#run-the-script)
+ - If the serving and monitoring clusters are the same, no other changes are required.  Skip ahead to [Run the Script](#run-the-script)
  - If the monitoring cluster is **not** the same as the serving cluster, also make the changes in the next section
 
 ### Different Serving and Monitor Cluster
 
- If the monitor cluster is different from the serving cluster, make the changes in this section.  Otherwise, skip ahead to [](#run-the-script).
+ If the monitor cluster is different from the serving cluster, make the changes in this section.  Otherwise, skip ahead to [Run the Script](#run-the-script).
 
  - In the 3rd cell (`User Definitions`) change the variable `SERVING_CLUSTER_EXECUTION = False`
  - Complete the following fields

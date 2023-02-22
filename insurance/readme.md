@@ -183,6 +183,9 @@
    - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-17`
    - **Transformer Code:** Select *\<your-code-repo\>* **(chosen during Code repo creation)**
    - **Transformer Script:** `insurance/transformer.py`
+
+   > **Note** If this model will be used for monitoring, set **Minimum Replicas:** `1`
+
    - Leave the other fields at their current selection 
  - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>
  - Deployment can be viewed from the `Deployments` menu on the left of the screen

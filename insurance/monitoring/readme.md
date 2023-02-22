@@ -48,7 +48,7 @@
  > **Note** This section requires a full DKube installation
 
  > **Note** This step may have been completed in an earlier section of the example.  If so, you can skip this section and use the deployed Model for the Monitor.  If you need to train and deploy the Model, follow the pipeline instructions at:
- - [Train and Deploy Model](../readme.md#5-create-kubeflow-pipeline)
+ - [Train and Deploy Model](../readme.md#5-train--deploy-using-kubeflow-pipelines)
  - The Pipeline will create a new Deployment.  It will be at the top of the Deployment list.
  
  > **Warning** Do not proceed until the Pipeline Run has completed and deployed a new version of the Model

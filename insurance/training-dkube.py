@@ -101,7 +101,7 @@ class loggingCallback(keras.callbacks.Callback):
 model.fit(x_train, y_train, epochs = NUM_EPOCHS, verbose=0,
                 validation_split=0.1, callbacks=[loggingCallback()])
 
-model.save(filepath=os.path.join(OUTPUT_MODEL_DIR, '1'))
+model.save('/model/1')
 
 """
 with mlflow.start_run(run_name="insurance") as run:

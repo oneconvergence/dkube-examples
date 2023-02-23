@@ -152,6 +152,7 @@
  
  - Select one of the Runs created in the previous section and select `Clone` button
  - Fill in the required fields in the `Configuration` tab as follows:
+   - Clear out any environmental variables that are on the screen, such as `EPOCHS`
    - Select `Upload` button from the `Upload Tuning Definition` section
    - Upload [Tuning File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/tuning.yaml)
      - Right-click on the link above to copy the url address
@@ -183,6 +184,9 @@
    - **Transformer Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-17`
    - **Transformer Code:** Select *\<your-code-repo\>* **(chosen during Code repo creation)**
    - **Transformer Script:** `insurance/transformer.py`
+
+   > **Note** If this model will be used for monitoring, set **Minimum Replicas:** `1`
+
    - Leave the other fields at their current selection 
  - Submit Deployment using the `Submit` button at the bottom of the screen <br><br>
  - Deployment can be viewed from the `Deployments` menu on the left of the screen
@@ -190,10 +194,10 @@
  
  > **Note** Deployments are not filtered by Project
 
-## 4. Create Generic Kubeflow Pipeline
+## 4. Create Generic Kubeflow Pipeline (Optional)
  The workflow can be automated through a Kubeflow Pipeline.  This section explains how to create an example Kubeflow Pipeline.
  
-> **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.
+> **Note** This is not an example of the insurance Pipeline.  It is just a general Pipeline to show the concept.  If you want to train and deploy the insurance model using Kubeflow Pipelines, go directly to [](#5-train--deploy-using-kubeflow-pipelines).
  
  - Create and/or open a JupyterLab instance as described in the section "Create JupyterLab IDE"
  - Navigate to folder <code>/workspace/**\<your-code-repo\>**/pipeline</code>
@@ -207,7 +211,7 @@
  - Select the back arrow at the top left and select the Pipeline name
    - This will show the Pipeline as it is executed
 
-## 5. Create Kubeflow Pipeline
+## 5. Train & Deploy Using Kubeflow Pipelines
  A Kubeflow Pipeline can be created that uses DKube capabilities to integrate the execution and provide a convenient way to analyze the results.  This section explains how to create a Kubeflow Pipeline within DKube for the insurance example.
 
  > **Note** The follow-on monitor example uses the output of the pipeline execution.  Complete this section before moving on to the monitor example.

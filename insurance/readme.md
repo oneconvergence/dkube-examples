@@ -152,6 +152,7 @@
  
  - Select one of the Runs created in the previous section and select `Clone` button
  - Fill in the required fields in the `Configuration` tab as follows:
+   - Clear out any environmental variables that are on the screen, such as `EPOCHS`
    - Select `Upload` button from the `Upload Tuning Definition` section
    - Upload [Tuning File](https://raw.githubusercontent.com/oneconvergence/dkube-examples/training/insurance/tuning.yaml)
      - Right-click on the link above to copy the url address

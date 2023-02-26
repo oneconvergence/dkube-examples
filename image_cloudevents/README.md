@@ -31,7 +31,7 @@ This workflow uses a Kubeflow Pipeline to set up the resources and created the m
 The only manually created resource requirement for this example is the Code repo.  The rest of the resources are created by the notebook script.
 
 - Select `Code` menu on the left, then `+ Code`, and fill in the following fields:
-  - **Name:** `monitoring-examples`  **(Or choose your own name as `<your-code-repo>`)**
+  - **Name:** `chest-xray`  **(Or choose your own name as `<your-code-repo>`)**
   - **Source:** `Git`
   - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
   - **Branch:** `monitoring`
@@ -58,12 +58,12 @@ In order to run the script to set up the resources, train and deploy the model, 
 - Open `resources.ipynb`
 > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
 
-- If you called your code repo something other than `monitoring-examples`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
+- If you called your code repo something other than `chest-xray`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
   - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
  
 ### Serving and Monitoring on Same Cluster
 
-- If the serving and monitoring cluster are the same, no other fields needs to be changed, skip to `Run the Script`
+- If the serving and monitoring cluster are the same, no other fields needs to be changed, skip to [Run the Script](#run-the-script)
 
 ### Serving and Monitoring on Different Clusters
 
@@ -91,8 +91,8 @@ In order to run the script to set up the resources, train and deploy the model, 
 
 - The following resources will be created:
   - `chest-xray` Dataset on both the serving and monitoring cluster
-  - `image-mm-kf` Model on the serving cluster
-  - `image-mm-kf-s3` Dataset on the monitoring cluster
+  - `<your user name>-image-mm-kf` Model on the serving cluster
+  - `<your user name>-image-mm-kf-s3` Dataset on the monitoring cluster
 
 ## 4. Train and Deploy the Model on Serving Cluster
 

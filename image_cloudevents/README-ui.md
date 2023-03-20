@@ -33,7 +33,7 @@ The DKube Code repo is required for the initial setup scripts to execute.
 > **Note** If this was already done, skip this section and move on to `Section 2`.  Otherwise, follow the instructions in this section.
 
 - Select `Code` menu on the left, then `+ Code`, and fill in the following fields:
-  - **Name:** `monitoring-examples`  **(Or choose your own name as `<your-code-repo>`)**
+  - **Name:** `chest-xray`  **(Or choose your own name as `<your-code-repo>`)**
   - **Source:** `Git`
   - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
   - **Branch:** `monitoring`
@@ -62,12 +62,12 @@ In order to run the script to set up the resources, and to train and deploy the 
 - Open `resources.ipynb`
 > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
 
-- If you called your code repo something other than `monitoring-examples`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
+- If you called your code repo something other than `chest-xray`, edit the following variable in the 3rd cell labeled `User-Defined Variables`:
   - `DKUBE_TRAINING_CODE_NAME` = *`<your-code-repo>`*
 
 ### Serving and Monitoring on Same Cluster
 
-- If the serving and monitoring cluster are the same, no other fields need to be changed, skip to `Run the Script`
+- If the serving and monitoring cluster are the same, no other fields need to be changed, skip to [Run the Script](#run-the-script)
 
 ### Serving and Monitoring on Different Clusters
 
@@ -94,8 +94,8 @@ In order to run the script to set up the resources, and to train and deploy the 
 - `Run` > `Run All Cells` from the top menu <br><br>
 - The following resources will be created:
   - `chest-xray` Dataset on both the serving and monitoring cluster
-  - `image-mm-kf-s3` Dataset on the monitoring cluster
-  - `image-mm-kf` Model on the serving cluster
+  - `<your user name>-image-mm-kf` Model on the serving cluster
+  - `<your user name>-image-mm-kf-s3` Dataset on the monitoring cluster
 
 ## 4. Train and Deploy the Model on Serving Cluster
 
@@ -115,7 +115,7 @@ In order for the monitor example to operate, a model must be trained and deploye
 - After the pipeline is complete, and the deployed model has been created on the serving cluster, select the 2nd from the last cell in the `train.ipynb` script and `Run Selected Cell` (not "Run All Cells")
 - This will provide information that is necessary when configuration the monitor in this example.  They are available in the 2nd to last cell, labeled `Fields Used for Configuring the Monitor through the UI`.  They will be referenced in the Drift & Performance configuration sections.
 
-<img src="./Images/Resources_Image.png" width=100% height=100%>
+<img src="./Screenshots/Resources_Image.png" width=100% height=100%>
 
 ## 5. Import Serving Deployment if Monitoring on a Separate Cluster
 

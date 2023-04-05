@@ -65,7 +65,7 @@ Once the JupyterLab instance is running, open a new tab using the icon at the fa
 - Navigate to <code>workspace/**\<your-code-repo\>**/chest-xray</code>
 - Open `training-notebook.ipynb`
 - `Run all cells` <br><br>
-- You can change the number of `epochs` or `learning rate` in "cell [6]: Hyperparamters" and rerun the script
+- You can change the number of `epochs` or `learning rate` in "cell [3]: Hyperparamters" and rerun the script
 
 ## 4. Create a Trained Model
 
@@ -73,24 +73,26 @@ A batch training run creates a model.
 
 - Select `Runs` menu on the left, then `+ Run / Training`, and fill in the following fields:
   - **Basic Tab**
-    - **Name:**  `Choose a Run name`
+    - **Name:**  `Choose a Run name as <your-run-name>`
     - **Code:** *`<your-code-repo>`*  **(Chosen during Code repo creation)**
     - **Framework:** `tensorflow`
     - **Framework Version:** `2.0.0`
-    - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-17`   **(This should be the default, but ensure that it is selected)** <br><br>
+    - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-17`   **(This should be the default, but ensure that it is selected)**
+    - **Start-up command:** `python chest-xray/training.py` <br><br>
   - **Repos Tab**
     - **Inputs / Datasets:** *`<your-dataset-repo>`*   **(Chosen during Dataset repo creation)**
       - **Mount Path:** `/data`
     - **Outputs / Models:** *`<your-model-repo>`*   **(Chosen during Model repo creation)**
       - **Mount Path:** `/model`
-    > **note** Ensure that you select the `Output Models` section, and not the `Input`
+    > **Note** Ensure that you select the `Output Models` section, and not the `Input`
 - Leave the rest of the fields at their current value
 - `Submit`
 
 ## 5. Clone a Run and Train a 2nd Model
 
 - Select `Runs` menu on the left
-- Select the 1st Run checkbox
+- Select *`<your-run-name>`*
+  > **Note** There may be other Runs, but choose the one that you created
 - Select `Clone` from the top menu
 - Fill in the following fields:
   - **Basic Tab**
@@ -111,6 +113,7 @@ This section uses the Model versions from the Training Runs to compare metrics.
 - Select `Models` on the left menu
 - Select *`<your-model-repo>`* by expanding the caret `>` on the left
 - Select the checkboxes for the v2 & v3 of the Model  (The first version is a placeholder)
+- Select `Compare` button at the top
   - Scroll to the `Y-axis` field to the left of the graph
   - Select `train_accuracy`
   - The graph will show the training accuracy of each Run <br><br>
@@ -130,8 +133,6 @@ This section deploys a Model for serving.
   - **Name:** `Choose a name`
   - **Deployment:** `Production`
   - **Deploy Using:** `CPU`
-  - Select `Transformer` checkbox
-    - **Transformer Script:** `chest-xray/transformer.py`
 - Leave the rest of the fields at their current value
 - `Submit` <br><br>
 - Select `Deployments` on the left menu to view the new deployment
@@ -149,7 +150,7 @@ This section trains a Model using using Katib-based hyperparameter optimization
   - **Name:** `Choose a name`
   - Select the `Configuration` tab
   - Delete any `Environmental variables` using the `X` on the right
-  > **note** This step is important, since the Katib run will not work properly with variables active
+  > **Note** This step is important, since the Katib run will not work properly with variables active
   - Select the `Upload` button on the `Upload Tuning Definition` section
   - Choose the Katib file that you downloaded
 - `Submit` <br><br>

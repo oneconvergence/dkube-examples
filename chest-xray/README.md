@@ -78,7 +78,7 @@ This script creates the datasets and models required for training and monitoring
 > **Note** This script will identify which resources have already been created, and create the ones that are necessary to continue
 
 - Once the IDE is running, launch JupyterLab from the icon on the far right
-- Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
+- Navigate to <code>workspace/**\<your-code-repo\>**/chest-xray</code>
 - Open `resources.ipynb`
 > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
 

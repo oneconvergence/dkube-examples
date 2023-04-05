@@ -137,7 +137,7 @@ This section deploys a Model for serving.
 - `Submit` <br><br>
 - Select `Deployments` on the left menu to view the new deployment
 
-## 6. Execute a Kabib Run
+## 6. Execute a Katib Run
 
 This section trains a Model using using Katib-based hyperparameter optimization
 

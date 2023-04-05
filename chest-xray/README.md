@@ -10,6 +10,8 @@ This example trains a model to identify pneumonia from chest x-rays.
 - Deploy a model for serving
 - Train a model with hyperparameter optimization
 
+If you want to create a Model Monitor, you can follow the steps at [Create a Model Monitor](./README-monitor-nb.md).
+
 ## 1. Create the DKube Repos
 
 DKube Repos provide a convenient way to use the example within a notebook and for your batch training runs.
@@ -156,3 +158,5 @@ This section trains a Model using using Katib-based hyperparameter optimization
 - `Submit` <br><br>
 - When the Run is complete, a single Model will be created with the best trial
 - You can view the results by selecting the Katib icon on the far right of the Run
+
+> **Note** You can create a Model Monitor by following the steps at [Create a Model Monitor](./README-monitor-nb.md)

@@ -1,0 +1,20 @@
+parallelTrialCount: 4
+maxTrialCount: 4
+maxFailedTrialCount: 2
+objective:
+  type: maximize 
+  goal: 0.8
+  objectiveMetricName: val_accuracy
+algorithm:
+  algorithmName: random
+parameters:
+  - name: --epochs
+    parameterType: int
+    feasibleSpace:
+      min: "3"
+      max: "10"
+  - name: --learning_rate
+    parameterType: double
+    feasibleSpace:
+      min: "0.001"
+      max: "0.01"

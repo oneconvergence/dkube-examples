@@ -1,0 +1,32 @@
+{
+    "image":{
+        "type": "drift",
+        "hard": 0.55,
+        "soft":0.42
+    },
+    "prediction":{
+        "type": "drift",
+        "hard": 0.34,
+        "soft":0.2
+    },
+    "accuracy": {
+        "type": "performance",
+        "hard": 0.7,
+        "soft": 0.8
+    },
+    "precision": {
+        "type": "performance",
+        "hard": 0.4,
+        "soft": 0.7
+    },
+    "recall": {
+        "type": "performance",
+        "hard": 0.7,
+        "soft": 0.8
+    },
+    "f1_score": {
+        "type": "performance",
+        "hard": 0.4,
+        "soft": 0.7
+    }
+}

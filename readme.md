@@ -10,7 +10,11 @@
 
 ## 1. Insurance Prediction
 
- This example provides the full workflow for an example that predicts insurance costs based on individual input characteristics.  The workflow details are available in the `insurance` folder.
+ The **Insurance** example provides the full workflow for an example that predicts insurance costs based on individual input characteristics.  The example and workflow details are available in the folder [Insurance](./insurance).
+
+ ## 2. Chest X-Ray
+
+ The **Chest X-Ray** example trains a model based on X-Rays that include normal and diseased images.  It predicts whether an X-Ray is healthy.  The example and workflow details are available in the folder [Chest X-Ray](./chest-xray).
 
 ## 2. CI/CD
 

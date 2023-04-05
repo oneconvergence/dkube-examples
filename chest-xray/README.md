@@ -37,7 +37,7 @@ The only manually created resource requirement for this example is the Code repo
   - **Name:** `chest-xray`  **(Or choose your own name as `<your-code-repo>`)**
   - **Source:** `Git`
   - **URL:** `https://github.com/oneconvergence/dkube-examples.git`
-  - **Branch:** `monitoring`
+  - **Branch:** `training`
 - Leave the rest of the fields at their current value
 - `Add Code`
 
@@ -50,7 +50,7 @@ The only manually created resource requirement for this example is the Code repo
 - Select `Datasets` menu on the left, then `+ Dataset`
   - **Name:** `chest-xray`
   - **Source:** `Git`
-  - **URL:** `https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_cloudevents/data/chest-xray-mini`
+  - **URL:** `https://github.com/oneconvergence/dkube-examples/tree/training/chest-xray/data/chest-xray-mini`
 - Leave the rest of the fields at their current value
 - `Add Dataset` <br><br>
 - Select `Models` menu on the left, then `+ Model`
@@ -138,7 +138,7 @@ This script trains and deploys a model on the serving cluster.  A Kubeflow Pipel
 
 This section trains a 2nd model using using Katib-based hyperparameter optimization, and the metrics from the 2 models are then compared.
 
-- Download the hyperparameter optimization file from [Katib Tuning File](https://github.com/oneconvergence/dkube-examples/tree/monitoring/image_cloudevents/xray-tuning.yaml)
+- Download the hyperparameter optimization file from [Katib Tuning File](https://github.com/oneconvergence/dkube-examples/tree/training/chest-xray/xray-tuning.yaml)
   - Select `Raw`
   - Right-click on the file and use `Save as...` <br><br>
 - Select the `Runs` menu on the left
@@ -177,7 +177,7 @@ This section deploys the 2nd model for production serving.
   - **Deployment:** `Production`
   - **Deploy Using:** `CPU`
   - Check the `Transformer` box
-  - **Transformer Script:** `image_cloudevents/transformer.py`
+  - **Transformer Script:** `chest-xray/transformer.py`
 - `Submit` <br><br>
 - Select the `Deployments` menu on the left
 - Your new deployment will show up in the list

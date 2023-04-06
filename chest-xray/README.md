@@ -26,6 +26,7 @@ DKube Repos provide a convenient way to use the example within a notebook and fo
 - Leave the rest of the fields at their current value
 - `Add Code`
 
+
 ### Create a repo for your Datasets
 
 - Select `Datasets` menu on the left, then `+ Dataset`
@@ -52,7 +53,7 @@ You can view and experiment with your code using JupyterLab.
     - **Code:** *`<your-code-repo>`*  **(Chosen during Code repo creation)**
     - **Framework:** `tensorflow`
     - **Framework Version:** `2.0.0`
-    - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-17`   **(This should be the default, but ensure that it is selected)**
+    - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-xx`   **(This should be the default, 'xx' may differ)**
     - Leave the rest of the Basic fields at their current value<br><br>
   - **Repos Tab**
     - **Inputs / Datasets:** *`<your-dataset-repo>`*   **(Chosen during Dataset repo creation)**
@@ -79,7 +80,7 @@ A batch training run creates a model.
     - **Code:** *`<your-code-repo>`*  **(Chosen during Code repo creation)**
     - **Framework:** `tensorflow`
     - **Framework Version:** `2.0.0`
-    - **Image:** `ocdr/dkube-datascience-tf-cpu-multiuser:v2.0.0-17`   **(This should be the default, but ensure that it is selected)**
+    - **Image:** `ocdr/dkube-datascience-tf-cpu:v2.0.0-xx`   **(This should be the default, 'xx' may differ)**
     - **Start-up command:** `python chest-xray/training.py` <br><br>
   - **Repos Tab**
     - **Inputs / Datasets:** *`<your-dataset-repo>`*   **(Chosen during Dataset repo creation)**

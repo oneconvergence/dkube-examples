@@ -140,7 +140,7 @@ This section deploys a Model for serving.
 - `Submit` <br><br>
 - Select `Deployments` on the left menu to view the new deployment
 
-## 6. Execute a Katib Run
+## 8. Execute a Katib Run
 
 This section trains a Model using using Katib-based hyperparameter optimization
 
@@ -160,7 +160,7 @@ This section trains a Model using using Katib-based hyperparameter optimization
 - When the Run is complete, a single Model will be created with the best trial
 - You can view the results by selecting the Katib icon on the far right of the Run
 
-## 7. Create Resources for Pipeline and Monitor
+## 9. Create Resources for Pipeline and Monitor
 
 This section sets up the resources and global variable definitions to enable a Pipeline Run and Model Monitor.
 
@@ -172,7 +172,7 @@ This section sets up the resources and global variable definitions to enable a P
   - Leave the other variables at their current value
 - `Run All Cells`
 
-## 8. Run a Kubeflow Pipeline
+## 10. Run a Kubeflow Pipeline
 
 This section executes a Pipeline to train and deploy a model.
 

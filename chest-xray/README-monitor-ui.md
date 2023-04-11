@@ -2,7 +2,7 @@
 
 This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
 
-This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called  [README.md](README.md)
+This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called  [README-monitor-ui.md](README-monitor-ui.md)
 
 - This example only supports predict dataset sources as **CloudEvents**. 
 - This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (`monitoring cluster`).

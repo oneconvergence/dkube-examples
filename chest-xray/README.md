@@ -172,7 +172,7 @@ This section sets up the resources and global variable definitions to enable a P
   - DKUBE_DATASET_NAME = `<your-dataset-repo>`
   - DKUBE_MODEL_NAME = `<your-model-name>`
   - Leave the other variables at their current value
-- `Run All Cells'
+- `Run All Cells`
 
 ## 8. Run a Kubeflow Pipeline
 

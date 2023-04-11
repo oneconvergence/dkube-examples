@@ -160,8 +160,6 @@ This section trains a Model using using Katib-based hyperparameter optimization
 - When the Run is complete, a single Model will be created with the best trial
 - You can view the results by selecting the Katib icon on the far right of the Run
 
-> **Note** You can create a Model Monitor by following the steps at [Create a Model Monitor](./README-monitor-nb.md)
-
 ## 7. Create Resources for Pipeline and Monitor
 
 This section sets up the resources and global variable definitions to enable a Pipeline Run and Model Monitor.
@@ -169,7 +167,7 @@ This section sets up the resources and global variable definitions to enable a P
 - Within the `JupyterLab` tab, open `resources.ipynb`
 - Change the following variables in the 3rd cell `User-Defined Variables`
   - DKUBE_TRAINING_CODE_NAME = `<your-code-repo>`
-  - DKUBE_DATASET_NAME = `<your-dataset-repo>`
+  - TRAINING_DATASET = `<your-dataset-repo>`
   - DKUBE_MODEL_NAME = `<your-model-name>`
   - Leave the other variables at their current value
 - `Run All Cells`
@@ -187,3 +185,5 @@ You will see your Pipeline listed as being executed.  When the Pipeline is compl
 
 - Select the `Deployments` menu on the left
 - Your new Deployment will appear, with the name `<your-user-name>-chest-xray`
+
+> **Note** You can create a Model Monitor by following the steps at [Create a Model Monitor](./README-monitor-nb.md)

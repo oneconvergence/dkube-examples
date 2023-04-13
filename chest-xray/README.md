@@ -187,3 +187,5 @@ You will see your Pipeline listed as being executed.  When the Pipeline is compl
 - Your new Deployment will appear, with the name `<your-user-name>-chest-xray`
 
 > **Note** You can create a Model Monitor by following the steps at [Create a Model Monitor](./README-monitor-nb.md)
+
+  

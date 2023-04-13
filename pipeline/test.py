@@ -5,6 +5,8 @@ from kfp import components
 import kfp.compiler as compiler
 import kfp.dsl as dsl
 
+dkube_training_op = components.load_component_from_file("/mnt/dkube/pipeline/components/training/component.yaml")
+
 @kfp.dsl.pipeline(
     name="test",
     description='xray-training-pl'

@@ -1,6 +1,6 @@
 pipelines:
   path: pipeline
-  user: 'larryc1200'
+  user: larryc1200
   pipelines:
     - name: test.py
       run: true

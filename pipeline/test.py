@@ -13,11 +13,7 @@ from dkube.sdk import *
 from dkube.sdk.api import DkubeApi
 from dkube.sdk.rsrcs import DkubeModelmonitor
 from dkube.sdk.rsrcs.operator import DkubeCluster
-
-job_class = os.getenv("DKUBE_JOB_CLASS")
-if not job_class:
-    !{sys.executable} -m pip install kfp==1.4.0 kfp-server-api==1.2.0 --user >/dev/null
-    
+  
 dkube_training_op = components.load_component_from_url('https://github.com/oneconvergence/dkube/tree/main/components/training/component.yaml')
 
 @kfp.dsl.pipeline(

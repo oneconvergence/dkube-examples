@@ -38,3 +38,5 @@ def xray_pipeline(token):
                                     serving_image=json.dumps({"image": "ocdr/tensorflowserver:2.0.0"}),
                                     auth_token=token, min_replicas = '1',
                                     production="true").after(train)
+
+    

@@ -1,5 +1,12 @@
+import sys,json, os
+import kfp
+import kfp.dsl as dsl
+from kfp import components
+import kfp.compiler as compiler
+import kfp.dsl as dsl
+
 @kfp.dsl.pipeline(
-    name=f"{DKUBE_TRAINING_CODE_NAME}-pl",
+    name="test",
     description='xray-training-pl'
 )
 def xray_pipeline(token):    

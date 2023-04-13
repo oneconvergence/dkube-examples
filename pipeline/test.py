@@ -44,5 +44,5 @@ def xray_pipeline(token):
                                     auth_token=token, min_replicas = '1',
                                     production="true").after(train)
 
-client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
+#client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
 

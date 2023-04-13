@@ -1,4 +1,4 @@
 pipelines:
   path: pipeline
   pipelines:
-    - name: ControlSturctures.ipynb
+    - name: ControlStructures.ipynb

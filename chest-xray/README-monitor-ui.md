@@ -2,10 +2,9 @@
 
 This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
 
-This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called  [README.md](README.md)
+This workflow uses a Kubeflow Pipeline to set up the resources and created the monitor.  A separate readme file is available in this folder to create the monitor through JupyterLab scripts, in the same folder called [README-monitor-nb.md](README-monitor-nb.md)
 
-- This example only supports predict dataset sources as **CloudEvents**. 
-- This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (`monitoring cluster`).
+- This example supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (`monitoring cluster`).
   - **Serving cluster:** Where the production deployment will be running
   - **Monitoring cluster:** Where the model monitor will be running
   > **Note**: The serving and monitoring clusters can be same, but in that case the setup has to be a single **full** DKube setup
@@ -13,9 +12,7 @@ This workflow uses a Kubeflow Pipeline to set up the resources and created the m
 ## Example Flow
 
 - Create the necessary DKube resources
-  - This includes the Code, Dataset and Model repos
-- Train a model for the example using Tensorflow
-- Deploy the model for serving
+- Train and deploy a model
 - Create a monitor
 - For seperate serving and monitoring clusters
   - Add a serving cluster link on the monitoring cluster
@@ -44,7 +41,7 @@ The DKube Code repo is required for the initial setup scripts to execute.
 
 In order to run the script to set up the resources, and to train and deploy the model, a JupyterLab IDE needs to be created.  The scripts will be run from within JupyterLab.  
 
-> **Note** If the JupyterLab notebook has already been created, go directly to the `Section 3` to create the resources.  Otherwise, follow the instructions in this section.
+> **Note** If the JupyterLab notebook has already been created, go directly to `Section 3` to create the resources.  Otherwise, follow the instructions in this section.
 
 - Select `IDE` menu on the left, then `+ JupyterLab`, and fill in the following fields:
   - **Name:** *`<your-IDE-name>`*  **(Choose a name)**
@@ -58,7 +55,7 @@ In order to run the script to set up the resources, and to train and deploy the 
 ## 3. Create the Resources
 
 - Once the IDE is running, launch JupyterLab from the icon on the far right
-- Navigate to <code>workspace/**\<your-code-repo\>**/image_cloudevents</code>
+- Navigate to <code>workspace/**\<your-code-repo\>**/chest-xray</code>
 - Open `resources.ipynb`
 > **Warning** Ensure that `Cleanup = False` in the last cell, since it may have been changed in a previous execution
 

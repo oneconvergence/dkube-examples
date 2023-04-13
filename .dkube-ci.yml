@@ -1,0 +1,4 @@
+pipelines:
+  path: pipeline
+  pipelines:
+    - name: ControlSturctures.ipynb

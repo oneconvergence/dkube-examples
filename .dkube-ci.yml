@@ -1,4 +1,4 @@
 pipelines:
   path: pipeline
   pipelines:
-    - name: ControlStructures.ipynb
+    - name: test.py

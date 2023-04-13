@@ -39,10 +39,10 @@ def xray_pipeline(token):
                                     output_mounts=json.dumps([str(output_model_mount)]),
                                     auth_token=token)
     
-    serving     = dkube_serving_op(model=train.outputs['artifact'], device='cpu',
-                                    serving_image=json.dumps({"image": "ocdr/tensorflowserver:2.0.0"}),
-                                    auth_token=token, min_replicas = '1',
-                                    production="true").after(train)
+#    serving     = dkube_serving_op(model=train.outputs['artifact'], device='cpu',
+#                                    serving_image=json.dumps({"image": "ocdr/tensorflowserver:2.0.0"}),
+#                                    auth_token=token, min_replicas = '1',
+#                                    production="true").after(train)
 
 #client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
 

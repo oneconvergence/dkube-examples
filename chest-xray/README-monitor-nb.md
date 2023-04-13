@@ -2,7 +2,7 @@
 
 This example trains a model to identify pneumonia from chest x-rays.  The model is then deployed and used as the basis for monitoring with synthetic live data to demonstrate the DKube monitoring capability.
 
-This workflow uses JupyterLab notebook scripts to set up the resources & create the model monitor, and a Kubeflow pipeline to train & deploy the model.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called [README-ui.md](README-ui.md)
+This workflow uses JupyterLab notebook scripts to set up the resources & create the model monitor, and a Kubeflow pipeline to train & deploy the model.  A separate readme file is available in this folder to create the monitor through the UI, in the same folder called [README-monitor-ui.md](README-monitor-ui.md)
 
 - This example  supports model deployment with a full DKube cluster (`serving cluster`) and model monitoring on either the same cluster or a seperate minimal DKube cluster (`monitoring cluster`).
   - **Serving cluster:** Where the production deployment will be running

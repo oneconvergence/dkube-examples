@@ -2,3 +2,5 @@ pipelines:
   path: pipeline
   pipelines:
     - name: test.py
+      run: true
+      user: larryc1200

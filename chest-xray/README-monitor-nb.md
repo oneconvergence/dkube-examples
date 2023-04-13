@@ -13,7 +13,6 @@ This workflow uses JupyterLab notebook scripts to set up the resources & create 
 
 - Create the necessary DKube resources
 - Train and deploy the model
-- Deploy the model for serving
 - Create a monitor
   - For seperate serving and monitoring clusters
     - Add a serving cluster link on the monitoring cluster

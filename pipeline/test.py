@@ -11,6 +11,13 @@ import time
 
 dkube_training_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/training/component.yaml')
 
+training_program = "xray-larryc"
+training_script = "python chest-xray/training.py"
+input_training_dataset = "xray-lc"
+model_name = "xray-lc"
+input_dataset_mount = "['/data']"
+output_model_mount = "/model"
+
 @kfp.dsl.pipeline(
     name="test",
     description='xray-training-pl'

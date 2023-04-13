@@ -15,7 +15,7 @@ training_program = "xray-larryc"
 training_script = "python chest-xray/training.py"
 input_training_dataset = "xray-lc"
 model_name = "xray-lc"
-input_dataset_mount = "['/data']"
+input_dataset_mount = ['/data']
 output_model_mount = "/model"
 
 @kfp.dsl.pipeline(

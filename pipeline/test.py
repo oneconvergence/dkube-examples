@@ -6,8 +6,6 @@ import kfp.compiler as compiler
 import kfp.dsl as dsl
 
 import string
-import random
-import time
 
 dkube_training_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/training/component.yaml')
 

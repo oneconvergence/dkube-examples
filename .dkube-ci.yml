@@ -2,4 +2,4 @@ pipelines:
   path: pipeline
   pipelines:
     - name: test.py
-    - run: true
+      run: true

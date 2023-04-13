@@ -4,12 +4,12 @@ import kfp.dsl as dsl
 from kfp import components
 import kfp.compiler as compiler
 import kfp.dsl as dsl
-
-import string
+from kubernetes import client as k8s_client
 
 dkube_training_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/training/component.yaml')
 dkube_serving_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/serving/component.yaml')
 
+pl_run_name = "xray-pl"
 training_program = "xray-larryc"
 training_script = "python chest-xray/training.py"
 input_training_dataset = "xray-lc"
@@ -39,4 +39,5 @@ def xray_pipeline(token):
                                     auth_token=token, min_replicas = '1',
                                     production="true").after(train)
 
-    
+client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
+

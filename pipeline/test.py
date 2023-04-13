@@ -5,7 +5,7 @@ from kfp import components
 import kfp.compiler as compiler
 import kfp.dsl as dsl
 
-dkube_training_op = components.load_component_from_url(https://github.com/oneconvergence/dkube/tree/main/components/training/component.yaml)
+dkube_training_op = components.load_component_from_url('https://github.com/oneconvergence/dkube/tree/main/components/training/component.yaml')
 
 @kfp.dsl.pipeline(
     name="test",

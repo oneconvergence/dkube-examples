@@ -9,11 +9,6 @@ import string
 import random
 import time
 
-from dkube.sdk import *
-from dkube.sdk.api import DkubeApi
-from dkube.sdk.rsrcs import DkubeModelmonitor
-from dkube.sdk.rsrcs.operator import DkubeCluster
-  
 dkube_training_op = components.load_component_from_url('https://github.com/oneconvergence/dkube/tree/main/components/training/component.yaml')
 
 @kfp.dsl.pipeline(

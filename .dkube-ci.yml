@@ -3,4 +3,3 @@ pipelines:
   user: larryc1200
   pipelines:
     - name: test.py
-      run: true

@@ -56,4 +56,3 @@ def xray_pipeline(token):
 
 print("Creating pipeline run")
 client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':DKUBE_ACCESS_TOKEN})
-

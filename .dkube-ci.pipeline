@@ -1,4 +1,4 @@
 pipelines:
-  path: kubeflow/pipelines
+  path: pipeline
   pipelines:
-    - name: workflow1.py
+    - name: xray-pipeline.py

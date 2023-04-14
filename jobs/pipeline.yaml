@@ -1,5 +1,5 @@
 name: xray-cicd
-user: username      # DKube login user name
+user: username   # DKube login user name
 parameters:
   class: training
   training:
@@ -17,19 +17,17 @@ parameters:
         data:
           name: 'username:xray-cicd'    # <Dkube login name>:<Code repo name>
           version: ''
-        script: python chest-xray/training.py
+        script: python pipeline/xray-pipeline.py
       datasets:
-        - name: 'username:xray-cicd'    # <Dkube login name>:<Dataset repo name>
-          mountpath: '/data'
+        - name: ''
+          mountpath: ''
       outputs:
-        - name: 'username:xray-cicd'    # <DKube login name>:<Model repo name>
-          mountpath: '/model'
+        - name: ''
+          mountpath: ''
     featuresets: {}
     tags: []
     hyperparams:
       customkv:
-        - key: EPOCHS
-          value: '1'
       file:
         name: ''
         body: ''

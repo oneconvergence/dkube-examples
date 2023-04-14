@@ -15,7 +15,7 @@ parameters:
     datums:
       workspace:
         data:
-          name: 'larryc1200:xray-lc-new'    # <Dkube login name>:<Code repo name>
+          name: 'larryc1200:xray-larryc'    # <Dkube login name>:<Code repo name>
           version: ''
         script: python pipeline/test.py
       datasets:

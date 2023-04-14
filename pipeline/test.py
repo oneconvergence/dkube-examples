@@ -8,7 +8,7 @@ from kubernetes import client as k8s_client
 
 print("Setting up variables")
 # User-specific variables
-core_repo_name = "xray-larryc"
+code_repo_name = "xray-larryc"
 data_repo_name = "xray-lc"
 model_repo_name = "xray-lc"
 

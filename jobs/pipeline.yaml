@@ -19,17 +19,15 @@ parameters:
           version: ''
         script: python pipeline/test.py
       datasets:
-        - name: 'larryc1200:xray-lc'    # <Dkube login name>:<Dataset repo name>
-          mountpath: '/data'
+        - name: ''
+          mountpath: ''
       outputs:
-        - name: 'larryc1200:xray-lc'    # <DKube login name>:<Model repo name>
-          mountpath: '/model'
+        - name: ''
+          mountpath: ''
     featuresets: {}
     tags: []
     hyperparams:
       customkv:
-        - key: EPOCHS
-          value: '1'
       file:
         name: ''
         body: ''

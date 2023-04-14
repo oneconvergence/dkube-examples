@@ -5,9 +5,9 @@ from kfp import components
 
 print("Setting up variables")
 # User-specific variables
-code_repo_name = "xray-larryc"
-data_repo_name = "xray-lc"
-model_repo_name = "xray-lc"
+code_repo_name = "chest-xray"
+data_repo_name = "chest-xray"
+model_repo_name = "chest-xray"
 
 # Fixed variables
 input_dataset_mount = ['/data']

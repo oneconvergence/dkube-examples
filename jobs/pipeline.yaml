@@ -1,1 +1,45 @@
-
+name: xray-lc
+user: larryc1200 # DKube login user name
+parameters:
+  class: training
+  training:
+    executor:
+      choice: dkube
+      buildfromproject: false
+      dkube:
+        framework:
+          choice: tensorflow
+          details:
+            version: 2.0.0
+            image: 'ocdr/dkube-datascience-tf-cpu:v2.0.0-17'
+    datums:
+      workspace:
+        data:
+          name: 'larryc1200:xray-lc-new'    # <Dkube login name>:<Code repo name>
+          version: ''
+        script: python pipeline/test.py
+      datasets:
+        - name: 'larryc1200:xray-lc'    # <Dkube login name>:<Dataset repo name>
+          mountpath: '/data'
+      outputs:
+        - name: 'larryc1200:xray-lc'    # <DKube login name>:<Model repo name>
+          mountpath: '/model'
+    featuresets: {}
+    tags: []
+    hyperparams:
+      customkv:
+        - key: EPOCHS
+          value: '1'
+      file:
+        name: ''
+        body: ''
+    nworkers: 0
+    ngpus: 0
+    gpus_override: false
+    rdma: false
+    hptuning:
+      name: ''
+      body: ''
+  run:
+    template: ''
+    group: default

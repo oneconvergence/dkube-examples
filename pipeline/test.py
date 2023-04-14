@@ -6,6 +6,7 @@ import kfp.compiler as compiler
 import kfp.dsl as dsl
 from kubernetes import client as k8s_client
 
+print("Setting up variables")
 # User-specific variables
 core_repo_name = "xray-larryc"
 data_repo_name = "xray-lc"
@@ -32,6 +33,7 @@ client = kfp.Client(
     existing_token=DKUBE_ACCESS_TOKEN,
     namespace=DKUBE_USERNAME)
 
+print("Creating DSL")
 @kfp.dsl.pipeline(
     name="xray-pl",
     description='Chest XRay Pipeline'
@@ -53,5 +55,5 @@ def xray_pipeline(token):
                                     production="true").after(train)
 
 print("Creating pipeline run")
-#client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':DKUBE_ACCESS_TOKEN})
+client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':DKUBE_ACCESS_TOKEN})
 

@@ -52,5 +52,5 @@ def xray_pipeline(token):
                                     production="true").after(train)
 
 print("Creating pipeline run")
-client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
+#client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
 

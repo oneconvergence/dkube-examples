@@ -12,6 +12,8 @@ This example trains a model to identify pneumonia from chest x-rays.
 
 If you want to create a Model Monitor, you can follow the steps at [Create a Model Monitor](./README-monitor-nb.md).
 
+> **Note** If you want to use the `Fast Setup` script, go to the file [README-fast-setup](./README-fast-setup.ipynb)
+
 ## 1. Create the DKube Repos
 
 DKube Repos provide a convenient way to use the example within a notebook and for your batch training runs.
@@ -25,7 +27,6 @@ DKube Repos provide a convenient way to use the example within a notebook and fo
   - **Branch:** `training`
 - Leave the rest of the fields at their current value
 - `Add Code`
-
 
 ### Create a repo for your Datasets
 

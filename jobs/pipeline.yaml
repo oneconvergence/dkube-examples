@@ -1,5 +1,5 @@
-name: xray-lc
-user: larryc1200 # DKube login user name
+name: xray-cicd
+user: username   # DKube login user name
 parameters:
   class: training
   training:
@@ -15,9 +15,9 @@ parameters:
     datums:
       workspace:
         data:
-          name: 'larryc1200:xray-larryc'    # <Dkube login name>:<Code repo name>
+          name: 'username:xray-cicd'    # <Dkube login name>:<Code repo name>
           version: ''
-        script: python pipeline/test.py
+        script: python pipeline/xray-pipeline.py
       datasets:
         - name: ''
           mountpath: ''

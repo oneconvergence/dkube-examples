@@ -1,5 +1,4 @@
 pipelines:
   path: pipeline
-  user: larryc1200
   pipelines:
-    - name: test.py
+    - name: xray-pipeline.py

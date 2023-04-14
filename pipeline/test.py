@@ -13,7 +13,7 @@ token = "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWY
 
 print("Setting up client")
 host_url = os.getenv("KF_PIPELINES_ENDPOINT")
-print(host)
+print(host_url)
 
 client = kfp.Client(
     host=host_url,

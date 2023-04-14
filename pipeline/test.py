@@ -6,30 +6,31 @@ import kfp.compiler as compiler
 import kfp.dsl as dsl
 from kubernetes import client as k8s_client
 
+# User-specific variables
+core_repo_name = "xray-larryc"
+data_repo_name = "xray-lc"
+model_repo_name = "xray-lc"
+
+# Fixed variables
+input_dataset_mount = ['/data']
+output_model_mount = "/model"
+training_script = "python chest-xray/training.py"
+pl_run_name = "xray-pl"
+
+# Set up Pipeline components
 dkube_training_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/training/component.yaml')
 dkube_serving_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/serving/component.yaml')
 
-token = os.environ.get("DKUBE_USER_ACCESS_TOKEN") 
-#token = "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6ImxhcnJ5YzEyMDAiLCJyb2xlIjoiZGF0YXNjaWVudGlzdCxtbGUscGUiLCJkZXBsb3kiOmZhbHNlLCJleHAiOjQ5MjA2MjM2NTUsImlhdCI6MTY4MDYyMzY1NSwiaXNzIjoiRGt1YmUifQ.36Q6aU8q0YzN70wylWPfmOWPCooCs5pmjHj2o5HRkkd322Dn0Oq5EOLfbrNP5GFEhVGiDXK7wCVzMIFzaLW7eV1RUSsYQHAFLAsENEZvXoOuUEzpN823tg5Ovs5J8tuqNQCd_5_LGZP9jS3M2RhL8IX3jaNsv68WBhn70zXixQONR8YFse0xITyTO5AvTQbJqbqLEY7hSEM0CoczU_v-Et_J3FDR2Qus7_Eb_51K1btvnZ_EGvmYQTTufzEY-jMUunQUGz3ckDOy5mS5gK72axyVh9HRhFSKTsJwSiGL0BS_upuZQjuSVaLuQiBrCo8XtTrArKV8zJH9hDpyq5gXeA"
-print("token =", token)
+# Get environmental variables
+DKUBE_ACCESS_TOKEN = os.environ.get("DKUBE_USER_ACCESS_TOKEN") 
+DKUBE_USERNAME = os.environ.get("DKUBE_USER_LOGIN_NAME")
 
+# Set up pipeline access
 host_url="http://istio-ingressgateway.istio-system/pipeline"
-
 client = kfp.Client(
     host=host_url,
-    existing_token=token,
-    namespace="larryc1200")
-
-pl_run_name = "xray-pl"
-training_program = "xray-larryc"
-training_script = "python chest-xray/training.py"
-input_training_dataset = "xray-lc"
-model_name = "xray-lc"
-input_dataset_mount = ['/data']
-output_model_mount = "/model"
-serving_job_name = "ray-lc"
-
-print("Creating dsl")
+    existing_token=DKUBE_ACCESS_TOKEN,
+    namespace=DKUBE_USERNAME)
 
 @kfp.dsl.pipeline(
     name="xray-pl",
@@ -38,19 +39,19 @@ print("Creating dsl")
 def xray_pipeline(token):    
     train       = dkube_training_op(container=json.dumps({"image": "ocdr/dkube-datascience-tf-cpu:v2.0.0-17"}),
                                     framework="tensorflow", version="2.0.0",
-                                    program=str(training_program), 
+                                    program=str(code_repo_name), 
                                     run_script=str(training_script),
-                                    datasets=json.dumps([str(input_training_dataset)]), 
-                                    outputs=json.dumps([str(model_name)]),
+                                    datasets=json.dumps([str(data_repo_name)]), 
+                                    outputs=json.dumps([str(model_repo_name)]),
                                     input_dataset_mounts=json.dumps(input_dataset_mount),
                                     output_mounts=json.dumps([str(output_model_mount)]),
-                                    auth_token=token)
+                                    auth_token=DKUBE_ACCESS_TOKEN)
     
     serving     = dkube_serving_op(model=train.outputs['artifact'], device='cpu',
                                     serving_image=json.dumps({"image": "ocdr/tensorflowserver:2.0.0"}),
-                                    auth_token=token, min_replicas = '1',
+                                    auth_token=DKUBE_ACCESS_TOKEN, min_replicas = '1',
                                     production="true").after(train)
 
 print("Creating pipeline run")
-#client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':token})
+#client.create_run_from_pipeline_func(xray_pipeline, run_name=pl_run_name, arguments={'token':DKUBE_ACCESS_TOKEN})
 

@@ -1,5 +1,5 @@
 jobs:
-  path: pipeline
+  path: jobs
   jobs:
     - name: pipeline.yaml
       run: true

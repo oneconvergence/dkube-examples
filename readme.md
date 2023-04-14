@@ -18,34 +18,35 @@
 
 ## 2. CI/CD
 
- This repo includes the details on using the DKube CI/CD capability, using the insurance example for a Training Run.  More details are available in the repo https://github.com/oneconvergence/dkube-cicd-example.  This includes branches for a variety of CI/CD workflows.  Follow these instructions to experiment with CI/CD.  
+ This repo includes the details on using the DKube CI/CD capability, using the chest-Ray example for a Training Run.  More details are available in the repo [CI/CD Examples](https://github.com/oneconvergence/dkube-cicd-example).  This includes branches for a variety of CI/CD workflows.  Follow these instructions to experiment with CI/CD.  
  
 ### Fork the Repo
 
  In order to experiment with the example, you must fork this repo so that you can change the files and add a Webhook.  The remaining steps are completed in your forked repo.
  
-> **Note** Ensure that you **uncheck** the "Copy the `tensorflow` branch only".  Otherwise, the `training` branch will not be forked.  This example uses the `training` branch.
+> **Note** Ensure that you **uncheck** the "Copy the `tensorflow` branch only".  Otherwise, the `training` branch will not be forked.  This example uses the `Training` branch.
 
 ### Create Resources within DKube
 
- The CI/CD example uses resources within your forked repo.  This section assumes that you have enough familiarity with DKube to create repos.  Use the same names for your Code, Dataset, & Model repos.
+ The CI/CD example uses resources within your forked repo.  This section assumes that you have enough familiarity with DKube to create repos.  It will makes things simpler if you use short names for your Code, Dataset, & Model repos, and make them all the same name.
 
- > **Note** The recommended format for the repo names is `ins-<your-initials>-cicd`.  This will allow you to find your resources among others using the same system.
+ > **Note** The recommended format for the repo names is `xray-<your-initials>-cicd`.  This will allow you to find your resources among others using the same system.
 
  - Create Code repo with the following fields:
-   - **Name:** `<your-repo-name>`
+   - **Name:** `<your-code-repo>`
    - **Code Source:** `Git`
-   - **URL:** `<your-forked-repo>` <br><br>
+   - **URL:** `<your-forked-repo>.git` <br><br>
    > **Note** You can get the name of the repo by selecting the green `Code` button on the right of your GitHub repo screen, and copying the HTTPS url to your copy buffer
    - **Branch:** `training`
 - `Add Code` <br><br>
 - Create Dataset repo with the following fields:
-  - **Name:** `<your-repo-name>`
-  - **Dataset Source:** `Other`
-  - **URL:** `https://dkube-examples-data.s3.us-west-2.amazonaws.com/monitoring-insurance/training-data/insurance.csv`
+  - **Name:** `<your-data-repo>`
+  - **Dataset Source:** `Git`
+  - **URL:** `https://github.com/oneconvergence/dkube-examples/tree/training/chest-xray/data/chest-xray-mini`
+  - > **Note** You will be getting your dataset from the original repo
 - `Add Dataset` <br> <br>
 - Create Model repo with the following fields:
-  - **Name:** `<your-repo-name>`
+  - **Name:** `<your-model-repo>`
 - `Add Model`
 
 ### Set up CI/CD file for Training
@@ -54,7 +55,7 @@
  
  > **Note** Ensure that you are in the `training` branch
 
-  - In this example, the `.dkube-ci.yml` file is set up to build and run a Training Run for the insurance example.  The resources for this Run were created in the previous section.
+  - In this example, the `.dkube-ci.yml` file is set up to build and run a Training Run for the Chest X-Ray example.  The resources for this Run were created in the previous section.
   - The YML file references a file in the `Jobs` folder called `train.yaml`
   - Navigate to the `/jobs/train.yaml` file and edit the following fields:
     - **user:** `<your-DKube-login-name>`  (2nd line)
@@ -85,8 +86,8 @@
 
  > **Note** Ensure that you are in the `training` branch
 
- - Navigate to the `insurance` folder
- - Select the file `training.py`
+ - Navigate to the `chest-xray` folder
+ - Select the file `README.md`
  - Edit the file and add some simple change, such as a comment
  - `Commit Changes`
  
@@ -107,7 +108,7 @@
  - Navigate to `Runs` menu on the left
  - Your Run will be near the top, and will either be in progress or complete
  - After the Run is complete, navigate to `Models` menu on the left
- - Expand the Model with `<your-repo-name>`
+ - Expand the Model with `<your-model-repo>`
  - You will see a new version of the Model has been created
 
  > **Note** After the CI/CD has run, it it **important** that you go back and **uncheck** the `Active` checkbox in your Webhook.  Otherwise, every commit will trigger that CI/CD workflow.

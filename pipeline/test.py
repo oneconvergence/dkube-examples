@@ -2,9 +2,6 @@ import sys,json, os
 import kfp
 import kfp.dsl as dsl
 from kfp import components
-import kfp.compiler as compiler
-import kfp.dsl as dsl
-from kubernetes import client as k8s_client
 
 print("Setting up variables")
 # User-specific variables

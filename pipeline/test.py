@@ -9,12 +9,11 @@ from kubernetes import client as k8s_client
 dkube_training_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/training/component.yaml')
 dkube_serving_op = components.load_component_from_url('https://raw.githubusercontent.com/oneconvergence/dkube/main/components/serving/component.yaml')
 
+token = os.environ.get("DKUBE_USER_ACCESS_TOKEN") 
 token = "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0YmNkZjBmZWJmNDRiOGRhZGQxZWIyOGM2MjhkYWYxIn0.eyJ1c2VybmFtZSI6ImxhcnJ5YzEyMDAiLCJyb2xlIjoiZGF0YXNjaWVudGlzdCxtbGUscGUiLCJkZXBsb3kiOmZhbHNlLCJleHAiOjQ5MjA2MjM2NTUsImlhdCI6MTY4MDYyMzY1NSwiaXNzIjoiRGt1YmUifQ.36Q6aU8q0YzN70wylWPfmOWPCooCs5pmjHj2o5HRkkd322Dn0Oq5EOLfbrNP5GFEhVGiDXK7wCVzMIFzaLW7eV1RUSsYQHAFLAsENEZvXoOuUEzpN823tg5Ovs5J8tuqNQCd_5_LGZP9jS3M2RhL8IX3jaNsv68WBhn70zXixQONR8YFse0xITyTO5AvTQbJqbqLEY7hSEM0CoczU_v-Et_J3FDR2Qus7_Eb_51K1btvnZ_EGvmYQTTufzEY-jMUunQUGz3ckDOy5mS5gK72axyVh9HRhFSKTsJwSiGL0BS_upuZQjuSVaLuQiBrCo8XtTrArKV8zJH9hDpyq5gXeA"
 
 print("Setting up client")
 host_url="http://istio-ingressgateway.istio-system/pipeline"
-#host_url = os.getenv("KF_PIPELINES_ENDPOINT")
-print("host_url =", host_url)
 
 client = kfp.Client(
     host=host_url,

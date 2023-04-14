@@ -1,5 +1,0 @@
-jobs:
-  path: jobs
-  jobs:
-    - name: train.yaml
-      run: true

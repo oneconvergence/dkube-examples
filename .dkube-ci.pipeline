@@ -1,4 +1,0 @@
-pipelines:
-  path: pipeline
-  pipelines:
-    - name: xray-pipeline.py

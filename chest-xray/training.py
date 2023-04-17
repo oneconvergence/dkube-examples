@@ -117,6 +117,7 @@ class loggingCallback(keras.callbacks.Callback):
         print(f"accuracy={round(logs['accuracy'],2)}")
         print(f"val_accuracy={round(logs['val_accuracy'],2)}")
 
+print("Compiling model")
 # Create & compile model
 model = tf.keras.models.Sequential([
   tf.keras.layers.InputLayer(input_shape=(200,200,1)),

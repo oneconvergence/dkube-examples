@@ -1,4 +1,4 @@
-name: xray-lc
+name: xray-lc  
 user: larryc1200      # DKube login user name
 parameters:
   class: training

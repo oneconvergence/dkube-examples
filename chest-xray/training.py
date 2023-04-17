@@ -135,7 +135,7 @@ model.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate=LEARNING_RATE)
               metrics=['accuracy'])
 
 # Train model and save metrics & artifacts
-print("MLFlow Run")
+print("Training Model")
 with mlflow.start_run(run_name="xray") as run:
     model.fit(x=resized_train_x, y=onehot, epochs=NUM_EPOCHS, verbose=False, validation_split=0.1, callbacks=[loggingCallback()])
 

@@ -19,8 +19,9 @@ parameters:
           version: ''
         script: python chest-xray/training.py
       datasets:
-        - name: 'larryc1200:xray-lc:v2'    # <Dkube login name>:<Dataset repo name>
+        - name: 'larryc1200:xray-lc'    # <Dkube login name>:<Dataset repo name>
           mountpath: '/data'
+          #version: '1681865133617'
       outputs:
         - name: 'larryc1200:xray-lc'    # <DKube login name>:<Model repo name>
           mountpath: '/model'

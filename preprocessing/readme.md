@@ -49,26 +49,26 @@ This section explains how to use the JupyterLab IDE to create your resources.  T
 - Change the cells in 3rd cell called `User-Defined Variables` to match your repo names
   - `CODE_REPO_NAME` = `<your-code-repo>`  **(This is the name that you used to create the Code repo)**
   - `DATASET_REPO_NAME` = `<choose a name>`  **(The setup script will create your Dataset repo with this name)**
-  - `MPDEL_REPO_NAME` = `<choose a name>`   **(The setup script will create your Model repo with this name)**
+  - `MODEL_REPO_NAME` = `<choose a name>`   **(The setup script will create your Model repo with this name)**
 - Select `Run All Cells` from the top JupyterLab menu
 
 ## 4. Create and Launch Kubeflow Pipeline to Preprocess & Train Model
 
-A Kubeflow Pipeline is used to preprocess the dataset and train the model.  The variable names for the pipeline are automatically retreived from the setup script.
+A Kubeflow Pipeline is used to preprocess the dataset and train the model.  The variable names for the pipeline are automatically retrieved from the setup script.
 
 - Open the file `insurance-pipeline.ipynb`
 - Select `Run All Cells` from the top JupyterLab menu
 - This will create and run a Kubeflow Pipeline for the example <br> <br>
-- Navigate to the `Pipelines` menu on the left
+- Navigate to the `Pipelines` menu on the left, and the `Runs` tab on top
 - Select the pipeline name that is running
-  - It will be of the form `<your-user-name>:ins-pre xxxx`
+  - It will be of the form `<your-user-name>:<your-code-repo> xxxx`
 - Select the `dkube-preprocess` graph box to see the Proprocessing details
 - Select the `dkube-training` graph box to see the Training Run details <br><br>
 - Navigate to the `Runs` menu on the left
-- You will your Preprocessing and Training runs
+- You will see your Preprocessing and Training runs
   - They will be of the form `<your-user-name>-ins-pre-pl-xxxx` <br><br>
 - Navigate to the `Models` menu on the left
-  - Select the `Model` name *\<your-model-repo\>*
+  - Select the `Model` name `<your-model-repo\>`
 - You will see that a new version of your model
 
 

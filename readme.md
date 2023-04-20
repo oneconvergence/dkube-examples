@@ -1,22 +1,20 @@
 # Training Example Repo
 
-## Examples
-
- The following examples are available in this repo.
-
- - Chest X-Ray
- - Insurance Prediction
- - CI/CD
+The following examples are available in this repo:
 
 ## 1. Insurance Prediction
 
- The **Insurance** example provides the full workflow for an example that predicts insurance costs based on individual input characteristics.  The example and workflow details are available in the folder [Insurance](./insurance).
+The **Insurance** example provides the full workflow for an example that predicts insurance costs based on individual input characteristics.  The example and workflow details are available in the folder [Insurance](./insurance).
 
- ## 2. Chest X-Ray
+## 2. Preprocessing
+
+The **Preprocessing** example uses the insurance example, but adds a preprocessing stage before training.  The example is available in the folder [Preprocessing](./preprocessing).
+
+## 3. Chest X-Ray
 
  The **Chest X-Ray** example trains a model based on X-Rays that include normal and diseased images.  It predicts whether an X-Ray is healthy.  The example and workflow details are available in the folder [Chest X-Ray](./chest-xray).
 
-## 3. CI/CD
+## 4. CI/CD
 
  This repo includes the details on using the DKube CI/CD capability, using the chest X-Ray example for a Training Run.  More details are available in the repo [CI/CD Examples](https://github.com/oneconvergence/dkube-cicd-example).  This includes branches for a variety of CI/CD workflows.  Follow these instructions to experiment with CI/CD.  
  

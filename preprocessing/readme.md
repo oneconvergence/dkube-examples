@@ -48,8 +48,8 @@ This section explains how to use the JupyterLab IDE to create your resources.  T
 - Open `insurance-setup.ipynb`
 - Change the cells in 3rd cell called `User-Defined Variables` to match your repo names
   - `CODE_REPO_NAME` = `<your-code-repo>`  **(This is the name that you used to create the Code repo)**
-  - `DATASET_REPO_NAME` = `<choose a name>`  **(The setup script will create your Dataset repo with this name)**
-  - `MODEL_REPO_NAME` = `<choose a name>`   **(The setup script will create your Model repo with this name)**
+  - `DATASET_REPO_NAME` = `Leave the default or choose a name`  **(The setup script will create your Dataset repo with this name)**
+  - `MODEL_REPO_NAME` = `Leave the default or choose a name`   **(The setup script will create your Model repo with this name)**
 - Select `Run All Cells` from the top JupyterLab menu
 
 ## 4. Create and Launch Kubeflow Pipeline to Preprocess & Train Model

@@ -69,6 +69,6 @@ A Kubeflow Pipeline is used to preprocess the dataset and train the model.  The 
   - They will be of the form `<your-user-name>-ins-pre-pl-xxxx` <br><br>
 - Navigate to the `Models` menu on the left
   - Select the `Model` name `<your-model-repo\>`
-- You will see that a new version of your model
+- You will see a new version of your model
 
 

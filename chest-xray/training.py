@@ -142,7 +142,7 @@ print("Create Model")
 model = create_model()
 
 # Set up folder for TensorBoard events
-DKUBE_TENSORBOARD_DIR = os.environ.get('DKUBE_TENSORBOARD_DIR')
+DKUBE_TENSORBOARD_DIR = "./tensorboard"
 
 # Training run with callbacks to log metrics and TensorBoard events
 print("MLFlow Run")
@@ -154,13 +154,13 @@ with mlflow.start_run(run_name="xray") as run:
 
     # Print the accuracy & loss
     loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
-    print("Accuracy = ", acc)
-    print("Loss =", loss)
+    print("Training Accuracy = ", acc)
+    print("Training Loss =", loss)
 
     # Create checkpoint file with trained model weights
 
     # Save checkpoint
-    model.save_weights("/model/checkpoint/xray-weights")
+    model.save_weights("./checkpoint/xray-weights")
 
     # Export model & metrics
     print("Model Save")

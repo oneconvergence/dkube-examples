@@ -144,18 +144,18 @@ model = create_model()
 
 # Print the initial accuracy & loss
 loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
-print("Accuracy = ", acc)
-print("Loss =", loss)
+print("Initial Accuracy = ", acc)
+print("Initial Loss =", loss)
 
 # Apply the model weights & print restored accuracy & loss
-model.load_weights("/model/checkpoint/xray-weights")
+model.load_weights("./checkpoint/xray-weights")
 
 loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
-print("Accuracy = ", acc)
-print("Loss =", loss)
+print("Loaded Accuracy = ", acc)
+print("Loaded Loss =", loss)
 
 # Set up folder for TensorBoard events
-DKUBE_TENSORBOARD_DIR = os.environ.get('DKUBE_TENSORBOARD_DIR')
+DKUBE_TENSORBOARD_DIR = "./tensorboard"
 
 # Continue training run with callbacks to log metrics and TensorBoard events
 print("MLFlow Run")
@@ -164,11 +164,6 @@ with mlflow.start_run(run_name="xray") as run:
       callbacks=[loggingCallback(),
       tf.keras.callbacks.TensorBoard(log_dir=DKUBE_TENSORBOARD_DIR)]
       )
-
-    # Print the new accuracy & loss
-    loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
-    print("Accuracy = ", acc)
-    print("Loss =", loss)
 
     # Export model & metrics
     print("Model Save")

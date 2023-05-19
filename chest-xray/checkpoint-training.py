@@ -1,4 +1,5 @@
-# Train a model using chest x-ray images
+# Continue training a model for chest x-rays using checkpoints to continue the training.
+# This is assumed to be run after the initial Run from `training.py` that creates the checkpoint.
 
 import os
 import numpy as np
@@ -141,10 +142,22 @@ def create_model():
 print("Create Model")
 model = create_model()
 
+# Print the initial accuracy & loss
+loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
+print("Accuracy = ", acc)
+print("Loss =", loss)
+
+# Apply the model weights & print restored accuracy & loss
+model.load_weights("/model/checkpoint/xray-weights")
+
+loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
+print("Accuracy = ", acc)
+print("Loss =", loss)
+
 # Set up folder for TensorBoard events
 DKUBE_TENSORBOARD_DIR = os.environ.get('DKUBE_TENSORBOARD_DIR')
 
-# Training run with callbacks to log metrics and TensorBoard events
+# Continue training run with callbacks to log metrics and TensorBoard events
 print("MLFlow Run")
 with mlflow.start_run(run_name="xray") as run:
     model.fit(x=resized_train_x, y=onehot, epochs=NUM_EPOCHS, verbose=False, validation_split=0.1,
@@ -152,15 +165,10 @@ with mlflow.start_run(run_name="xray") as run:
       tf.keras.callbacks.TensorBoard(log_dir=DKUBE_TENSORBOARD_DIR)]
       )
 
-    # Print the accuracy & loss
+    # Print the new accuracy & loss
     loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
     print("Accuracy = ", acc)
     print("Loss =", loss)
-
-    # Create checkpoint file with trained model weights
-
-    # Save checkpoint
-    model.save_weights("/model/checkpoint/xray-weights")
 
     # Export model & metrics
     print("Model Save")

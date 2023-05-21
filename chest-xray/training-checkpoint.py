@@ -148,14 +148,15 @@ print("Initial Accuracy = ", acc)
 print("Initial Loss =", loss)
 
 # Apply the model weights & print restored accuracy & loss
-model.load_weights("./checkpoint/xray-weights")
+model.load_weights("/model/checkpoint/xray-weights")
 
 loss, acc = model.evaluate(resized_train_x,onehot, verbose=False)
 print("Loaded Accuracy = ", acc)
 print("Loaded Loss =", loss)
 
 # Set up folder for TensorBoard events
-DKUBE_TENSORBOARD_DIR = "./tensorboard"
+# The variable DKUBE_TENSORBOARD_DIR is where the TB UI will look for the event logs
+DKUBE_TENSORBOARD_DIR = "/model/chest-xray/tensorboard"
 
 # Continue training run with callbacks to log metrics and TensorBoard events
 print("MLFlow Run")
@@ -167,7 +168,7 @@ with mlflow.start_run(run_name="xray") as run:
 
     # Export model & metrics
     print("Model Save")
-    model.save("/model/1")
+    model.save("/model")
 
     print("Artifact Save")
     mlflow.log_artifacts(OUTPUT_MODEL_DIR)

@@ -165,7 +165,7 @@ with mlflow.start_run(run_name="xray") as run:
 
     # Export model & metrics
     print("Model Save")
-    model.save("/model")
+    model.save("/model/1")
 
     print("Artifact Save")
     mlflow.log_artifacts(OUTPUT_MODEL_DIR)

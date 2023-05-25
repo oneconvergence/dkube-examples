@@ -142,7 +142,8 @@ print("Create Model")
 model = create_model()
 
 # Set up folder for TensorBoard events
-DKUBE_TENSORBOARD_DIR = "./tensorboard"
+# The variable DKUBE_TENSORBOARD_DIR is where the TB UI will look for the event logs
+DKUBE_TENSORBOARD_DIR = "/model/tensorboard"
 
 # Training run with callbacks to log metrics and TensorBoard events
 print("MLFlow Run")
@@ -160,7 +161,7 @@ with mlflow.start_run(run_name="xray") as run:
     # Create checkpoint file with trained model weights
 
     # Save checkpoint
-    model.save_weights("./checkpoint/xray-weights")
+    model.save_weights("chest-xray/checkpoint/xray-weights")
 
     # Export model & metrics
     print("Model Save")

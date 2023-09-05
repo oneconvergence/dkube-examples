@@ -1,12 +1,5 @@
-import tensorflow as tf
-import numpy as np
-import requests
-import tensorflow as tf
-import cv2, argparse
-import pandas as pd
-from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_log_error,mean_squared_error
-
 if __name__== "__main__":
+    
     parser = argparse.ArgumentParser()
     parser.add_argument("--modeldir", default='/opt/dkube/inputs/model/', dest = 'modeldir', help="path to save model")
     args = parser.parse_args()
@@ -35,14 +28,19 @@ if __name__== "__main__":
     X2 = np.asarray(X2)
     X2 = X2.reshape(X2.shape[0],X2.shape[1],X2.shape[2],1)
 
+    '''
     model = tf.keras.models.load_model(export_path)
-
     preds = model.predict([X2,X1])
 
     mae = mean_absolute_error(Y, preds)
     r2 = r2_score(Y, preds)
     mse = mean_squared_error(Y, preds)
-
+    '''
+    # Commented above code to simulate scores for testing of conditional execution of stages in pipeline
+    mae = 0.2
+    r2 = 0.2
+    mse = 0.2
+    
     scores = {"mae": mae, "r2": r2, "mse": mse}
     with open("/opt/dkube/outputs/data/scores.json", "w+") as f:
       f.wrtie(scores)

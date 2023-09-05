@@ -1,4 +1,5 @@
 import tensorflow as tf
+import json
 import numpy as np
 import requests
 import tensorflow as tf
@@ -51,6 +52,6 @@ if __name__== "__main__":
     
     scores = {"mae": mae, "r2": r2, "mse": mse}
     with open("/opt/dkube/outputs/data/scores.json", "w+") as f:
-      f.write(scores)
+        json.dump(scores, f)
 
     print("MSE: ",mse,', MAE: ', mae, ", R2: ", r2)

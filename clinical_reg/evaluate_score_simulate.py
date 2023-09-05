@@ -51,7 +51,7 @@ if __name__== "__main__":
     mse = 0.2
     
     scores = {"mae": mae, "r2": r2, "mse": mse}
-    with open("/opt/dkube/outputs/data/scores.json", "w+") as f:
+    with open("/output/scores.json", "w+") as f:
         json.dump(scores, f)
 
     print("MSE: ",mse,', MAE: ', mae, ", R2: ", r2)

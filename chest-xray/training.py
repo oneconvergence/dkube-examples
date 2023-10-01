@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore")
 import requests
 requests.packages.urllib3.disable_warnings()
 
-# Set up parsing for the Katib inputs
+# Set up parsing for the Katib inputs & image resize
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -25,7 +25,18 @@ parser.add_argument('--epochs', type=int, default=5,
                         help='The number of epochs for training')
 parser.add_argument('--learning_rate', type=float, default=0.01,
                         help="learning rate for optimizer")
+parser.add_argument('--image_size',type=int, default=200,
+                        help="Image resize value")
 args = parser.parse_args()
+
+# Set up input hyperparameters & size
+NUM_EPOCHS = int(os.getenv("EPOCHS", args.epochs))
+LEARNING_RATE = args.learning_rate
+IMAGE_SIZE=args.image_size
+
+print("NUM_EPOCHS =", NUM_EPOCHS)
+print("LEARNING_RATE =", LEARNING_RATE)
+print("IMAGE_SIZE =", IMAGE_SIZE)
 
 # Image Data Functions
 
@@ -82,15 +93,11 @@ class ImageData():
 imd = ImageData()
 train_x, train_y = imd.read_classification_data("/data")
 train_y_classes, train_y = train_y
-resized_train_x = imd.resize_images(train_x, (200,200))
-resized_train_x = resized_train_x.reshape(resized_train_x.shape[0], 200, 200, 1)
+resized_train_x = imd.resize_images(train_x, (IMAGE_SIZE,IMAGE_SIZE))
+resized_train_x = resized_train_x.reshape(resized_train_x.shape[0], IMAGE_SIZE, IMAGE_SIZE, 1)
 
 encoder = OneHotEncoder(sparse=False)
 onehot = encoder.fit_transform(train_y.reshape(-1, 1))
-
-# Set up input hyperparameters
-NUM_EPOCHS = int(os.getenv("EPOCHS", args.epochs))
-LEARNING_RATE = args.learning_rate
 
 # Set up MLFlow Experiment
 MLFLOW_EXPERIMENT_NAME = os.getenv('DKUBE_PROJECT_NAME')
@@ -122,7 +129,7 @@ class loggingCallback(keras.callbacks.Callback):
 # Function to create & compile model
 def create_model():
   model = tf.keras.models.Sequential([
-    tf.keras.layers.InputLayer(input_shape=(200,200,1)),
+    tf.keras.layers.InputLayer(input_shape=(IMAGE_SIZE,IMAGE_SIZE,1)),
     tf.keras.layers.Conv2D(2, 4, strides=2, padding='same', activation=tf.nn.relu),
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(128, activation='linear'),

@@ -67,7 +67,7 @@ You can view and experiment with your code using JupyterLab.
 Once the JupyterLab instance is running, open a new tab using the icon at the far right of the instance.
 
 - Navigate to <code>workspace/**\<your-code-repo\>**/chest-xray</code>
-- Open `training-notebook.ipynb`
+- Open `notebook-training.ipynb`
 - `Run all cells` <br><br>
 - You can change the number of `epochs` or `learning rate` in "cell [3]: Hyperparamters" and rerun the script
 

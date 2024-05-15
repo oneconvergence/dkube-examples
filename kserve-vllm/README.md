@@ -21,13 +21,21 @@ The above command will return the version-index and version-id. Go to the DKubeU
 - Click `deploy` button and fill the form with below details
 
 `Serving Image` ocdr/kserve-vllmserver:openai
+
 `Serving Port` 8080
+
 `Serving Url Prefix` /v1
+
 `Deploy using` select GPU
+
 `Minimum Replicas` 1
+
 `Minimum CPU` 1
+
 `Maximum CPU` 4
+
 `Minimum Memory` 50Gi
+
 `Maximum Memory` 50Gi
 
 

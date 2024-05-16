@@ -46,7 +46,7 @@ The above command will return the version-index and version-id. Go to the DKubeU
 # Sample test code
 
 export OPENAI_BASE_URL=<dkube-endpoint-url>
-export OPENAI_API_KEY="dummy"
+export OPENAI_API_KEY="<dkube-user-apikey>"
 
 ```
 response = client.chat.completions.create(

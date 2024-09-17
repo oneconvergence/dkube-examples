@@ -24,3 +24,13 @@ This notebook demonstrates how to submit an ML training program to the DKube pla
 Upon completion of the training, DKube automatically records all lineage information and versions the trained model. The trained model is then made available for serving.
 
 Additionally, the notebook includes code for deploying the latest version of the trained model and testing it with sample data for inference.
+
+## 3. Automating DKube Training and Serving with Kubeflow Pipelines
+
+[pipeline.ipynb](./insurance/pipeline.ipynb)
+
+This notebook demonstrates how to automate DKube training and serving workflows using Kubeflow Pipelines.
+
+DKube extends Kubeflow components by implementing specialized operators that integrate with the KFP SDK, providing a seamless interface for submitting components to the DKube platform.
+
+DKube supports KFP components for various tasks, including training, serving, and preprocessing.

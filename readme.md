@@ -6,7 +6,7 @@ The **Insurance** example provides the full workflow for an example that predict
 
 ## 1. Integrating MLflow with DKube for Seamless ML Training
 
-training_mlflow.ipynb
+[training_mlflow.ipynb](./insurance/training_mlflow.ipynb)
 
 This notebook demonstrates how to leverage an ML training program developed with MLflow within the DKube environment. 
 
@@ -17,7 +17,7 @@ All MLflow tracking APIs can be used transparently without the need for any DKub
 
 ## 2. Running ML Training and Serving Models on DKube
 
-dkube_resources.ipynb
+[dkube_resources.ipynb](./insurance/dkube_resources.ipynb)
 
 This notebook demonstrates how to submit an ML training program to the DKube platform and execute it. While this example covers basic usage, DKube’s API supports advanced configurations including resource specifications (GPUs, CPUs, memory) and node pinning.
 
